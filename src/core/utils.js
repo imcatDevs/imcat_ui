@@ -116,6 +116,12 @@ export class Utils {
    * 
    * @example
    * const copy = Utils.clone({ a: { b: 1 } });
+   * 
+   * @note
+   * - 일반 객체 및 배열만 지원
+   * - Date, RegExp, Map, Set, Function 등 특수 객체는 참조로 복사됨
+   * - 순환 참조는 처리하지 않음 (스택 오버플로우 발생 가능)
+   * - 복잡한 객체는 lodash.cloneDeep 사용 권장
    */
   static clone(obj) {
     if (this.isNullOrUndefined(obj)) return obj;
@@ -167,9 +173,10 @@ export class Utils {
   static debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
+      const context = this; // this 컨텍스트 유지
       const later = () => {
         clearTimeout(timeout);
-        func(...args);
+        func.apply(context, args);
       };
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
@@ -188,8 +195,9 @@ export class Utils {
   static throttle(func, limit) {
     let inThrottle;
     return function(...args) {
+      const context = this; // this 컨텍스트 유지
       if (!inThrottle) {
-        func.apply(this, args);
+        func.apply(context, args);
         inThrottle = true;
         setTimeout(() => inThrottle = false, limit);
       }

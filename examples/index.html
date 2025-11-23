@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMCAT UI - 예제 모음</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      opacity: 0.9;
+    }
+
+    .version {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 5px 15px;
+      border-radius: 20px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .example-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .example-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .example-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .example-title {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .example-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .example-features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .example-features li {
+      padding: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .example-features li:before {
+      content: "✓ ";
+      color: #28a745;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .example-button {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .example-button:hover {
+      background: #764ba2;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.2);
+      padding: 20px 30px;
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .footer {
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎨 IMCAT UI</h1>
+      <div class="subtitle">경량 ES6+ 프론트엔드 프레임워크</div>
+      <div class="version" id="version">Version: Loading...</div>
+    </div>
+
+    <div class="examples">
+      <!-- 기본 예제 -->
+      <div class="example-card" onclick="location.href='basic.html'">
+        <div class="example-icon">🔰</div>
+        <h2 class="example-title">기본 예제</h2>
+        <p class="example-description">
+          IMCAT UI의 모든 코어 기능을 한눈에 테스트할 수 있는 종합 예제입니다.
+        </p>
+        <ul class="example-features">
+          <li>DOM 조작 (jQuery 스타일)</li>
+          <li>이벤트 시스템</li>
+          <li>XSS 보안 방어</li>
+          <li>API 통신</li>
+          <li>유틸리티 함수</li>
+          <li>로딩 인디케이터</li>
+        </ul>
+        <a href="basic.html" class="example-button">예제 보기 →</a>
+      </div>
+
+      <!-- SPA 라우터 예제 -->
+      <div class="example-card" onclick="location.href='spa-router.html'">
+        <div class="example-icon">🚀</div>
+        <h2 class="example-title">SPA 라우터 (catui-href)</h2>
+        <p class="example-description">
+          설정 불필요! catui-href 속성만으로 자동 SPA 네비게이션을 구현한 예제입니다.
+        </p>
+        <ul class="example-features">
+          <li>catui-href 자동 바인딩</li>
+          <li>파일 기반 라우팅 (views/*.html)</li>
+          <li>URL 파라미터 처리</li>
+          <li>동적 요소도 자동 동작</li>
+          <li>History API 통합</li>
+        </ul>
+        <a href="spa-router.html" class="example-button">예제 보기 →</a>
+      </div>
+
+      <!-- 폼 검증 & 애니메이션 예제 -->
+      <div class="example-card" onclick="location.href='form-animation.html'">
+        <div class="example-icon">✨</div>
+        <h2 class="example-title">폼 검증 & 애니메이션</h2>
+        <p class="example-description">
+          실시간 폼 검증과 20가지 애니메이션 효과를 보여주는 예제입니다.
+        </p>
+        <ul class="example-features">
+          <li>10가지 검증 규칙</li>
+          <li>20+ 애니메이션 효과</li>
+          <li>실시간 유효성 검사</li>
+          <li>커스텀 에러 메시지</li>
+        </ul>
+        <a href="form-animation.html" class="example-button">예제 보기 →</a>
+      </div>
+
+      <!-- 상태 관리 예제 -->
+      <div class="example-card" onclick="location.href='state-management.html'">
+        <div class="example-icon">🔄</div>
+        <h2 class="example-title">상태 관리</h2>
+        <p class="example-description">
+          리액티브 상태 관리와 Storage를 활용한 투두 앱 예제입니다.
+        </p>
+        <ul class="example-features">
+          <li>리액티브 상태</li>
+          <li>계산된 속성</li>
+          <li>LocalStorage 연동</li>
+          <li>URL 쿼리 파라미터</li>
+        </ul>
+        <a href="state-management.html" class="example-button">예제 보기 →</a>
+      </div>
+
+      <!-- 종합 데모 -->
+      <div class="example-card" onclick="location.href='dashboard.html'">
+        <div class="example-icon">📊</div>
+        <h2 class="example-title">대시보드 데모</h2>
+        <p class="example-description">
+          모든 기능을 통합한 실전 대시보드 애플리케이션입니다.
+        </p>
+        <ul class="example-features">
+          <li>API 인터셉터</li>
+          <li>로그인/로그아웃</li>
+          <li>실시간 데이터</li>
+          <li>차트 & 애니메이션</li>
+        </ul>
+        <a href="dashboard.html" class="example-button">예제 보기 →</a>
+      </div>
+    </div>
+
+    <!-- 통계 -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-number" id="modules-count">15</span>
+        <span class="stat-label">코어 모듈</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="tests-count">497</span>
+        <span class="stat-label">테스트 통과</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="size">~34KB</span>
+        <span class="stat-label">Minified</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">테스트 커버리지</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 IMCAT UI Framework. MIT License.</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        <a href="https://github.com" style="color: white;">GitHub</a> | 
+        <a href="../docs" style="color: white;">문서</a> | 
+        <a href="../README.md" style="color: white;">README</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import IMCAT from '../dist/imcat-ui.js';
+
+    // 버전 표시
+    document.getElementById('version').textContent = `Version: ${IMCAT.version}`;
+
+    // 통계 애니메이션
+    function animateNumber(id, target) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      
+      const current = parseInt(element.textContent) || 0;
+      const increment = Math.ceil(target / 50);
+      let value = 0;
+
+      const interval = setInterval(() => {
+        value += increment;
+        if (value >= target) {
+          value = target;
+          clearInterval(interval);
+        }
+        element.textContent = value;
+      }, 20);
+    }
+
+    // DOM 준비 완료 후 애니메이션 시작
+    IMCAT.ready(() => {
+      console.log('✅ IMCAT UI 예제 인덱스 로드 완료!');
+      console.log('버전:', IMCAT.version);
+      
+      // 숫자 애니메이션
+      setTimeout(() => {
+        animateNumber('modules-count', 15);
+        animateNumber('tests-count', 497);
+      }, 300);
+    });
+  </script>
+</body>
+</html>

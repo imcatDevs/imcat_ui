@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상태 관리 - IMCAT UI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .todo-app {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #764ba2;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active {
+      background: #667eea;
+      color: white;
+    }
+
+    .todo-list {
+      list-style: none;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      gap: 15px;
+      transition: background 0.3s;
+    }
+
+    .todo-item:hover {
+      background: #f8f9fa;
+    }
+
+    .todo-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .todo-text {
+      flex: 1;
+      font-size: 16px;
+    }
+
+    .todo-text.completed {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .todo-delete {
+      padding: 6px 12px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+
+    .storage-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← 돌아가기</a>
+    
+    <div class="header">
+      <h1>🔄 상태 관리</h1>
+      <p>리액티브 상태 관리와 LocalStorage 연동</p>
+    </div>
+
+    <div class="todo-app">
+      <h2 style="margin-bottom: 20px;">📝 할 일 목록</h2>
+
+      <div class="input-group">
+        <input type="text" id="todo-input" placeholder="새로운 할 일을 입력하세요..." />
+        <button class="btn btn-primary" id="add-btn">추가</button>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">전체</button>
+        <button class="filter-btn" data-filter="active">진행중</button>
+        <button class="filter-btn" data-filter="completed">완료</button>
+      </div>
+
+      <ul class="todo-list" id="todo-list">
+        <!-- 투두 아이템이 여기에 추가됩니다 -->
+      </ul>
+
+      <div class="empty-state" id="empty-state" style="display: none;">
+        📭 할 일이 없습니다
+      </div>
+
+      <div class="stats">
+        <span>전체: <strong id="total-count">0</strong></span>
+        <span>진행중: <strong id="active-count">0</strong></span>
+        <span>완료: <strong id="completed-count">0</strong></span>
+        <button class="btn btn-danger" id="clear-btn">완료 항목 삭제</button>
+      </div>
+
+      <div class="storage-info">
+        💾 LocalStorage에 자동 저장됨 | 현재 필터: <strong id="current-filter">전체</strong>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import IMCAT from '../dist/imcat-ui.js';
+
+    // 상태 관리 스토어 생성
+    const store = IMCAT.state.create({
+      todos: [],
+      filter: 'all'
+    });
+
+    // 계산된 속성: 필터링된 투두
+    store.compute('filteredTodos', function() {
+      if (this.filter === 'all') return this.todos;
+      if (this.filter === 'active') return this.todos.filter(t => !t.completed);
+      if (this.filter === 'completed') return this.todos.filter(t => t.completed);
+      return this.todos;
+    });
+
+    // 계산된 속성: 통계
+    store.compute('stats', function() {
+      const total = this.todos.length;
+      const active = this.todos.filter(t => !t.completed).length;
+      const completed = this.todos.filter(t => t.completed).length;
+      return { total, active, completed };
+    });
+
+    // Storage에서 데이터 로드
+    const savedTodos = IMCAT.storage.get('todos');
+    if (savedTodos) {
+      store.todos = savedTodos;
+    }
+
+    // URL 쿼리에서 필터 로드
+    const filterParam = IMCAT.url.getParam('filter', 'all');
+    store.filter = filterParam;
+
+    // 렌더링 함수
+    function renderTodos() {
+      const todoList = document.getElementById('todo-list');
+      const emptyState = document.getElementById('empty-state');
+      const filteredTodos = store.filteredTodos;
+
+      if (filteredTodos.length === 0) {
+        todoList.innerHTML = '';
+        emptyState.style.display = 'block';
+      } else {
+        emptyState.style.display = 'none';
+        todoList.innerHTML = filteredTodos.map(todo => `
+          <li class="todo-item" data-id="${todo.id}">
+            <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''} />
+            <span class="todo-text ${todo.completed ? 'completed' : ''}">${todo.text}</span>
+            <button class="todo-delete">삭제</button>
+          </li>
+        `).join('');
+      }
+
+      // 통계 업데이트
+      const stats = store.stats;
+      document.getElementById('total-count').textContent = stats.total;
+      document.getElementById('active-count').textContent = stats.active;
+      document.getElementById('completed-count').textContent = stats.completed;
+      document.getElementById('current-filter').textContent = 
+        store.filter === 'all' ? '전체' : 
+        store.filter === 'active' ? '진행중' : '완료';
+    }
+
+    // todos 변경 감시
+    store.watch('todos', (newTodos) => {
+      renderTodos();
+      IMCAT.storage.set('todos', newTodos); // Storage에 저장
+    });
+
+    // filter 변경 감시
+    store.watch('filter', (newFilter) => {
+      renderTodos();
+      IMCAT.url.updateQuery({ filter: newFilter }); // URL 업데이트
+      
+      // 필터 버튼 활성화 상태 업데이트
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === newFilter);
+      });
+    });
+
+    // 투두 추가
+    document.getElementById('add-btn').addEventListener('click', async () => {
+      const input = document.getElementById('todo-input');
+      const text = input.value.trim();
+      
+      if (!text) {
+        await IMCAT.animate(input).shake(500);
+        return;
+      }
+
+      const newTodo = {
+        id: Date.now(),
+        text,
+        completed: false,
+        createdAt: new Date().toISOString()
+      };
+
+      store.todos = [...store.todos, newTodo];
+      input.value = '';
+      
+      // 새 아이템 애니메이션
+      setTimeout(async () => {
+        const newItem = document.querySelector(`[data-id="${newTodo.id}"]`);
+        if (newItem) {
+          await IMCAT.animate(newItem).slideDown(400);
+        }
+      }, 50);
+    });
+
+    // Enter 키로 추가
+    document.getElementById('todo-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('add-btn').click();
+      }
+    });
+
+    // 투두 리스트 이벤트 위임
+    document.getElementById('todo-list').addEventListener('click', async (e) => {
+      const item = e.target.closest('.todo-item');
+      if (!item) return;
+
+      const id = parseInt(item.dataset.id);
+
+      // 체크박스 클릭
+      if (e.target.classList.contains('todo-checkbox')) {
+        store.todos = store.todos.map(todo =>
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        );
+        await IMCAT.animate(item).pulse(300);
+      }
+
+      // 삭제 버튼 클릭
+      if (e.target.classList.contains('todo-delete')) {
+        await IMCAT.animate(item).slideLeft(300);
+        store.todos = store.todos.filter(todo => todo.id !== id);
+      }
+    });
+
+    // 필터 버튼
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        store.filter = btn.dataset.filter;
+      });
+    });
+
+    // 완료 항목 삭제
+    document.getElementById('clear-btn').addEventListener('click', async () => {
+      const completedItems = document.querySelectorAll('.todo-item .todo-checkbox:checked');
+      
+      for (const checkbox of completedItems) {
+        const item = checkbox.closest('.todo-item');
+        await IMCAT.animate(item).fadeOut(200);
+      }
+      
+      store.todos = store.todos.filter(todo => !todo.completed);
+      
+      if (store.todos.filter(t => t.completed).length === 0) {
+        await IMCAT.animate(document.getElementById('clear-btn')).pulse(300);
+      }
+    });
+
+    // 초기 렌더링
+    renderTodos();
+
+    console.log('✅ 상태 관리 예제 로드 완료!');
+    console.log('Store:', store);
+  </script>
+</body>
+</html>

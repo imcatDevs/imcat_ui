@@ -76,6 +76,12 @@ describe('Security Module', () => {
       expect(Security.validatePath('views/admin/dashboard.php')).toBe(true);
     });
 
+    it('URL 쿼리 스트링이 포함된 경로를 허용해야 함', () => {
+      expect(Security.validatePath('views/products.html?id=1')).toBe(true);
+      expect(Security.validatePath('views/products.html?category=all&sort=asc')).toBe(true);
+      expect(Security.validatePath('views/user.html?name=john')).toBe(true);
+    });
+
     it('상위 디렉토리 접근을 차단해야 함', () => {
       expect(Security.validatePath('../etc/passwd')).toBe(false);
       expect(Security.validatePath('views/../config.php')).toBe(false);

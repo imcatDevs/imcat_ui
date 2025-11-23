@@ -23,7 +23,10 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "serve": "http-server . -p 3000 -o"
+    "serve": "http-server . -p 3000 -o",
+    "docs": "jsdoc -c jsdoc.json",
+    "docs:clean": "rimraf docs/jsdoc",
+    "docs:serve": "http-server docs/jsdoc -p 8080 -o"
   },
   "keywords": [
     "framework",
@@ -44,11 +47,16 @@
     "access": "public"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-terser": "^0.4.4",
     "@vitest/ui": "^1.0.0",
+    "docdash": "^2.0.2",
     "eslint": "^8.55.0",
+    "gzip-size-cli": "^5.1.0",
     "http-server": "^14.1.1",
+    "jsdoc": "^4.0.2",
     "jsdom": "^23.0.0",
     "rimraf": "^5.0.5",
     "rollup": "^4.9.0",

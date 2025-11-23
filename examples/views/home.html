@@ -1,0 +1,93 @@
+<div class="page-title">🏠 홈</div>
+<div class="info-box">
+  <h2>IMCAT UI Framework에 오신 것을 환영합니다!</h2>
+  <p>경량화된 ES6+ 기반 프론트엔드 프레임워크입니다.</p>
+  <ul style="margin-top: 15px; margin-left: 20px;">
+    <li>제로 빌드 (개발 시)</li>
+    <li>동적 모듈 로딩</li>
+    <li>SPA 라우팅 (파일 기반)</li>
+    <li>보안 우선 설계 (XSS 방어)</li>
+    <li>Storage 모듈 (만료 시간)</li>
+    <li>상태 관리 (리액티브)</li>
+    <li>폼 검증 (10가지 규칙)</li>
+    <li>애니메이션 (20+ 효과)</li>
+  </ul>
+</div>
+
+<div class="info-box">
+  <h3>📌 catui-href 선언적 네비게이션</h3>
+  <p>설정 코드 없이 자동으로 SPA 동작!</p>
+  <div style="margin-top: 10px;">
+    <button catui-href="views/about.html" class="btn-link">소개 페이지로 이동</button>
+    <button catui-href="views/products.html?category=all" class="btn-link">제품 보기</button>
+  </div>
+</div>
+
+<div class="info-box">
+  <h3>⚡ 실시간 통계</h3>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">15</div>
+      <div class="stat-label">코어 모듈</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">497</div>
+      <div class="stat-label">테스트 통과</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">~34KB</div>
+      <div class="stat-label">Minified</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // 페이지별 스크립트
+  console.log('🏠 홈 페이지 로드됨');
+  
+  // Storage 데모
+  IMCAT.storage.set('lastVisit', new Date().toISOString());
+  console.log('Last visit:', IMCAT.storage.get('lastVisit'));
+})();
+</script>
+
+<style>
+  .btn-link {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s;
+  }
+  .btn-link:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+  }
+</style>

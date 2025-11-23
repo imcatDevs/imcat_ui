@@ -169,6 +169,18 @@ class DOMElement {
    * @param {string|Function} selector - 선택자 또는 핸들러
    * @param {Function} [handler] - 핸들러
    * @returns {DOMElement}
+   * 
+   * @example
+   * // 직접 바인딩
+   * IMCAT('#button').on('click', (e) => console.log('clicked'));
+   * 
+   * @example
+   * // 이벤트 위임 (권장: 동적 요소에 유리)
+   * IMCAT('#list').on('click', '.item', (e) => console.log('item clicked'));
+   * 
+   * @performance
+   * - 이벤트 위임 사용 시 메모리 효율적 (리스너 1개로 여러 요소 처리)
+   * - _delegates Map으로 off() 시 정확한 cleanup 보장
    */
   on(event, selector, handler) {
     // 인자 처리

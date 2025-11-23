@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>폼 검증 & 애니메이션 - IMCAT UI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 968px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* 폼 스타일 */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    input.is-invalid {
+      border-color: #dc3545;
+    }
+
+    input.is-valid {
+      border-color: #28a745;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+      margin-left: 10px;
+    }
+
+    /* 애니메이션 데모 */
+    .animation-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .animation-btn {
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.3s;
+    }
+
+    .animation-btn:hover {
+      background: #764ba2;
+    }
+
+    .animation-box {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 30px auto;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .success-message {
+      background: #28a745;
+      color: white;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← 돌아가기</a>
+    
+    <div class="header">
+      <h1>✨ 폼 검증 & 애니메이션</h1>
+      <p>실시간 폼 검증과 20가지 애니메이션 효과</p>
+    </div>
+
+    <div class="content">
+      <!-- 폼 검증 섹션 -->
+      <div class="section">
+        <h2 class="section-title">회원가입 폼 검증</h2>
+        <form id="signup-form">
+          <div class="form-group">
+            <label>사용자명 *</label>
+            <input type="text" name="username" placeholder="3-20자 사이">
+          </div>
+
+          <div class="form-group">
+            <label>이메일 *</label>
+            <input type="email" name="email" placeholder="example@email.com">
+          </div>
+
+          <div class="form-group">
+            <label>비밀번호 *</label>
+            <input type="password" name="password" placeholder="최소 8자, 문자+숫자">
+          </div>
+
+          <div class="form-group">
+            <label>비밀번호 확인 *</label>
+            <input type="password" name="confirmPassword" placeholder="비밀번호 재입력">
+          </div>
+
+          <div class="form-group">
+            <label>나이 *</label>
+            <input type="text" name="age" placeholder="18-120">
+          </div>
+
+          <div class="form-group">
+            <label>웹사이트</label>
+            <input type="url" name="website" placeholder="https://example.com">
+          </div>
+
+          <div class="form-group">
+            <label>전화번호</label>
+            <input type="text" name="phone" placeholder="010-1234-5678">
+          </div>
+
+          <button type="submit" class="btn btn-primary">가입하기</button>
+          <button type="button" class="btn btn-secondary" id="reset-btn">초기화</button>
+        </form>
+
+        <div class="success-message" id="success-message">
+          ✓ 회원가입이 완료되었습니다!
+        </div>
+      </div>
+
+      <!-- 애니메이션 섹션 -->
+      <div class="section">
+        <h2 class="section-title">애니메이션 효과</h2>
+        
+        <div class="animation-controls">
+          <button class="animation-btn" data-animation="fadeIn">Fade In</button>
+          <button class="animation-btn" data-animation="fadeOut">Fade Out</button>
+          <button class="animation-btn" data-animation="slideDown">Slide Down</button>
+          <button class="animation-btn" data-animation="slideUp">Slide Up</button>
+          <button class="animation-btn" data-animation="scaleIn">Scale In</button>
+          <button class="animation-btn" data-animation="scaleOut">Scale Out</button>
+          <button class="animation-btn" data-animation="bounceIn">Bounce In</button>
+          <button class="animation-btn" data-animation="rotateIn">Rotate In</button>
+          <button class="animation-btn" data-animation="flipIn">Flip In</button>
+          <button class="animation-btn" data-animation="shake">Shake</button>
+          <button class="animation-btn" data-animation="pulse">Pulse</button>
+          <button class="animation-btn" data-animation="flash">Flash</button>
+          <button class="animation-btn" data-animation="swing">Swing</button>
+          <button class="animation-btn" data-animation="wobble">Wobble</button>
+          <button class="animation-btn" data-animation="tada">Tada</button>
+          <button class="animation-btn" data-animation="heartBeat">Heart Beat</button>
+        </div>
+
+        <div class="animation-box" id="animation-box">
+          🎨 IMCAT
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import IMCAT from '../dist/imcat-ui.js';
+
+    // 폼 검증 설정
+    const validator = IMCAT.form.create('#signup-form', {
+      username: { 
+        required: true, 
+        minLength: 3, 
+        maxLength: 20 
+      },
+      email: { 
+        required: true, 
+        email: true 
+      },
+      password: { 
+        required: true, 
+        minLength: 8,
+        pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        custom: (value) => ({
+          valid: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value),
+          message: '최소 8자, 문자와 숫자를 포함해야 합니다.'
+        })
+      },
+      confirmPassword: { 
+        required: true, 
+        match: 'password' 
+      },
+      age: { 
+        required: true, 
+        number: true, 
+        min: 18, 
+        max: 120 
+      },
+      website: { 
+        url: true 
+      },
+      phone: { 
+        pattern: /^01[0-9]-\d{3,4}-\d{4}$/,
+        custom: (value) => {
+          if (!value) return { valid: true };
+          return {
+            valid: /^01[0-9]-\d{3,4}-\d{4}$/.test(value),
+            message: '올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)'
+          };
+        }
+      }
+    }, {
+      validateOnBlur: true,
+      validateOnInput: false
+    });
+
+    // 폼 제출 이벤트
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (validator.validate()) {
+        // 성공 메시지 표시
+        const successMsg = document.getElementById('success-message');
+        successMsg.style.display = 'block';
+        await IMCAT.animate(successMsg).bounceIn(600);
+        
+        console.log('✅ 폼 검증 성공!');
+        
+        // 3초 후 숨김
+        setTimeout(async () => {
+          await IMCAT.animate(successMsg).fadeOut(300);
+        }, 3000);
+      } else {
+        // 에러가 있는 첫 번째 필드에 shake 애니메이션
+        const errors = validator.getErrors();
+        const firstErrorField = Object.keys(errors)[0];
+        const field = document.querySelector(`[name="${firstErrorField}"]`);
+        if (field) {
+          await IMCAT.animate(field).shake(500);
+        }
+        console.log('❌ 검증 실패:', errors);
+      }
+    });
+
+    // 초기화 버튼
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      validator.reset();
+      document.getElementById('success-message').style.display = 'none';
+    });
+
+    // 애니메이션 버튼들
+    document.querySelectorAll('.animation-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const animation = btn.dataset.animation;
+        const box = document.getElementById('animation-box');
+        
+        try {
+          await IMCAT.animate(box)[animation](600);
+          console.log(`✅ ${animation} 애니메이션 완료`);
+        } catch (error) {
+          console.error('애니메이션 에러:', error);
+        }
+      });
+    });
+
+    console.log('✅ 폼 검증 & 애니메이션 예제 로드 완료!');
+  </script>
+</body>
+</html>

@@ -108,53 +108,65 @@ export class Security {
    * @param {string} path - 검증할 경로
    * @returns {boolean} 안전한 경로 여부
    * 
+   * @description
+   * views/ 폴더 및 그 하위 폴더의 뷰 파일만 허용합니다.
+   * 경로 순회 공격(..), 절대 경로, null byte 등을 차단합니다.
+   * 
    * @example
    * Security.validatePath('views/home.html'); // true
+   * Security.validatePath('views/products.html?id=1'); // true
+   * Security.validatePath('views/admin/dashboard.html'); // true (하위 폴더)
+   * Security.validatePath('views/user/profile/edit.html'); // true (깊은 하위 폴더)
    * Security.validatePath('../etc/passwd'); // false
+   * Security.validatePath('/etc/passwd'); // false
+   * Security.validatePath('templates/page.html'); // false (views/ 외부)
    */
   static validatePath(path) {
     if (typeof path !== 'string' || !path) return false;
 
+    // 쿼리 스트링 분리
+    const [pathOnly, queryString] = path.split('?');
+    
     // ../ 포함 차단 (상위 디렉토리 접근)
-    if (path.includes('../') || path.includes('..\\')) {
+    if (pathOnly.includes('../') || pathOnly.includes('..\\')) {
       return false;
     }
 
     // 절대 경로 차단 (/ 로 시작)
-    if (path.startsWith('/')) {
+    if (pathOnly.startsWith('/')) {
       return false;
     }
 
-    // views/ 폴더 외부 경로 차단
-    if (!path.startsWith('views/')) {
+    // views/ 폴더 및 하위 폴더만 허용 (views/로 시작하는 모든 경로)
+    if (!pathOnly.startsWith('views/')) {
       return false;
     }
 
     // null byte 포함 차단
-    if (path.includes('\0') || path.includes('%00')) {
+    if (pathOnly.includes('\0') || pathOnly.includes('%00')) {
       return false;
     }
 
     // URL 인코딩 우회 시도 탐지
-    const decoded = decodeURIComponent(path);
+    const decoded = decodeURIComponent(pathOnly);
     if (decoded.includes('../') || decoded.includes('..\\')) {
       return false;
     }
 
     // .html, .php 확장자만 허용
-    if (!path.endsWith('.html') && !path.endsWith('.php')) {
+    if (!pathOnly.endsWith('.html') && !pathOnly.endsWith('.php')) {
       return false;
     }
 
     // 안전한 문자만 허용 (영문, 숫자, 하이픈, 언더스코어, 슬래시, 점)
     const safePattern = /^[a-zA-Z0-9\-_/.]+$/;
-    if (!safePattern.test(path)) {
+    if (!safePattern.test(pathOnly)) {
       return false;
     }
 
     // 경로 정규화 후 재검증
-    const normalized = path.replace(/\/+/g, '/');
-    if (normalized !== path) {
+    const normalized = pathOnly.replace(/\/+/g, '/');
+    if (normalized !== pathOnly) {
       return false;
     }
 

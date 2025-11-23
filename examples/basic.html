@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMCAT UI - 기본 예제</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .version {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #444;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button.secondary {
+      background: #6c757d;
+    }
+
+    button.secondary:hover {
+      background: #545b62;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      width: 300px;
+      margin-right: 10px;
+    }
+
+    .test-box {
+      padding: 20px;
+      border: 2px dashed #ddd;
+      border-radius: 4px;
+      margin: 15px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .highlight {
+      background-color: yellow;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 IMCAT UI Framework</h1>
+    <div class="version">Core Version: <span id="version"></span></div>
+
+    <!-- 1. DOM 조작 테스트 -->
+    <div class="section">
+      <h2>1️⃣ DOM 조작</h2>
+      <div class="test-box" id="dom-test">
+        <p id="test-text">이 텍스트를 변경해보세요</p>
+      </div>
+      <button onclick="testDOM()">텍스트 변경</button>
+      <button onclick="testDOMClass()" class="secondary">클래스 토글</button>
+      <button onclick="testDOMCreate()" class="secondary">요소 추가</button>
+      <div class="result" id="dom-result"></div>
+    </div>
+
+    <!-- 2. 이벤트 시스템 테스트 -->
+    <div class="section">
+      <h2>2️⃣ 이벤트 시스템</h2>
+      <button id="event-btn">클릭하세요 (횟수: <span id="click-count">0</span>)</button>
+      <button onclick="testGlobalEvent()" class="secondary">전역 이벤트 발행</button>
+      <div class="result" id="event-result"></div>
+    </div>
+
+    <!-- 3. 보안 기능 테스트 -->
+    <div class="section">
+      <h2>3️⃣ 보안 (XSS 방어)</h2>
+      <input type="text" id="user-input" placeholder="악성 스크립트를 입력해보세요" value="<script>alert('XSS')</script>">
+      <button onclick="testSecurity()">보안 처리</button>
+      <div class="test-box">
+        <strong>결과:</strong>
+        <div id="security-result"></div>
+      </div>
+      <div class="result" id="security-log"></div>
+    </div>
+
+    <!-- 4. API 통신 시뮬레이션 -->
+    <div class="section">
+      <h2>4️⃣ API 통신</h2>
+      <button onclick="testAPISuccess()">성공 응답 생성</button>
+      <button onclick="testAPIError()" class="secondary">에러 응답 생성</button>
+      <button onclick="testAPIPagination()" class="secondary">페이지네이션</button>
+      <div class="result" id="api-result"></div>
+    </div>
+
+    <!-- 5. 유틸리티 함수 테스트 -->
+    <div class="section">
+      <h2>5️⃣ 유틸리티</h2>
+      <button onclick="testUtils()">타입 체크</button>
+      <button onclick="testUtilsExtend()" class="secondary">객체 병합</button>
+      <button onclick="testUtilsDebounce()" class="secondary">디바운스</button>
+      <div class="result" id="utils-result"></div>
+    </div>
+
+    <!-- 6. 로딩 인디케이터 테스트 -->
+    <div class="section">
+      <h2>6️⃣ 로딩 인디케이터</h2>
+      <button onclick="testLoading()">로딩 표시 (2초)</button>
+      <button onclick="testLoadingProgress()" class="secondary">진행률 표시</button>
+      <div class="result" id="loading-result"></div>
+    </div>
+  </div>
+
+  <!-- IMCAT UI 코어 로드 -->
+  <script type="module">
+    import IMCAT from '../dist/imcat-ui.js';
+
+    // 전역으로 사용 가능하도록
+    window.IMCAT = IMCAT;
+
+    // 버전 표시
+    document.getElementById('version').textContent = IMCAT.version;
+
+    // 전역 이벤트 리스너 등록
+    IMCAT.on('app:message', (data) => {
+      const result = document.getElementById('event-result');
+      result.className = 'result success';
+      result.textContent = `전역 이벤트 수신: ${JSON.stringify(data)}`;
+    });
+
+    // DOM 준비 완료
+    IMCAT.ready(() => {
+      console.log('✅ IMCAT UI 준비 완료!');
+      console.log('버전:', IMCAT.version);
+    });
+
+    // 1. DOM 조작 테스트
+    window.testDOM = function() {
+      IMCAT('#test-text').text('✅ 텍스트가 변경되었습니다!');
+      document.getElementById('dom-result').textContent = '성공: 텍스트 변경됨';
+    };
+
+    window.testDOMClass = function() {
+      IMCAT('#test-text').toggleClass('highlight');
+      document.getElementById('dom-result').textContent = '성공: 클래스 토글됨';
+    };
+
+    window.testDOMCreate = function() {
+      const newEl = IMCAT.create('p', { 
+        text: '새로 생성된 요소입니다!',
+        class: 'highlight'
+      });
+      newEl.appendTo('#dom-test');
+      document.getElementById('dom-result').textContent = '성공: 새 요소 추가됨';
+    };
+
+    // 2. 이벤트 테스트
+    let clickCount = 0;
+    IMCAT('#event-btn').on('click', () => {
+      clickCount++;
+      IMCAT('#click-count').text(clickCount);
+      const result = document.getElementById('event-result');
+      result.textContent = `클릭 이벤트 발생! (총 ${clickCount}회)`;
+    });
+
+    window.testGlobalEvent = function() {
+      IMCAT.emit('app:message', { 
+        type: 'test',
+        message: '전역 이벤트 테스트',
+        timestamp: Date.now()
+      });
+    };
+
+    // 3. 보안 테스트
+    window.testSecurity = function() {
+      const input = document.getElementById('user-input').value;
+      const escaped = IMCAT.escape(input);
+      const sanitized = IMCAT.sanitize(input);
+
+      IMCAT('#security-result').html(`
+        <strong>원본:</strong> ${input}<br>
+        <strong>이스케이프:</strong> ${escaped}<br>
+        <strong>새니타이징:</strong> ${sanitized}
+      `);
+
+      const log = document.getElementById('security-log');
+      log.className = 'result success';
+      log.textContent = '✅ XSS 공격이 차단되었습니다!';
+    };
+
+    // 4. API 테스트
+    window.testAPISuccess = function() {
+      const response = IMCAT.api.success({ 
+        users: [
+          { id: 1, name: 'John Doe' },
+          { id: 2, name: 'Jane Smith' }
+        ]
+      }, '사용자 목록 조회 성공');
+
+      const result = document.getElementById('api-result');
+      result.className = 'result success';
+      result.textContent = JSON.stringify(response, null, 2);
+    };
+
+    window.testAPIError = function() {
+      const response = IMCAT.api.error('사용자를 찾을 수 없습니다', 404);
+
+      const result = document.getElementById('api-result');
+      result.className = 'result error';
+      result.textContent = JSON.stringify(response, null, 2);
+    };
+
+    window.testAPIPagination = function() {
+      const items = Array.from({ length: 10 }, (_, i) => ({ id: i + 1, name: `Item ${i + 1}` }));
+      const response = IMCAT.api.paginated(items, {
+        page: 1,
+        limit: 10,
+        total: 100
+      });
+
+      const result = document.getElementById('api-result');
+      result.className = 'result success';
+      result.textContent = JSON.stringify(response, null, 2);
+    };
+
+    // 5. 유틸리티 테스트
+    window.testUtils = function() {
+      const tests = {
+        'isString("hello")': IMCAT.isString('hello'),
+        'isNumber(123)': IMCAT.isNumber(123),
+        'isArray([1,2,3])': IMCAT.isArray([1,2,3]),
+        'isObject({a:1})': IMCAT.isObject({a:1})
+      };
+
+      const result = document.getElementById('utils-result');
+      result.textContent = JSON.stringify(tests, null, 2);
+    };
+
+    window.testUtilsExtend = function() {
+      const obj1 = { a: 1, b: { c: 2 } };
+      const obj2 = { b: { d: 3 }, e: 4 };
+      const merged = IMCAT.extend({}, obj1, obj2);
+
+      const result = document.getElementById('utils-result');
+      result.textContent = `병합 결과:\n${JSON.stringify(merged, null, 2)}`;
+    };
+
+    window.testUtilsDebounce = function() {
+      let count = 0;
+      const debounced = IMCAT.debounce(() => {
+        count++;
+        const result = document.getElementById('utils-result');
+        result.textContent = `디바운스 실행됨: ${count}회`;
+      }, 300);
+
+      // 빠르게 여러 번 호출
+      for (let i = 0; i < 10; i++) {
+        debounced();
+      }
+
+      const result = document.getElementById('utils-result');
+      result.textContent = '디바운스 테스트 중... (300ms 후 1회만 실행됨)';
+    };
+
+    // 6. 로딩 테스트
+    window.testLoading = function() {
+      IMCAT.loading.show('데이터 로딩 중...');
+      
+      setTimeout(() => {
+        IMCAT.loading.hide();
+        const result = document.getElementById('loading-result');
+        result.textContent = '✅ 로딩 완료!';
+      }, 2000);
+
+      const result = document.getElementById('loading-result');
+      result.textContent = '로딩 중... (2초)';
+    };
+
+    window.testLoadingProgress = function() {
+      IMCAT.loading.setConfig({ style: 'bar' });
+      IMCAT.loading.show();
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        IMCAT.loading.progress(progress);
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            IMCAT.loading.hide();
+            IMCAT.loading.setConfig({ style: 'spinner' }); // 기본값으로 복구
+            const result = document.getElementById('loading-result');
+            result.textContent = '✅ 진행률 100% 완료!';
+          }, 500);
+        }
+      }, 200);
+
+      const result = document.getElementById('loading-result');
+      result.textContent = '진행률 표시 중...';
+    };
+
+    console.log('📚 IMCAT UI 예제가 로드되었습니다!');
+    console.log('사용 가능한 전역 객체: IMCAT');
+  </script>
+</body>
+</html>

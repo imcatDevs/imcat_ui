@@ -1,4 +1,4 @@
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 import scss from 'rollup-plugin-scss';
 import babel from '@rollup/plugin-babel';
 
@@ -44,28 +44,29 @@ const coreConfig = {
   ]
 };
 
-// 모듈 번들 (개별)
-const moduleConfig = {
-  input: {
-    modal: 'src/modules/modal/modal.js',
-    dropdown: 'src/modules/dropdown/dropdown.js',
-    tooltip: 'src/modules/tooltip/tooltip.js'
-    // 필요한 모듈 추가
-  },
-  output: {
-    dir: 'dist/modules',
-    format: 'esm',
-    entryFileNames: '[name].js',
-    chunkFileNames: '[name]-[hash].js',
-    sourcemap: !production
-  },
-  plugins: [
-    babel({
-      babelHelpers: 'bundled',
-      exclude: 'node_modules/**'
-    }),
-    production && terser()
-  ].filter(Boolean)
-};
+// 모듈 번들 (개별) - 모듈 개발 시 활성화
+// const moduleConfig = {
+//   input: {
+//     modal: 'src/modules/modal/modal.js',
+//     dropdown: 'src/modules/dropdown/dropdown.js',
+//     tooltip: 'src/modules/tooltip/tooltip.js'
+//     // 필요한 모듈 추가
+//   },
+//   output: {
+//     dir: 'dist/modules',
+//     format: 'esm',
+//     entryFileNames: '[name].js',
+//     chunkFileNames: '[name]-[hash].js',
+//     sourcemap: !production
+//   },
+//   plugins: [
+//     babel({
+//       babelHelpers: 'bundled',
+//       exclude: 'node_modules/**'
+//     }),
+//     production && terser()
+//   ].filter(Boolean)
+// };
 
-export default [coreConfig, moduleConfig];
+// 코어만 빌드 (모듈은 개발 시 추가)
+export default [coreConfig];

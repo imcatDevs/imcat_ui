@@ -1,0 +1,64 @@
+{
+  "name": "imcat-ui",
+  "version": "1.0.0",
+  "description": "Lightweight, zero-build, ES6+ JavaScript web framework with dynamic module loading and integrated SPA routing",
+  "type": "module",
+  "main": "dist/imcat-ui.js",
+  "module": "dist/imcat-ui.js",
+  "style": "dist/imcat-ui.css",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "set NODE_ENV=production && rollup -c",
+    "build:core": "rollup -c --environment BUILD:core",
+    "build:modules": "rollup -c --environment BUILD:modules",
+    "build:css": "sass src/styles/imcat-ui.scss dist/imcat-ui.css",
+    "build:css:min": "sass src/styles/imcat-ui.scss dist/imcat-ui.min.css --style compressed",
+    "minify": "terser dist/imcat-ui.js -o dist/imcat-ui.min.js --compress --mangle",
+    "gzip": "gzip -k dist/*.min.js dist/*.min.css",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "postbuild": "npm run gzip",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "serve": "http-server . -p 3000 -o"
+  },
+  "keywords": [
+    "framework",
+    "spa",
+    "zero-build",
+    "lightweight",
+    "es6",
+    "dynamic-loading",
+    "xss-protection"
+  ],
+  "author": "IMCAT Team",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^8.55.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^23.0.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.0",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.69.5",
+    "terser": "^5.26.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

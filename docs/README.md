@@ -24,6 +24,7 @@ IMCAT UI 프레임워크의 전체 설계 및 개발 문서입니다.
 - 뷰 라우터
 - 로딩 인디케이터
 - 보안 모듈
+- API 유틸리티
 - 유틸리티
 
 #### [모듈 시스템 설계서](./모듈_시스템_설계서.md)
@@ -33,6 +34,45 @@ IMCAT UI 프레임워크의 전체 설계 및 개발 문서입니다.
 - Modal 모듈 예시
 - 모듈 개발 가이드
 - 스타일 가이드
+
+#### [디자인 시스템 설계서](./디자인_시스템_설계서.md)
+
+- SCSS 아키텍처
+- 디자인 토큰 (색상, 타이포그래피, 간격)
+- 믹스인 및 함수
+- 테마 시스템
+- 컴포넌트 스타일 가이드
+- 코딩 규칙 및 네이밍 컨벤션
+
+#### [번들링 가이드](./번들링_가이드.md)
+
+- 빌드 구조
+- Rollup 설정
+- 최적화 전략
+- CSS 번들링
+- 배포 전략
+- CI/CD 파이프라인
+
+#### [코딩 가이드](./코딩_가이드.md)
+
+- JavaScript 코딩 규칙
+- SCSS 코딩 규칙
+- 명명 규칙
+- 주석 규칙 (JSDoc)
+- 파일 구조
+- 모범 사례 및 안티 패턴
+- 코드 리뷰 체크리스트
+
+#### [API 레퍼런스](./API_레퍼런스.md)
+
+- Core API (IMCAT, use, create)
+- DOM API (요소 조작)
+- API 유틸리티 (HTTP 요청)
+- View Router API (SPA 라우팅)
+- Loading API (로딩 표시)
+- Security API (보안)
+- Event API (이벤트 버스)
+- Utils API (유틸리티)
 
 ---
 
@@ -48,7 +88,9 @@ IMCAT UI 프레임워크의 전체 설계 및 개발 문서입니다.
 
 1. **코어 아키텍처 설계서** - 구현 세부사항
 2. **모듈 시스템 설계서** - 모듈 개발 방법
-3. **프레임워크 설계 이념** - 설계 방향 참고
+3. **디자인 시스템 설계서** - 스타일 가이드
+4. **번들링 가이드** - 빌드 및 배포
+5. **프레임워크 설계 이념** - 설계 방향 참고
 
 ### 기여자인 경우
 
@@ -68,42 +110,68 @@ imcat-ui/
 │   ├── README.md                   # 문서 인덱스 (이 파일)
 │   ├── 프레임워크_설계_이념.md     # 설계 이념
 │   ├── 코어_설계서.md              # 코어 설계
-│   └── 모듈_시스템_설계서.md       # 모듈 시스템
+│   ├── 모듈_시스템_설계서.md       # 모듈 시스템
+│   ├── 디자인_시스템_설계서.md     # 디자인 시스템
+│   ├── 번들링_가이드.md            # 번들링 가이드
+│   └── 코딩_가이드.md              # 코딩 규칙
 │
-├── core/                           # 🎯 코어 (항상 로드)
-│   ├── index.js                    # 진입점
-│   ├── dom.js                      # DOM 조작
-│   ├── event.js                    # 이벤트 시스템
-│   ├── loader.js                   # 모듈 로더
-│   ├── router.js                   # 뷰 라우터
-│   ├── loading.js                  # 로딩 표시
-│   ├── security.js                 # 보안 필터
-│   └── utils.js                    # 유틸리티
-│
-├── modules/                        # 📦 모듈 (동적 로드)
-│   ├── modal/                      # 모달
-│   │   ├── modal.js
-│   │   ├── modal.css
-│   │   └── README.md
-│   ├── dropdown/                   # 드롭다운
-│   ├── tooltip/                    # 툴팁
-│   └── ...
+├── src/                            # 💻 소스 코드
+│   ├── core/                       # 🎯 코어
+│   │   ├── index.js
+│   │   ├── dom.js
+│   │   ├── event.js
+│   │   ├── loader.js
+│   │   ├── router.js
+│   │   ├── loading.js
+│   │   ├── security.js
+│   │   ├── api.js
+│   │   └── utils.js
+│   │
+│   ├── modules/                    # 📦 모듈
+│   │   ├── modal/
+│   │   ├── dropdown/
+│   │   ├── tooltip/
+│   │   └── ...
+│   │
+│   └── styles/                     # 🎨 스타일
+│       ├── abstracts/
+│       │   ├── _variables.scss
+│       │   ├── _mixins.scss
+│       │   ├── _functions.scss
+│       │   └── _themes.scss
+│       ├── base/
+│       │   ├── _reset.scss
+│       │   ├── _typography.scss
+│       │   └── _animations.scss
+│       ├── components/
+│       │   ├── _button.scss
+│       │   ├── _modal.scss
+│       │   └── ...
+│       ├── core/
+│       │   ├── _loading.scss
+│       │   └── _router.scss
+│       └── imcat-ui.scss
 │
 ├── dist/                           # 📤 배포 파일
 │   ├── imcat-ui.js                 # 빌드된 코어
 │   ├── imcat-ui.min.js             # 압축 버전
 │   ├── imcat-ui.css                # 코어 스타일
+│   ├── imcat-ui.min.css            # 압축 스타일
 │   └── modules/                    # 빌드된 모듈
 │
 ├── examples/                       # 💡 예제
-│   ├── basic/                      # 기본 사용
-│   ├── spa/                        # SPA 예제
-│   └── advanced/                   # 고급 기능
+│   ├── basic/
+│   ├── spa/
+│   └── advanced/
 │
-└── tests/                          # 🧪 테스트
-    ├── core/                       # 코어 테스트
-    ├── modules/                    # 모듈 테스트
-    └── integration/                # 통합 테스트
+├── tests/                          # 🧪 테스트
+│   ├── core/
+│   ├── modules/
+│   └── integration/
+│
+├── rollup.config.js                # 📦 번들 설정
+├── package.json                    # 📄 패키지 정보
+└── .eslintrc.js                    # 🔍 린트 설정
 ```
 
 ---
@@ -208,6 +276,7 @@ const [modal, tooltip] = await IMCAT.use('modal', 'tooltip');
 - [ ] 뷰 라우터 (SPA 지원)
 - [ ] 로딩 인디케이터
 - [ ] XSS 보안 필터
+- [ ] API 유틸리티 (JSON 응답 표준화)
 - [ ] 기본 유틸리티
 
 ### Phase 2: 기본 모듈

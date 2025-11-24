@@ -1,0 +1,92 @@
+/**
+ * Button Component
+ * 버튼 컴포넌트
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color, #727cf5);
+  border-color: var(--primary-color, #727cf5);
+  color: #ffffff;
+
+  &:hover:not(:disabled) {
+    background-color: #5a64d9;
+    border-color: #5a64d9;
+  }
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color, #6c757d);
+  border-color: var(--secondary-color, #6c757d);
+  color: #ffffff;
+
+  &:hover:not(:disabled) {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+}
+
+.btn-success {
+  background-color: var(--success-color, #0acf97);
+  border-color: var(--success-color, #0acf97);
+  color: #ffffff;
+
+  &:hover:not(:disabled) {
+    background-color: #08a578;
+    border-color: #089e71;
+  }
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border-color: var(--primary-color, #727cf5);
+  color: var(--primary-color, #727cf5);
+
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color, #727cf5);
+    color: #ffffff;
+  }
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border-color: var(--border-color, #dee2e6);
+  color: var(--text-primary, #6c757d);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-secondary, #f7f7f7);
+    border-color: var(--text-primary, #6c757d);
+    color: var(--text-dark, #313a46);
+  }
+}
+
+// Button Sizes
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}

@@ -1,291 +1,202 @@
-# IMCAT UI 예제
+# IMCAT UI Examples
 
-모던하고 심플한 SPA 구조의 예제 애플리케이션입니다.
+IMCAT UI 컴포넌트 라이브러리의 예제 및 데모 페이지입니다.
 
-## 🚀 실행 방법
+## 🚀 시작하기
 
-### 1. 로컬 서버 시작
+### 로컬 서버 실행
 
 ```bash
-# npm 스크립트 사용
+# 프로젝트 루트에서
 npm run serve
-
-# 또는 다른 로컬 서버 사용
-npx http-server . -p 3000
 ```
 
-### 2. 브라우저에서 열기
+브라우저에서 `http://localhost:8080/examples/` 를 열어주세요.
 
-```
-http://localhost:3000/examples/
-```
-
----
-
-## 📂 구조
+## 📁 디렉토리 구조
 
 ```
 examples/
-├── index.html              # 메인 SPA 페이지
-└── views/                  # 뷰 파일들
-    ├── home.html          # 홈
-    ├── started.html       # 시작하기
-    ├── features.html      # 기능 소개
-    ├── api.html           # API 문서
-    ├── examples.html      # 예제 모음
-    └── about.html         # 소개
+├── index.html          # 메인 예제 페이지
+├── styles/
+│   └── demo.css        # 데모 전용 스타일
+└── views/              # 컴포넌트 예제 페이지
+    ├── static/         # 정적 컴포넌트 (12개)
+    ├── modules/        # 동적 모듈 (8개)
+    ├── layout/         # 레이아웃 (4개)
+    ├── design/         # 디자인 시스템 (8개)
+    └── utilities/      # 유틸리티 (5개)
 ```
-
----
-
-## 🎨 레이아웃
-
-### 3단 구조
-
-```
-┌─────────────────────────────────────┐
-│           Header (상단)              │
-│  Logo + 테마 스위처                   │
-├───────┬─────────────────┬───────────┤
-│       │                 │           │
-│  왼쪽  │     가운데        │   오른쪽   │
-│ 메뉴   │    콘텐츠         │   설명    │
-│       │                 │           │
-├───────┴─────────────────┴───────────┤
-│           Footer (하단)              │
-│  Copyright + Links                  │
-└─────────────────────────────────────┘
-```
-
-### 상세 설명
-
-#### 1. **Header (상단)**
-- IMCAT UI 로고
-- 테마 스위처 (라이트/다크/시스템)
-- Sticky 고정
-
-#### 2. **Main - 3분할 레이아웃**
-
-**왼쪽 사이드바 (240px)**
-- Navigation 메뉴
-- 아이콘 + 텍스트
-- 활성 상태 표시
-- Resources 링크
-
-**가운데 콘텐츠 (flexible)**
-- 라우터가 뷰를 로드하는 영역
-- 페이지별 컨텐츠 표시
-- 스크롤 가능
-
-**오른쪽 사이드바 (280px)**
-- 프레임워크 정보 카드
-- 핵심 기능 목록
-- 빠른 시작 가이드
-- 추가 정보
-
-#### 3. **Footer (하단)**
-- Copyright 정보
-- 문서/GitHub/소개 링크
-
----
 
 ## 🎯 주요 기능
 
-### SPA 라우팅
-- Hash 기반 라우팅 (`#/path`)
-- `catui-href` 속성으로 링크 처리
-- 페이지 전환 애니메이션
-- 로딩 오버레이
+### 1. SPA 네비게이션
+IMCAT UI의 `catui-href` 속성을 사용한 싱글 페이지 애플리케이션
 
-### 테마 시스템
-- 라이트/다크 모드
-- 시스템 설정 감지
-- CSS Custom Properties 활용
-- 부드러운 전환 애니메이션
+### 2. 컴포넌트 카테고리
+- **Static Components**: CSS만으로 구현된 컴포넌트
+- **Dynamic Modules**: JavaScript가 필요한 인터랙티브 컴포넌트
+- **Layout**: 그리드, Flexbox 등 레이아웃 시스템
+- **Design**: 타이포그래피, 색상 등 디자인 토큰
+- **Utilities**: Display, Position 등 유틸리티 클래스
 
-### 반응형 디자인
-- Desktop: 3분할 레이아웃
-- Tablet: 2분할 (오른쪽 사이드바 숨김)
-- Mobile: 1분할 (모든 사이드바 숨김)
+### 3. 다크 테마
+라이트/다크 모드 전환 지원
 
----
+### 4. 반응형 디자인
+모바일, 태블릿, 데스크톱 최적화
 
-## 💡 사용된 기술
+## 💻 개발 가이드
 
-### CSS
-- CSS Custom Properties (테마)
-- CSS Grid (레이아웃)
-- Flexbox (컴포넌트)
-- CSS Animations (전환 효과)
+### 새 예제 추가하기
 
-### JavaScript
-- ES6+ Modules
-- Hash-based Routing
-- Fetch API
-- Theme Module
+1. **카테고리 선택**: `views/` 하위의 적절한 폴더 선택
+2. **HTML 파일 생성**: 예) `views/static/buttons.html`
+3. **메타데이터 추가** (선택):
+   ```html
+   <script type="application/json" id="pageMetadata">
+   {
+     "info": { ... },
+     "usage": { ... },
+     "features": { ... }
+   }
+   </script>
+   ```
+4. **index.html 메뉴 업데이트**: 사이드바에 링크 추가
 
-### 디자인 시스템
-- Material Design 3.0 색상
-- Material Icons
-- Variable Fonts (Montserrat, Noto Sans KR)
-- BEM 네이밍 컨벤션
+### 예제 페이지 구조
 
----
+```html
+<!-- 페이지 헤더 -->
+<div class="demo-page-header">
+  <h1>컴포넌트 이름</h1>
+  <p>설명</p>
+</div>
 
-## 📄 페이지 설명
-
-### 1. 홈 (`/`)
-- 프레임워크 소개
-- 핵심 기능 카드
-- CTA 버튼
-- 시작 가이드 링크
-
-### 2. 시작하기 (`/started`)
-- 설치 방법 (NPM, CDN)
-- 빠른 시작 가이드
-- 기본 사용 예제
-- 다음 단계 링크
-
-### 3. 기능 (`/features`)
-- DOM 조작
-- SPA 라우팅
-- 상태 관리
-- 이벤트 버스
-- XSS 방어
-- 애니메이션
-
-### 4. API 문서 (`/api`)
-- Core API
-- Router API
-- Events API
-- Animation API
-- 각 메서드 설명
-
-### 5. 예제 (`/examples`)
-- Todo 앱
-- SPA 블로그
-- 관리자 대시보드
-- 폼 검증
-- 애니메이션 쇼케이스
-- 테마 시스템
-
-### 6. 소개 (`/about`)
-- 프로젝트 목표
-- 기술 스택
-- 성능 지표
-- 브라우저 지원
-- 라이선스
-
----
-
-## 🎨 디자인 토큰
-
-### 색상
-```scss
---primary-color: #2196f3
---success-color: #4caf50
---danger-color: #f44336
---warning-color: #ff9800
---info-color: #00bcd4
+<!-- 예제 섹션 -->
+<section class="demo-section">
+  <h2>섹션 제목</h2>
+  <p>설명</p>
+  
+  <!-- 시각적 예제 -->
+  <div class="demo-example">
+    <!-- 컴포넌트 예제 -->
+  </div>
+  
+  <!-- 코드 -->
+  <div class="demo-code">
+    <pre><code>...</code></pre>
+  </div>
+</section>
 ```
 
-### 간격
-```scss
---space-1: 4px
---space-2: 8px
---space-3: 12px
---space-4: 16px
---space-6: 24px
-```
+### 사용 가능한 CSS 클래스
 
-### 둥근 모서리
-```scss
---radius-sm: 4px
---radius-md: 8px
---radius-lg: 12px
---radius-full: 9999px
-```
+#### 레이아웃
+- `.demo-page-header` - 페이지 헤더
+- `.demo-section` - 예제 섹션
+- `.demo-example` - 시각적 예제 영역
+- `.demo-code` - 코드 블록
 
----
+#### 버튼
+- `.demo-btn` - 기본 버튼
+- `.demo-btn--primary` - Primary 버튼
+- `.demo-btn--outline` - Outline 버튼
 
-## 📱 반응형 브레이크포인트
+## 🎨 스타일 가이드
 
-```scss
-// Desktop (기본)
-.app-main { 
-  grid-template-columns: 240px 1fr 280px; 
-}
+### 클래스 네이밍
 
-// Tablet (< 1200px)
-@media (max-width: 1200px) {
-  grid-template-columns: 240px 1fr;
-  // 오른쪽 사이드바 숨김
-}
+- **데모 전용**: `.demo-*` 접두사 사용
+- **컴포넌트**: BEM 네이밍 (`.block__element--modifier`)
+- **유틸리티**: 기능 중심 (`.d-flex`, `.text-center`)
 
-// Mobile (< 768px)
-@media (max-width: 768px) {
-  grid-template-columns: 1fr;
-  // 왼쪽 사이드바 숨김
+### 색상 변수
+
+```css
+/* 라이트 모드 */
+--bg-primary: #ffffff
+--bg-secondary: #f8f9fa
+--text-primary: #1a1a1a
+--text-secondary: #6b7280
+--primary-color: #6366f1
+
+/* 다크 모드 */
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a
+  --text-primary: #ffffff
+  ...
 }
 ```
 
----
+## 📚 참고 자료
 
-## 🔗 관련 문서
-
+### IMCAT UI 문서
 - [API 레퍼런스](../docs/API_레퍼런스.md)
-- [디자인 시스템 구현 가이드](../docs/디자인_시스템_구현_가이드.md)
-- [빌드 가이드](../docs/빌드_가이드.md)
 - [코딩 가이드](../docs/코딩_가이드.md)
+- [디자인 시스템 설계서](../docs/디자인_시스템_설계서.md)
+- [프레임워크 설계 이념](../docs/프레임워크_설계_이념.md)
 
----
+### 외부 리소스
+- [Material Icons](https://fonts.google.com/icons)
+- [Material Design](https://m3.material.io/)
 
-## 💻 개발
+## 🔧 개발 팁
 
-### 빌드
+### catui-href 사용법
 
-```bash
-# 전체 빌드
-npm run build
+```html
+<!-- ✅ 올바름 -->
+<a href="#" catui-href="views/static/buttons.html">Buttons</a>
 
-# CSS만 빌드
-npm run build:css:all
-
-# 개발 서버
-npm run serve
+<!-- ❌ 잘못됨 -->
+<a href="views/static/buttons.html">Buttons</a>
 ```
 
-### 수정 사항
+### 페이지 로드 훅
 
-예제를 수정하려면:
-1. `views/*.html` 파일 편집
-2. `index.html` 스타일/스크립트 수정
-3. 브라우저 새로고침 (Ctrl+Shift+R)
+```javascript
+IMCAT.view.afterLoad((path) => {
+  console.log('Loaded:', path);
+  // 페이지 로드 후 처리
+});
+```
 
----
+### 테마 전환
 
-## ✨ 특징
+```javascript
+document.documentElement.setAttribute('data-theme', 'dark');
+```
 
-### 1. 심플하고 모던한 디자인
-- 깔끔한 3단 레이아웃
-- Material Design 3.0 기반
-- 부드러운 애니메이션
+## 📝 체크리스트
 
-### 2. 완벽한 반응형
-- Desktop, Tablet, Mobile 지원
-- 자동 레이아웃 조정
-- 터치 친화적
+새 예제 추가 시 확인 사항:
 
-### 3. 접근성
-- WCAG 2.1 AA 준수
-- 키보드 내비게이션
-- 스크린 리더 지원
+- [ ] HTML 파일 생성
+- [ ] 페이지 메타데이터 추가
+- [ ] 시각적 예제 작성
+- [ ] 코드 스니펫 추가
+- [ ] index.html 메뉴 업데이트
+- [ ] 다크 테마 테스트
+- [ ] 반응형 확인
+- [ ] 브라우저 호환성 확인
 
-### 4. 성능 최적화
-- 경량 HTML/CSS
-- 지연 로딩
-- CSS 애니메이션
+## 🐛 문제 해결
 
----
+### 페이지가 로드되지 않음
+- `views/` 경로가 올바른지 확인
+- 파일 확장자가 `.html`인지 확인
+- catui-href 속성 사용 여부 확인
 
-**IMCAT UI 예제를 즐겨보세요! 🚀**
+### 스타일이 적용되지 않음
+- `../dist/imcat-ui.css` 경로 확인
+- `./styles/demo.css` 경로 확인
+- 빌드 실행 여부 확인 (`npm run build`)
+
+### 메뉴 활성화가 안 됨
+- catui-href 값이 정확한지 확인
+- afterLoad 훅이 실행되는지 확인
+
+## 📞 문의
+
+이슈나 질문은 [GitHub Issues](https://github.com/imcat-devs/imcat-ui/issues)에 등록해 주세요.

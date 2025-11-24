@@ -431,11 +431,138 @@ $btn-transition: all 0.2s ease !default;
 }
 
 // ============================================
+// Bootstrap-style Button Classes (UBold)
+// ============================================
+
+// Default buttons
+.btn-default { @extend .btn--light; }
+.btn-primary { @extend .btn--primary; }
+.btn-secondary { @extend .btn--secondary; }
+.btn-success { @extend .btn--success; }
+.btn-danger { @extend .btn--danger; }
+.btn-warning { @extend .btn--warning; }
+.btn-info { @extend .btn--info; }
+.btn-light { @extend .btn--light; }
+.btn-dark { @extend .btn--dark; }
+
+// Outline buttons
+.btn-outline-primary { @extend .btn--outline-primary; }
+.btn-outline-secondary { @extend .btn--outline-secondary; }
+.btn-outline-success { @extend .btn--outline-success; }
+.btn-outline-danger { @extend .btn--outline-danger; }
+.btn-outline-warning { @extend .btn--outline-warning; }
+.btn-outline-info { @extend .btn--outline-info; }
+.btn-outline-light {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  
+  &:hover {
+    background-color: var(--bg-secondary);
+    color: var(--text-dark);
+  }
+}
+.btn-outline-dark { @extend .btn--outline-dark; }
+
+// Soft buttons (UBold style)
+.btn-soft-primary {
+  background-color: rgba(114, 124, 245, 0.18);
+  color: var(--primary-color, #727cf5);
+  border-color: transparent;
+  
+  &:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+  }
+}
+
+.btn-soft-secondary {
+  background-color: rgba(108, 117, 125, 0.18);
+  color: #6c757d;
+  border-color: transparent;
+  
+  &:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+  }
+}
+
+.btn-soft-success {
+  background-color: rgba(10, 207, 151, 0.18);
+  color: var(--success-color, #0acf97);
+  border-color: transparent;
+  
+  &:hover {
+    background-color: var(--success-color);
+    color: #ffffff;
+  }
+}
+
+.btn-soft-danger {
+  background-color: rgba(250, 92, 124, 0.18);
+  color: var(--danger-color, #fa5c7c);
+  border-color: transparent;
+  
+  &:hover {
+    background-color: var(--danger-color);
+    color: #ffffff;
+  }
+}
+
+.btn-soft-warning {
+  background-color: rgba(255, 188, 66, 0.18);
+  color: var(--warning-color, #ffbc42);
+  border-color: transparent;
+  
+  &:hover {
+    background-color: var(--warning-color);
+    color: #ffffff;
+  }
+}
+
+.btn-soft-info {
+  background-color: rgba(57, 175, 209, 0.18);
+  color: var(--info-color, #39afd1);
+  border-color: transparent;
+  
+  &:hover {
+    background-color: var(--info-color);
+    color: #ffffff;
+  }
+}
+
+.btn-soft-dark {
+  background-color: rgba(49, 58, 70, 0.18);
+  color: #313a46;
+  border-color: transparent;
+  
+  &:hover {
+    background-color: #313a46;
+    color: #ffffff;
+  }
+}
+
+// Size variants
+.btn-sm { @extend .btn--sm; }
+.btn-lg { @extend .btn--lg; }
+
+// Icon button
+.btn-icon { @extend .btn--icon; }
+
+// Loading state
+.btn-loading { @extend .btn--loading; }
+
+// Block button
+.btn-block { @extend .btn--block; }
+
+// ============================================
 // Dark Theme
 // ============================================
 
 [data-theme="dark"] {
-  .btn--light {
+  .btn--light,
+  .btn-light,
+  .btn-default {
     background-color: var(--dark-bg-secondary, #2c2c2c);
     color: var(--dark-text-primary, rgba(255, 255, 255, 0.87));
     border-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
@@ -454,6 +581,15 @@ $btn-transition: all 0.2s ease !default;
     
     &:active {
       background-color: rgba(255, 255, 255, 0.12);
+    }
+  }
+  
+  .btn-outline-light {
+    color: var(--dark-text-primary);
+    border-color: var(--dark-border-color);
+    
+    &:hover {
+      background-color: var(--dark-bg-secondary);
     }
   }
 }

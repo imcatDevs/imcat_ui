@@ -30,6 +30,7 @@
   --bg-overlay: #{$bg-overlay};
   
   // 텍스트
+  --text-dark: #313a46;  // 제목용 진한 색상
   --text-primary: #{$text-primary};
   --text-secondary: #{$text-secondary};
   --text-disabled: #{$text-disabled};
@@ -73,6 +74,7 @@
   --bg-overlay: rgba(0, 0, 0, 0.7);
   
   // 텍스트
+  --text-dark: #ffffff;  // 다크모드에서는 흰색
   --text-primary: #{$dark-text-primary};
   --text-secondary: #{$dark-text-secondary};
   --text-disabled: #{$dark-text-disabled};
@@ -121,6 +123,7 @@
     --bg-elevated: #{$dark-bg-elevated};
     --bg-overlay: rgba(0, 0, 0, 0.7);
     
+    --text-dark: #ffffff;  // 다크모드에서는 흰색
     --text-primary: #{$dark-text-primary};
     --text-secondary: #{$dark-text-secondary};
     --text-disabled: #{$dark-text-disabled};

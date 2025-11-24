@@ -30,37 +30,43 @@ body {
 h1, .h1 {
   @include typography('h1');
   margin-bottom: $space-6;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-bold;
 }
 
 h2, .h2 {
   @include typography('h2');
   margin-bottom: $space-5;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-bold;
 }
 
 h3, .h3 {
   @include typography('h3');
   margin-bottom: $space-4;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-semibold;
 }
 
 h4, .h4 {
   @include typography('h4');
   margin-bottom: $space-4;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-semibold;
 }
 
 h5, .h5 {
   @include typography('h5');
   margin-bottom: $space-3;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-medium;
 }
 
 h6, .h6 {
   @include typography('h6');
   margin-bottom: $space-3;
-  color: var(--text-primary, #{$text-primary});
+  color: var(--text-dark, #{$text-primary});
+  font-weight: $font-weight-medium;
 }
 
 // ============================================
@@ -69,6 +75,8 @@ h6, .h6 {
 
 p {
   margin-bottom: $space-4;
+  color: var(--text-primary, #{$text-primary});
+  line-height: $line-height-relaxed;
   
   &:last-child {
     margin-bottom: 0;
@@ -327,11 +335,19 @@ hr {
 }
 
 // 텍스트 색상
+.text-dark {
+  color: var(--text-dark, #{$text-primary}) !important;
+}
+
 .text-primary {
   color: var(--text-primary, #{$text-primary}) !important;
 }
 
 .text-secondary {
+  color: var(--text-secondary, #{$text-secondary}) !important;
+}
+
+.text-muted {
   color: var(--text-secondary, #{$text-secondary}) !important;
 }
 

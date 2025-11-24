@@ -1,0 +1,237 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Fixed Layout</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Layouts</a></li>
+    <li class="breadcrumb-item active">Fixed Layout</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Fixed Layout Overview</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Fixed Layout keeps the sidebar and topbar fixed in position while scrolling. 
+          This provides a consistent navigation experience for users.
+        </p>
+        
+        <div class="alert alert-info" role="alert">
+          <i class="material-icons-outlined me-2" style="vertical-align: middle;">info</i>
+          <strong>Note:</strong> To enable Fixed Layout, add the <code>.layout-fixed</code> class to the <code>&lt;body&gt;</code> tag.
+        </div>
+
+        <h5 class="mt-4 mb-3">Features</h5>
+        <ul class="mb-4">
+          <li>Sidebar remains fixed during scroll</li>
+          <li>Topbar stays at the top of the viewport</li>
+          <li>Content scrolls independently</li>
+          <li>Optimal for content-heavy applications</li>
+          <li>Responsive on mobile devices</li>
+        </ul>
+
+        <h5 class="mb-3">Implementation</h5>
+        <pre class="bg-light p-3 rounded"><code>&lt;body class="layout-fixed"&gt;
+  &lt;div class="wrapper"&gt;
+    &lt;!-- Sidebar --&gt;
+    &lt;div class="sidenav-menu"&gt;...&lt;/div&gt;
+    
+    &lt;!-- Content --&gt;
+    &lt;div class="content-page"&gt;
+      &lt;!-- Topbar --&gt;
+      &lt;div class="app-topbar"&gt;...&lt;/div&gt;
+      
+      &lt;!-- Main Content --&gt;
+      &lt;div class="main-content"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+        <div class="mt-4">
+          <button type="button" class="btn btn-primary" onclick="enableFixedLayout()">
+            <i class="material-icons-outlined">lock</i>
+            Enable Fixed Layout
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="disableFixedLayout()">
+            <i class="material-icons-outlined">lock_open</i>
+            Disable Fixed Layout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Advantages</h4>
+      </div>
+      <div class="card-body">
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-success me-3">check_circle</i>
+          <div>
+            <h6 class="mb-1">Always Accessible Navigation</h6>
+            <p class="text-muted mb-0">Sidebar menu is always visible and accessible</p>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-success me-3">check_circle</i>
+          <div>
+            <h6 class="mb-1">Consistent Header</h6>
+            <p class="text-muted mb-0">Topbar remains fixed with notifications and user menu</p>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-success me-3">check_circle</i>
+          <div>
+            <h6 class="mb-1">Better UX</h6>
+            <p class="text-muted mb-0">Users don't need to scroll to access navigation</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <i class="material-icons-outlined text-success me-3">check_circle</i>
+          <div>
+            <h6 class="mb-1">Professional Look</h6>
+            <p class="text-muted mb-0">Modern and professional appearance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Best Practices</h4>
+      </div>
+      <div class="card-body">
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-primary me-3">lightbulb</i>
+          <div>
+            <h6 class="mb-1">Use for Content-Heavy Apps</h6>
+            <p class="text-muted mb-0">Ideal for dashboards and admin panels</p>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-primary me-3">lightbulb</i>
+          <div>
+            <h6 class="mb-1">Test Scrolling Performance</h6>
+            <p class="text-muted mb-0">Ensure smooth scrolling on all devices</p>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <i class="material-icons-outlined text-primary me-3">lightbulb</i>
+          <div>
+            <h6 class="mb-1">Consider Mobile Experience</h6>
+            <p class="text-muted mb-0">Fixed layout may behave differently on mobile</p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <i class="material-icons-outlined text-primary me-3">lightbulb</i>
+          <div>
+            <h6 class="mb-1">Z-Index Management</h6>
+            <p class="text-muted mb-0">Properly manage stacking order of fixed elements</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">SCSS Variables</h4>
+      </div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code>// Fixed Layout Variables
+.layout-fixed {
+  .sidenav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+  
+  .app-topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 260px;  // sidebar width
+    z-index: 999;
+  }
+  
+  .content-page {
+    margin-left: 260px;
+  }
+  
+  .main-content {
+    padding-top: 70px;  // topbar height
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Demo Content for Scrolling -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Scroll Demo</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          This section contains extra content to demonstrate scrolling behavior in Fixed Layout.
+        </p>
+        
+        <div class="mb-3">
+          <h5>Section 1</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        
+        <div class="mb-3">
+          <h5>Section 2</h5>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        
+        <div class="mb-3">
+          <h5>Section 3</h5>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+        
+        <div class="mb-3">
+          <h5>Section 4</h5>
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </div>
+        
+        <div class="alert alert-info">
+          <i class="material-icons-outlined me-2" style="vertical-align: middle;">info</i>
+          Notice how the sidebar and topbar remain fixed while you scroll this content.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function enableFixedLayout() {
+  document.body.classList.add('layout-fixed');
+  alert('Fixed Layout enabled! Notice how the sidebar and topbar are now fixed while scrolling.');
+}
+
+function disableFixedLayout() {
+  document.body.classList.remove('layout-fixed');
+  alert('Fixed Layout disabled. Layout is back to default.');
+}
+</script>

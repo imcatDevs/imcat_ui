@@ -1,0 +1,45 @@
+/**
+ * Page Title Box
+ * 페이지 제목 영역
+ */
+
+.page-title-box {
+  margin-bottom: 30px;
+  text-align: center;
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--primary-color, #727cf5) 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  // 다크모드에서는 더 밝은 그래디언트
+  [data-theme="dark"] & .page-title {
+    background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  p,
+  .text-muted {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #98a6ad);
+    margin-top: 0.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}

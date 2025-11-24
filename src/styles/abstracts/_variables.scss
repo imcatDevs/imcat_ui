@@ -125,13 +125,13 @@ $font-family-korean: -apple-system, BlinkMacSystemFont,
                      'Segoe UI', sans-serif !default;
 $font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !default;
 
-// 폰트 크기 (Material Design Type Scale)
-$font-size-h1: 96px !default;      // 6rem
-$font-size-h2: 60px !default;      // 3.75rem
-$font-size-h3: 48px !default;      // 3rem
-$font-size-h4: 34px !default;      // 2.125rem
-$font-size-h5: 24px !default;      // 1.5rem
-$font-size-h6: 20px !default;      // 1.25rem
+// 폰트 크기 (UBold 스타일 - 실용적인 크기)
+$font-size-h1: 40px !default;      // 2.5rem
+$font-size-h2: 32px !default;      // 2rem
+$font-size-h3: 28px !default;      // 1.75rem
+$font-size-h4: 24px !default;      // 1.5rem
+$font-size-h5: 20px !default;      // 1.25rem
+$font-size-h6: 16px !default;      // 1rem
 
 $font-size-subtitle1: 16px !default;
 $font-size-subtitle2: 14px !default;

@@ -1,0 +1,301 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Grid System</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Layout</a></li>
+    <li class="breadcrumb-item active">Grid</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Basic Grid</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.grid</code> with <code>.grid-cols-*</code> to create a basic grid layout.
+        </p>
+        
+        <h5 class="mt-4 mb-3">2 Columns</h5>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="grid-demo-box">Column 1</div>
+          <div class="grid-demo-box">Column 2</div>
+        </div>
+
+        <h5 class="mt-4 mb-3">3 Columns</h5>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="grid-demo-box">Column 1</div>
+          <div class="grid-demo-box">Column 2</div>
+          <div class="grid-demo-box">Column 3</div>
+        </div>
+
+        <h5 class="mt-4 mb-3">4 Columns</h5>
+        <div class="grid grid-cols-4 gap-4">
+          <div class="grid-demo-box">Column 1</div>
+          <div class="grid-demo-box">Column 2</div>
+          <div class="grid-demo-box">Column 3</div>
+          <div class="grid-demo-box">Column 4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Column Spanning</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.col-span-*</code> to make an element span across multiple columns.
+        </p>
+        
+        <div class="grid grid-cols-3 gap-4">
+          <div class="grid-demo-box col-span-2">col-span-2</div>
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box col-span-2">col-span-2</div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Full Width</h5>
+        <div class="grid grid-cols-4 gap-4">
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box">Column</div>
+          <div class="grid-demo-box col-span-full">col-span-full (전체 너비)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Row Spanning</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.row-span-*</code> to make an element span across multiple rows.
+        </p>
+        
+        <div class="grid grid-cols-3 grid-rows-3 gap-4">
+          <div class="grid-demo-box row-span-3">row-span-3</div>
+          <div class="grid-demo-box col-span-2">Column</div>
+          <div class="grid-demo-box row-span-2 col-span-2">row-span-2 col-span-2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Gap Sizes</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.gap-*</code> to control the gap between grid items.
+        </p>
+        
+        <h6 class="mb-2">gap-2 (8px)</h6>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+        </div>
+
+        <h6 class="mb-2">gap-4 (16px)</h6>
+        <div class="grid grid-cols-3 gap-4 mb-4">
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+        </div>
+
+        <h6 class="mb-2">gap-6 (32px)</h6>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Responsive Grid</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use responsive prefixes like <code>.md:grid-cols-*</code> and <code>.lg:grid-cols-*</code> 
+          to change grid columns at different breakpoints.
+        </p>
+        
+        <p class="text-muted mb-3">
+          <strong>Example:</strong> 1 column on mobile, 2 on tablet, 4 on desktop
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid-demo-box">Box 1</div>
+          <div class="grid-demo-box">Box 2</div>
+          <div class="grid-demo-box">Box 3</div>
+          <div class="grid-demo-box">Box 4</div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Complex Responsive Layout</h5>
+        <p class="text-muted mb-3">
+          Responsive spanning: <code>.md:col-span-2</code> <code>.lg:col-span-4</code>
+        </p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div class="grid-demo-box col-span-2 md:col-span-2 lg:col-span-3">
+            Responsive Span
+          </div>
+          <div class="grid-demo-box col-span-2 md:col-span-2 lg:col-span-3">
+            Responsive Span
+          </div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Place Content</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.place-content-*</code> to align grid items.
+        </p>
+        
+        <h6 class="mb-2">place-content-center</h6>
+        <div class="grid grid-cols-3 gap-4 place-content-center" style="height: 200px; background: var(--bg-secondary); border-radius: 0.375rem;">
+          <div class="grid-demo-box">Box</div>
+          <div class="grid-demo-box">Box</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Place Items</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          Use <code>.place-items-*</code> to align items within their grid areas.
+        </p>
+        
+        <h6 class="mb-2">place-items-center</h6>
+        <div class="grid grid-cols-3 gap-4 place-items-center" style="height: 200px;">
+          <div class="grid-demo-box">Centered</div>
+          <div class="grid-demo-box">Centered</div>
+          <div class="grid-demo-box">Centered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Practical Example: Dashboard Grid</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted mb-4">
+          A practical dashboard layout using CSS Grid.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Stat Cards -->
+          <div class="card mb-0">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Total Users</h6>
+              <h3 class="mb-0">1,234</h3>
+              <small class="text-success">
+                <i class="material-icons-outlined" style="font-size: 16px; vertical-align: middle;">trending_up</i>
+                12.5%
+              </small>
+            </div>
+          </div>
+
+          <div class="card mb-0">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Revenue</h6>
+              <h3 class="mb-0">$45,678</h3>
+              <small class="text-success">
+                <i class="material-icons-outlined" style="font-size: 16px; vertical-align: middle;">trending_up</i>
+                8.2%
+              </small>
+            </div>
+          </div>
+
+          <div class="card mb-0">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Orders</h6>
+              <h3 class="mb-0">567</h3>
+              <small class="text-danger">
+                <i class="material-icons-outlined" style="font-size: 16px; vertical-align: middle;">trending_down</i>
+                3.1%
+              </small>
+            </div>
+          </div>
+
+          <div class="card mb-0">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Visitors</h6>
+              <h3 class="mb-0">8,901</h3>
+              <small class="text-success">
+                <i class="material-icons-outlined" style="font-size: 16px; vertical-align: middle;">trending_up</i>
+                15.7%
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Complex Dashboard Layout</h5>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="card mb-0 lg:col-span-2">
+            <div class="card-body">
+              <h5 class="card-title">Sales Chart</h5>
+              <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border-radius: 0.375rem;">
+                <span class="text-muted">Chart Area (2/3 width)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-0">
+            <div class="card-body">
+              <h5 class="card-title">Recent Activity</h5>
+              <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border-radius: 0.375rem;">
+                <span class="text-muted">Activity List</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

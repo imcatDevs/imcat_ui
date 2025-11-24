@@ -1,0 +1,48 @@
+/**
+ * Wrapper Layout
+ * 전체 페이지 래퍼 레이아웃
+ */
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+// Content Page
+.content-page {
+  margin-left: var(--sidebar-width, 260px);
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+  background-color: var(--bg-tertiary, #fafbfe);
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+}
+
+// Sidebar Minimized State
+.sidebar-minimized .content-page {
+  margin-left: var(--sidebar-collapsed-width, 70px);
+}
+
+// Content Container
+.content {
+  min-height: calc(100vh - var(--topbar-height, 70px) - 60px);
+}
+
+#app-content {
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+}

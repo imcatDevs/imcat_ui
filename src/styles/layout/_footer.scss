@@ -1,0 +1,43 @@
+/**
+ * Footer
+ * 푸터 레이아웃 - wrapper의 직속 자식으로 전체 너비 차지
+ */
+
+.footer {
+  margin-left: var(--sidebar-width, 260px);
+  background-color: var(--bg-primary, #ffffff);
+  border-top: 1px solid var(--border-color, #dee2e6);
+  color: var(--text-primary, #6c757d);
+  font-size: 0.875rem;
+  transition: margin-left 0.3s ease;
+
+  .container-fluid {
+    padding: 20px;
+  }
+
+  .row {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+}
+
+// Sidebar Minimized State
+.sidebar-minimized .footer {
+  margin-left: var(--sidebar-collapsed-width, 70px);
+}
+
+.footer-links {
+  a {
+    color: var(--text-primary, #6c757d);
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary-color, #727cf5);
+    }
+  }
+}

@@ -1,0 +1,280 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Spacing</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Design System</a></li>
+    <li class="breadcrumb-item active">Spacing</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Spacing System</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          IMCAT UI uses a consistent spacing scale based on Material Design's 4px/8px grid system.
+        </p>
+
+        <h5 class="mt-4 mb-3">Spacing Scale</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Value</th>
+              <th>Pixels</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>*-0</code></td>
+              <td>0</td>
+              <td>0px</td>
+              <td><div style="width: 0; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+            <tr>
+              <td><code>*-1</code></td>
+              <td>0.25rem</td>
+              <td>4px</td>
+              <td><div style="width: 4px; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+            <tr>
+              <td><code>*-2</code></td>
+              <td>0.5rem</td>
+              <td>8px</td>
+              <td><div style="width: 8px; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+            <tr>
+              <td><code>*-3</code></td>
+              <td>0.75rem</td>
+              <td>12px</td>
+              <td><div style="width: 12px; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+            <tr>
+              <td><code>*-4</code></td>
+              <td>1rem</td>
+              <td>16px</td>
+              <td><div style="width: 16px; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+            <tr>
+              <td><code>*-5</code></td>
+              <td>1.5rem</td>
+              <td>24px</td>
+              <td><div style="width: 24px; height: 20px; background: var(--primary-color);"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Margin -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Margin</h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">All Sides</h5>
+        <div class="d-flex gap-3 mb-4">
+          <div style="border: 2px dashed var(--border-color); padding: 10px;">
+            <div class="m-0" style="background: rgba(114, 124, 245, 0.2); padding: 10px;">.m-0</div>
+          </div>
+          <div style="border: 2px dashed var(--border-color); padding: 10px;">
+            <div class="m-2" style="background: rgba(114, 124, 245, 0.2); padding: 10px;">.m-2</div>
+          </div>
+          <div style="border: 2px dashed var(--border-color); padding: 10px;">
+            <div class="m-4" style="background: rgba(114, 124, 245, 0.2); padding: 10px;">.m-4</div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Specific Sides</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Property</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.mt-*</code></td>
+              <td>margin-top</td>
+              <td><code>.mt-3</code></td>
+            </tr>
+            <tr>
+              <td><code>.mb-*</code></td>
+              <td>margin-bottom</td>
+              <td><code>.mb-4</code></td>
+            </tr>
+            <tr>
+              <td><code>.ms-*</code></td>
+              <td>margin-left (start)</td>
+              <td><code>.ms-2</code></td>
+            </tr>
+            <tr>
+              <td><code>.me-*</code></td>
+              <td>margin-right (end)</td>
+              <td><code>.me-3</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5 class="mt-4 mb-3">Visual Example</h5>
+        <div style="border: 2px dashed var(--border-color); padding: 20px;">
+          <div class="mt-4 mb-3 ms-2 me-5" style="background: rgba(10, 207, 151, 0.2); padding: 15px;">
+            .mt-4.mb-3.ms-2.me-5
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Padding -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Padding</h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">All Sides</h5>
+        <div class="d-flex gap-3 mb-4">
+          <div class="p-0" style="background: rgba(114, 124, 245, 0.2); border: 2px solid var(--primary-color);">
+            <div style="background: white; padding: 5px;">.p-0</div>
+          </div>
+          <div class="p-2" style="background: rgba(114, 124, 245, 0.2); border: 2px solid var(--primary-color);">
+            <div style="background: white; padding: 5px;">.p-2</div>
+          </div>
+          <div class="p-4" style="background: rgba(114, 124, 245, 0.2); border: 2px solid var(--primary-color);">
+            <div style="background: white; padding: 5px;">.p-4</div>
+          </div>
+          <div class="p-5" style="background: rgba(114, 124, 245, 0.2); border: 2px solid var(--primary-color);">
+            <div style="background: white; padding: 5px;">.p-5</div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Specific Sides</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Property</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.pt-*</code></td>
+              <td>padding-top</td>
+              <td><code>.pt-3</code></td>
+            </tr>
+            <tr>
+              <td><code>.pb-*</code></td>
+              <td>padding-bottom</td>
+              <td><code>.pb-4</code></td>
+            </tr>
+            <tr>
+              <td><code>.ps-*</code></td>
+              <td>padding-left (start)</td>
+              <td><code>.ps-2</code></td>
+            </tr>
+            <tr>
+              <td><code>.pe-*</code></td>
+              <td>padding-right (end)</td>
+              <td><code>.pe-3</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gap (Flexbox/Grid) -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Gap (Flexbox/Grid)</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">Gap utilities for flexbox and grid layouts.</p>
+
+        <h5 class="mb-3">Gap Examples</h5>
+        <div class="mb-4">
+          <p class="mb-2"><strong>.gap-1 (4px)</strong></p>
+          <div class="d-flex gap-1">
+            <div style="width: 50px; height: 50px; background: var(--primary-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--primary-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--primary-color);"></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="mb-2"><strong>.gap-3 (12px)</strong></p>
+          <div class="d-flex gap-3">
+            <div style="width: 50px; height: 50px; background: var(--success-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--success-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--success-color);"></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="mb-2"><strong>.gap-5 (24px)</strong></p>
+          <div class="d-flex gap-5">
+            <div style="width: 50px; height: 50px; background: var(--info-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--info-color);"></div>
+            <div style="width: 50px; height: 50px; background: var(--info-color);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Guidelines -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Usage Guidelines</h4>
+      </div>
+      <div class="card__body">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Consistency:</strong> Use the spacing scale consistently throughout the design
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Hierarchy:</strong> Larger spacing creates visual hierarchy and grouping
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Breathing room:</strong> Adequate spacing improves readability
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-warning">warning</i>
+            <strong>Avoid:</strong> Creating custom spacing values outside the scale
+          </li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">Code Example</h5>
+        <pre><code>&lt;!-- Margin --&gt;
+&lt;div class="mt-4 mb-3"&gt;Content&lt;/div&gt;
+
+&lt;!-- Padding --&gt;
+&lt;div class="p-4"&gt;Content&lt;/div&gt;
+
+&lt;!-- Flexbox gap --&gt;
+&lt;div class="d-flex gap-3"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

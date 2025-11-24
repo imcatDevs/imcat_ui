@@ -1,6 +1,150 @@
 {
   "menu": [
     {
+      "title": "Form Elements",
+      "items": [
+        {
+          "id": "buttons",
+          "text": "Buttons",
+          "icon": "smart_button",
+          "href": "views/static/buttons.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Content",
+      "items": [
+        {
+          "id": "cards",
+          "text": "Cards",
+          "icon": "credit_card",
+          "href": "views/static/cards.html",
+          "badge": true
+        },
+        {
+          "id": "avatars",
+          "text": "Avatars",
+          "icon": "account_circle",
+          "href": "views/static/avatars.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Navigation",
+      "items": [
+        {
+          "id": "breadcrumb",
+          "text": "Breadcrumb",
+          "icon": "chevron_right",
+          "href": "views/static/breadcrumb.html",
+          "badge": true
+        },
+        {
+          "id": "lists",
+          "text": "Lists",
+          "icon": "format_list_bulleted",
+          "href": "views/static/lists.html",
+          "badge": true
+        },
+        {
+          "id": "pagination",
+          "text": "Pagination",
+          "icon": "last_page",
+          "href": "views/static/pagination.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Indicators",
+      "items": [
+        {
+          "id": "badges",
+          "text": "Badges",
+          "icon": "sell",
+          "href": "views/static/badges.html",
+          "badge": true
+        },
+        {
+          "id": "progress",
+          "text": "Progress",
+          "icon": "data_usage",
+          "href": "views/static/progress.html",
+          "badge": true
+        },
+        {
+          "id": "spinners",
+          "text": "Spinners",
+          "icon": "autorenew",
+          "href": "views/static/spinners.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Design System",
+      "items": [
+        {
+          "id": "typography",
+          "text": "Typography",
+          "icon": "text_format",
+          "href": "views/design/typography.html",
+          "badge": true
+        },
+        {
+          "id": "colors",
+          "text": "Colors",
+          "icon": "palette",
+          "href": "views/design/colors.html",
+          "badge": true
+        },
+        {
+          "id": "spacing",
+          "text": "Spacing",
+          "icon": "space_bar",
+          "href": "views/design/spacing.html",
+          "badge": true
+        },
+        {
+          "id": "shadows",
+          "text": "Shadows",
+          "icon": "blur_on",
+          "href": "views/design/shadows.html",
+          "badge": true
+        },
+        {
+          "id": "icons",
+          "text": "Icons",
+          "icon": "emoji_emotions",
+          "href": "views/design/icons.html",
+          "badge": true
+        },
+        {
+          "id": "borders",
+          "text": "Borders",
+          "icon": "border_outer",
+          "href": "views/design/borders.html",
+          "badge": true
+        },
+        {
+          "id": "animations",
+          "text": "Animations",
+          "icon": "animation",
+          "href": "views/design/animations.html",
+          "badge": true
+        },
+        {
+          "id": "breakpoints",
+          "text": "Breakpoints",
+          "icon": "devices",
+          "href": "views/design/breakpoints.html",
+          "badge": true
+        }
+      ]
+    },
+    {
       "title": "Layouts",
       "items": [
         {
@@ -92,74 +236,6 @@
           "text": "Boxed Layout",
           "icon": "crop_square",
           "href": "views/layout/boxed-layout.html",
-          "badge": true
-        }
-      ]
-    },
-    {
-      "title": "Static Components",
-      "items": [
-        {
-          "id": "buttons",
-          "text": "Buttons",
-          "icon": "smart_button",
-          "href": "views/static/buttons.html",
-          "badge": true
-        },
-        {
-          "id": "cards",
-          "text": "Cards",
-          "icon": "credit_card",
-          "href": "views/static/cards.html",
-          "badge": true
-        },
-        {
-          "id": "avatars",
-          "text": "Avatars",
-          "icon": "account_circle",
-          "href": "views/static/avatars.html",
-          "badge": true
-        },
-        {
-          "id": "progress",
-          "text": "Progress",
-          "icon": "data_usage",
-          "href": "views/static/progress.html",
-          "badge": true
-        },
-        {
-          "id": "spinners",
-          "text": "Spinners",
-          "icon": "autorenew",
-          "href": "views/static/spinners.html",
-          "badge": true
-        },
-        {
-          "id": "pagination",
-          "text": "Pagination",
-          "icon": "last_page",
-          "href": "views/static/pagination.html",
-          "badge": true
-        },
-        {
-          "id": "badges",
-          "text": "Badges",
-          "icon": "sell",
-          "href": "views/static/badges.html",
-          "badge": true
-        },
-        {
-          "id": "lists",
-          "text": "Lists",
-          "icon": "format_list_bulleted",
-          "href": "views/static/lists.html",
-          "badge": true
-        },
-        {
-          "id": "breadcrumb",
-          "text": "Breadcrumb",
-          "icon": "chevron_right",
-          "href": "views/static/breadcrumb.html",
           "badge": true
         }
       ]

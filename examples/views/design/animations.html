@@ -1,0 +1,642 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Animations</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Design System</a></li>
+    <li class="breadcrumb-item active">Animations</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Animation System</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          Animations bring life to the interface and provide visual feedback for user interactions.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transition Properties -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Transition Properties</h4>
+      </div>
+      <div class="card__body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Duration</th>
+              <th>Timing Function</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>all</td>
+              <td>0.2s</td>
+              <td>ease</td>
+              <td>General interactions (hover, focus)</td>
+            </tr>
+            <tr>
+              <td>transform</td>
+              <td>0.3s</td>
+              <td>ease-out</td>
+              <td>Movement, scaling</td>
+            </tr>
+            <tr>
+              <td>opacity</td>
+              <td>0.15s</td>
+              <td>linear</td>
+              <td>Fade in/out</td>
+            </tr>
+            <tr>
+              <td>color</td>
+              <td>0.2s</td>
+              <td>ease</td>
+              <td>Text color changes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5 class="mt-4 mb-3">Example</h5>
+        <pre><code>/* CSS Transition */
+.button {
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fade Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Fade Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--primary" onclick="fadeInDemo()">Fade In</button>
+            <div id="fadeInDemo" class="mt-3 p-4 bg-primary-subtle" style="display:none; border-radius: 8px;">
+              <p class="mb-0">Fade In Animation</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--secondary" onclick="fadeOutDemo()">Fade Out</button>
+            <div id="fadeOutDemo" class="mt-3 p-4 bg-secondary-subtle" style="opacity: 1; border-radius: 8px;">
+              <p class="mb-0">Fade Out Animation</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Fade In
+await IMCAT.animation.animate('#element').fadeIn(300);
+
+// Fade Out
+await IMCAT.animation.animate('#element').fadeOut(300);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Slide Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <button class="btn btn--outline-primary btn-sm w-100" onclick="slideDownDemo()">Slide Down</button>
+            <div id="slideDownDemo" class="mt-2 p-3 bg-primary-subtle" style="display:none; border-radius: 4px;">
+              <p class="mb-0">Slide Down</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button class="btn btn--outline-success btn-sm w-100" onclick="slideUpDemo()">Slide Up</button>
+            <div id="slideUpDemo" class="mt-2 p-3 bg-success-subtle" style="border-radius: 4px;">
+              <p class="mb-0">Slide Up</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button class="btn btn--outline-danger btn-sm w-100" onclick="demo_slideLeft()">Slide Left</button>
+            <div id="demo_slideLeft" class="mt-2 p-3 bg-danger-subtle" style="border-radius: 4px;">
+              <p class="mb-0">Slide Left</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button class="btn btn--outline-warning btn-sm w-100" onclick="demo_slideRight()">Slide Right</button>
+            <div id="demo_slideRight" class="mt-2 p-3 bg-warning-subtle" style="border-radius: 4px;">
+              <p class="mb-0">Slide Right</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Slide Down
+await IMCAT.animation.animate('#element').slideDown(400);
+
+// Slide Up
+await IMCAT.animation.animate('#element').slideUp(400);
+
+// Slide Left/Right
+await IMCAT.animation.animate('#element').slideLeft(400);
+await IMCAT.animation.animate('#element').slideRight(400);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scale Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Scale Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--primary" onclick="demo_scaleIn()">Scale In</button>
+            <div id="demo_scaleIn" class="mt-3 p-4 bg-primary-subtle text-center" style="display:none; border-radius: 8px;">
+              <p class="mb-0">Scale In</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--secondary" onclick="demo_scaleOut()">Scale Out</button>
+            <div id="demo_scaleOut" class="mt-3 p-4 bg-secondary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Scale Out</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Scale In
+await IMCAT.animation.animate('#element').scaleIn(300);
+
+// Scale Out
+await IMCAT.animation.animate('#element').scaleOut(300);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bounce Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Bounce Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--primary" onclick="demo_bounceIn()">Bounce In</button>
+            <div id="demo_bounceIn" class="mt-3 p-4 bg-primary-subtle text-center" style="display:none; border-radius: 8px;">
+              <p class="mb-0">Bounce In</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--secondary" onclick="demo_bounceOut()">Bounce Out</button>
+            <div id="demo_bounceOut" class="mt-3 p-4 bg-secondary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Bounce Out</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Bounce In
+await IMCAT.animation.animate('#element').bounceIn(600);
+
+// Bounce Out
+await IMCAT.animation.animate('#element').bounceOut(600);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rotate Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Rotate Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--primary" onclick="demo_rotateIn()">Rotate In</button>
+            <div id="demo_rotateIn" class="mt-3 p-4 bg-primary-subtle text-center" style="display:none; border-radius: 8px;">
+              <p class="mb-0">Rotate In</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--secondary" onclick="demo_rotateOut()">Rotate Out</button>
+            <div id="demo_rotateOut" class="mt-3 p-4 bg-secondary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Rotate Out</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Rotate In
+await IMCAT.animation.animate('#element').rotateIn(400);
+
+// Rotate Out
+await IMCAT.animation.animate('#element').rotateOut(400);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flip Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Flip Animations</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--primary" onclick="demo_flipIn()">Flip In</button>
+            <div id="demo_flipIn" class="mt-3 p-4 bg-primary-subtle text-center" style="display:none; border-radius: 8px;">
+              <p class="mb-0">Flip In</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button class="btn btn--secondary" onclick="demo_flipOut()">Flip Out</button>
+            <div id="demo_flipOut" class="mt-3 p-4 bg-secondary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Flip Out</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Flip In
+await IMCAT.animation.animate('#element').flipIn(600);
+
+// Flip Out
+await IMCAT.animation.animate('#element').flipOut(600);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attention Seekers -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Attention Seekers</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-primary btn-sm w-100" onclick="demo_shake()">Shake</button>
+            <div id="demo_shake" class="mt-2 p-3 bg-primary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Shake</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-success btn-sm w-100" onclick="demo_pulse()">Pulse</button>
+            <div id="demo_pulse" class="mt-2 p-3 bg-success-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Pulse</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-danger btn-sm w-100" onclick="demo_flash()">Flash</button>
+            <div id="demo_flash" class="mt-2 p-3 bg-danger-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Flash</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-warning btn-sm w-100" onclick="demo_swing()">Swing</button>
+            <div id="demo_swing" class="mt-2 p-3 bg-warning-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Swing</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-info btn-sm w-100" onclick="demo_wobble()">Wobble</button>
+            <div id="demo_wobble" class="mt-2 p-3 bg-info-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Wobble</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-primary btn-sm w-100" onclick="demo_tada()">Tada</button>
+            <div id="demo_tada" class="mt-2 p-3 bg-primary-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">Tada</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button class="btn btn--outline-danger btn-sm w-100" onclick="demo_heartBeat()">Heart Beat</button>
+            <div id="demo_heartBeat" class="mt-2 p-3 bg-danger-subtle text-center" style="border-radius: 8px;">
+              <p class="mb-0">❤️</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code (IMCAT AnimationUtil)</h5>
+        <pre><code>/* JavaScript - Core API 사용 */
+// Attention Seekers
+await IMCAT.animation.animate('#element').shake(500);
+await IMCAT.animation.animate('#element').pulse(500);
+await IMCAT.animation.animate('#element').flash(500);
+await IMCAT.animation.animate('#element').swing(800);
+await IMCAT.animation.animate('#element').wobble(800);
+await IMCAT.animation.animate('#element').tada(800);
+await IMCAT.animation.animate('#element').heartBeat(1000);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timing Functions -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Timing Functions (Easing)</h4>
+      </div>
+      <div class="card__body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Description</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>linear</code></td>
+              <td>Constant speed</td>
+              <td>Loading indicators, simple fades</td>
+            </tr>
+            <tr>
+              <td><code>ease</code></td>
+              <td>Slow start, fast middle, slow end</td>
+              <td>General purpose</td>
+            </tr>
+            <tr>
+              <td><code>ease-in</code></td>
+              <td>Slow start, then accelerate</td>
+              <td>Exit animations</td>
+            </tr>
+            <tr>
+              <td><code>ease-out</code></td>
+              <td>Fast start, then decelerate</td>
+              <td>Enter animations</td>
+            </tr>
+            <tr>
+              <td><code>ease-in-out</code></td>
+              <td>Slow start and end</td>
+              <td>Smooth transitions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Available Animations -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Available Animation Effects (Core API)</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Fade Effects</h6>
+            <ul>
+              <li><code>.fadeIn(duration)</code></li>
+              <li><code>.fadeOut(duration)</code></li>
+            </ul>
+
+            <h6 class="mt-3">Slide Effects</h6>
+            <ul>
+              <li><code>.slideDown(duration)</code></li>
+              <li><code>.slideUp(duration)</code></li>
+              <li><code>.slideLeft(duration)</code></li>
+              <li><code>.slideRight(duration)</code></li>
+            </ul>
+
+            <h6 class="mt-3">Scale Effects</h6>
+            <ul>
+              <li><code>.scaleIn(duration)</code></li>
+              <li><code>.scaleOut(duration)</code></li>
+            </ul>
+
+            <h6 class="mt-3">Bounce Effects</h6>
+            <ul>
+              <li><code>.bounceIn(duration)</code></li>
+              <li><code>.bounceOut(duration)</code></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Rotate Effects</h6>
+            <ul>
+              <li><code>.rotateIn(duration)</code></li>
+              <li><code>.rotateOut(duration)</code></li>
+            </ul>
+
+            <h6 class="mt-3">Flip Effects</h6>
+            <ul>
+              <li><code>.flipIn(duration)</code></li>
+              <li><code>.flipOut(duration)</code></li>
+            </ul>
+
+            <h6 class="mt-3">Attention Seekers</h6>
+            <ul>
+              <li><code>.shake(duration)</code></li>
+              <li><code>.pulse(duration)</code></li>
+              <li><code>.flash(duration)</code></li>
+              <li><code>.swing(duration)</code></li>
+              <li><code>.wobble(duration)</code></li>
+              <li><code>.tada(duration)</code></li>
+              <li><code>.heartBeat(duration)</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Animation Best Practices</h4>
+      </div>
+      <div class="card__body">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Keep it subtle:</strong> Animations should enhance, not distract (200-300ms typical)
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Purpose:</strong> Every animation should have a clear purpose
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Performance:</strong> Use transform and opacity for best performance
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Accessibility:</strong> Respect <code>prefers-reduced-motion</code>
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-warning">warning</i>
+            <strong>Avoid:</strong> Animations longer than 500ms
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-warning">warning</i>
+            <strong>Avoid:</strong> Animating layout properties (width, height, margin)
+          </li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">Accessibility</h5>
+        <pre><code>/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 코어 AnimationUtil 사용 - 모든 애니메이션 데모 함수
+
+// 1. Fade
+async function fadeInDemo() {
+  await IMCAT.animation.animate('#fadeInDemo').fadeIn(300);
+}
+
+async function fadeOutDemo() {
+  await IMCAT.animation.animate('#fadeOutDemo').fadeOut(300);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#fadeOutDemo').fadeIn(300);
+  }, 500);
+}
+
+// 2. Slide
+async function slideDownDemo() {
+  await IMCAT.animation.animate('#slideDownDemo').slideDown(400);
+}
+
+async function slideUpDemo() {
+  await IMCAT.animation.animate('#slideUpDemo').slideUp(400);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#slideUpDemo').slideDown(400);
+  }, 500);
+}
+
+async function demo_slideLeft() {
+  await IMCAT.animation.animate('#demo_slideLeft').slideLeft(400);
+  setTimeout(async () => {
+    document.getElementById('demo_slideLeft').style.display = 'block';
+    await IMCAT.animation.animate('#demo_slideLeft').fadeIn(300);
+  }, 500);
+}
+
+async function demo_slideRight() {
+  await IMCAT.animation.animate('#demo_slideRight').slideRight(400);
+  setTimeout(async () => {
+    document.getElementById('demo_slideRight').style.display = 'block';
+    await IMCAT.animation.animate('#demo_slideRight').fadeIn(300);
+  }, 500);
+}
+
+// 3. Scale
+async function demo_scaleIn() {
+  await IMCAT.animation.animate('#demo_scaleIn').scaleIn(300);
+}
+
+async function demo_scaleOut() {
+  await IMCAT.animation.animate('#demo_scaleOut').scaleOut(300);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#demo_scaleOut').scaleIn(300);
+  }, 500);
+}
+
+// 4. Bounce
+async function demo_bounceIn() {
+  await IMCAT.animation.animate('#demo_bounceIn').bounceIn(600);
+}
+
+async function demo_bounceOut() {
+  await IMCAT.animation.animate('#demo_bounceOut').bounceOut(600);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#demo_bounceOut').bounceIn(600);
+  }, 700);
+}
+
+// 5. Rotate
+async function demo_rotateIn() {
+  await IMCAT.animation.animate('#demo_rotateIn').rotateIn(400);
+}
+
+async function demo_rotateOut() {
+  await IMCAT.animation.animate('#demo_rotateOut').rotateOut(400);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#demo_rotateOut').rotateIn(400);
+  }, 500);
+}
+
+// 6. Flip
+async function demo_flipIn() {
+  await IMCAT.animation.animate('#demo_flipIn').flipIn(600);
+}
+
+async function demo_flipOut() {
+  await IMCAT.animation.animate('#demo_flipOut').flipOut(600);
+  setTimeout(async () => {
+    await IMCAT.animation.animate('#demo_flipOut').flipIn(600);
+  }, 700);
+}
+
+// 7. Attention Seekers
+async function demo_shake() {
+  await IMCAT.animation.animate('#demo_shake').shake(500);
+}
+
+async function demo_pulse() {
+  await IMCAT.animation.animate('#demo_pulse').pulse(500);
+}
+
+async function demo_flash() {
+  await IMCAT.animation.animate('#demo_flash').flash(500);
+}
+
+async function demo_swing() {
+  await IMCAT.animation.animate('#demo_swing').swing(800);
+}
+
+async function demo_wobble() {
+  await IMCAT.animation.animate('#demo_wobble').wobble(800);
+}
+
+async function demo_tada() {
+  await IMCAT.animation.animate('#demo_tada').tada(800);
+}
+
+async function demo_heartBeat() {
+  await IMCAT.animation.animate('#demo_heartBeat').heartBeat(1000);
+}
+</script>

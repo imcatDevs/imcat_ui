@@ -1,0 +1,309 @@
+<!-- 페이지 메타데이터 (오른쪽 사이드바 렌더링용) -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "account_circle",
+    "title": "Avatars 정보",
+    "content": "<p><strong>컴포넌트:</strong> Avatars</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _avatars.scss</p><p><strong>클래스:</strong> .avatar-xs/sm/md/lg/xl</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>Image Avatar</h4><code>&lt;img src=\"...\" class=\"avatar-md rounded-circle\"&gt;</code><h4>Text Avatar</h4><code>&lt;div class=\"avatar-md bg-primary rounded-circle\"&gt;AB&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 5가지 크기 (xs, sm, md, lg, xl)",
+      "✅ 이미지 아바타",
+      "✅ 텍스트 아바타 (이니셜)",
+      "✅ 배경색 변형 (8가지)",
+      "✅ Soft 색상 (투명 배경)",
+      "✅ Rounded / Circle 형태",
+      "✅ Avatar Group (겹침)",
+      "✅ Status Badge",
+      "✅ 다크 테마 지원"
+    ]
+  }
+}
+</script>
+
+<div class="demo-section">
+  <h1>Avatars 아바타</h1>
+  <p class="demo-description">사용자 프로필을 나타내는 다양한 크기와 스타일의 아바타 컴포넌트입니다.</p>
+</div>
+
+<!-- Sizing -->
+<div class="demo-section">
+  <h2>Sizing - Images</h2>
+  <p class="demo-description">다양한 크기의 아바타입니다.</p>
+  
+  <div style="display: flex; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <div style="text-align: center;">
+      <div style="width: 24px; height: 24px; background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600;">XS</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.avatar-xs</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">SM</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.avatar-sm</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600;">MD</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.avatar-md</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: 600;">LG</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.avatar-lg</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 96px; height: 96px; background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 600;">XL</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.avatar-xl</code></p>
+    </div>
+  </div>
+  
+  <details class="demo-code">
+    <summary>코드 보기</summary>
+    <pre><code>&lt;div class="avatar-xs"&gt;...&lt;/div&gt;
+&lt;div class="avatar-sm"&gt;...&lt;/div&gt;
+&lt;div class="avatar-md"&gt;...&lt;/div&gt;</code></pre>
+  </details>
+</div>
+
+<!-- Rounded Circle -->
+<div class="demo-section">
+  <h2>Rounded Circle</h2>
+  <p class="demo-description">원형 아바타입니다.</p>
+  
+  <div style="display: flex; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: 600;">MD</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.rounded-circle</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 600;">LG</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.rounded-circle</code></p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 96px; height: 96px; background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; font-weight: 600;">XL</div>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;"><code>.rounded-circle</code></p>
+    </div>
+  </div>
+  
+  <details class="demo-code">
+    <summary>코드 보기</summary>
+    <pre><code>&lt;div class="avatar-md" style="border-radius: 50%;"&gt;MD&lt;/div&gt;</code></pre>
+  </details>
+</div>
+
+<!-- Background Colors -->
+<div class="demo-section">
+  <h2>Background Colors</h2>
+  <p class="demo-description">다양한 배경색의 아바타입니다.</p>
+  
+  <h3 style="margin-bottom: 1rem; font-size: 1.125rem;">Solid Colors</h3>
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #2196f3; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">P</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Primary</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #4caf50; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">S</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Success</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #f44336; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">D</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Danger</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #ff9800; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">W</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Warning</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #03a9f4; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">I</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Info</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: #9c27b0; border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">S</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Secondary</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 1rem; font-size: 1.125rem;">Soft Colors</h3>
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: rgba(33, 150, 243, 0.1); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: #2196f3; font-weight: 600;">P</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Soft Primary</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: rgba(76, 175, 80, 0.1); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: #4caf50; font-weight: 600;">S</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Soft Success</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; background: rgba(244, 67, 54, 0.1); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; color: #f44336; font-weight: 600;">D</div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Soft Danger</p>
+    </div>
+  </div>
+  
+  <details class="demo-code">
+    <summary>코드 보기</summary>
+    <pre><code>&lt;div class="bg-primary"&gt;P&lt;/div&gt;
+&lt;div class="bg-soft-primary"&gt;P&lt;/div&gt;</code></pre>
+  </details>
+</div>
+
+<!-- Avatar Group -->
+<div class="demo-section">
+  <h2>Avatar Group</h2>
+  <p class="demo-description">겹쳐진 아바타 그룹입니다.</p>
+  
+  <div style="display: inline-flex; align-items: center; margin-bottom: 1rem;">
+    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-right: -12px; z-index: 5;">AB</div>
+    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-right: -12px; z-index: 4;">CD</div>
+    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-right: -12px; z-index: 3;">EF</div>
+    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; z-index: 2;">+3</div>
+  </div>
+  
+  <details class="demo-code">
+    <summary>코드 보기</summary>
+    <pre><code>&lt;div class="avatar-group"&gt;
+  &lt;div class="avatar-md"&gt;AB&lt;/div&gt;
+  &lt;div class="avatar-md"&gt;CD&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </details>
+</div>
+
+<!-- Status Badge -->
+<div class="demo-section">
+  <h2>Avatar with Status Badge</h2>
+  <p class="demo-description">상태 배지가 있는 아바타입니다.</p>
+  
+  <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+    <div style="text-align: center;">
+      <div style="position: relative; width: 64px; height: 64px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 20px;">ON</div>
+        <div style="position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; background: #4caf50; border-radius: 50%; border: 2px solid white;"></div>
+      </div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Online</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="position: relative; width: 64px; height: 64px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 20px;">OF</div>
+        <div style="position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; background: #9e9e9e; border-radius: 50%; border: 2px solid white;"></div>
+      </div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Offline</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="position: relative; width: 64px; height: 64px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 20px;">AW</div>
+        <div style="position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; background: #ff9800; border-radius: 50%; border: 2px solid white;"></div>
+      </div>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Away</p>
+    </div>
+  </div>
+  
+  <details class="demo-code">
+    <summary>코드 보기</summary>
+    <pre><code>&lt;div class="avatar--with-badge"&gt;
+  &lt;div class="avatar-lg"&gt;...&lt;/div&gt;
+  &lt;div class="avatar__badge avatar__badge--online"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </details>
+</div>
+
+<style>
+/* Demo Styles */
+.demo-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.demo-section:last-child {
+  border-bottom: none;
+}
+
+.demo-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, rgba(0, 0, 0, 0.87));
+}
+
+.demo-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary, rgba(0, 0, 0, 0.87));
+}
+
+.demo-description {
+  color: var(--text-secondary, rgba(0, 0, 0, 0.6));
+  margin-bottom: 1.5rem;
+}
+
+.demo-code {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.demo-code summary {
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-secondary, #f5f5f5);
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+}
+
+.demo-code summary:hover {
+  background-color: var(--bg-tertiary, #eeeeee);
+}
+
+.demo-code pre {
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--bg-primary, #ffffff);
+  overflow-x: auto;
+}
+
+.demo-code code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-primary, rgba(0, 0, 0, 0.87));
+}
+
+/* Dark Theme */
+[data-theme="dark"] .demo-section {
+  border-bottom-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+}
+
+[data-theme="dark"] .demo-section h1,
+[data-theme="dark"] .demo-section h2 {
+  color: var(--dark-text-primary, rgba(255, 255, 255, 0.87));
+}
+
+[data-theme="dark"] .demo-description {
+  color: var(--dark-text-secondary, rgba(255, 255, 255, 0.6));
+}
+
+[data-theme="dark"] .demo-code {
+  border-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+}
+
+[data-theme="dark"] .demo-code summary {
+  background-color: var(--dark-bg-secondary, #2c2c2c);
+}
+
+[data-theme="dark"] .demo-code summary:hover {
+  background-color: var(--dark-bg-tertiary, #383838);
+}
+
+[data-theme="dark"] .demo-code pre {
+  background-color: var(--dark-bg-primary, #1e1e1e);
+}
+
+[data-theme="dark"] .demo-code code {
+  color: var(--dark-text-primary, rgba(255, 255, 255, 0.87));
+}
+</style>

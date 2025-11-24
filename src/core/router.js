@@ -7,8 +7,19 @@ import { Security } from './security.js';
 
 /**
  * 뷰 라우터
+ * @class
+ * @description SPA(Single Page Application) 라우팅을 처리하는 클래스입니다.
+ * History API를 사용하여 페이지 전환을 관리하고, views/ 폴더 하위 경로를 지원합니다.
+ * 
+ * @example
+ * const router = new ViewRouter();
+ * router.navigate('views/home.html');
  */
 export class ViewRouter {
+  /**
+   * ViewRouter 생성자
+   * @constructor
+   */
   constructor() {
     this.container = '#app';
     this.currentPath = '';
@@ -22,6 +33,9 @@ export class ViewRouter {
     this.currentViewInstances = [];
     this.loading = null;
     this._popstateHandler = null;
+    
+    // History API 사용 여부 (기본값: true)
+    this.useHistory = true;
   }
 
   /**
@@ -29,23 +43,31 @@ export class ViewRouter {
    * @param {Object} [options] - 옵션
    * @param {Object} [options.loading] - 로딩 인디케이터 인스턴스
    * @param {boolean} [options.autoNavigate=true] - 초기 hash 경로 자동 로드 여부
+   * @param {boolean} [options.useHistory=true] - History API 사용 여부 (false면 URL 변경 안함)
    */
   init(options = {}) {
     if (options.loading) {
       this.loading = options.loading;
     }
+    
+    // History API 사용 여부 설정
+    if ('useHistory' in options) {
+      this.useHistory = options.useHistory;
+    }
 
-    // History API 이벤트 리스너 (저장하여 나중에 제거 가능)
-    this._popstateHandler = (e) => {
-      if (e.state?.path) {
-        this._loadView(e.state.path, false);
-      }
-    };
-    window.addEventListener('popstate', this._popstateHandler);
+    // History API 이벤트 리스너 (useHistory가 true일 때만)
+    if (this.useHistory) {
+      this._popstateHandler = (e) => {
+        if (e.state?.path) {
+          this._loadView(e.state.path, false);
+        }
+      };
+      window.addEventListener('popstate', this._popstateHandler);
+    }
 
-    // 초기 경로 자동 로드 (옵션)
-    const autoNavigate = options.autoNavigate !== false; // 기본값 true
-    if (autoNavigate) {
+    // 초기 경로 자동 로드 (useHistory가 true일 때만)
+    const autoNavigate = 'autoNavigate' in options ? options.autoNavigate : true;
+    if (autoNavigate && this.useHistory) {
       const initialPath = window.location.hash.slice(1) || '';
       if (initialPath) {
         this.navigate(initialPath, true);
@@ -126,8 +148,8 @@ export class ViewRouter {
         this._executeScripts(container);
       }
 
-      // History API 업데이트
-      if (pushState) {
+      // History API 업데이트 (useHistory가 true일 때만)
+      if (pushState && this.useHistory) {
         window.history.pushState({ path }, '', `#${path}`);
       }
 

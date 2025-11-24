@@ -1,93 +1,117 @@
-<div class="page-title">🏠 홈</div>
-<div class="info-box">
-  <h2>IMCAT UI Framework에 오신 것을 환영합니다!</h2>
-  <p>경량화된 ES6+ 기반 프론트엔드 프레임워크입니다.</p>
-  <ul style="margin-top: 15px; margin-left: 20px;">
-    <li>제로 빌드 (개발 시)</li>
-    <li>동적 모듈 로딩</li>
-    <li>SPA 라우팅 (파일 기반)</li>
-    <li>보안 우선 설계 (XSS 방어)</li>
-    <li>Storage 모듈 (만료 시간)</li>
-    <li>상태 관리 (리액티브)</li>
-    <li>폼 검증 (10가지 규칙)</li>
-    <li>애니메이션 (20+ 효과)</li>
-  </ul>
-</div>
-
-<div class="info-box">
-  <h3>📌 catui-href 선언적 네비게이션</h3>
-  <p>설정 코드 없이 자동으로 SPA 동작!</p>
-  <div style="margin-top: 10px;">
-    <button catui-href="views/about.html" class="btn-link">소개 페이지로 이동</button>
-    <button catui-href="views/products.html?category=all" class="btn-link">제품 보기</button>
-  </div>
-</div>
-
-<div class="info-box">
-  <h3>⚡ 실시간 통계</h3>
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-number">15</div>
-      <div class="stat-label">코어 모듈</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">497</div>
-      <div class="stat-label">테스트 통과</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">~34KB</div>
-      <div class="stat-label">Minified</div>
+<div style="max-width: 800px; margin: 0 auto;">
+  <div style="text-align: center; padding: 3rem 0;">
+    <i class="material-icons" style="font-size: 80px; color: var(--primary-color);">bolt</i>
+    <h1 style="font-size: 3rem; font-weight: 700; margin: 1rem 0; color: var(--text-primary);">
+      IMCAT UI
+    </h1>
+    <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem;">
+      모던하고 경량화된 제로빌드 웹 프레임워크
+    </p>
+    
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="#" catui-href="views/started.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s ease;">
+        <i class="material-icons-outlined">rocket_launch</i>
+        <span>시작하기</span>
+      </a>
+      <a href="#" catui-href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: transparent; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: 500; border: 1px solid var(--primary-color); transition: all 0.2s ease;">
+        <i class="material-icons-outlined">auto_awesome</i>
+        <span>예제 보기</span>
+      </a>
     </div>
   </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <i class="material-icons-outlined" style="font-size: 40px; color: var(--primary-color); margin-bottom: 1rem;">flash_on</i>
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">
+        ⚡ 제로 빌드
+      </h3>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        번들러 없이 바로 사용 가능한 ES6+ 모듈 시스템
+      </p>
+    </div>
+
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <i class="material-icons-outlined" style="font-size: 40px; color: var(--success-color); margin-bottom: 1rem;">security</i>
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">
+        🔒 보안 우선
+      </h3>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        XSS 방어와 경로 검증이 내장된 안전한 프레임워크
+      </p>
+    </div>
+
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <i class="material-icons-outlined" style="font-size: 40px; color: var(--warning-color); margin-bottom: 1rem;">speed</i>
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">
+        🚀 초경량
+      </h3>
+      <p style="color: var(--text-secondary); line-height: 1.6;">
+        ~48KB 미니파이드, 빠른 로딩과 뛰어난 성능
+      </p>
+    </div>
+  </div>
+
+  <div style="background: var(--bg-elevated); padding: 2.5rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin: 3rem 0;">
+    <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+      🎯 핵심 기능
+    </h2>
+    <div style="display: grid; gap: 1rem;">
+      <div style="display: flex; align-items: start; gap: 1rem;">
+        <i class="material-icons" style="color: var(--primary-color); flex-shrink: 0;">check_circle</i>
+        <div>
+          <strong style="color: var(--text-primary);">SPA 라우팅</strong>
+          <p style="color: var(--text-secondary); margin-top: 0.25rem; font-size: 0.9375rem;">
+            History API 기반의 부드러운 페이지 전환
+          </p>
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: start; gap: 1rem;">
+        <i class="material-icons" style="color: var(--primary-color); flex-shrink: 0;">check_circle</i>
+        <div>
+          <strong style="color: var(--text-primary);">상태 관리</strong>
+          <p style="color: var(--text-secondary); margin-top: 0.25rem; font-size: 0.9375rem;">
+            리액티브 상태 관리와 computed 속성 지원
+          </p>
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: start; gap: 1rem;">
+        <i class="material-icons" style="color: var(--primary-color); flex-shrink: 0;">check_circle</i>
+        <div>
+          <strong style="color: var(--text-primary);">모듈 로딩</strong>
+          <p style="color: var(--text-secondary); margin-top: 0.25rem; font-size: 0.9375rem;">
+            동적 모듈 로딩과 CSS 캐싱으로 최적화된 로딩
+          </p>
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: start; gap: 1rem;">
+        <i class="material-icons" style="color: var(--primary-color); flex-shrink: 0;">check_circle</i>
+        <div>
+          <strong style="color: var(--text-primary);">테마 시스템</strong>
+          <p style="color: var(--text-secondary); margin-top: 0.25rem; font-size: 0.9375rem;">
+            라이트/다크 테마와 커스텀 테마 지원
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: linear-gradient(135deg, var(--primary-color) 0%, #1565c0 100%); padding: 3rem; border-radius: 12px; text-align: center; color: white; margin: 3rem 0;">
+    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">
+      지금 바로 시작하세요
+    </h2>
+    <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">
+      간단한 설치로 바로 사용할 수 있습니다
+    </p>
+    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; font-family: 'Consolas', 'Monaco', monospace; font-size: 1rem; margin-bottom: 2rem;">
+      npm install imcat-ui
+    </div>
+    <a href="#/started" catui-href="/started" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: white; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: 500;">
+      <span>시작하기 가이드</span>
+      <i class="material-icons-outlined">arrow_forward</i>
+    </a>
+  </div>
 </div>
-
-<script>
-(function() {
-  // 페이지별 스크립트
-  console.log('🏠 홈 페이지 로드됨');
-  
-  // Storage 데모
-  IMCAT.storage.set('lastVisit', new Date().toISOString());
-  console.log('Last visit:', IMCAT.storage.get('lastVisit'));
-})();
-</script>
-
-<style>
-  .btn-link {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: all 0.3s;
-  }
-  .btn-link:hover {
-    background: #764ba2;
-    transform: translateY(-2px);
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 15px;
-  }
-  .stat-item {
-    text-align: center;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .stat-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: #667eea;
-  }
-  .stat-label {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-  }
-</style>

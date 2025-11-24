@@ -1,0 +1,266 @@
+// ============================================
+// Theme Module - Component Styles
+// ============================================
+
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+/// Theme Switcher 컴포넌트
+/// @group components
+
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  
+  &__label {
+    font-size: $font-size-body2;
+    color: var(--text-secondary);
+    font-weight: $font-weight-medium;
+  }
+  
+  &__buttons {
+    display: inline-flex;
+    background: var(--bg-secondary);
+    border-radius: $radius-full;
+    padding: $space-1;
+    gap: $space-1;
+  }
+  
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-1;
+    
+    padding: $space-2 $space-3;
+    border-radius: $radius-full;
+    border: none;
+    background: transparent;
+    
+    font-size: $font-size-body2;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    
+    transition: all $duration-fast $ease-out;
+    
+    .material-icons,
+    .material-icons-outlined {
+      font-size: 18px;
+    }
+    
+    &:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    &--active {
+      background: var(--primary-color);
+      color: #ffffff;  // 활성 버튼은 흰색
+      
+      &:hover {
+        background: var(--primary-color);
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+/// Theme Toggle 버튼
+/// @group components
+
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  
+  transition: all $duration-fast $ease-out;
+  
+  &:hover {
+    background: var(--bg-secondary);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  .material-icons,
+  .material-icons-outlined {
+    font-size: 24px;
+    transition: transform $duration-base $ease-out;
+  }
+  
+  // 아이콘 회전 애니메이션
+  &--animating {
+    .material-icons,
+    .material-icons-outlined {
+      animation: themeToggleSpin $duration-slow $ease-in-out;
+    }
+  }
+}
+
+@keyframes themeToggleSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/// Theme Preview 카드
+/// @group components
+
+.theme-preview {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-6;
+  border-radius: $radius-lg;
+  background: var(--bg-elevated);
+  @include elevation(2);
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__title {
+    font-size: $font-size-h6;
+    font-weight: $font-weight-semibold;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+  
+  &__text {
+    color: var(--text-secondary);
+    line-height: $line-height-relaxed;
+  }
+  
+  &__colors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: $space-3;
+  }
+  
+  &__color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-2;
+    
+    &-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: $radius-md;
+      border: 2px solid var(--border-color);
+      
+      &--primary {
+        background: var(--primary-color);
+      }
+      
+      &--success {
+        background: var(--success-color);
+      }
+      
+      &--danger {
+        background: var(--danger-color);
+      }
+      
+      &--warning {
+        background: var(--warning-color);
+      }
+    }
+    
+    &-label {
+      font-size: $font-size-caption;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-weight: $font-weight-medium;
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    gap: $space-2;
+  }
+}
+
+/// Custom Theme Form
+/// @group components
+
+.theme-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+  
+  &__label {
+    font-size: $font-size-body2;
+    font-weight: $font-weight-medium;
+    color: var(--text-primary);
+  }
+  
+  &__input {
+    padding: $space-2 $space-3;
+    border: 1px solid var(--border-color);
+    border-radius: $radius-sm;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: $font-size-body1;
+    transition: all $duration-fast $ease-out;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      @include elevation(1);
+    }
+    
+    &[type="color"] {
+      height: 40px;
+      cursor: pointer;
+    }
+  }
+  
+  &__button {
+    padding: $space-2 $space-4;
+    border: none;
+    border-radius: $radius-md;
+    background: var(--primary-color);
+    color: var(--text-on-primary);
+    font-size: $font-size-button;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $duration-fast $ease-out;
+    
+    &:hover {
+      @include elevation(2);
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="topnav"
+  data-topbar-color="dark"
+  data-menu-color="light"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Horizontal Menu | UBold - Responsive Bootstrap 5 Admin Dashboard
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="UBold is a modern, responsive admin dashboard available on ThemeForest. Ideal for building CRM, CMS, project management tools, and custom web applications with a clean UI, flexible layouts, and rich features."
+    />
+    <meta
+      name="keywords"
+      content="UBold, admin dashboard, ThemeForest, Bootstrap 5 admin, responsive admin, CRM dashboard, CMS admin, web app UI, admin theme, premium admin template"
+    />
+    <meta name="author" content="Coderthemes" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    <!-- Theme Config Js -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- Vendor css -->
+    <link href="assets/css/vendors.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <!-- Begin page -->
+    <div class="wrapper">
+      <!-- Topbar Start -->
+      <header class="app-topbar">
+        <div class="container-fluid topbar-menu">
+          <div class="d-flex align-items-center gap-2">
+            <!-- Topbar Brand Logo -->
+            <div class="logo-topbar">
+              <!-- Logo light -->
+              <a href="index.html" class="logo-light">
+                <span class="logo-lg">
+                  <img src="assets/images/logo.png" alt="logo" />
+                </span>
+                <span class="logo-sm">
+                  <img src="assets/images/logo-sm.png" alt="small logo" />
+                </span>
+              </a>
+
+              <!-- Logo Dark -->
+              <a href="index.html" class="logo-dark">
+                <span class="logo-lg">
+                  <img src="assets/images/logo-black.png" alt="dark logo" />
+                </span>
+                <span class="logo-sm">
+                  <img src="assets/images/logo-sm.png" alt="small logo" />
+                </span>
+              </a>
+            </div>
+
+            <!-- Sidebar Menu Toggle Button -->
+            <button class="sidenav-toggle-button btn btn-default btn-icon">
+              <i class="ti ti-menu-4 fs-22"></i>
+            </button>
+
+            <!-- Horizontal Menu Toggle Button -->
+            <button
+              class="topnav-toggle-button px-2"
+              data-bs-toggle="collapse"
+              data-bs-target="#topnav-menu-content"
+            >
+              <i class="ti ti-menu-4 fs-22"></i>
+            </button>
+
+            <!-- Mega Menu Dropdown -->
+            <div class="topbar-item d-none d-md-flex">
+              <div class="dropdown">
+                <button
+                  class="topbar-link btn fw-medium btn-link dropdown-toggle drop-arrow-none"
+                  data-lang="mega-menu"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,17"
+                  type="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  Mega Menu <i class="ti ti-chevron-down ms-1 fs-16"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-xxl p-0">
+                  <div class="h-100" style="max-height: 380px" data-simplebar>
+                    <div class="row g-0">
+                      <!-- Dashboard & Analytics -->
+                      <div class="col-md-4">
+                        <div class="p-2">
+                          <h5 class="mb-1 fw-semibold fs-sm dropdown-header">
+                            Dashboard & Analytics
+                          </h5>
+                          <ul class="list-unstyled megamenu-list">
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-chart-line align-middle me-2 fs-16"
+                                ></i>
+                                Sales Dashboard</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-bulb align-middle me-2 fs-16"
+                                ></i>
+                                Marketing Dashboard</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-currency-dollar align-middle me-2 fs-16"
+                                ></i>
+                                Finance Overview</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-users align-middle me-2 fs-16"
+                                ></i>
+                                User Analytics</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-activity align-middle me-2 fs-16"
+                                ></i>
+                                Traffic Insights</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-gauge align-middle me-2 fs-16"
+                                ></i>
+                                Performance Metrics</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-zoom-check align-middle me-2 fs-16"
+                                ></i>
+                                Conversion Tracking</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <!-- Project Management -->
+                      <div class="col-md-4">
+                        <div class="p-2">
+                          <h5 class="mb-1 fw-semibold fs-sm dropdown-header">
+                            Project Management
+                          </h5>
+                          <ul class="list-unstyled megamenu-list">
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-layout-kanban align-middle me-2 fs-16"
+                                ></i>
+                                Kanban Workflow</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-calendar-stats align-middle me-2 fs-16"
+                                ></i>
+                                Project Timeline</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-list-check align-middle me-2 fs-16"
+                                ></i>
+                                Task Management</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-users-group align-middle me-2 fs-16"
+                                ></i>
+                                Team Members</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-clipboard-list align-middle me-2 fs-16"
+                                ></i>
+                                Assignments</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-chart-pie align-middle me-2 fs-16"
+                                ></i>
+                                Resource Allocation</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-file-invoice align-middle me-2 fs-16"
+                                ></i>
+                                Project Reports</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <!-- User Management -->
+                      <div class="col-md-4">
+                        <div class="p-2">
+                          <h5 class="mb-1 fw-semibold fs-sm dropdown-header">
+                            User Management
+                          </h5>
+                          <ul class="list-unstyled megamenu-list">
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-user-circle align-middle me-2 fs-16"
+                                ></i>
+                                User Profiles</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-lock me-2 align-middle fs-16"
+                                ></i>
+                                Access Control</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-shield-lock align-middle me-2 fs-16"
+                                ></i>
+                                Role Permissions</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-notes align-middle me-2 fs-16"
+                                ></i>
+                                Activity Logs</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-settings align-middle me-2 fs-16"
+                                ></i>
+                                Security Settings</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-users align-middle me-2 fs-16"
+                                ></i>
+                                User Groups</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                href="javascript:void(0);"
+                                class="dropdown-item"
+                                ><i
+                                  class="ti ti-key align-middle me-2 fs-16"
+                                ></i>
+                                Authentication
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .d-flex-->
+
+          <div class="d-flex align-items-center gap-2">
+            <!-- Search -->
+            <div class="app-search d-none d-xl-flex me-2">
+              <input
+                type="search"
+                class="form-control topbar-search rounded-pill"
+                name="search"
+                placeholder="Quick Search..."
+              />
+              <i data-lucide="search" class="app-search-icon text-muted"></i>
+            </div>
+
+            <!-- Language Dropdown -->
+            <div class="topbar-item">
+              <div class="dropdown">
+                <button
+                  class="topbar-link fw-bold"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,24"
+                  type="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="assets/images/flags/us.svg"
+                    alt="user-image"
+                    class="rounded"
+                    height="20"
+                    id="selected-language-image"
+                  />
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="en"
+                    title="English"
+                  >
+                    <img
+                      src="assets/images/flags/us.svg"
+                      alt="English"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">English</span>
+                  </a>
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="de"
+                    title="German"
+                  >
+                    <img
+                      src="assets/images/flags/de.svg"
+                      alt="German"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">Deutsch</span>
+                  </a>
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="it"
+                    title="Italian"
+                  >
+                    <img
+                      src="assets/images/flags/it.svg"
+                      alt="Italian"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">Italiano</span>
+                  </a>
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="es"
+                    title="Spanish"
+                  >
+                    <img
+                      src="assets/images/flags/es.svg"
+                      alt="Spanish"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">Español</span>
+                  </a>
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="ru"
+                    title="Russian"
+                  >
+                    <img
+                      src="assets/images/flags/ru.svg"
+                      alt="Russian"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">Русский</span>
+                  </a>
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item"
+                    data-translator-lang="hi"
+                    title="Hindi"
+                  >
+                    <img
+                      src="assets/images/flags/in.svg"
+                      alt="Hindi"
+                      class="me-1 rounded"
+                      height="18"
+                      data-translator-image
+                    />
+                    <span class="align-middle">हिन्दी</span>
+                  </a>
+                </div>
+                <!-- end dropdown-menu-->
+              </div>
+              <!-- end dropdown-->
+            </div>
+            <!-- end topbar item-->
+
+            <!-- Notification Dropdown -->
+            <div class="topbar-item">
+              <div class="dropdown">
+                <button
+                  class="topbar-link dropdown-toggle drop-arrow-none"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,24"
+                  type="button"
+                  data-bs-auto-close="outside"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <i data-lucide="bell" class="fs-xxl"></i>
+                  <span class="badge text-bg-danger badge-circle topbar-badge"
+                    >5</span
+                  >
+                </button>
+
+                <div
+                  class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
+                >
+                  <div class="px-3 py-2 border-bottom">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h6 class="m-0 fs-md fw-semibold">Notifications</h6>
+                      </div>
+                      <div class="col text-end">
+                        <a
+                          href="#!"
+                          class="badge badge-soft-success badge-label py-1"
+                          >07 Notifications</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="max-height: 300px" data-simplebar>
+                    <!-- Notification 1 -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-1"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <img
+                            src="assets/images/users/user-4.jpg"
+                            class="avatar-md rounded-circle"
+                            alt="User Avatar"
+                          />
+                          <span
+                            class="position-absolute rounded-pill bg-success notification-badge"
+                          >
+                            <i class="ti ti-bell align-middle"></i>
+                            <span class="visually-hidden"
+                              >unread notification</span
+                            >
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body">Emily Johnson</span>
+                          commented on a task in
+                          <span class="fw-medium text-body">Design Sprint</span
+                          ><br />
+                          <span class="fs-xs">12 minutes ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-1"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 2 -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-2"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <img
+                            src="assets/images/users/user-5.jpg"
+                            class="avatar-md rounded-circle"
+                            alt="User Avatar"
+                          />
+                          <span
+                            class="position-absolute rounded-pill bg-info notification-badge"
+                          >
+                            <i class="ti ti-cloud-upload align-middle"></i>
+                            <span class="visually-hidden"
+                              >upload notification</span
+                            >
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body">Michael Lee</span>
+                          uploaded files to
+                          <span class="fw-medium text-body"
+                            >Marketing Assets</span
+                          ><br />
+                          <span class="fs-xs">25 minutes ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-2"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 3 -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-3"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <img
+                            src="assets/images/users/user-6.jpg"
+                            class="avatar-md rounded-circle"
+                            alt="User Avatar"
+                          />
+                          <span
+                            class="position-absolute rounded-pill bg-warning notification-badge"
+                          >
+                            <i class="ti ti-alert-triangle align-middle"></i>
+                            <span class="visually-hidden">alert</span>
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body">Sophia Ray</span>
+                          flagged an issue in
+                          <span class="fw-medium text-body">Bug Tracker</span
+                          ><br />
+                          <span class="fs-xs">40 minutes ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-3"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 4 -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-4"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <img
+                            src="assets/images/users/user-7.jpg"
+                            class="avatar-md rounded-circle"
+                            alt="User Avatar"
+                          />
+                          <span
+                            class="position-absolute rounded-pill bg-primary notification-badge"
+                          >
+                            <i class="ti ti-calendar-event align-middle"></i>
+                            <span class="visually-hidden"
+                              >event notification</span
+                            >
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body">David Kim</span>
+                          scheduled a meeting for
+                          <span class="fw-medium text-body">UX Review</span
+                          ><br />
+                          <span class="fs-xs">1 hour ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-4"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 5 -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-5"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <img
+                            src="assets/images/users/user-8.jpg"
+                            class="avatar-md rounded-circle"
+                            alt="User Avatar"
+                          />
+                          <span
+                            class="position-absolute rounded-pill bg-secondary notification-badge"
+                          >
+                            <i class="ti ti-edit-circle align-middle"></i>
+                            <span class="visually-hidden">edit</span>
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body"
+                            >Isabella White</span
+                          >
+                          updated the document in
+                          <span class="fw-medium text-body">Product Specs</span
+                          ><br />
+                          <span class="fs-xs">2 hours ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-5"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 6 - Server CPU Alert -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-6"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <span
+                            class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center"
+                          >
+                            <i class="ti ti-server-bolt fs-4 text-danger"></i>
+                          </span>
+                          <span
+                            class="position-absolute rounded-pill bg-danger notification-badge"
+                          >
+                            <i class="ti ti-alert-circle align-middle"></i>
+                            <span class="visually-hidden">server alert</span>
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body">Server #3</span> CPU
+                          usage exceeded 90%<br />
+                          <span class="fs-xs">Just now</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-6"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+
+                    <!-- Notification 7 - Deployment Success -->
+                    <div
+                      class="dropdown-item notification-item py-2 text-wrap"
+                      id="message-7"
+                    >
+                      <span class="d-flex align-items-center gap-3">
+                        <span class="flex-shrink-0 position-relative">
+                          <span
+                            class="avatar-md rounded-circle bg-light d-flex align-items-center justify-content-center"
+                          >
+                            <i class="ti ti-rocket fs-4 text-success"></i>
+                          </span>
+                          <span
+                            class="position-absolute rounded-pill bg-success notification-badge"
+                          >
+                            <i class="ti ti-check align-middle"></i>
+                            <span class="visually-hidden">deployment</span>
+                          </span>
+                        </span>
+                        <span class="flex-grow-1 text-muted">
+                          <span class="fw-medium text-body"
+                            >Production Server</span
+                          >
+                          deployment completed successfully<br />
+                          <span class="fs-xs">30 minutes ago</span>
+                        </span>
+                        <button
+                          type="button"
+                          class="flex-shrink-0 text-muted btn btn-link p-0 position-absolute end-0 me-2 d-none noti-close-btn"
+                          data-dismissible="#message-7"
+                        >
+                          <i class="ti ti-xbox-x-filled fs-xxl"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- All-->
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2"
+                  >
+                    Read All Messages
+                  </a>
+                </div>
+                <!-- End dropdown-menu -->
+              </div>
+              <!-- end dropdown-->
+            </div>
+            <!-- end topbar item-->
+
+            <!-- Theme Mode Dropdown -->
+            <div class="topbar-item">
+              <div class="dropdown">
+                <button
+                  class="topbar-link"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,24"
+                  type="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <i data-lucide="layout-grid" class="fs-xxl"></i>
+                </button>
+
+                <div
+                  class="dropdown-menu dropdown-menu-lg p-2 dropdown-menu-end"
+                >
+                  <div class="row align-items-center g-1">
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title text-bg-light rounded-circle"
+                          >
+                            <img
+                              src="assets/images/logos/google.svg"
+                              alt="Google Logo"
+                              height="18"
+                            />
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Google</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title text-bg-light rounded-circle"
+                          >
+                            <img
+                              src="assets/images/logos/figma.svg"
+                              alt="Figma Logo"
+                              height="18"
+                            />
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Figma</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title text-bg-light rounded-circle"
+                          >
+                            <img
+                              src="assets/images/logos/slack.svg"
+                              alt="Slack Logo"
+                              height="18"
+                            />
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Slack</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title text-bg-light rounded-circle"
+                          >
+                            <img
+                              src="assets/images/logos/dropbox.svg"
+                              alt="Dropbox Logo"
+                              height="18"
+                            />
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Dropbox</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4 text-center">
+                      <a
+                        href="javascript:void(0);"
+                        class="btn btn-sm rounded-circle btn-icon btn-danger"
+                      >
+                        <i data-lucide="circle-plus" class="fs-18"></i>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title bg-primary-subtle text-primary rounded-circle"
+                          >
+                            <i class="ti ti-calendar fs-18"></i>
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Calendar</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title bg-primary-subtle text-primary rounded-circle"
+                          >
+                            <i class="ti ti-message-circle fs-18"></i>
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Chat</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title bg-primary-subtle text-primary rounded-circle"
+                          >
+                            <i class="ti ti-folder fs-18"></i>
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Files</span>
+                      </a>
+                    </div>
+
+                    <div class="col-4">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item border border-dashed rounded text-center py-2"
+                      >
+                        <span class="avatar-sm d-block mx-auto mb-1">
+                          <span
+                            class="avatar-title bg-primary-subtle text-primary rounded-circle"
+                          >
+                            <i class="ti ti-users fs-18"></i>
+                          </span>
+                        </span>
+                        <span class="align-middle fw-medium">Team</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end dropdown-->
+            </div>
+            <!-- end topbar item-->
+
+            <!-- Theme Mode Dropdown -->
+            <div class="topbar-item">
+              <div class="dropdown">
+                <button
+                  class="topbar-link"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,24"
+                  type="button"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <i data-lucide="sun" class="fs-xxl"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end thememode-dropdown">
+                  <li>
+                    <label class="dropdown-item">
+                      <i data-lucide="sun" class="align-middle me-1 fs-16"></i>
+                      <span class="align-middle">Light</span>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="data-bs-theme"
+                        value="light"
+                      />
+                    </label>
+                  </li>
+
+                  <li>
+                    <label class="dropdown-item">
+                      <i data-lucide="moon" class="align-middle me-1 fs-16"></i>
+                      <span class="align-middle">Dark</span>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="data-bs-theme"
+                        value="dark"
+                      />
+                    </label>
+                  </li>
+
+                  <li>
+                    <label class="dropdown-item">
+                      <i
+                        data-lucide="monitor-cog"
+                        class="align-middle me-1 fs-16"
+                      ></i>
+                      <span class="align-middle">System</span>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="data-bs-theme"
+                        value="system"
+                      />
+                    </label>
+                  </li>
+                </ul>
+                <!-- end dropdown-menu-->
+              </div>
+              <!-- end dropdown-->
+            </div>
+            <!-- end topbar item-->
+
+            <!-- FullScreen -->
+            <div class="topbar-item d-none d-sm-flex">
+              <button
+                class="topbar-link"
+                type="button"
+                data-toggle="fullscreen"
+              >
+                <i data-lucide="maximize" class="fs-xxl fullscreen-off"></i>
+                <i data-lucide="minimize" class="fs-xxl fullscreen-on"></i>
+              </button>
+            </div>
+
+            <!-- Light/Dark Mode Button -->
+            <div class="topbar-item d-none">
+              <button class="topbar-link" id="light-dark-mode" type="button">
+                <i data-lucide="moon" class="fs-xxl mode-light-moon"></i>
+              </button>
+            </div>
+
+            <!-- Monocrome Mode Button -->
+            <div class="topbar-item d-none d-sm-flex">
+              <button class="topbar-link" type="button" id="monochrome-mode">
+                <i data-lucide="palette" class="fs-xxl"></i>
+              </button>
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="topbar-item nav-user">
+              <div class="dropdown">
+                <a
+                  class="topbar-link dropdown-toggle drop-arrow-none px-2"
+                  data-bs-toggle="dropdown"
+                  data-bs-offset="0,19"
+                  href="#!"
+                  aria-haspopup="false"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="assets/images/users/user-3.jpg"
+                    width="32"
+                    class="rounded-circle me-lg-2 d-flex"
+                    alt="user-image"
+                  />
+                  <div class="d-lg-flex align-items-center gap-1 d-none">
+                    <h5 class="my-0">Geneva</h5>
+                    <i class="ti ti-chevron-down align-middle"></i>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <!-- Header -->
+                  <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Welcome back 👋!</h6>
+                  </div>
+
+                  <!-- My Profile -->
+                  <a href="users-profile.html" class="dropdown-item">
+                    <i class="ti ti-user-circle me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Profile</span>
+                  </a>
+
+                  <!-- Notifications -->
+                  <a href="javascript:void(0);" class="dropdown-item">
+                    <i class="ti ti-bell-ringing me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Notifications</span>
+                  </a>
+
+                  <!-- Settings -->
+                  <a href="javascript:void(0);" class="dropdown-item">
+                    <i class="ti ti-settings-2 me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Account Settings</span>
+                  </a>
+
+                  <!-- Support -->
+                  <a href="javascript:void(0);" class="dropdown-item">
+                    <i class="ti ti-headset me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Support Center</span>
+                  </a>
+
+                  <!-- Divider -->
+                  <div class="dropdown-divider"></div>
+
+                  <!-- Lock -->
+                  <a href="auth-lock-screen.html" class="dropdown-item">
+                    <i class="ti ti-lock me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Lock Screen</span>
+                  </a>
+
+                  <!-- Logout -->
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-item fw-semibold"
+                  >
+                    <i class="ti ti-logout-2 me-1 fs-17 align-middle"></i>
+                    <span class="align-middle">Log Out</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Button Trigger Customizer Offcanvas -->
+            <div class="topbar-item d-none d-sm-flex">
+              <button
+                class="topbar-link"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#theme-settings-offcanvas"
+                type="button"
+              >
+                <i class="ti ti-settings icon-spin fs-24"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Topbar End -->
+
+      <!-- Horizontal Menu Start -->
+      <header class="topnav">
+        <nav class="navbar navbar-expand-lg">
+          <nav class="container-fluid">
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">
+                    <span class="menu-icon"
+                      ><i data-lucide="layout-dashboard"></i
+                    ></span>
+                    <span class="menu-text">Dashboard</span>
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle drop-arrow-none"
+                    href="#"
+                    id="topnav-drop"
+                    data-bs-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span class="menu-icon"
+                      ><i data-lucide="chevrons-down-up"></i
+                    ></span>
+                    <span class="menu-text">Dropdown</span>
+                    <div class="menu-arrow"></div>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="topnav-drop">
+                    <a href="#!" class="dropdown-item">Drop Item 1</a>
+                    <a href="#!" class="dropdown-item">Drop Item 2</a>
+                    <a href="#!" class="dropdown-item disabled"
+                      >Drop Item Disabled
+                      <span class="badge text-bg-light opacity-50"
+                        >soon</span
+                      ></a
+                    >
+                  </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle drop-arrow-none"
+                    href="#"
+                    id="topnav-menu-levels"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span class="menu-icon"
+                      ><i data-lucide="list-tree"></i
+                    ></span>
+                    <span class="menu-text">Menu Levels</span>
+                    <div class="menu-arrow"></div>
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="topnav-menu-levels"
+                  >
+                    <a href="#!" class="dropdown-item"
+                      ><i data-lucide="ice-cream-cone"></i> Single Item</a
+                    >
+                    <div class="dropdown">
+                      <a
+                        class="dropdown-item dropdown-toggle drop-arrow-none"
+                        href="#"
+                        id="topnav-ecommerce"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i data-lucide="workflow"></i> Second Level
+                        <div class="menu-arrow"></div>
+                      </a>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="topnav-ecommerce"
+                      >
+                        <a href="#!" class="dropdown-item">Third Level 1</a>
+                        <a href="#!" class="dropdown-item">Third Level 2</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle drop-arrow-none"
+                    href="#"
+                    id="topnav-layouts"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span class="menu-icon"
+                      ><i data-lucide="panels-top-left"></i
+                    ></span>
+                    <span class="menu-text">Layouts</span>
+                    <div class="menu-arrow"></div>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="topnav-layouts">
+                    <a href="index.html" class="dropdown-item">Vertical</a>
+                    <a href="layouts-horizontal.html" class="dropdown-item"
+                      >Horizontal</a
+                    >
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#!">
+                    <span class="menu-icon"
+                      ><i data-lucide="shield-alert"></i
+                    ></span>
+                    <span class="menu-text">Disabled</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </nav>
+      </header>
+      <!-- Horizontal Menu End -->
+
+      <!-- ============================================================== -->
+      <!-- Start Main Content -->
+      <!-- ============================================================== -->
+
+      <div class="content-page">
+        <div class="container-fluid">
+          <div class="page-title-head d-flex align-items-center">
+            <div class="flex-grow-1">
+              <h4 class="fs-xl fw-bold m-0">Horizontal</h4>
+            </div>
+
+            <div class="text-end">
+              <ol class="breadcrumb m-0 py-0">
+                <li class="breadcrumb-item">
+                  <a href="javascript: void(0);">UBold</a>
+                </li>
+
+                <li class="breadcrumb-item active">Horizontal</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="m-0">Your custom content here</h4>
+                </div>
+                <!-- end card-body-->
+              </div>
+              <!-- end card-->
+            </div>
+            <!-- end col-->
+          </div>
+          <!-- end row-->
+        </div>
+        <!-- container -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 text-center">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                UBold By <span class="fw-semibold">Coderthemes</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- end Footer -->
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- End of Main Content -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Theme Settings -->
+    <div
+      class="offcanvas offcanvas-end overflow-hidden"
+      tabindex="-1"
+      id="theme-settings-offcanvas"
+    >
+      <div
+        class="d-flex justify-content-between text-bg-primary gap-2 p-3"
+        style="background-image: url(assets/images/user-bg-pattern.png)"
+      >
+        <div>
+          <h5 class="mb-1 fw-bold text-white text-uppercase">
+            Admin Customizer
+          </h5>
+          <p class="text-white text-opacity-75 fst-italic fw-medium mb-0">
+            Easily configure layout, styles, and preferences for your admin
+            interface.
+          </p>
+        </div>
+
+        <div class="flex-grow-0">
+          <button
+            type="button"
+            class="d-block btn btn-sm bg-white bg-opacity-25 text-white rounded-circle btn-icon"
+            data-bs-dismiss="offcanvas"
+          >
+            <i class="ti ti-x fs-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="offcanvas-body p-0 h-100" data-simplebar>
+        <div class="p-3 border-bottom border-dashed">
+          <h5 class="mb-3 fw-bold">Select Theme</h5>
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-default"
+                  value="default"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="demo-skin-default"
+                >
+                  <img
+                    src="assets/images/layouts/themes/theme-default.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Default</h5>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-material"
+                  value="material"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="demo-skin-material"
+                >
+                  <img
+                    src="assets/images/layouts/themes/theme-material.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Material</h5>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-modern"
+                  value="modern"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="demo-skin-modern"
+                >
+                  <img
+                    src="assets/images/layouts/themes/theme-modern.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Modern</h5>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-saas"
+                  value="saas"
+                />
+                <label class="form-check-label p-0 w-100" for="demo-skin-saas">
+                  <img
+                    src="assets/images/layouts/themes/theme-saas.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">SaaS</h5>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-flat"
+                  value="flat"
+                />
+                <label class="form-check-label p-0 w-100" for="demo-skin-flat">
+                  <img
+                    src="assets/images/layouts/themes/theme-flat.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Flat</h5>
+            </div>
+
+            <div class="col-6">
+              <div class="form-check card-radio shadow">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-skin"
+                  id="demo-skin-minimal"
+                  value="minimal"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="demo-skin-minimal"
+                >
+                  <img
+                    src="assets/images/layouts/themes/theme-minimal.png"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Minimal</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 border-bottom border-dashed">
+          <h5 class="mb-3 fw-bold">Color Scheme</h5>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-bs-theme"
+                  id="layout-color-light"
+                  value="light"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="layout-color-light"
+                >
+                  <img
+                    src="assets/images/layouts/light.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Light</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-bs-theme"
+                  id="layout-color-dark"
+                  value="dark"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="layout-color-dark"
+                >
+                  <img
+                    src="assets/images/layouts/dark.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Dark</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-bs-theme"
+                  id="layout-color-system"
+                  value="system"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="layout-color-system"
+                >
+                  <img
+                    src="assets/images/layouts/system.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">System</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 border-bottom border-dashed">
+          <h5 class="mb-3 fw-bold">Topbar Color</h5>
+
+          <div class="row g-3">
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-topbar-color"
+                  id="topbar-color-light"
+                  value="light"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="topbar-color-light"
+                >
+                  <img
+                    src="assets/images/layouts/topbar-light.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="text-center text-muted mt-2 mb-0">Light</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-topbar-color"
+                  id="topbar-color-dark"
+                  value="dark"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="topbar-color-dark"
+                >
+                  <img
+                    src="assets/images/layouts/topbar-dark.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Dark</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-topbar-color"
+                  id="topbar-color-gray"
+                  value="gray"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="topbar-color-gray"
+                >
+                  <img
+                    src="assets/images/layouts/topbar-gray.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Gray</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-topbar-color"
+                  id="topbar-color-gradient"
+                  value="gradient"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="topbar-color-gradient"
+                >
+                  <img
+                    src="assets/images/layouts/topbar-gradient.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Gradient</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 border-bottom border-dashed">
+          <h5 class="mb-3 fw-bold">Sidenav Color</h5>
+
+          <div class="row g-3">
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-menu-color"
+                  id="sidenav-color-light"
+                  value="light"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-color-light"
+                >
+                  <img
+                    src="assets/images/layouts/light.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Light</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-menu-color"
+                  id="sidenav-color-dark"
+                  value="dark"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-color-dark"
+                >
+                  <img
+                    src="assets/images/layouts/side-dark.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Dark</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-menu-color"
+                  id="sidenav-color-gray"
+                  value="gray"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-color-gray"
+                >
+                  <img
+                    src="assets/images/layouts/side-gray.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Gray</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-menu-color"
+                  id="sidenav-color-gradient"
+                  value="gradient"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-color-gradient"
+                >
+                  <img
+                    src="assets/images/layouts/side-gradient.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Gradient</h5>
+            </div>
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-menu-color"
+                  id="sidenav-color-image"
+                  value="image"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-color-image"
+                >
+                  <img
+                    src="assets/images/layouts/side-image.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="fs-sm text-center text-muted mt-2 mb-0">Image</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 border-bottom border-dashed">
+          <h5 class="mb-3 fw-bold">Sidebar Size</h5>
+
+          <div class="row g-3">
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-default"
+                  value="default"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-default"
+                >
+                  <img
+                    src="assets/images/layouts/light.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 text-center text-muted mt-2">Default</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-compact"
+                  value="compact"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-compact"
+                >
+                  <img
+                    src="assets/images/layouts/sidebar-compact.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 text-center text-muted mt-2">Compact</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-small"
+                  value="condensed"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-small"
+                >
+                  <img
+                    src="assets/images/layouts/sidebar-sm.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 text-center text-muted mt-2">Condensed</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-small-hover"
+                  value="on-hover"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-small-hover"
+                >
+                  <img
+                    src="assets/images/layouts/sidebar-sm.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 text-center text-muted mt-2">On Hover</h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-small-hover-active"
+                  value="on-hover-active"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-small-hover-active"
+                >
+                  <img
+                    src="assets/images/layouts/light.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 fs-base text-center text-muted mt-2">
+                On Hover - Show
+              </h5>
+            </div>
+
+            <div class="col-4">
+              <div class="form-check sidebar-setting card-radio">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="data-sidenav-size"
+                  id="sidenav-size-offcanvas"
+                  value="offcanvas"
+                />
+                <label
+                  class="form-check-label p-0 w-100"
+                  for="sidenav-size-offcanvas"
+                >
+                  <img
+                    src="assets/images/layouts/sidebar-full.svg"
+                    alt="layout-img"
+                    class="img-fluid"
+                  />
+                </label>
+              </div>
+              <h5 class="mb-0 text-center text-muted mt-2">Offcanvas</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 border-bottom border-dashed">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">Layout Position</h5>
+
+            <div class="btn-group radio" role="group">
+              <input
+                type="radio"
+                class="btn-check"
+                name="data-layout-position"
+                id="layout-position-fixed"
+                value="fixed"
+              />
+              <label
+                class="btn btn-sm btn-soft-warning w-sm"
+                for="layout-position-fixed"
+                >Fixed</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="data-layout-position"
+                id="layout-position-scrollable"
+                value="scrollable"
+              />
+              <label
+                class="btn btn-sm btn-soft-warning w-sm ms-0"
+                for="layout-position-scrollable"
+                >Scrollable</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <label class="fw-bold m-0" for="sidebaruser-check"
+                >Sidebar User Info</label
+              >
+            </h5>
+
+            <div class="form-check form-switch fs-lg">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="sidebar-user"
+                id="sidebaruser-check"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offcanvas-footer border-top p-3 text-center">
+        <div class="row">
+          <div class="col-6">
+            <button
+              type="button"
+              class="btn btn-light fw-semibold py-2 w-100"
+              id="reset-layout"
+            >
+              Reset
+            </button>
+          </div>
+          <div class="col-6">
+            <a
+              href="#!"
+              target="_blank"
+              class="btn btn-danger bg-gradient py-2 fw-semibold w-100"
+              >Buy Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vendor js -->
+    <script src="assets/js/vendors.min.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

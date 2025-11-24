@@ -7,10 +7,28 @@ import { Security } from './security.js';
 
 /**
  * DOM Element Wrapper
+ * @class
+ * @description jQuery 스타일의 체이닝 가능한 DOM 조작 API를 제공하는 래퍼 클래스입니다.
+ * 하나 또는 여러 개의 DOM 요소를 감싸서 편리한 메서드 체이닝을 제공합니다.
+ * 
+ * @example
+ * // jQuery 스타일 체이닝
+ * new DOMElement(element)
+ *   .addClass('active')
+ *   .text('Hello')
+ *   .on('click', handler);
  */
 class DOMElement {
   /**
-   * @param {HTMLElement|HTMLElement[]} elements - DOM 요소
+   * DOMElement 생성자
+   * @constructor
+   * @param {HTMLElement|HTMLElement[]} elements - DOM 요소 또는 요소 배열
+   * 
+   * @example
+   * const elem = new DOMElement(document.getElementById('app'));
+   * 
+   * @example
+   * const elems = new DOMElement(document.querySelectorAll('.item'));
    */
   constructor(elements) {
     this.elements = Array.isArray(elements) ? elements : [elements];
@@ -434,6 +452,17 @@ class DOMElement {
 
 /**
  * DOM 유틸리티 클래스
+ * @class
+ * @description DOM 선택, 요소 생성 등의 유틸리티 메서드를 제공합니다.
+ * IMCAT() 함수의 기본 구현체입니다.
+ * 
+ * @example
+ * // 요소 선택
+ * const element = DOM.select('#app');
+ * 
+ * @example
+ * // 요소 생성
+ * const div = DOM.create('div', { class: 'container' });
  */
 export class DOM {
   /**

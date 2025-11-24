@@ -1,0 +1,66 @@
+/**
+ * Navigation Components
+ * @description 네비게이션 컴포넌트 (Menu, Nav Links)
+ */
+
+// ============================================
+// Nav Menu
+// ============================================
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--bg-primary);
+    color: var(--primary-color);
+  }
+
+  &.active {
+    background: var(--primary-color);
+    color: #ffffff;
+
+    .material-icons-outlined {
+      color: #ffffff;
+    }
+  }
+
+  .material-icons-outlined {
+    font-size: 20px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  span {
+    flex: 1;
+  }
+
+  // 외부 링크 아이콘
+  &[target="_blank"]::after {
+    content: 'open_in_new';
+    font-family: 'Material Icons Outlined';
+    font-size: 16px;
+    opacity: 0.5;
+  }
+}

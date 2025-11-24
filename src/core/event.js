@@ -5,8 +5,20 @@
 
 /**
  * 이벤트 버스
+ * @class
+ * @description 전역 이벤트 버스를 통한 publish-subscribe 패턴을 제공합니다.
+ * 컴포넌트 간 느슨한 결합으로 통신할 수 있습니다.
+ * 
+ * @example
+ * const bus = new EventBus();
+ * bus.on('user:login', (data) => console.log(data));
+ * bus.emit('user:login', { username: 'John' });
  */
 export class EventBus {
+  /**
+   * EventBus 생성자
+   * @constructor
+   */
   constructor() {
     this.events = new Map();
   }

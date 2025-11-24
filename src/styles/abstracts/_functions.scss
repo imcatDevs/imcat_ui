@@ -1,0 +1,383 @@
+// ============================================
+// IMCAT UI - Functions
+// 유틸리티 함수 모음
+// ============================================
+
+@use 'sass:math';
+@use 'sass:color';
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:map';
+
+// ============================================
+// 색상 함수
+// ============================================
+
+/// 색상 밝기 조절
+/// @group color
+/// @param {Color} $color - 기준 색상
+/// @param {Number} $amount - 밝게 할 정도 (0-100)
+/// @return {Color} - 밝아진 색상
+/// @example scss
+///   background: lighten-color($primary, 20);
+@function lighten-color($color, $amount) {
+  @return color.scale($color, $lightness: $amount * 1%);
+}
+
+/// 색상 어둡기 조절
+/// @group color
+/// @param {Color} $color - 기준 색상
+/// @param {Number} $amount - 어둡게 할 정도 (0-100)
+/// @return {Color} - 어두워진 색상
+/// @example scss
+///   background: darken-color($primary, 20);
+@function darken-color($color, $amount) {
+  @return color.scale($color, $lightness: -$amount * 1%);
+}
+
+/// 색상 투명도 조절
+/// @group color
+/// @param {Color} $color - 기준 색상
+/// @param {Number} $alpha - 투명도 (0-1)
+/// @return {Color} - 투명도가 적용된 색상
+/// @example scss
+///   background: alpha-color($primary, 0.5);
+@function alpha-color($color, $alpha) {
+  @return color.change($color, $alpha: $alpha);
+}
+
+/// 그레이스케일 색상 생성
+/// @group color
+/// @param {Number} $value - 밝기 값 (0-255)
+/// @return {Color} - 그레이 색상
+/// @example scss
+///   background: gray($value: 128);
+@function gray($value) {
+  @return rgb($value, $value, $value);
+}
+
+// ============================================
+// 크기 변환 함수
+// ============================================
+
+/// px을 rem으로 변환
+/// @group units
+/// @param {Number} $px - px 값
+/// @param {Number} $base [16px] - 기준 폰트 크기
+/// @return {Number} - rem 값
+/// @example scss
+///   font-size: px-to-rem(24px);
+@function px-to-rem($px, $base: 16px) {
+  @if math.is-unitless($px) {
+    $px: $px * 1px;
+  }
+  
+  @if math.is-unitless($base) {
+    $base: $base * 1px;
+  }
+  
+  @return math.div($px, $base) * 1rem;
+}
+
+/// rem을 px로 변환
+/// @group units
+/// @param {Number} $rem - rem 값
+/// @param {Number} $base [16px] - 기준 폰트 크기
+/// @return {Number} - px 값
+/// @example scss
+///   width: rem-to-px(1.5rem);
+@function rem-to-px($rem, $base: 16px) {
+  @if math.is-unitless($rem) {
+    $rem: $rem * 1rem;
+  }
+  
+  @return math.div($rem, 1rem) * $base;
+}
+
+/// px을 em으로 변환
+/// @group units
+/// @param {Number} $px - px 값
+/// @param {Number} $context [16px] - 컨텍스트 폰트 크기
+/// @return {Number} - em 값
+/// @example scss
+///   padding: px-to-em(12px, 14px);
+@function px-to-em($px, $context: 16px) {
+  @if math.is-unitless($px) {
+    $px: $px * 1px;
+  }
+  
+  @if math.is-unitless($context) {
+    $context: $context * 1px;
+  }
+  
+  @return math.div($px, $context) * 1em;
+}
+
+// ============================================
+// 간격 함수
+// ============================================
+
+/// 간격 값 계산 (8px 기반)
+/// @group spacing
+/// @param {Number} $multiplier - 배수
+/// @return {Number} - 계산된 간격
+/// @example scss
+///   margin: spacing(3); // 24px
+@function spacing($multiplier) {
+  @return $multiplier * 8px;
+}
+
+/// 간격 값을 rem으로
+/// @group spacing
+/// @param {Number} $multiplier - 배수
+/// @return {Number} - rem 단위 간격
+/// @example scss
+///   padding: spacing-rem(2); // 1rem (16px)
+@function spacing-rem($multiplier) {
+  @return px-to-rem(spacing($multiplier));
+}
+
+// ============================================
+// 타이포그래피 함수
+// ============================================
+
+/// 줄 높이 계산
+/// @group typography
+/// @param {Number} $font-size - 폰트 크기
+/// @param {Number} $line-height - 줄 높이 (px)
+/// @return {Number} - 비율
+/// @example scss
+///   line-height: line-height-ratio(16px, 24px); // 1.5
+@function line-height-ratio($font-size, $line-height) {
+  @return math.div($line-height, $font-size);
+}
+
+/// 글자 간격 em 변환
+/// @group typography
+/// @param {Number} $tracking - 글자 간격 (1/1000em)
+/// @return {Number} - em 값
+/// @example scss
+///   letter-spacing: tracking-to-em(25); // 0.025em
+@function tracking-to-em($tracking) {
+  @return math.div($tracking, 1000) * 1em;
+}
+
+// ============================================
+// 리스트/맵 함수
+// ============================================
+
+/// 맵에서 깊은 값 가져오기
+/// @group map
+/// @param {Map} $map - 대상 맵
+/// @param {List} $keys - 키 경로
+/// @return {*} - 값
+/// @example scss
+///   $value: map-deep-get($theme, (colors, primary, 500));
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}
+
+/// 리스트 역순
+/// @group list
+/// @param {List} $list - 대상 리스트
+/// @return {List} - 역순 리스트
+/// @example scss
+///   $reversed: list-reverse((1, 2, 3)); // (3, 2, 1)
+@function list-reverse($list) {
+  $result: ();
+  
+  @for $i from list.length($list) through 1 {
+    $result: list.append($result, list.nth($list, $i));
+  }
+  
+  @return $result;
+}
+
+// ============================================
+// 문자열 함수
+// ============================================
+
+/// 문자열 치환
+/// @group string
+/// @param {String} $string - 대상 문자열
+/// @param {String} $search - 검색할 문자열
+/// @param {String} $replace [''] - 대체할 문자열
+/// @return {String} - 치환된 문자열
+/// @example scss
+///   $result: str-replace('hello-world', '-', '_'); // 'hello_world'
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+  
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + 
+            str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+/// 문자열 앞뒤 공백 제거
+/// @group string
+/// @param {String} $string - 대상 문자열
+/// @return {String} - 공백이 제거된 문자열
+/// @example scss
+///   $result: str-trim('  hello  '); // 'hello'
+@function str-trim($string) {
+  // 단순화된 구현: 앞뒤 공백만 제거
+  $length: string.length($string);
+  
+  @if $length == 0 {
+    @return $string;
+  }
+  
+  // 간단한 구현으로 대체
+  $result: $string;
+  
+  // 앞 공백 제거
+  @while string.slice($result, 1, 1) == ' ' {
+    $result: string.slice($result, 2);
+  }
+  
+  // 뒤 공백 제거
+  @while string.slice($result, -1) == ' ' {
+    $result: string.slice($result, 1, -2);
+  }
+  
+  @return $result;
+}
+
+// ============================================
+// 수학 함수
+// ============================================
+
+/// 값 제한 (min-max)
+/// @group math
+/// @param {Number} $value - 값
+/// @param {Number} $min - 최소값
+/// @param {Number} $max - 최대값
+/// @return {Number} - 제한된 값
+/// @example scss
+///   width: clamp-value(150px, 100px, 200px); // 150px
+@function clamp-value($value, $min, $max) {
+  @return math.max($min, math.min($value, $max));
+}
+
+/// 백분율 계산
+/// @group math
+/// @param {Number} $value - 값
+/// @param {Number} $total - 전체
+/// @return {Number} - 백분율
+/// @example scss
+///   width: percentage-of(300px, 1200px); // 25%
+@function percentage-of($value, $total) {
+  @return math.div($value, $total) * 100%;
+}
+
+/// 비율 계산
+/// @group math
+/// @param {Number} $width - 가로
+/// @param {Number} $height - 세로
+/// @return {Number} - 비율 (%)
+/// @example scss
+///   padding-top: aspect-ratio(16, 9); // 56.25%
+@function aspect-ratio($width, $height) {
+  @return math.div($height, $width) * 100%;
+}
+
+// ============================================
+// Z-Index 함수
+// ============================================
+
+/// z-index 값 가져오기
+/// @group layout
+/// @param {String} $layer - 레이어 이름
+/// @return {Number} - z-index 값
+/// @example scss
+///   z-index: z($layer: 'modal');
+@function z($layer) {
+  $z-layers: (
+    'dropdown': 1000,
+    'sticky': 1020,
+    'fixed': 1030,
+    'modal-backdrop': 1040,
+    'modal': 1050,
+    'popover': 1060,
+    'tooltip': 1070,
+    'notification': 1080,
+    'loading': 9999
+  );
+  
+  @if map.has-key($z-layers, $layer) {
+    @return map.get($z-layers, $layer);
+  }
+  
+  @warn 'Unknown z-index layer: #{$layer}';
+  @return 1;
+}
+
+// ============================================
+// Elevation (그림자 깊이) 함수
+// ============================================
+
+/// Material Design elevation 값 생성
+/// @group effects
+/// @param {Number} $dp - dp 값 (0-24)
+/// @return {String} - box-shadow 값
+/// @example scss
+///   box-shadow: elevation(4);
+@function elevation($dp) {
+  $elevations: (
+    0: none,
+    1: (0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)),
+    2: (0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)),
+    3: (0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12)),
+    4: (0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)),
+    8: (0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)),
+    16: (0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)),
+    24: (0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12))
+  );
+  
+  @if map.has-key($elevations, $dp) {
+    @return map.get($elevations, $dp);
+  }
+  
+  @warn 'Unknown elevation level: #{$dp}';
+  @return none;
+}
+
+// ============================================
+// 접근성 함수
+// ============================================
+
+/// 색상 대비 확인 (WCAG)
+/// @group accessibility
+/// @param {Color} $foreground - 전경색
+/// @param {Color} $background - 배경색
+/// @return {Number} - 대비 비율
+/// @example scss
+///   $ratio: contrast-ratio(#000, #fff); // 21
+@function contrast-ratio($foreground, $background) {
+  $l1: luminance($foreground) + 0.05;
+  $l2: luminance($background) + 0.05;
+  
+  @return math.div(math.max($l1, $l2), math.min($l1, $l2));
+}
+
+/// 상대 휘도 계산
+/// @group accessibility
+/// @param {Color} $color - 색상
+/// @return {Number} - 휘도 (0-1)
+@function luminance($color) {
+  $r: color.channel($color, 'red', $space: rgb) / 255;
+  $g: color.channel($color, 'green', $space: rgb) / 255;
+  $b: color.channel($color, 'blue', $space: rgb) / 255;
+  
+  $r: if($r <= 0.03928, math.div($r, 12.92), math.pow(math.div($r + 0.055, 1.055), 2.4));
+  $g: if($g <= 0.03928, math.div($g, 12.92), math.pow(math.div($g + 0.055, 1.055), 2.4));
+  $b: if($b <= 0.03928, math.div($b, 12.92), math.pow(math.div($b + 0.055, 1.055), 2.4));
+  
+  @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}

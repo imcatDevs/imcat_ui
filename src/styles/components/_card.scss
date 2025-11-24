@@ -1,0 +1,91 @@
+/**
+ * Card Components
+ * @description 카드 컴포넌트 (Info Card, Content Card)
+ */
+
+// ============================================
+// Info Card
+// ============================================
+.info-card {
+  background: var(--bg-primary);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-card__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+
+  .material-icons-outlined {
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+}
+
+.info-card__content {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 0.25rem 0;
+
+      &::before {
+        content: '•';
+        color: var(--primary-color);
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1rem 0 0.5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  code {
+    display: block;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.813rem;
+    color: var(--text-primary);
+    overflow-x: auto;
+    margin-top: 0.5rem;
+  }
+}

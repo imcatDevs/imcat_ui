@@ -104,43 +104,28 @@ class Animator {
   custom(from, to, duration = 300, easing = 'easeInOut') {
     return new Promise((resolve) => {
       if (!this.element) {
-        console.warn('⚠️ custom(): element가 없음');
         resolve();
         return;
       }
 
       const easingFn = typeof easing === 'function' ? easing : AnimationUtil.easings[easing] || AnimationUtil.easings.linear;
       
-      console.log(`  🔹 custom() 호출:`, { from, to, duration, easing });
-      
       // 시작 스타일 적용 (다음 프레임에서)
       requestAnimationFrame(() => {
-        console.log(`  🔹 requestAnimationFrame(1): from 스타일 적용`);
         Object.keys(from).forEach(key => {
           this.element.style[key] = from[key];
-          console.log(`    - ${key}: ${from[key]}`);
         });
         
         // 리플로우 강제 (브라우저가 from 스타일을 확실히 적용하도록)
         void this.element.offsetHeight;
-        console.log(`  🔹 리플로우 강제 완료`);
         
         // 애니메이션 시작
         const startTime = performance.now();
-        console.log(`  🔹 애니메이션 시작 시간: ${startTime}`);
-        
-        let frameCount = 0;
         
         const animate = (currentTime) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
           const easedProgress = easingFn(progress);
-
-          frameCount++;
-          
-          if (frameCount === 1 || frameCount % 10 === 0 || progress === 1) {
-            console.log(`  🔹 프레임 #${frameCount}: progress=${(progress * 100).toFixed(1)}%, eased=${(easedProgress * 100).toFixed(1)}%`);
-          }
 
           // 스타일 보간
           Object.keys(to).forEach(key => {
@@ -158,7 +143,6 @@ class Animator {
           if (progress < 1) {
             requestAnimationFrame(animate);
           } else {
-            console.log(`  ✅ custom() 완료: 총 ${frameCount}프레임`);
             resolve();
           }
         };

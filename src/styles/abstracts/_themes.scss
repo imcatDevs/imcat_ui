@@ -1,0 +1,299 @@
+// ============================================
+// IMCAT UI - Theme System
+// 라이트/다크 테마 및 커스텀 테마 지원
+// ============================================
+
+@use 'variables' as *;
+
+// ============================================
+// CSS Custom Properties (테마 토큰)
+// ============================================
+
+/// 라이트 테마 CSS 변수 정의
+/// @group theme
+/// @output CSS custom properties for light theme
+:root,
+[data-theme="light"] {
+  // 색상
+  --primary-color: #{$primary};
+  --secondary-color: #{$secondary};
+  --success-color: #{$success};
+  --danger-color: #{$danger};
+  --warning-color: #{$warning};
+  --info-color: #{$info};
+  
+  // 배경
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-tertiary: #{$bg-tertiary};
+  --bg-elevated: #{$bg-elevated};
+  --bg-overlay: #{$bg-overlay};
+  
+  // 텍스트
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-disabled: #{$text-disabled};
+  --text-hint: #{$text-hint};
+  --text-on-primary: #{$text-on-primary};
+  
+  // 테두리
+  --border-color: #{$border-color};
+  --border-light: #{$border-light};
+  --border-dark: #{$border-dark};
+  --border-focus: #{$border-focus};
+  --divider-color: #{$divider-color};
+  
+  // 그림자
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+  
+  // 상태 표시
+  --color-scheme: light;
+}
+
+/// 다크 테마 CSS 변수 정의
+/// @group theme
+/// @output CSS custom properties for dark theme
+[data-theme="dark"] {
+  // 색상 (다크 모드에서는 약간 더 밝게)
+  --primary-color: #{$primary-200};
+  --secondary-color: #{$secondary-200};
+  --success-color: #{$success-500};
+  --danger-color: #{$danger-500};
+  --warning-color: #{$warning-500};
+  --info-color: #{$info-500};
+  
+  // 배경
+  --bg-primary: #{$dark-bg-primary};
+  --bg-secondary: #{$dark-bg-secondary};
+  --bg-tertiary: #{$dark-bg-tertiary};
+  --bg-elevated: #{$dark-bg-elevated};
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  
+  // 텍스트
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --text-disabled: #{$dark-text-disabled};
+  --text-hint: #{$dark-text-disabled};
+  --text-on-primary: #ffffff;
+  
+  // 테두리
+  --border-color: #{$dark-border-color};
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.16);
+  --border-focus: #{$primary-300};
+  --divider-color: #{$dark-divider-color};
+  
+  // 그림자 (다크 모드에서는 더 강하게)
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  
+  --color-scheme: dark;
+  
+  // 다크 모드 색상 스킴 적용
+  color-scheme: dark;
+}
+
+// ============================================
+// 시스템 설정 감지 (prefers-color-scheme)
+// ============================================
+
+/// 시스템 다크 모드 자동 감지
+/// @group theme
+/// @output Automatic dark mode based on system preference
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    // 시스템이 다크 모드이고 사용자가 테마를 지정하지 않은 경우
+    --primary-color: #{$primary-200};
+    --secondary-color: #{$secondary-200};
+    --success-color: #{$success-500};
+    --danger-color: #{$danger-500};
+    --warning-color: #{$warning-500};
+    --info-color: #{$info-500};
+    
+    --bg-primary: #{$dark-bg-primary};
+    --bg-secondary: #{$dark-bg-secondary};
+    --bg-tertiary: #{$dark-bg-tertiary};
+    --bg-elevated: #{$dark-bg-elevated};
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    
+    --text-primary: #{$dark-text-primary};
+    --text-secondary: #{$dark-text-secondary};
+    --text-disabled: #{$dark-text-disabled};
+    --text-hint: #{$dark-text-disabled};
+    --text-on-primary: #ffffff;
+    
+    --border-color: #{$dark-border-color};
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-dark: rgba(255, 255, 255, 0.16);
+    --border-focus: #{$primary-300};
+    --divider-color: #{$dark-divider-color};
+    
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    
+    --color-scheme: dark;
+    color-scheme: dark;
+  }
+}
+
+// ============================================
+// 테마 유틸리티 믹스인
+// ============================================
+
+/// 라이트 테마 전용 스타일
+/// @group theme
+/// @example scss
+///   .component {
+///     @include light-theme {
+///       background: white;
+///     }
+///   }
+@mixin light-theme {
+  :root:not([data-theme="dark"]) &,
+  [data-theme="light"] & {
+    @content;
+  }
+}
+
+/// 다크 테마 전용 스타일
+/// @group theme
+/// @example scss
+///   .component {
+///     @include dark-theme {
+///       background: black;
+///     }
+///   }
+@mixin dark-theme {
+  [data-theme="dark"] & {
+    @content;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      @content;
+    }
+  }
+}
+
+/// 테마별 색상 속성
+/// @group theme
+/// @param {String} $property - CSS 속성
+/// @param {Color} $light - 라이트 테마 값
+/// @param {Color} $dark - 다크 테마 값
+/// @example scss
+///   .button {
+///     @include theme-color(background-color, white, black);
+///   }
+@mixin theme-color($property, $light, $dark) {
+  #{$property}: $light;
+  
+  @include dark-theme {
+    #{$property}: $dark;
+  }
+}
+
+// ============================================
+// 커스텀 테마 생성 믹스인
+// ============================================
+
+/// 커스텀 테마 생성
+/// @group theme
+/// @param {String} $name - 테마 이름
+/// @param {Map} $colors - 테마 색상 맵
+/// @example scss
+///   @include custom-theme('ocean', (
+///     primary: #0077be,
+///     secondary: #4fc3f7,
+///     background: #e0f7fa
+///   ));
+@mixin custom-theme($name, $colors) {
+  [data-theme="#{$name}"] {
+    @if map-has-key($colors, primary) {
+      --primary-color: #{map-get($colors, primary)};
+    }
+    
+    @if map-has-key($colors, secondary) {
+      --secondary-color: #{map-get($colors, secondary)};
+    }
+    
+    @if map-has-key($colors, success) {
+      --success-color: #{map-get($colors, success)};
+    }
+    
+    @if map-has-key($colors, danger) {
+      --danger-color: #{map-get($colors, danger)};
+    }
+    
+    @if map-has-key($colors, warning) {
+      --warning-color: #{map-get($colors, warning)};
+    }
+    
+    @if map-has-key($colors, info) {
+      --info-color: #{map-get($colors, info)};
+    }
+    
+    @if map-has-key($colors, background) {
+      --bg-primary: #{map-get($colors, background)};
+    }
+    
+    @if map-has-key($colors, text) {
+      --text-primary: #{map-get($colors, text)};
+    }
+  }
+}
+
+// ============================================
+// 고대비 모드 지원
+// ============================================
+
+/// 고대비 모드 감지
+/// @group accessibility
+/// @output Styles for high contrast mode
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: currentColor;
+    --text-secondary: var(--text-primary);
+  }
+}
+
+// ============================================
+// 애니메이션 감소 모드 지원
+/// @group accessibility
+/// @output Reduced motion styles
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ============================================
+// 테마 전환 애니메이션
+// ============================================
+
+/// 테마 전환 시 부드러운 애니메이션
+/// @group theme
+/// @output Smooth transition between themes
+html {
+  &.theme-transition,
+  &.theme-transition *,
+  &.theme-transition *::before,
+  &.theme-transition *::after {
+    transition: 
+      background-color $duration-base $ease-in-out,
+      border-color $duration-base $ease-in-out,
+      color $duration-base $ease-in-out,
+      fill $duration-base $ease-in-out !important;
+  }
+}

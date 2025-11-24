@@ -1,0 +1,505 @@
+// ============================================
+// IMCAT UI - Mixins
+// 재사용 가능한 믹스인 모음
+// ============================================
+
+@use 'variables' as *;
+
+// ============================================
+// 반응형 믹스인
+// ============================================
+
+/// 미디어 쿼리 믹스인 (최소 너비)
+/// @group responsive
+/// @param {String} $name - 브레이크포인트 이름 (xs, sm, md, lg, xl, xxl)
+/// @example scss
+///   @include media-up(md) {
+///     font-size: 16px;
+///   }
+@mixin media-up($name) {
+  $min: map-get($breakpoints, $name);
+  @if $min and $min > 0 {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+/// 미디어 쿼리 믹스인 (최대 너비)
+/// @group responsive
+/// @param {String} $name - 브레이크포인트 이름
+/// @example scss
+///   @include media-down(md) {
+///     display: none;
+///   }
+@mixin media-down($name) {
+  $max: map-get($breakpoints, $name);
+  @if $max {
+    @media (max-width: ($max - 1px)) {
+      @content;
+    }
+  }
+}
+
+/// 미디어 쿼리 믹스인 (범위)
+/// @group responsive
+/// @param {String} $min-name - 최소 브레이크포인트
+/// @param {String} $max-name - 최대 브레이크포인트
+/// @example scss
+///   @include media-between(sm, lg) {
+///     width: 50%;
+///   }
+@mixin media-between($min-name, $max-name) {
+  $min: map-get($breakpoints, $min-name);
+  $max: map-get($breakpoints, $max-name);
+  
+  @if $min and $max {
+    @media (min-width: $min) and (max-width: ($max - 1px)) {
+      @content;
+    }
+  }
+}
+
+// ============================================
+// Typography 믹스인
+// ============================================
+
+/// 텍스트 말줄임 (단일 라인)
+/// @group typography
+/// @example scss
+///   .title {
+///     @include text-ellipsis;
+///   }
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// 텍스트 말줄임 (멀티 라인)
+/// @group typography
+/// @param {Number} $lines - 표시할 최대 라인 수
+/// @example scss
+///   .description {
+///     @include text-ellipsis-multi(3);
+///   }
+@mixin text-ellipsis-multi($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/// Material Design 타이포그래피 스타일
+/// @group typography
+/// @param {String} $variant - 타이포그래피 변형 (h1-h6, subtitle1, subtitle2, body1, body2, button, caption, overline)
+/// @example scss
+///   .headline {
+///     @include typography(h5);
+///   }
+@mixin typography($variant) {
+  @if $variant == 'h1' {
+    font-size: $font-size-h1;
+    font-weight: $font-weight-light;
+    line-height: 1.167;
+    letter-spacing: -0.015625em;
+  } @else if $variant == 'h2' {
+    font-size: $font-size-h2;
+    font-weight: $font-weight-light;
+    line-height: 1.2;
+    letter-spacing: -0.00833em;
+  } @else if $variant == 'h3' {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-regular;
+    line-height: 1.167;
+    letter-spacing: 0;
+  } @else if $variant == 'h4' {
+    font-size: $font-size-h4;
+    font-weight: $font-weight-regular;
+    line-height: 1.235;
+    letter-spacing: 0.00735em;
+  } @else if $variant == 'h5' {
+    font-size: $font-size-h5;
+    font-weight: $font-weight-regular;
+    line-height: 1.334;
+    letter-spacing: 0;
+  } @else if $variant == 'h6' {
+    font-size: $font-size-h6;
+    font-weight: $font-weight-medium;
+    line-height: 1.6;
+    letter-spacing: 0.0075em;
+  } @else if $variant == 'body1' {
+    font-size: $font-size-body1;
+    font-weight: $font-weight-regular;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  } @else if $variant == 'body2' {
+    font-size: $font-size-body2;
+    font-weight: $font-weight-regular;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+  } @else if $variant == 'button' {
+    font-size: $font-size-button;
+    font-weight: $font-weight-medium;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+  } @else if $variant == 'caption' {
+    font-size: $font-size-caption;
+    font-weight: $font-weight-regular;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+  }
+}
+
+// ============================================
+// Layout 믹스인
+// ============================================
+
+/// Flexbox 중앙 정렬
+/// @group layout
+/// @param {String} $direction [row] - flex 방향
+/// @example scss
+///   .container {
+///     @include flex-center;
+///   }
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flexbox 사이 공간 배치
+/// @group layout
+/// @param {String} $direction [row] - flex 방향
+/// @example scss
+///   .header {
+///     @include flex-between;
+///   }
+@mixin flex-between($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/// 절대 위치 풀사이즈
+/// @group layout
+/// @example scss
+///   .overlay {
+///     @include absolute-full;
+///   }
+@mixin absolute-full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/// 고정 비율 컨테이너
+/// @group layout
+/// @param {Number} $width - 가로 비율
+/// @param {Number} $height - 세로 비율
+/// @example scss
+///   .video-wrapper {
+///     @include aspect-ratio(16, 9);
+///   }
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: percentage($height / $width);
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ============================================
+// 효과 믹스인
+// ============================================
+
+/// 그림자 효과
+/// @group effects
+/// @param {String} $level [md] - 그림자 레벨 (xs, sm, md, lg, xl, 2xl)
+/// @example scss
+///   .card {
+///     @include shadow(lg);
+///   }
+@mixin shadow($level: md) {
+  @if $level == 'xs' {
+    box-shadow: $shadow-xs;
+  } @else if $level == 'sm' {
+    box-shadow: $shadow-sm;
+  } @else if $level == 'md' {
+    box-shadow: $shadow-md;
+  } @else if $level == 'lg' {
+    box-shadow: $shadow-lg;
+  } @else if $level == 'xl' {
+    box-shadow: $shadow-xl;
+  } @else if $level == '2xl' {
+    box-shadow: $shadow-2xl;
+  }
+}
+
+/// Material Design Elevation
+/// @group effects
+/// @param {Number} $z [1] - elevation 레벨 (0-24)
+/// @example scss
+///   .card {
+///     @include elevation(2);
+///   }
+@mixin elevation($z: 1) {
+  @if $z == 0 {
+    box-shadow: $elevation-0;
+  } @else if $z == 1 {
+    box-shadow: $elevation-1;
+  } @else if $z == 2 {
+    box-shadow: $elevation-2;
+  } @else if $z == 3 {
+    box-shadow: $elevation-3;
+  } @else if $z == 4 {
+    box-shadow: $elevation-4;
+  } @else if $z == 8 {
+    box-shadow: $elevation-8;
+  } @else if $z == 16 {
+    box-shadow: $elevation-16;
+  } @else if $z == 24 {
+    box-shadow: $elevation-24;
+  }
+}
+
+/// 호버 시 elevation 증가
+/// @group effects
+/// @param {Number} $from [1] - 기본 elevation
+/// @param {Number} $to [4] - 호버 시 elevation
+/// @example scss
+///   .card {
+///     @include elevation-hover(2, 8);
+///   }
+@mixin elevation-hover($from: 1, $to: 4) {
+  @include elevation($from);
+  transition: box-shadow $duration-base $ease-out;
+  
+  &:hover {
+    @include elevation($to);
+  }
+}
+
+// ============================================
+// 인터랙션 믹스인
+// ============================================
+
+/// 리플 효과 (Material Design)
+/// @group interaction
+/// @param {Color} $color [rgba(0, 0, 0, 0.1)] - 리플 색상
+/// @example scss
+///   .button {
+///     @include ripple;
+///   }
+@mixin ripple($color: rgba(0, 0, 0, 0.1)) {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: $color;
+    transform: translate(-50%, -50%);
+    transition: width $duration-slow $ease-out, height $duration-slow $ease-out;
+  }
+  
+  &:active::after {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+/// 포커스 링 (접근성)
+/// @group interaction
+/// @param {Color} $color [$primary] - 포커스 색상
+/// @param {Number} $offset [2px] - 아웃라인 오프셋
+/// @example scss
+///   .input {
+///     @include focus-ring;
+///   }
+@mixin focus-ring($color: $primary, $offset: 2px) {
+  &:focus {
+    outline: 2px solid $color;
+    outline-offset: $offset;
+  }
+  
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/// 호버 효과
+/// @group interaction
+/// @param {Color} $bg [rgba(0, 0, 0, 0.04)] - 호버 배경색
+/// @example scss
+///   .button {
+///     @include hover-effect;
+///   }
+@mixin hover-effect($bg: rgba(0, 0, 0, 0.04)) {
+  position: relative;
+  transition: background-color $duration-fast $ease-out;
+  
+  &:hover {
+    background-color: $bg;
+  }
+}
+
+// ============================================
+// 스크롤바 커스텀
+// ============================================
+
+/// 커스텀 스크롤바 스타일
+/// @group ui
+/// @param {Number} $width [8px] - 스크롤바 너비
+/// @param {Color} $track [$gray-200] - 트랙 색상
+/// @param {Color} $thumb [$gray-400] - 썸 색상
+/// @example scss
+///   .scrollable {
+///     @include custom-scrollbar;
+///   }
+@mixin custom-scrollbar($width: 8px, $track: $gray-200, $thumb: $gray-400) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $track;
+    border-radius: $radius-full;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $thumb;
+    border-radius: $radius-full;
+    
+    &:hover {
+      background: darken($thumb, 10%);
+    }
+  }
+  
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: $thumb $track;
+}
+
+// ============================================
+// 애니메이션 믹스인
+// ============================================
+
+/// 페이드 인 애니메이션
+/// @group animation
+/// @param {Number} $duration [$duration-base] - 지속 시간
+/// @example scss
+///   .modal {
+///     @include fade-in;
+///   }
+@mixin fade-in($duration: $duration-base) {
+  animation: fadeIn $duration $ease-out;
+}
+
+/// 슬라이드 업 애니메이션
+/// @group animation
+/// @param {Number} $duration [$duration-base] - 지속 시간
+/// @param {Number} $distance [20px] - 이동 거리
+/// @example scss
+///   .notification {
+///     @include slide-up;
+///   }
+@mixin slide-up($duration: $duration-base, $distance: 20px) {
+  animation: slideUp $duration $ease-out;
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY($distance);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// ============================================
+// 유틸리티 믹스인
+// ============================================
+
+/// 시각적으로 숨김 (접근성 유지)
+/// @group accessibility
+/// @example scss
+///   .sr-only {
+///     @include visually-hidden;
+///   }
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/// clearfix (플로트 해제)
+/// @group layout
+/// @example scss
+///   .container {
+///     @include clearfix;
+///   }
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/// 선택 불가
+/// @group ui
+/// @example scss
+///   .logo {
+///     @include no-select;
+///   }
+@mixin no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/// 하드웨어 가속
+/// @group performance
+/// @example scss
+///   .animated {
+///     @include hardware-accelerated;
+///   }
+@mixin hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

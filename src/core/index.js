@@ -21,8 +21,19 @@ import { AnimationUtil } from './animation.js';
 
 /**
  * IMCAT Core Class
+ * @class
+ * @description IMCAT UI 프레임워크의 핵심 클래스입니다.
+ * 모든 코어 모듈을 통합하고 전역 IMCAT 객체를 생성합니다.
+ * 
+ * @example
+ * const element = IMCAT('#app');
+ * element.addClass('active').text('Hello');
  */
 class IMCATCore {
+  /**
+   * IMCATCore 생성자
+   * @constructor
+   */
   constructor() {
     // 싱글톤 인스턴스들
     this.eventBus = new EventBus();
@@ -30,8 +41,15 @@ class IMCATCore {
     this.router = new ViewRouter();
     this.loadingIndicator = LoadingIndicator;
     
-    // Router에 Loading 통합
-    this.router.init({ loading: this.loadingIndicator });
+    // 이벤트 리스너 추적 (메모리 관리용)
+    this._clickHandler = null;
+    this._domReadyHandler = null;
+    
+    // Router에 Loading 통합 (URL 변경 없이 내부 렌더링만)
+    this.router.init({ 
+      loading: this.loadingIndicator,
+      useHistory: false
+    });
     
     // catui-href 자동 바인딩 (DOM ready 후)
     this._bindSPALinks();
@@ -43,26 +61,83 @@ class IMCATCore {
    * @private
    */
   _bindSPALinks() {
-    // DOM ready 대기
+    // DOM ready 핸들러
     const bindLinks = () => {
-      document.addEventListener('click', (e) => {
+      // 기본 컨테이너 자동 감지
+      this._detectRouterContainer();
+      
+      // 클릭 핸들러 생성 (나중에 제거할 수 있도록 저장)
+      this._clickHandler = (e) => {
+        // catui-href를 가진 요소 찾기
         const link = e.target.closest('[catui-href]');
+        
         if (link) {
+          // 이벤트 기본 동작 방지 (중복 네비게이션 방지)
           e.preventDefault();
+          e.stopPropagation();
+          
           const path = link.getAttribute('catui-href');
+          const target = link.getAttribute('catui-target');
+          
           if (path) {
-            this.router.navigate(path);
+            // 링크별 타겟이 있으면 임시로 변경
+            const originalContainer = this.router.container;
+            
+            if (target) {
+              this.router.setContainer(`#${target}`);
+            }
+            
+            // 네비게이션 실행
+            this.router.navigate(path).then(() => {
+              // 원래 컨테이너로 복원 (타겟이 지정된 경우만)
+              if (target) {
+                this.router.setContainer(originalContainer);
+              }
+            });
           }
         }
-      });
+      };
+      
+      // capture 단계에서 이벤트 캡처 (더 일찍 처리)
+      document.addEventListener('click', this._clickHandler, true);
     };
 
     // DOM이 이미 로드되었으면 즉시 실행, 아니면 대기
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bindLinks);
+      this._domReadyHandler = bindLinks;
+      document.addEventListener('DOMContentLoaded', this._domReadyHandler);
     } else {
       bindLinks();
     }
+  }
+  
+  /**
+   * Router 컨테이너 자동 감지
+   * catui-target 속성 또는 기본 선택자 사용
+   * @private
+   */
+  _detectRouterContainer() {
+    // 1. catui-target 속성을 가진 요소 찾기
+    const targetElement = document.querySelector('[catui-target]');
+    if (targetElement) {
+      const targetId = targetElement.getAttribute('catui-target');
+      if (targetId) {
+        this.router.setContainer(`#${targetId}`);
+        return;
+      }
+    }
+    
+    // 2. 일반적인 선택자들 시도 (우선순위 순)
+    const defaultSelectors = ['#app-content', '#content', '#app', 'main'];
+    for (const selector of defaultSelectors) {
+      if (document.querySelector(selector)) {
+        this.router.setContainer(selector);
+        return;
+      }
+    }
+    
+    // 3. 기본값
+    this.router.setContainer('#content');
   }
 
   /**
@@ -325,6 +400,48 @@ class IMCATCore {
   get version() {
     return '1.0.0';
   }
+
+  /**
+   * 프레임워크 정리 (메모리 누수 방지)
+   * SPA 재시작 또는 테스트 환경에서 사용
+   * 
+   * @example
+   * // 애플리케이션 종료 시
+   * IMCAT.destroy();
+   */
+  destroy() {
+    // 전역 클릭 리스너 제거 (capture 단계로 등록했으므로 같은 옵션으로 제거)
+    if (this._clickHandler) {
+      document.removeEventListener('click', this._clickHandler, true);
+      this._clickHandler = null;
+    }
+
+    // DOMContentLoaded 리스너 제거 (아직 실행 안된 경우)
+    if (this._domReadyHandler) {
+      document.removeEventListener('DOMContentLoaded', this._domReadyHandler);
+      this._domReadyHandler = null;
+    }
+
+    // 라우터 정리
+    if (this.router && typeof this.router.destroy === 'function') {
+      this.router.destroy();
+    }
+
+    // 이벤트 버스 정리
+    if (this.eventBus && typeof this.eventBus.clear === 'function') {
+      this.eventBus.clear();
+    }
+
+    // 모듈 로더 정리
+    if (this.loader && typeof this.loader.destroy === 'function') {
+      this.loader.destroy();
+    }
+
+    // 로딩 인디케이터 정리
+    if (this.loadingIndicator && typeof this.loadingIndicator.destroy === 'function') {
+      this.loadingIndicator.destroy();
+    }
+  }
 }
 
 // 전역 인스턴스 생성
@@ -374,21 +491,5 @@ if (typeof window !== 'undefined') {
 // ES Module default export
 export default IMCATFunction;
 
-// Named exports
-export {
-  DOM,
-  EventBus,
-  ModuleLoader,
-  ViewRouter,
-  LoadingIndicator,
-  APIUtil,
-  Security,
-  Utils,
-  Template,
-  Storage,
-  URLUtil,
-  StateManager,
-  GlobalState,
-  FormValidator,
-  AnimationUtil
-};
+// Named exports는 모듈 개발자용
+// IIFE 빌드 시에는 default만 사용됨

@@ -5,6 +5,13 @@
 
 /**
  * Storage 유틸리티
+ * @class
+ * @description localStorage/sessionStorage를 편리하게 사용할 수 있는 래퍼 클래스입니다.
+ * 자동 직렬화/역직렬화, TTL(만료 시간) 지원을 제공합니다.
+ * 
+ * @example
+ * Storage.set('user', { name: 'John' });
+ * const user = Storage.get('user');
  */
 export class Storage {
   /**

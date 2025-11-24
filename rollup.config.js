@@ -10,12 +10,14 @@ const coreConfig = {
   output: [
     {
       file: 'dist/imcat-ui.js',
-      format: 'esm',
+      format: 'iife',
+      name: 'IMCAT',
       sourcemap: !production
     },
     {
       file: 'dist/imcat-ui.min.js',
-      format: 'esm',
+      format: 'iife',
+      name: 'IMCAT',
       plugins: [terser()],
       sourcemap: production
     }
@@ -44,29 +46,26 @@ const coreConfig = {
   ]
 };
 
-// 모듈 번들 (개별) - 모듈 개발 시 활성화
-// const moduleConfig = {
-//   input: {
-//     modal: 'src/modules/modal/modal.js',
-//     dropdown: 'src/modules/dropdown/dropdown.js',
-//     tooltip: 'src/modules/tooltip/tooltip.js'
-//     // 필요한 모듈 추가
-//   },
-//   output: {
-//     dir: 'dist/modules',
-//     format: 'esm',
-//     entryFileNames: '[name].js',
-//     chunkFileNames: '[name]-[hash].js',
-//     sourcemap: !production
-//   },
-//   plugins: [
-//     babel({
-//       babelHelpers: 'bundled',
-//       exclude: 'node_modules/**'
-//     }),
-//     production && terser()
-//   ].filter(Boolean)
-// };
+// 모듈 번들 (개별)
+const moduleConfig = {
+  input: {
+    theme: 'src/modules/theme/theme.js'
+    // 필요한 모듈 추가
+  },
+  output: {
+    dir: 'dist/modules',
+    format: 'esm',
+    entryFileNames: '[name]/[name].js',
+    sourcemap: !production
+  },
+  plugins: [
+    babel({
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    }),
+    production && terser()
+  ].filter(Boolean)
+};
 
-// 코어만 빌드 (모듈은 개발 시 추가)
-export default [coreConfig];
+// 코어 + 모듈 빌드
+export default [coreConfig, moduleConfig];

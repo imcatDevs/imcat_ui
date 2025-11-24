@@ -1,0 +1,181 @@
+<div style="max-width: 900px;">
+  <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+    <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.5rem;">widgets</i>
+    핵심 기능
+  </h1>
+  <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem;">
+    IMCAT UI의 강력한 기능들을 살펴보세요.
+  </p>
+
+  <!-- DOM 조작 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--primary-color);">touch_app</i>
+      DOM 조작
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      jQuery 스타일의 친숙한 API로 DOM을 쉽게 조작할 수 있습니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// 요소 선택
+const el = IMCAT.dom('#myElement');
+
+// 내용 변경
+el.html('&lt;strong&gt;New Content&lt;/strong&gt;');
+el.text('Plain Text');
+
+// 클래스 조작
+el.addClass('active');
+el.removeClass('hidden');
+el.toggleClass('show');
+
+// 스타일 설정
+el.css({ color: 'red', fontSize: '16px' });</code></pre>
+  </div>
+
+  <!-- SPA 라우팅 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--success-color);">route</i>
+      SPA 라우팅
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      History API 기반의 부드러운 페이지 전환을 지원합니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// 라우트 정의
+IMCAT.router.route('/home', 'views/home.html');
+IMCAT.router.route('/about', 'views/about.html');
+
+// 라우트 이동
+IMCAT.router.navigate('/about');
+
+// 라우트 훅
+IMCAT.router.beforeLoad((path) => {
+  console.log('Loading:', path);
+});
+
+IMCAT.router.afterLoad((path) => {
+  console.log('Loaded:', path);
+});</code></pre>
+  </div>
+
+  <!-- 상태 관리 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--warning-color);">storage</i>
+      상태 관리
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      리액티브 상태 관리와 computed 속성을 지원합니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// 상태 생성
+const state = IMCAT.createStore({
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 25
+});
+
+// Computed 속성
+state.compute('fullName', ['firstName', 'lastName'], 
+  (first, last) => `${first} ${last}`
+);
+
+// 상태 감시
+state.watch('age', (newAge) => {
+  console.log('나이가 변경되었습니다:', newAge);
+});
+
+// 배치 업데이트
+state.batch(() => {
+  state.firstName = 'Jane';
+  state.age = 30;
+}); // 한 번만 알림</code></pre>
+  </div>
+
+  <!-- 이벤트 시스템 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--info-color);">event</i>
+      이벤트 버스
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      컴포넌트 간 통신을 위한 전역 이벤트 시스템입니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// 이벤트 구독
+IMCAT.events.on('user:login', (data) => {
+  console.log('사용자 로그인:', data);
+});
+
+// 이벤트 발생
+IMCAT.events.emit('user:login', {
+  username: 'john',
+  timestamp: Date.now()
+});
+
+// 한 번만 실행
+IMCAT.events.once('app:ready', () => {
+  console.log('앱이 준비되었습니다!');
+});
+
+// 구독 해제
+IMCAT.events.off('user:login', handler);</code></pre>
+  </div>
+
+  <!-- 보안 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--danger-color);">security</i>
+      XSS 방어
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      자동 이스케이프와 새니타이징으로 XSS 공격을 방어합니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// 자동 이스케이프
+const userInput = '&lt;script&gt;alert("XSS")&lt;/script&gt;';
+const safe = IMCAT.escape(userInput);
+// → &amp;lt;script&amp;gt;alert("XSS")&amp;lt;/script&amp;gt;
+
+// HTML 새니타이징
+const html = '&lt;div&gt;Safe&lt;/div&gt;&lt;script&gt;Bad&lt;/script&gt;';
+const clean = IMCAT.sanitize(html);
+// → &lt;div&gt;Safe&lt;/div&gt;
+
+// 경로 검증
+IMCAT.security.validatePath('views/page.html'); // true
+IMCAT.security.validatePath('../etc/passwd');   // false</code></pre>
+  </div>
+
+  <!-- 애니메이션 -->
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+      <i class="material-icons" style="color: var(--primary-color);">animation</i>
+      애니메이션
+    </h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+      20가지 이상의 내장 애니메이션 효과를 제공합니다.
+    </p>
+    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem;">// Fade In
+IMCAT.animation.fadeIn('#element', 300);
+
+// Slide Down
+IMCAT.animation.slideDown('#panel', 400);
+
+// Custom Animation
+IMCAT.animation.custom('#box', {
+  opacity: [0, 1],
+  transform: ['translateY(-20px)', 'translateY(0)']
+}, 500, 'ease-out');</code></pre>
+  </div>
+
+  <div style="background: rgba(76, 175, 80, 0.1); border-left: 4px solid var(--success-color); padding: 1.5rem; border-radius: 8px;">
+    <div style="display: flex; align-items: start; gap: 1rem;">
+      <i class="material-icons-outlined" style="color: var(--success-color); flex-shrink: 0;">auto_awesome</i>
+      <div>
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">더 많은 기능</strong>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
+          Form Validation, Storage, API 유틸리티, Template Engine 등 다양한 기능이 준비되어 있습니다. 
+          <a href="#/api" catui-href="/api" style="color: var(--primary-color); text-decoration: none; font-weight: 500;">전체 API 문서 →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

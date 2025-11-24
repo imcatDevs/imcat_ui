@@ -5,6 +5,12 @@
 
 /**
  * 간단하고 빠른 템플릿 엔진
+ * @class
+ * @description {{key}} 문법을 사용하는 간단한 템플릿 엔진입니다.
+ * 자동 XSS 방어(이스케이프)를 제공하며, 조건부/리스트 렌더링을 지원합니다.
+ * 
+ * @example
+ * const html = Template.render('Hello {{name}}!', { name: 'John' });
  */
 export class Template {
   /**

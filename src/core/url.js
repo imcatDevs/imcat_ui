@@ -5,6 +5,13 @@
 
 /**
  * URL 파싱 및 빌딩 유틸리티
+ * @class
+ * @description URL 과 쿠리 스트링을 파싱하고 조작하는 유틸리티 클래스입니다.
+ * URLSearchParams를 래핑하여 편리한 API를 제공합니다.
+ * 
+ * @example
+ * const params = URLUtil.parse('?id=1&name=John');
+ * const query = URLUtil.stringify({ id: 1, name: 'John' });
  */
 export class URLUtil {
   /**

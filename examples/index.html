@@ -3,318 +3,567 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMCAT UI - 예제 모음</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header {
-      text-align: center;
-      color: white;
-      margin-bottom: 50px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      opacity: 0.9;
-    }
-
-    .version {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      padding: 5px 15px;
-      border-radius: 20px;
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .examples {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .example-card {
-      background: white;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .example-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .example-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .example-title {
-      font-size: 24px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .example-description {
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .example-features {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .example-features li {
-      padding: 5px 0;
-      color: #555;
-      font-size: 14px;
-    }
-
-    .example-features li:before {
-      content: "✓ ";
-      color: #28a745;
-      font-weight: bold;
-      margin-right: 5px;
-    }
-
-    .example-button {
-      display: inline-block;
-      background: #667eea;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-
-    .example-button:hover {
-      background: #764ba2;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 60px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.2);
-      padding: 20px 30px;
-      border-radius: 8px;
-      color: white;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .stat-number {
-      font-size: 32px;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .footer {
-      text-align: center;
-      color: white;
-      margin-top: 60px;
-      opacity: 0.8;
-    }
-  </style>
+  <title>IMCAT UI - 모던 웹 프레임워크</title>
+  
+  <!-- IMCAT UI Styles -->
+  <link rel="stylesheet" href="../dist/imcat-ui.css">
+  
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>🎨 IMCAT UI</h1>
-      <div class="subtitle">경량 ES6+ 프론트엔드 프레임워크</div>
-      <div class="version" id="version">Version: Loading...</div>
-    </div>
-
-    <div class="examples">
-      <!-- 기본 예제 -->
-      <div class="example-card" onclick="location.href='basic.html'">
-        <div class="example-icon">🔰</div>
-        <h2 class="example-title">기본 예제</h2>
-        <p class="example-description">
-          IMCAT UI의 모든 코어 기능을 한눈에 테스트할 수 있는 종합 예제입니다.
-        </p>
-        <ul class="example-features">
-          <li>DOM 조작 (jQuery 스타일)</li>
-          <li>이벤트 시스템</li>
-          <li>XSS 보안 방어</li>
-          <li>API 통신</li>
-          <li>유틸리티 함수</li>
-          <li>로딩 인디케이터</li>
-        </ul>
-        <a href="basic.html" class="example-button">예제 보기 →</a>
-      </div>
-
-      <!-- SPA 라우터 예제 -->
-      <div class="example-card" onclick="location.href='spa-router.html'">
-        <div class="example-icon">🚀</div>
-        <h2 class="example-title">SPA 라우터 (catui-href)</h2>
-        <p class="example-description">
-          설정 불필요! catui-href 속성만으로 자동 SPA 네비게이션을 구현한 예제입니다.
-        </p>
-        <ul class="example-features">
-          <li>catui-href 자동 바인딩</li>
-          <li>파일 기반 라우팅 (views/*.html)</li>
-          <li>URL 파라미터 처리</li>
-          <li>동적 요소도 자동 동작</li>
-          <li>History API 통합</li>
-        </ul>
-        <a href="spa-router.html" class="example-button">예제 보기 →</a>
-      </div>
-
-      <!-- 폼 검증 & 애니메이션 예제 -->
-      <div class="example-card" onclick="location.href='form-animation.html'">
-        <div class="example-icon">✨</div>
-        <h2 class="example-title">폼 검증 & 애니메이션</h2>
-        <p class="example-description">
-          실시간 폼 검증과 20가지 애니메이션 효과를 보여주는 예제입니다.
-        </p>
-        <ul class="example-features">
-          <li>10가지 검증 규칙</li>
-          <li>20+ 애니메이션 효과</li>
-          <li>실시간 유효성 검사</li>
-          <li>커스텀 에러 메시지</li>
-        </ul>
-        <a href="form-animation.html" class="example-button">예제 보기 →</a>
-      </div>
-
-      <!-- 상태 관리 예제 -->
-      <div class="example-card" onclick="location.href='state-management.html'">
-        <div class="example-icon">🔄</div>
-        <h2 class="example-title">상태 관리</h2>
-        <p class="example-description">
-          리액티브 상태 관리와 Storage를 활용한 투두 앱 예제입니다.
-        </p>
-        <ul class="example-features">
-          <li>리액티브 상태</li>
-          <li>계산된 속성</li>
-          <li>LocalStorage 연동</li>
-          <li>URL 쿼리 파라미터</li>
-        </ul>
-        <a href="state-management.html" class="example-button">예제 보기 →</a>
-      </div>
-
-      <!-- 종합 데모 -->
-      <div class="example-card" onclick="location.href='dashboard.html'">
-        <div class="example-icon">📊</div>
-        <h2 class="example-title">대시보드 데모</h2>
-        <p class="example-description">
-          모든 기능을 통합한 실전 대시보드 애플리케이션입니다.
-        </p>
-        <ul class="example-features">
-          <li>API 인터셉터</li>
-          <li>로그인/로그아웃</li>
-          <li>실시간 데이터</li>
-          <li>차트 & 애니메이션</li>
-        </ul>
-        <a href="dashboard.html" class="example-button">예제 보기 →</a>
+  <!-- Header -->
+  <header class="app-header">
+    <a href="#" class="app-logo" catui-href="views/home.html">
+      <i class="material-icons">bolt</i>
+      <span>IMCAT UI</span>
+    </a>
+    
+    <div class="header-actions">
+      <div class="theme-switcher">
+        <div class="theme-switcher__buttons">
+          <button class="theme-switcher__button" data-theme="light" title="라이트 모드">
+            <i class="material-icons-outlined">light_mode</i>
+          </button>
+          <button class="theme-switcher__button" data-theme="dark" title="다크 모드">
+            <i class="material-icons-outlined">dark_mode</i>
+          </button>
+          <button class="theme-switcher__button" data-theme="system" title="시스템 설정">
+            <i class="material-icons-outlined">brightness_auto</i>
+          </button>
+        </div>
       </div>
     </div>
+  </header>
 
-    <!-- 통계 -->
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-number" id="modules-count">15</span>
-        <span class="stat-label">코어 모듈</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number" id="tests-count">497</span>
-        <span class="stat-label">테스트 통과</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number" id="size">~34KB</span>
-        <span class="stat-label">Minified</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">100%</span>
-        <span class="stat-label">테스트 커버리지</span>
+  <!-- Main Layout -->
+  <main class="app-main">
+    <!-- Left Sidebar (Menu) -->
+    <aside class="sidebar-left">
+      <div class="sidebar-title">Static Components</div>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" catui-href="views/static/buttons.html">
+              <i class="material-icons-outlined">smart_button</i>
+              <span>Buttons</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/cards.html">
+              <i class="material-icons-outlined">credit_card</i>
+              <span>Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/avatars.html">
+              <i class="material-icons-outlined">account_circle</i>
+              <span>Avatars</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/forms.html">
+              <i class="material-icons-outlined">edit_note</i>
+              <span>Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/tables.html">
+              <i class="material-icons-outlined">table_chart</i>
+              <span>Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/alerts.html">
+              <i class="material-icons-outlined">campaign</i>
+              <span>Alerts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/badges.html">
+              <i class="material-icons-outlined">sell</i>
+              <span>Badges</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/breadcrumb.html">
+              <i class="material-icons-outlined">chevron_right</i>
+              <span>Breadcrumb</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/lists.html">
+              <i class="material-icons-outlined">format_list_bulleted</i>
+              <span>Lists</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/navbar.html">
+              <i class="material-icons-outlined">view_headline</i>
+              <span>Navbar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/pagination.html">
+              <i class="material-icons-outlined">last_page</i>
+              <span>Pagination</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/progress.html">
+              <i class="material-icons-outlined">data_usage</i>
+              <span>Progress</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/static/loader.html">
+              <i class="material-icons-outlined">autorenew</i>
+              <span>Loader</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-title">Dynamic Modules</div>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/modal.html">
+              <i class="material-icons-outlined">web_asset</i>
+              <span>Modal</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/dropdown.html">
+              <i class="material-icons-outlined">arrow_drop_down</i>
+              <span>Dropdown</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/tabs.html">
+              <i class="material-icons-outlined">tab</i>
+              <span>Tabs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/accordion.html">
+              <i class="material-icons-outlined">expand_more</i>
+              <span>Accordion</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/tooltip.html">
+              <i class="material-icons-outlined">help_outline</i>
+              <span>Tooltip</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/carousel.html">
+              <i class="material-icons-outlined">view_carousel</i>
+              <span>Carousel</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/notification.html">
+              <i class="material-icons-outlined">notifications</i>
+              <span>Notification</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/modules/datepicker.html">
+              <i class="material-icons-outlined">calendar_today</i>
+              <span>Datepicker</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-title">Layout</div>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/layout/grid.html">
+              <i class="material-icons-outlined">grid_on</i>
+              <span>Grid</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/layout/flexbox.html">
+              <i class="material-icons-outlined">view_column</i>
+              <span>Flexbox</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/layout/containers.html">
+              <i class="material-icons-outlined">crop_square</i>
+              <span>Containers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/layout/sections.html">
+              <i class="material-icons-outlined">dashboard</i>
+              <span>Sections</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-title">Design</div>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/typography.html">
+              <i class="material-icons-outlined">text_format</i>
+              <span>Typography</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/colors.html">
+              <i class="material-icons-outlined">palette</i>
+              <span>Colors</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/icons.html">
+              <i class="material-icons-outlined">emoji_emotions</i>
+              <span>Icons</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/spacing.html">
+              <i class="material-icons-outlined">space_bar</i>
+              <span>Spacing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/shadows.html">
+              <i class="material-icons-outlined">blur_on</i>
+              <span>Shadows</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/borders.html">
+              <i class="material-icons-outlined">border_outer</i>
+              <span>Borders</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/animations.html">
+              <i class="material-icons-outlined">animation</i>
+              <span>Animations</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/design/breakpoints.html">
+              <i class="material-icons-outlined">devices</i>
+              <span>Breakpoints</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-title">Utilities</div>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/utilities/display.html">
+              <i class="material-icons-outlined">visibility</i>
+              <span>Display</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/utilities/position.html">
+              <i class="material-icons-outlined">place</i>
+              <span>Position</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/utilities/sizing.html">
+              <i class="material-icons-outlined">photo_size_select_large</i>
+              <span>Sizing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/utilities/text.html">
+              <i class="material-icons-outlined">title</i>
+              <span>Text</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" catui-href="views/utilities/background.html">
+              <i class="material-icons-outlined">image</i>
+              <span>Background</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content Area -->
+    <div id="app-content" class="content-area">
+      <!-- 초기 로딩 메시지 -->
+      <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+        <i class="material-icons-outlined" style="font-size: 48px; margin-bottom: 1rem;">widgets</i>
+        <h2>IMCAT UI 컴포넌트 라이브러리</h2>
+        <p style="margin-top: 1rem;">왼쪽 메뉴에서 컴포넌트를 선택하여 확인하세요</p>
       </div>
     </div>
 
-    <div class="footer">
-      <p>&copy; 2025 IMCAT UI Framework. MIT License.</p>
-      <p style="margin-top: 10px; font-size: 14px;">
-        <a href="https://github.com" style="color: white;">GitHub</a> | 
-        <a href="../docs" style="color: white;">문서</a> | 
-        <a href="../README.md" style="color: white;">README</a>
-      </p>
+    <!-- Right Sidebar (Info) - 동적 템플릿 렌더링 -->
+    <aside class="sidebar-right" id="pageInfo">
+      <!-- 페이지별 정보가 여기에 렌더링됩니다 -->
+      <div class="info-card">
+        <div class="info-card__title">
+          <i class="material-icons-outlined">info</i>
+          프레임워크 정보
+        </div>
+        <div class="info-card__content">
+          <p><strong>Version:</strong> 1.0.0</p>
+          <p><strong>Size:</strong> ~48KB (min)</p>
+          <p><strong>License:</strong> MIT</p>
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-card__title">
+          <i class="material-icons-outlined">bolt</i>
+          핵심 기능
+        </div>
+        <div class="info-card__content">
+          <ul>
+            <li>⚡ 제로 빌드</li>
+            <li>🎯 SPA 라우팅</li>
+            <li>🔒 XSS 방어</li>
+            <li>📦 모듈 로딩</li>
+            <li>🎨 테마 시스템</li>
+            <li>💾 상태 관리</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <div class="info-card__title">
+          <i class="material-icons-outlined">code</i>
+          빠른 시작
+        </div>
+        <div class="info-card__content">
+          <h4>설치</h4>
+          <code>npm install imcat-ui</code>
+          
+          <h4>CDN</h4>
+          <code>&lt;script src="imcat-ui.js"&gt;</code>
+          
+          <h4>초기화</h4>
+          <code>const app = new IMCATCore();</code>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>&copy; 2025 IMCAT UI. MIT License.</p>
+    <div class="footer-links">
+      <a href="#" class="footer-link" catui-href="views/docs.html">문서</a>
+      <a href="https://github.com" class="footer-link" target="_blank">GitHub</a>
+      <a href="#" class="footer-link" catui-href="views/about.html">소개</a>
     </div>
+  </footer>
+
+  <!-- Loading Overlay -->
+  <div class="route-loading" id="routeLoading">
+    <i class="material-icons">refresh</i>
   </div>
 
-  <script type="module">
-    import IMCAT from '../dist/imcat-ui.js';
-
-    // 버전 표시
-    document.getElementById('version').textContent = `Version: ${IMCAT.version}`;
-
-    // 통계 애니메이션
-    function animateNumber(id, target) {
-      const element = document.getElementById(id);
-      if (!element) return;
-      
-      const current = parseInt(element.textContent) || 0;
-      const increment = Math.ceil(target / 50);
-      let value = 0;
-
-      const interval = setInterval(() => {
-        value += increment;
-        if (value >= target) {
-          value = target;
-          clearInterval(interval);
+  <!-- IMCAT UI Core -->
+  <script src="../dist/imcat-ui.min.js"></script>
+  
+  <script>
+    // IMCAT 프레임워크 초기화
+    IMCAT.ready(async () => {
+      // 테마 모듈
+      const Theme = await IMCAT.use('theme');
+      const theme = new Theme({ 
+        defaultTheme: 'system',
+        onChange: (selectedTheme) => {
+          IMCAT('.theme-switcher__button').each(btn => {
+            const isActive = btn.dataset.theme === selectedTheme;
+            if (isActive) {
+              btn.classList.add('theme-switcher__button--active');
+            } else {
+              btn.classList.remove('theme-switcher__button--active');
+            }
+          });
         }
-        element.textContent = value;
-      }, 20);
-    }
-
-    // DOM 준비 완료 후 애니메이션 시작
-    IMCAT.ready(() => {
-      console.log('✅ IMCAT UI 예제 인덱스 로드 완료!');
-      console.log('버전:', IMCAT.version);
+      });
       
-      // 숫자 애니메이션
-      setTimeout(() => {
-        animateNumber('modules-count', 15);
-        animateNumber('tests-count', 497);
-      }, 300);
+      // 테마 버튼 이벤트 (코어 DOM API 사용)
+      IMCAT('.theme-switcher__button').each(btn => {
+        btn.addEventListener('click', () => theme.setTheme(btn.dataset.theme));
+      });
+      
+      // 커스텀 로딩 (코어 DOM API 사용)
+      const loading = IMCAT('#routeLoading');
+      IMCAT.view.init({ 
+        loading: {
+          show: () => loading.addClass('active'),
+          hide: () => setTimeout(() => loading.removeClass('active'), 200)
+        }
+      });
+      
+      // 페이지 로드 후 처리 (코어 DOM API 사용)
+      IMCAT.view.afterLoad((path) => {
+        const h1 = IMCAT('#app-content h1');
+        if (h1.length > 0) document.title = `${h1.text()} - IMCAT UI`;
+        
+        IMCAT('.nav-link').each(link => {
+          const isActive = link.getAttribute('catui-href') === path;
+          if (isActive) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        
+        // 페이지 메타데이터 읽기 및 오른쪽 사이드바 렌더링
+        renderPageInfo();
+      });
+      
+      // 페이지 정보 렌더링 함수
+      function renderPageInfo() {
+        const metaElement = document.querySelector('#pageMetadata');
+        const sidebarElement = document.querySelector('#pageInfo');
+        
+        if (!sidebarElement) return;
+        
+        // 페이지에 메타데이터가 있으면 렌더링
+        if (metaElement) {
+          try {
+            const metadata = JSON.parse(metaElement.textContent);
+            const html = generateInfoCards(metadata);
+            sidebarElement.innerHTML = html;
+          } catch (e) {
+            console.error('Failed to parse page metadata:', e);
+          }
+        } else {
+          // 메타데이터가 없으면 기본 정보 표시
+          sidebarElement.innerHTML = getDefaultInfo();
+        }
+      }
+      
+      // 정보 카드 생성 (Template 사용)
+      function generateInfoCards(metadata) {
+        let html = '';
+        
+        if (metadata.info) {
+          html += `
+            <div class="info-card">
+              <div class="info-card__title">
+                <i class="material-icons-outlined">${metadata.info.icon || 'info'}</i>
+                ${metadata.info.title}
+              </div>
+              <div class="info-card__content">
+                ${metadata.info.content}
+              </div>
+            </div>
+          `;
+        }
+        
+        if (metadata.usage) {
+          html += `
+            <div class="info-card">
+              <div class="info-card__title">
+                <i class="material-icons-outlined">${metadata.usage.icon || 'code'}</i>
+                ${metadata.usage.title}
+              </div>
+              <div class="info-card__content">
+                ${metadata.usage.content}
+              </div>
+            </div>
+          `;
+        }
+        
+        if (metadata.features) {
+          html += `
+            <div class="info-card">
+              <div class="info-card__title">
+                <i class="material-icons-outlined">${metadata.features.icon || 'check_circle'}</i>
+                ${metadata.features.title}
+              </div>
+              <div class="info-card__content">
+                <ul>
+                  ${metadata.features.items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+        
+        return html;
+      }
+      
+      // 기본 정보
+      function getDefaultInfo() {
+        return `
+          <div class="info-card">
+            <div class="info-card__title">
+              <i class="material-icons-outlined">info</i>
+              프레임워크 정보
+            </div>
+            <div class="info-card__content">
+              <p><strong>Version:</strong> 1.0.0</p>
+              <p><strong>Size:</strong> ~48KB (min)</p>
+              <p><strong>License:</strong> MIT</p>
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-card__title">
+              <i class="material-icons-outlined">bolt</i>
+              핵심 기능
+            </div>
+            <div class="info-card__content">
+              <ul>
+                <li>⚡ 제로 빌드</li>
+                <li>🎯 SPA 라우팅</li>
+                <li>🔒 XSS 방어</li>
+                <li>📦 모듈 로딩</li>
+                <li>🎨 테마 시스템</li>
+                <li>💾 상태 관리</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-card__title">
+              <i class="material-icons-outlined">code</i>
+              빠른 시작
+            </div>
+            <div class="info-card__content">
+              <h4>설치</h4>
+              <code>npm install imcat-ui</code>
+              
+              <h4>CDN</h4>
+              <code>&lt;script src="imcat-ui.js"&gt;</code>
+              
+              <h4>초기화</h4>
+              <code>const app = new IMCATCore();</code>
+            </div>
+          </div>
+        `;
+      }
+      
+      // 404 에러 페이지 (코어 DOM API 사용)
+      IMCAT.view.onError(() => {
+        IMCAT('#app-content').html(`
+          <div class="error-page">
+            <i class="material-icons-outlined">error_outline</i>
+            <h2>404 - Page Not Found</h2>
+            <p>요청하신 페이지를 찾을 수 없습니다.</p>
+            <a href="#" catui-href="views/home.html">홈으로 돌아가기</a>
+          </div>
+        `);
+      });
     });
   </script>
+  
 </body>
 </html>

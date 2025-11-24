@@ -1,0 +1,167 @@
+<div style="max-width: 900px;">
+  <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+    <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.5rem;">code</i>
+    API 문서
+  </h1>
+  <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem;">
+    전체 API 레퍼런스를 확인하세요.
+  </p>
+
+  <div style="display: grid; gap: 1.5rem;">
+    <!-- Core API -->
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+        Core API
+      </h2>
+      
+      <div style="border-left: 3px solid var(--primary-color); padding-left: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+          IMCAT.dom(selector)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.6;">
+          DOM 요소를 선택하고 조작합니다.
+        </p>
+        <pre style="background: var(--bg-secondary); padding: 0.75rem; border-radius: 6px; overflow-x: auto; font-size: 0.875rem;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace;">const el = IMCAT.dom('#myDiv');
+el.html('Content');
+el.addClass('active');</code></pre>
+      </div>
+
+      <div style="border-left: 3px solid var(--primary-color); padding-left: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+          IMCAT.createStore(initialState)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.6;">
+          리액티브 상태 저장소를 생성합니다.
+        </p>
+        <pre style="background: var(--bg-secondary); padding: 0.75rem; border-radius: 6px; overflow-x: auto; font-size: 0.875rem;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace;">const store = IMCAT.createStore({ count: 0 });
+store.watch('count', (val) => console.log(val));
+store.count++; // 자동 알림</code></pre>
+      </div>
+
+      <div style="border-left: 3px solid var(--primary-color); padding-left: 1rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+          IMCAT.escape(string)
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.6;">
+          HTML 특수 문자를 이스케이프합니다.
+        </p>
+        <pre style="background: var(--bg-secondary); padding: 0.75rem; border-radius: 6px; overflow-x: auto; font-size: 0.875rem;"><code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace;">const safe = IMCAT.escape('&lt;script&gt;alert(1)&lt;/script&gt;');
+// → "&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;"</code></pre>
+      </div>
+    </div>
+
+    <!-- Router API -->
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+        Router API
+      </h2>
+      
+      <div style="display: grid; gap: 1.5rem;">
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            route(path, viewPath)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">라우트를 등록합니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            navigate(path)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">특정 경로로 이동합니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            beforeLoad(callback)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">뷰 로드 전 실행될 콜백을 등록합니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            afterLoad(callback)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">뷰 로드 후 실행될 콜백을 등록합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events API -->
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+        Events API
+      </h2>
+      
+      <div style="display: grid; gap: 1.5rem;">
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            on(event, callback)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">이벤트 리스너를 등록합니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            emit(event, data)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">이벤트를 발생시킵니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            once(event, callback)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">한 번만 실행되는 이벤트 리스너를 등록합니다.</p>
+        </div>
+        
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
+            off(event, callback)
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9375rem;">이벤트 리스너를 제거합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation API -->
+    <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+        Animation API
+      </h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">fadeIn()</code>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">fadeOut()</code>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">slideDown()</code>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">slideUp()</code>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">bounce()</code>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <code style="color: var(--primary-color); font-family: 'Consolas', monospace; font-size: 0.875rem;">shake()</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: rgba(33, 150, 243, 0.1); border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+    <div style="display: flex; align-items: start; gap: 1rem;">
+      <i class="material-icons-outlined" style="color: var(--primary-color); flex-shrink: 0;">menu_book</i>
+      <div>
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">📚 전체 문서</strong>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
+          더 자세한 API 문서는 <code style="background: var(--bg-secondary); padding: 0.125rem 0.375rem; border-radius: 4px; font-family: 'Consolas', monospace;">docs/API_레퍼런스.md</code> 파일을 참고하세요.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

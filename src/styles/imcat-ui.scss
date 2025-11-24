@@ -1,0 +1,54 @@
+/*!
+ * IMCAT UI Framework v1.0.0
+ * 모던 UI 컴포넌트 라이브러리
+ * Copyright 2025 IMCAT UI
+ * Licensed under MIT
+ */
+
+// ============================================
+// IMCAT UI - Main Entry Point
+// ============================================
+
+// ============================================
+// 1. Abstracts (변수, 믹스인, 함수)
+// ============================================
+@use 'abstracts/variables' as *;
+@use 'abstracts/functions' as *;
+@use 'abstracts/mixins' as *;
+@use 'abstracts/themes';
+@use 'abstracts/fonts';
+
+// ============================================
+// 2. Base (기본 스타일)
+// ============================================
+@use 'base/reset';
+@use 'base/typography';
+
+// ============================================
+// 3. Core (코어 모듈 스타일)
+// ============================================
+// @use 'core/loading';
+// @use 'core/router';
+
+// ============================================
+// 4. Components (컴포넌트 스타일)
+// ============================================
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/avatars';
+@use 'components/layout';
+@use 'components/navigation';
+@use 'components/card';
+@use 'components/loading';
+@use 'components/error';
+
+// ============================================
+// 5. Utilities (유틸리티 클래스)
+// ============================================
+// @use 'utilities/spacing';
+// @use 'utilities/display';
+// @use 'utilities/flex';
+// @use 'utilities/grid';
+// @use 'utilities/colors';
+// @use 'utilities/borders';
+// @use 'utilities/shadows';

@@ -7,6 +7,14 @@ import { Security } from './security.js';
 
 /**
  * 폼 검증 유틸리티
+ * @class
+ * @description 폼 입력 값의 검증을 수행하는 클래스입니다.
+ * 다양한 검증 규칙(required, email, min, max 등)을 제공합니다.
+ * 
+ * @example
+ * const validator = new FormValidator('#myForm', {
+ *   rules: { email: ['required', 'email'] }
+ * });
  */
 export class FormValidator {
   /**

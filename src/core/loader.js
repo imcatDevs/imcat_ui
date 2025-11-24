@@ -5,12 +5,53 @@
 
 /**
  * 모듈 로더 클래스
+ * @class
+ * @description JavaScript 모듈과 CSS를 동적으로 로드하는 클래스입니다.
+ * 중복 로드를 방지하고 모듈을 캐싱합니다.
+ * 
+ * @example
+ * const loader = new ModuleLoader();
+ * await loader.load('/modules/chart.js', '/modules/chart.css');
  */
 export class ModuleLoader {
-  constructor() {
+  /**
+   * ModuleLoader 생성자
+   * @constructor
+   * @param {Object} options - 로더 옵션
+   * @param {string} options.distPath - dist 폴더 경로 (기본: 자동 감지)
+   */
+  constructor(options = {}) {
     this.modules = new Map();
     this.loadedCSS = new Set();
-    this.basePath = './modules';
+    
+    // dist 폴더 경로 설정 (옵션 또는 자동 감지)
+    this.distPath = options.distPath || this._detectDistPath();
+    
+    // 모듈 base path (distPath 기준)
+    this.basePath = `${this.distPath}/modules`;
+  }
+  
+  /**
+   * dist 폴더 경로 자동 감지
+   * @private
+   * @returns {string} dist 폴더 경로
+   */
+  _detectDistPath() {
+    // 현재 스크립트 위치에서 dist 찾기
+    const scripts = document.getElementsByTagName('script');
+    for (let script of scripts) {
+      const src = script.src;
+      if (src && src.includes('imcat-ui')) {
+        // imcat-ui.js 또는 imcat-ui.min.js의 경로에서 dist 추출
+        const match = src.match(/(.*)\/imcat-ui(\.min)?\.js/);
+        if (match) {
+          return match[1]; // dist 폴더 경로
+        }
+      }
+    }
+    
+    // 기본값: 현재 위치 기준 상대 경로
+    return './dist';
   }
 
   /**
@@ -222,6 +263,23 @@ export class ModuleLoader {
    */
   _capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  /**
+   * 모듈 로더 정리 (메모리 누수 방지)
+   * 모듈 캐시를 정리합니다. CSS는 DOM에 유지됩니다.
+   * 
+   * @example
+   * // 애플리케이션 종료 시
+   * loader.destroy();
+   */
+  destroy() {
+    // 모듈 캐시 정리
+    this.modules.clear();
+    
+    // CSS는 DOM에 남겨둠 (제거 시 스타일 깨짐)
+    // 필요시 별도로 CSS 정리 가능
+    // this.loadedCSS.clear();
   }
 }
 

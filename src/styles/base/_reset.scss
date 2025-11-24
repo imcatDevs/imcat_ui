@@ -1,0 +1,266 @@
+// ============================================
+// IMCAT UI - CSS Reset
+// 모던 브라우저를 위한 CSS 리셋
+// ============================================
+
+/// Modern CSS Reset
+/// @group base
+/// @author Andy Bell (modified)
+/// @link https://piccalil.li/blog/a-modern-css-reset
+
+// ============================================
+// Box Sizing
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// ============================================
+// 기본 마진/패딩 제거
+// ============================================
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// ============================================
+// HTML & Body
+// ============================================
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================
+// Typography 리셋
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+// ============================================
+// 리스트 스타일 제거
+// ============================================
+
+ul, ol {
+  list-style: none;
+}
+
+// ============================================
+// 링크 스타일 제거
+// ============================================
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+// ============================================
+// 버튼 리셋
+// ============================================
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+// ============================================
+// 입력 필드 리셋
+// ============================================
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+// ============================================
+// 이미지 & 미디어
+// ============================================
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  fill: currentColor;
+}
+
+// ============================================
+// 테이블 리셋
+// ============================================
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// ============================================
+// 폼 요소
+// ============================================
+
+fieldset {
+  border: none;
+}
+
+legend {
+  padding: 0;
+}
+
+// ============================================
+// 접근성
+// ============================================
+
+[hidden] {
+  display: none !important;
+}
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+// ============================================
+// Selection 스타일
+// ============================================
+
+::selection {
+  background-color: var(--primary-color, #2196f3);
+  color: var(--text-on-primary, #ffffff);
+}
+
+::-moz-selection {
+  background-color: var(--primary-color, #2196f3);
+  color: var(--text-on-primary, #ffffff);
+}
+
+// ============================================
+// Scrollbar (Webkit)
+// ============================================
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary, #f5f5f5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color, #e0e0e0);
+  border-radius: 6px;
+  
+  &:hover {
+    background: var(--border-dark, #bdbdbd);
+  }
+}
+
+// ============================================
+// Focus Visible (접근성)
+// ============================================
+
+:focus-visible {
+  outline: 2px solid var(--primary-color, #2196f3);
+  outline-offset: 2px;
+}
+
+// ============================================
+// Reduced Motion
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// ============================================
+// Print Styles
+// ============================================
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  img {
+    page-break-inside: avoid;
+  }
+  
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}

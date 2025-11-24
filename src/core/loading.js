@@ -5,8 +5,19 @@
 
 /**
  * 로딩 인디케이터 클래스
+ * @class
+ * @description 로딩 스피너를 표시하고 숨기는 기능을 제공합니다.
+ * 다양한 스타일(spinner, progress)을 지원합니다.
+ * 
+ * @example
+ * const loading = new LoadingIndicator();
+ * loading.show('로딩 중...');
  */
 export class LoadingIndicator {
+  /**
+   * LoadingIndicator 생성자
+   * @constructor
+   */
   constructor() {
     this.element = null;
     this.config = {
@@ -313,6 +324,35 @@ export class LoadingIndicator {
       this.element.remove();
       this.element = null;
     }
+    this.isShowing = false;
+  }
+
+  /**
+   * 로딩 인디케이터 정리 (메모리 누수 방지)
+   * 모든 타이머와 DOM 요소를 정리합니다.
+   * 
+   * @example
+   * // 애플리케이션 종료 시
+   * LoadingIndicator.destroy();
+   */
+  destroy() {
+    // 모든 타이머 정리
+    if (this.showTimer) {
+      clearTimeout(this.showTimer);
+      this.showTimer = null;
+    }
+    if (this.hideTimer) {
+      clearTimeout(this.hideTimer);
+      this.hideTimer = null;
+    }
+    
+    // DOM 요소 제거
+    if (this.element) {
+      this.element.remove();
+      this.element = null;
+    }
+    
+    // 상태 초기화
     this.isShowing = false;
   }
 }

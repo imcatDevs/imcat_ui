@@ -5,6 +5,13 @@
 
 /**
  * 보안 유틸리티
+ * @class
+ * @description XSS 공격 방지, HTML 새니타이징, 경로 검증 등의 보안 기능을 제공합니다.
+ * 모든 사용자 입력은 자동으로 이스케이프됩니다.
+ * 
+ * @example
+ * const safe = Security.escape('<script>alert("XSS")</script>');
+ * const clean = Security.sanitize(userHtml);
  */
 export class Security {
   /**

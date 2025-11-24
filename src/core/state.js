@@ -5,6 +5,13 @@
 
 /**
  * 리액티브 상태 관리 클래스
+ * @class
+ * @description 리액티브 상태 관리를 제공하는 클래스입니다.
+ * watch, computed 등의 기능으로 상태 변화를 감지하고 자동 UI 업데이트를 지원합니다.
+ * 
+ * @example
+ * const manager = new StateManager();
+ * const state = manager.create({ count: 0 });
  */
 export class StateManager {
   /**
@@ -33,8 +40,16 @@ export class StateManager {
 
 /**
  * 상태 스토어 내부 클래스
+ * @class
+ * @private
+ * @description 상태를 저장하고 관리하는 내부 클래스입니다.
  */
 class StateStore {
+  /**
+   * StateStore 생성자
+   * @constructor
+   * @param {Object} initialState - 초기 상태
+   */
   constructor(initialState) {
     this._state = { ...initialState };
     this._watchers = new Map(); // key -> [callback, callback, ...]
@@ -61,6 +76,7 @@ class StateStore {
         if (property === 'getState') return self.getState.bind(self);
         if (property === 'setState') return self.setState.bind(self);
         if (property === 'reset') return self.reset.bind(self);
+        if (property === 'destroy') return self.destroy.bind(self);
 
         return target[property];
       },
@@ -284,10 +300,43 @@ class StateStore {
       }
     });
   }
+
+  /**
+   * 상태 스토어 정리 (메모리 누수 방지)
+   * 모든 watcher와 computed 속성을 제거합니다.
+   * 
+   * @example
+   * const state = StateManager.create({ count: 0 });
+   * state.watch('count', handler);
+   * // 사용 종료 시
+   * state.destroy();
+   */
+  destroy() {
+    // 모든 watcher 제거
+    this._watchers.clear();
+    
+    // computed 캠시 및 의존성 제거
+    this._computedCache.clear();
+    this._computedDeps.clear();
+    
+    // 배치 업데이트 큐 정리
+    this._batchedUpdates = [];
+    this._isUpdating = false;
+    
+    // 상태 초기화
+    this._state = {};
+  }
 }
 
 /**
  * 전역 상태 스토어 (옵션)
+ * @class
+ * @description 앱 전체에서 공유하는 전역 상태를 관리합니다.
+ * 여러 컴포넌트간 상태를 공유할 때 사용합니다.
+ * 
+ * @example
+ * GlobalState.set('user', { name: 'John' });
+ * const user = GlobalState.get('user');
  */
 export class GlobalState {
   static _stores = new Map();

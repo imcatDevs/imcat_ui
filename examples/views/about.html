@@ -1,70 +1,181 @@
-<div class="page-title">ℹ️ 소개</div>
+<div style="max-width: 900px;">
+  <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+    <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.5rem;">info</i>
+    소개
+  </h1>
+  <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem;">
+    IMCAT UI 프레임워크에 대해 알아보세요.
+  </p>
 
-<div class="info-box">
-  <h2>프레임워크 특징</h2>
-  <p><strong>버전:</strong> <span id="version">로딩중...</span></p>
-  <p><strong>크기:</strong> ~34KB (minified) / ~14-16KB (gzipped)</p>
-  <p><strong>브라우저 지원:</strong> Chrome 90+, Firefox 88+, Safari 14+</p>
-  <p><strong>테스트:</strong> 497개 통과 (100% 커버리지)</p>
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">
+      🎯 프로젝트 목표
+    </h2>
+    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+      IMCAT UI는 모던 웹 개발을 위한 경량화되고 강력한 JavaScript 프레임워크입니다. 
+      복잡한 빌드 도구 없이도 ES6+ 모듈을 활용하여 빠르고 안전한 웹 애플리케이션을 만들 수 있습니다.
+    </p>
+    <p style="color: var(--text-secondary); line-height: 1.8;">
+      제로 빌드, 보안 우선, 초경량화를 핵심 가치로 하며, 
+      개발자 경험과 성능 최적화에 중점을 두고 설계되었습니다.
+    </p>
+  </div>
+
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+      📊 기술 스택
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">
+          Core
+        </h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--primary-color); margin-right: 0.5rem;">check_circle</i>
+            ES6+ Modules
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--primary-color); margin-right: 0.5rem;">check_circle</i>
+            Proxy-based Reactivity
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--primary-color); margin-right: 0.5rem;">check_circle</i>
+            History API
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">
+          Design
+        </h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--success-color); margin-right: 0.5rem;">check_circle</i>
+            Material Design 3.0
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--success-color); margin-right: 0.5rem;">check_circle</i>
+            CSS Custom Properties
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--success-color); margin-right: 0.5rem;">check_circle</i>
+            SassDoc
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">
+          Build
+        </h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--warning-color); margin-right: 0.5rem;">check_circle</i>
+            Rollup
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--divider-color);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--warning-color); margin-right: 0.5rem;">check_circle</i>
+            Sass
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-secondary);">
+            <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle; color: var(--warning-color); margin-right: 0.5rem;">check_circle</i>
+            Terser
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+      ⚡ 성능
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+      <div style="text-align: center; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">
+          ~48KB
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">
+          Minified Size
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color); margin-bottom: 0.5rem;">
+          ~16KB
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">
+          Gzipped Size
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+        <div style="font-size: 2rem; font-weight: 700; color: var(--warning-color); margin-bottom: 0.5rem;">
+          100%
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">
+          Test Coverage
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+        <div style="font-size: 2rem; font-weight: 700; color: var(--info-color); margin-bottom: 0.5rem;">
+          ES6+
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">
+          Modern JS
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+      🌐 브라우저 지원
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+      <div style="text-align: center; padding: 1rem;">
+        <i class="material-icons" style="font-size: 48px; color: var(--text-secondary);">web</i>
+        <div style="margin-top: 0.5rem; font-weight: 600; color: var(--text-primary);">Chrome</div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">90+</div>
+      </div>
+      
+      <div style="text-align: center; padding: 1rem;">
+        <i class="material-icons" style="font-size: 48px; color: var(--text-secondary);">web</i>
+        <div style="margin-top: 0.5rem; font-weight: 600; color: var(--text-primary);">Firefox</div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">88+</div>
+      </div>
+      
+      <div style="text-align: center; padding: 1rem;">
+        <i class="material-icons" style="font-size: 48px; color: var(--text-secondary);">web</i>
+        <div style="margin-top: 0.5rem; font-weight: 600; color: var(--text-primary);">Safari</div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">14+</div>
+      </div>
+      
+      <div style="text-align: center; padding: 1rem;">
+        <i class="material-icons" style="font-size: 48px; color: var(--text-secondary);">web</i>
+        <div style="margin-top: 0.5rem; font-weight: 600; color: var(--text-primary);">Edge</div>
+        <div style="color: var(--text-secondary); font-size: 0.875rem;">90+</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--bg-elevated); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-sm);">
+    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">
+      📄 라이선스
+    </h2>
+    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+      IMCAT UI는 MIT 라이선스로 제공됩니다. 
+      개인 및 상업 프로젝트에 자유롭게 사용할 수 있습니다.
+    </p>
+    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+      <code style="color: var(--text-primary); font-family: 'Consolas', 'Monaco', monospace; font-size: 0.875rem; line-height: 1.6;">
+        MIT License<br><br>
+        Copyright (c) 2025 IMCAT UI Team<br><br>
+        Permission is hereby granted, free of charge...
+      </code>
+    </div>
+  </div>
 </div>
-
-<div class="info-box">
-  <h3>📦 Phase 1 모듈 (핵심 기능)</h3>
-  <ul style="margin-left: 20px;">
-    <li><strong>Storage</strong> - LocalStorage/SessionStorage 래퍼 (만료 시간 지원)</li>
-    <li><strong>HTTP Interceptors</strong> - 요청/응답 가로채기 (토큰 자동 추가)</li>
-    <li><strong>URL & Query String</strong> - URL 조작 및 파싱</li>
-    <li><strong>State Management</strong> - 리액티브 상태 관리 (watch, compute)</li>
-  </ul>
-</div>
-
-<div class="info-box">
-  <h3>✨ Phase 2 모듈 (UI/UX)</h3>
-  <ul style="margin-left: 20px;">
-    <li><strong>Form Validation</strong> - 10가지 검증 규칙 (required, email, pattern 등)</li>
-    <li><strong>Animation</strong> - 20가지 애니메이션 효과 (fade, slide, bounce 등)</li>
-  </ul>
-</div>
-
-<div class="info-box">
-  <h3>🎨 기본 코어 모듈</h3>
-  <ul style="margin-left: 20px;">
-    <li><strong>DOM</strong> - jQuery 스타일 API</li>
-    <li><strong>Event</strong> - 이벤트 버스</li>
-    <li><strong>Router</strong> - SPA 라우팅 (파일 기반)</li>
-    <li><strong>Loader</strong> - 동적 모듈 로딩</li>
-    <li><strong>Loading</strong> - 로딩 인디케이터</li>
-    <li><strong>API</strong> - HTTP 통신</li>
-    <li><strong>Security</strong> - XSS 방어</li>
-    <li><strong>Utils</strong> - 유틸리티</li>
-    <li><strong>Template</strong> - 템플릿 엔진</li>
-  </ul>
-</div>
-
-<div style="margin-top: 20px;">
-  <button catui-href="views/home.html">← 홈으로</button>
-  <button catui-href="views/products.html">제품 보기 →</button>
-</div>
-
-<script>
-(function() {
-  // 버전 표시
-  document.getElementById('version').textContent = IMCAT.version || '1.0.0';
-  console.log('ℹ️ 소개 페이지 로드됨');
-})();
-</script>
-
-<style>
-  button {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  button:hover {
-    background: #764ba2;
-  }
-</style>

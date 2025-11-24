@@ -3,6 +3,15 @@
  * @module core/utils
  */
 
+/**
+ * @class
+ * @description 다양한 유틸리티 함수를 제공하는 클래스입니다.
+ * 타입 체크, 객체 조작, 디바운스/스로틀 등의 기능을 포함합니다.
+ * 
+ * @example
+ * Utils.isString('hello'); // true
+ * Utils.debounce(fn, 300);
+ */
 export class Utils {
   /**
    * 타입 체크 - 문자열

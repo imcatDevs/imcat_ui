@@ -1,0 +1,323 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Split Screen Layout</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Layouts</a></li>
+    <li class="breadcrumb-item active">Split Screen</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Split Screen Overview</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          Split screen layouts divide the viewport into two or more equal sections, commonly used for comparisons, before/after displays, or dual-content interfaces.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 50/50 Split -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">50/50 Split Screen</h4>
+      </div>
+      <div class="card__body">
+        <div class="split-screen split-screen--50">
+          <div class="split-screen__panel split-screen__panel--left">
+            <div class="split-screen__content">
+              <h3>Left Panel</h3>
+              <p>Equal width split screen layout</p>
+              <ul>
+                <li>Product comparison</li>
+                <li>Before/After displays</li>
+                <li>Dual language content</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-screen__panel split-screen__panel--right">
+            <div class="split-screen__content">
+              <h3>Right Panel</h3>
+              <p>Perfect for balanced content</p>
+              <ul>
+                <li>Feature comparisons</li>
+                <li>Side-by-side views</li>
+                <li>Interactive demos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code Example</h5>
+        <pre><code>.split-screen {
+  display: flex;
+  height: 400px;
+}
+
+.split-screen__panel {
+  flex: 1;
+  padding: 2rem;
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- 70/30 Split -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">70/30 Split Screen</h4>
+      </div>
+      <div class="card__body">
+        <div class="split-screen split-screen--70">
+          <div class="split-screen__panel split-screen__panel--main">
+            <div class="split-screen__content">
+              <h3>Main Panel (70%)</h3>
+              <p>Larger panel for primary content</p>
+              <p>Use when one side has more importance than the other.</p>
+            </div>
+          </div>
+          <div class="split-screen__panel split-screen__panel--sidebar">
+            <div class="split-screen__content">
+              <h3>Sidebar (30%)</h3>
+              <p>Secondary information or navigation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Split -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Vertical Split Screen</h4>
+      </div>
+      <div class="card__body">
+        <div class="split-screen split-screen--vertical">
+          <div class="split-screen__panel split-screen__panel--top">
+            <div class="split-screen__content">
+              <h3>Top Panel</h3>
+              <p>Header or featured content area</p>
+            </div>
+          </div>
+          <div class="split-screen__panel split-screen__panel--bottom">
+            <div class="split-screen__content">
+              <h3>Bottom Panel</h3>
+              <p>Detail or supplementary information</p>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Code Example</h5>
+        <pre><code>.split-screen--vertical {
+  flex-direction: column;
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Comparison -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Before/After Comparison</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">Common use case for split screens</p>
+
+        <div class="split-screen split-screen--50 split-screen--images">
+          <div class="split-screen__panel">
+            <img src="https://picsum.photos/400/300?random=1" alt="Before">
+            <div class="split-screen__label">Before</div>
+          </div>
+          <div class="split-screen__panel">
+            <img src="https://picsum.photos/400/300?random=2" alt="After">
+            <div class="split-screen__label">After</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Behavior -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Responsive Split Screen</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">On mobile, split screens should stack vertically</p>
+
+        <pre><code>@media (max-width: 768px) {
+  .split-screen {
+    flex-direction: column;
+  }
+  
+  .split-screen__panel {
+    width: 100%;
+    min-height: 300px;
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Use Cases -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Common Use Cases</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Visual Comparisons</h6>
+            <ul>
+              <li>Before/After photos</li>
+              <li>Product variants</li>
+              <li>A/B testing results</li>
+              <li>Design iterations</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6>Dual Content</h6>
+            <ul>
+              <li>Bilingual content</li>
+              <li>Code and preview</li>
+              <li>Documentation and example</li>
+              <li>Video and transcript</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Best Practices</h4>
+      </div>
+      <div class="card__body">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Mobile First:</strong> Always stack panels vertically on mobile
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Equal Importance:</strong> Use 50/50 when both sides are equally important
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Clear Separation:</strong> Use borders or different backgrounds
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-warning">warning</i>
+            <strong>Avoid:</strong> Too much content that requires scrolling in each panel
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.split-screen {
+  display: flex;
+  min-height: 300px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+}
+
+.split-screen--50 .split-screen__panel {
+  flex: 1;
+}
+
+.split-screen--70 .split-screen__panel--main {
+  flex: 7;
+}
+
+.split-screen--70 .split-screen__panel--sidebar {
+  flex: 3;
+}
+
+.split-screen--vertical {
+  flex-direction: column;
+}
+
+.split-screen__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.split-screen__panel--left {
+  background-color: var(--primary-light);
+}
+
+.split-screen__panel--right {
+  background-color: var(--secondary-light);
+}
+
+.split-screen__panel--main {
+  background-color: var(--info-light);
+}
+
+.split-screen__panel--sidebar {
+  background-color: var(--warning-light);
+}
+
+.split-screen__panel--top {
+  background-color: var(--success-light);
+}
+
+.split-screen__panel--bottom {
+  background-color: var(--danger-light);
+}
+
+.split-screen__content {
+  text-align: center;
+}
+
+.split-screen--images .split-screen__panel {
+  position: relative;
+  padding: 0;
+}
+
+.split-screen--images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split-screen__label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .split-screen {
+    flex-direction: column;
+  }
+}
+</style>

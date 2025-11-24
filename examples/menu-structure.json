@@ -1,0 +1,168 @@
+{
+  "menu": [
+    {
+      "title": "Layouts",
+      "items": [
+        {
+          "id": "grid",
+          "text": "Grid System",
+          "icon": "grid_on",
+          "href": "views/layout/grid.html",
+          "badge": true
+        },
+        {
+          "id": "flexbox",
+          "text": "Flexbox",
+          "icon": "view_column",
+          "href": "views/layout/flexbox.html",
+          "badge": true
+        },
+        {
+          "id": "containers",
+          "text": "Containers",
+          "icon": "web",
+          "href": "views/layout/containers.html",
+          "badge": true
+        },
+        {
+          "id": "responsive",
+          "text": "Responsive",
+          "icon": "devices",
+          "href": "views/layout/responsive.html",
+          "badge": true
+        },
+        {
+          "id": "sidebar-layouts",
+          "text": "Sidebar Layouts",
+          "icon": "view_sidebar",
+          "href": "views/layout/sidebar-layouts.html",
+          "badge": true
+        },
+        {
+          "id": "two-column",
+          "text": "Two Column",
+          "icon": "view_week",
+          "href": "views/layout/two-column.html",
+          "badge": true
+        },
+        {
+          "id": "dashboard",
+          "text": "Dashboard",
+          "icon": "dashboard",
+          "href": "views/layout/dashboard.html",
+          "badge": true
+        },
+        {
+          "id": "full-width",
+          "text": "Full Width",
+          "icon": "fullscreen",
+          "href": "views/layout/full-width.html",
+          "badge": true
+        },
+        {
+          "id": "sticky",
+          "text": "Sticky Elements",
+          "icon": "push_pin",
+          "href": "views/layout/sticky.html",
+          "badge": true
+        },
+        {
+          "id": "split-screen",
+          "text": "Split Screen",
+          "icon": "vertical_split",
+          "href": "views/layout/split-screen.html",
+          "badge": true
+        },
+        {
+          "id": "sections",
+          "text": "Page Sections",
+          "icon": "article",
+          "href": "views/layout/sections.html",
+          "badge": true
+        },
+        {
+          "id": "fixed-layout",
+          "text": "Fixed Layout",
+          "icon": "lock",
+          "href": "views/layout/fixed-layout.html",
+          "badge": true
+        },
+        {
+          "id": "boxed-layout",
+          "text": "Boxed Layout",
+          "icon": "crop_square",
+          "href": "views/layout/boxed-layout.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Static Components",
+      "items": [
+        {
+          "id": "buttons",
+          "text": "Buttons",
+          "icon": "smart_button",
+          "href": "views/static/buttons.html",
+          "badge": true
+        },
+        {
+          "id": "cards",
+          "text": "Cards",
+          "icon": "credit_card",
+          "href": "views/static/cards.html",
+          "badge": true
+        },
+        {
+          "id": "avatars",
+          "text": "Avatars",
+          "icon": "account_circle",
+          "href": "views/static/avatars.html",
+          "badge": true
+        },
+        {
+          "id": "progress",
+          "text": "Progress",
+          "icon": "data_usage",
+          "href": "views/static/progress.html",
+          "badge": true
+        },
+        {
+          "id": "spinners",
+          "text": "Spinners",
+          "icon": "autorenew",
+          "href": "views/static/spinners.html",
+          "badge": true
+        },
+        {
+          "id": "pagination",
+          "text": "Pagination",
+          "icon": "last_page",
+          "href": "views/static/pagination.html",
+          "badge": true
+        },
+        {
+          "id": "badges",
+          "text": "Badges",
+          "icon": "sell",
+          "href": "views/static/badges.html",
+          "badge": true
+        },
+        {
+          "id": "lists",
+          "text": "Lists",
+          "icon": "format_list_bulleted",
+          "href": "views/static/lists.html",
+          "badge": true
+        },
+        {
+          "id": "breadcrumb",
+          "text": "Breadcrumb",
+          "icon": "chevron_right",
+          "href": "views/static/breadcrumb.html",
+          "badge": true
+        }
+      ]
+    }
+  ]
+}

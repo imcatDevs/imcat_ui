@@ -1,0 +1,62 @@
+/**
+ * Background Utilities
+ * 배경색 유틸리티 클래스
+ */
+
+// Background Colors (Subtle variants)
+.bg-primary-subtle {
+  background-color: rgba(114, 124, 245, 0.1) !important;
+}
+
+.bg-secondary-subtle {
+  background-color: rgba(108, 117, 125, 0.1) !important;
+}
+
+.bg-success-subtle {
+  background-color: rgba(10, 207, 151, 0.1) !important;
+}
+
+.bg-danger-subtle {
+  background-color: rgba(250, 92, 124, 0.1) !important;
+}
+
+.bg-warning-subtle {
+  background-color: rgba(255, 188, 66, 0.1) !important;
+}
+
+.bg-info-subtle {
+  background-color: rgba(57, 175, 209, 0.1) !important;
+}
+
+// Border Colors
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+
+.border-secondary {
+  border-color: var(--secondary-color) !important;
+}
+
+.border-success {
+  border-color: var(--success-color) !important;
+}
+
+.border-danger {
+  border-color: var(--danger-color) !important;
+}
+
+.border-warning {
+  border-color: var(--warning-color) !important;
+}
+
+.border-info {
+  border-color: var(--info-color) !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.border-top {
+  border-top: 1px solid var(--border-color) !important;
+}

@@ -4,10 +4,6 @@
  */
 
 // Display
-.d-flex {
-  display: flex !important;
-}
-
 .d-none {
   display: none !important;
 }
@@ -16,25 +12,133 @@
   display: block !important;
 }
 
-.d-md-block {
-  display: none !important;
+.d-inline {
+  display: inline !important;
+}
 
+.d-inline-block {
+  display: inline-block !important;
+}
+
+// Responsive Display - Small (≥576px)
+.d-sm-none {
+  @media (min-width: 576px) {
+    display: none !important;
+  }
+}
+
+.d-sm-block {
+  @media (min-width: 576px) {
+    display: block !important;
+  }
+}
+
+.d-sm-inline {
+  @media (min-width: 576px) {
+    display: inline !important;
+  }
+}
+
+.d-sm-inline-block {
+  @media (min-width: 576px) {
+    display: inline-block !important;
+  }
+}
+
+// Responsive Display - Medium (≥768px)
+.d-md-none {
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+.d-md-block {
   @media (min-width: 768px) {
     display: block !important;
   }
 }
 
-// Flex
-.justify-content-between {
-  justify-content: space-between !important;
+.d-md-inline {
+  @media (min-width: 768px) {
+    display: inline !important;
+  }
 }
 
-.justify-content-center {
-  justify-content: center !important;
+.d-md-inline-block {
+  @media (min-width: 768px) {
+    display: inline-block !important;
+  }
 }
 
-.align-items-center {
-  align-items: center !important;
+// Responsive Display - Large (≥1024px)
+.d-lg-none {
+  @media (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.d-lg-block {
+  @media (min-width: 1024px) {
+    display: block !important;
+  }
+}
+
+.d-lg-flex {
+  @media (min-width: 1024px) {
+    display: flex !important;
+  }
+}
+
+// Responsive Display - Extra Large (≥1280px)
+.d-xl-none {
+  @media (min-width: 1280px) {
+    display: none !important;
+  }
+}
+
+.d-xl-block {
+  @media (min-width: 1280px) {
+    display: block !important;
+  }
+}
+
+.d-xl-flex {
+  @media (min-width: 1280px) {
+    display: flex !important;
+  }
+}
+
+// Text Alignment - Responsive
+.text-start {
+  text-align: left !important;
+}
+
+.text-end {
+  text-align: right !important;
+}
+
+.text-sm-start {
+  @media (min-width: 576px) {
+    text-align: left !important;
+  }
+}
+
+.text-md-start {
+  @media (min-width: 768px) {
+    text-align: left !important;
+  }
+}
+
+.text-md-center {
+  @media (min-width: 768px) {
+    text-align: center !important;
+  }
+}
+
+.text-lg-end {
+  @media (min-width: 1024px) {
+    text-align: right !important;
+  }
 }
 
 // Text Alignment

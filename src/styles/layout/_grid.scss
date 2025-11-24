@@ -1,14 +1,11 @@
 /**
  * Grid System
- * Bootstrap 스타일 그리드 시스템
+ * 12 Column Grid System with Responsive Breakpoints
  */
 
-.container-fluid {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+@use 'sass:math';
 
+// Row
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -17,90 +14,56 @@
   margin-bottom: 24px;
 }
 
+// Gap utilities
+.g-0 { margin-left: 0; margin-right: 0; > [class*="col-"] { padding-left: 0; padding-right: 0; } }
+.g-1 { margin-left: -4px; margin-right: -4px; > [class*="col-"] { padding-left: 4px; padding-right: 4px; } }
+.g-2 { margin-left: -8px; margin-right: -8px; > [class*="col-"] { padding-left: 8px; padding-right: 8px; } }
+.g-3 { margin-left: -12px; margin-right: -12px; > [class*="col-"] { padding-left: 12px; padding-right: 12px; } }
+.g-4 { margin-left: -16px; margin-right: -16px; > [class*="col-"] { padding-left: 16px; padding-right: 16px; } }
+.g-5 { margin-left: -24px; margin-right: -24px; > [class*="col-"] { padding-left: 24px; padding-right: 24px; } }
+
 // Column Base
 [class*="col-"] {
+  position: relative;
+  width: 100%;
   padding-left: 12px;
   padding-right: 12px;
 }
 
-// Column 12
-.col-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
+// Mixin for generating columns
+@mixin make-columns($infix: "") {
+  @for $i from 1 through 12 {
+    .col#{$infix}-#{$i} {
+      flex: 0 0 math.percentage(math.div($i, 12));
+      max-width: math.percentage(math.div($i, 12));
+    }
+  }
 }
 
-// Medium (768px and up)
+// Extra Small (default, <576px)
+@include make-columns();
+
+// Small (≥576px)
+@media (min-width: 576px) {
+  @include make-columns("-sm");
+}
+
+// Medium (≥768px)
 @media (min-width: 768px) {
-  .col-md-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .col-md-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+  @include make-columns("-md");
 }
 
-// Extra Large (1200px and up)
-@media (min-width: 1200px) {
-  .col-xl-1 {
-    flex: 0 0 8.333333%;
-    max-width: 8.333333%;
-  }
+// Large (≥1024px)
+@media (min-width: 1024px) {
+  @include make-columns("-lg");
+}
 
-  .col-xl-2 {
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
-  }
+// Extra Large (≥1280px)
+@media (min-width: 1280px) {
+  @include make-columns("-xl");
+}
 
-  .col-xl-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-
-  .col-xl-4 {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-  }
-
-  .col-xl-5 {
-    flex: 0 0 41.666667%;
-    max-width: 41.666667%;
-  }
-
-  .col-xl-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .col-xl-7 {
-    flex: 0 0 58.333333%;
-    max-width: 58.333333%;
-  }
-
-  .col-xl-8 {
-    flex: 0 0 66.666667%;
-    max-width: 66.666667%;
-  }
-
-  .col-xl-9 {
-    flex: 0 0 75%;
-    max-width: 75%;
-  }
-
-  .col-xl-10 {
-    flex: 0 0 83.333333%;
-    max-width: 83.333333%;
-  }
-
-  .col-xl-11 {
-    flex: 0 0 91.666667%;
-    max-width: 91.666667%;
-  }
-
-  .col-xl-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+// Extra Extra Large (≥1536px)
+@media (min-width: 1536px) {
+  @include make-columns("-xxl");
 }

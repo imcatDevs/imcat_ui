@@ -284,6 +284,7 @@
   .side-nav-link {
     justify-content: center;
     padding: 15px 0;
+    position: relative;
   }
 
   .menu-icon {
@@ -292,5 +293,25 @@
 
   .sub-menu {
     display: none;
+  }
+
+  // Badge positioning for minimized state
+  .badge--dot {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    margin-left: 0;
+  }
+}
+
+// Logo color adjustment - grayscale for all themes
+.logo img {
+  filter: grayscale(1) brightness(0);
+}
+
+// Logo color for dark theme - white
+[data-theme="dark"] {
+  .logo img {
+    filter: grayscale(1) brightness(0) invert(1);
   }
 }

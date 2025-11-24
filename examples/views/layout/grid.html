@@ -12,10 +12,10 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Basic Grid</h4>
+      <div class="card__header">
+        <h4 class="card__title">Basic Grid</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.grid</code> with <code>.grid-cols-*</code> to create a basic grid layout.
         </p>
@@ -48,10 +48,10 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Column Spanning</h4>
+      <div class="card__header">
+        <h4 class="card__title">Column Spanning</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.col-span-*</code> to make an element span across multiple columns.
         </p>
@@ -79,10 +79,10 @@
 <div class="row">
   <div class="col-xl-6">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Row Spanning</h4>
+      <div class="card__header">
+        <h4 class="card__title">Row Spanning</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.row-span-*</code> to make an element span across multiple rows.
         </p>
@@ -98,10 +98,10 @@
 
   <div class="col-xl-6">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Gap Sizes</h4>
+      <div class="card__header">
+        <h4 class="card__title">Gap Sizes</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.gap-*</code> to control the gap between grid items.
         </p>
@@ -134,10 +134,10 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Responsive Grid</h4>
+      <div class="card__header">
+        <h4 class="card__title">Responsive Grid</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use responsive prefixes like <code>.md:grid-cols-*</code> and <code>.lg:grid-cols-*</code> 
           to change grid columns at different breakpoints.
@@ -179,10 +179,10 @@
 <div class="row">
   <div class="col-xl-6">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Place Content</h4>
+      <div class="card__header">
+        <h4 class="card__title">Place Content</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.place-content-*</code> to align grid items.
         </p>
@@ -198,10 +198,10 @@
 
   <div class="col-xl-6">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Place Items</h4>
+      <div class="card__header">
+        <h4 class="card__title">Place Items</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted">
           Use <code>.place-items-*</code> to align items within their grid areas.
         </p>
@@ -220,10 +220,10 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Practical Example: Dashboard Grid</h4>
+      <div class="card__header">
+        <h4 class="card__title">Practical Example: Dashboard Grid</h4>
       </div>
-      <div class="card-body">
+      <div class="card__body">
         <p class="text-muted mb-4">
           A practical dashboard layout using CSS Grid.
         </p>
@@ -231,7 +231,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <!-- Stat Cards -->
           <div class="card mb-0">
-            <div class="card-body">
+            <div class="card__body">
               <h6 class="text-muted mb-2">Total Users</h6>
               <h3 class="mb-0">1,234</h3>
               <small class="text-success">
@@ -242,7 +242,7 @@
           </div>
 
           <div class="card mb-0">
-            <div class="card-body">
+            <div class="card__body">
               <h6 class="text-muted mb-2">Revenue</h6>
               <h3 class="mb-0">$45,678</h3>
               <small class="text-success">
@@ -253,7 +253,7 @@
           </div>
 
           <div class="card mb-0">
-            <div class="card-body">
+            <div class="card__body">
               <h6 class="text-muted mb-2">Orders</h6>
               <h3 class="mb-0">567</h3>
               <small class="text-danger">
@@ -264,7 +264,7 @@
           </div>
 
           <div class="card mb-0">
-            <div class="card-body">
+            <div class="card__body">
               <h6 class="text-muted mb-2">Visitors</h6>
               <h3 class="mb-0">8,901</h3>
               <small class="text-success">
@@ -278,8 +278,8 @@
         <h5 class="mt-4 mb-3">Complex Dashboard Layout</h5>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div class="card mb-0 lg:col-span-2">
-            <div class="card-body">
-              <h5 class="card-title">Sales Chart</h5>
+            <div class="card__body">
+              <h5 class="card__title">Sales Chart</h5>
               <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border-radius: 0.375rem;">
                 <span class="text-muted">Chart Area (2/3 width)</span>
               </div>
@@ -287,8 +287,8 @@
           </div>
 
           <div class="card mb-0">
-            <div class="card-body">
-              <h5 class="card-title">Recent Activity</h5>
+            <div class="card__body">
+              <h5 class="card__title">Recent Activity</h5>
               <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border-radius: 0.375rem;">
                 <span class="text-muted">Activity List</span>
               </div>
@@ -299,3 +299,4 @@
     </div>
   </div>
 </div>
+

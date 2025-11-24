@@ -1,0 +1,288 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Sidebar Layouts</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Layouts</a></li>
+    <li class="breadcrumb-item active">Sidebar Layouts</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Layout Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Sidebar Layout Overview</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          IMCAT UI currently uses a left sidebar layout as demonstrated in this documentation interface. 
+          The sidebar can be minimized on desktop and hidden on mobile devices.
+        </p>
+        
+        <div class="alert alert-info">
+          <i class="material-icons-outlined">info</i>
+          <strong>Current Layout:</strong> You are viewing the left sidebar layout with collapsible menu.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left Sidebar -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Left Sidebar Layout (Current)</h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">Features</h5>
+        <ul>
+          <li><strong>Fixed Position:</strong> Sidebar remains fixed while scrolling content</li>
+          <li><strong>Collapsible:</strong> Can be minimized to icon-only mode on desktop</li>
+          <li><strong>Responsive:</strong> Hides off-canvas on mobile, accessible via toggle button</li>
+          <li><strong>Scrollable:</strong> Independent scroll for menu items</li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">Structure</h5>
+        <pre><code>&lt;div class="wrapper"&gt;
+  &lt;!-- Sidebar --&gt;
+  &lt;div class="sidenav-menu"&gt;
+    &lt;div class="scrollbar"&gt;
+      &lt;ul class="side-nav"&gt;
+        &lt;!-- Menu items --&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Content --&gt;
+  &lt;div class="content-page"&gt;
+    &lt;!-- Topbar --&gt;
+    &lt;header class="app-topbar"&gt;&lt;/header&gt;
+    
+    &lt;!-- Main Content --&gt;
+    &lt;div class="content"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h5 class="mt-4 mb-3">Toggle Behavior</h5>
+        <div class="d-flex gap-2">
+          <button class="btn btn--primary" onclick="document.body.classList.toggle('sidebar-minimized')">
+            <i class="material-icons-outlined">swap_horiz</i>
+            Toggle Minimize
+          </button>
+          <button class="btn btn--secondary d-lg-none" onclick="document.querySelector('.sidenav-menu').classList.toggle('show')">
+            <i class="material-icons-outlined">menu</i>
+            Toggle Mobile Menu
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Sidebar Concept -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Right Sidebar Layout (Concept)</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          Right sidebars are commonly used for filters, settings, or additional information panels.
+        </p>
+
+        <h5 class="mb-3">Diagram</h5>
+        <div class="sidebar-diagram">
+          <div class="sidebar-diagram__item sidebar-diagram__item--main">
+            Main Content
+          </div>
+          <div class="sidebar-diagram__item sidebar-diagram__item--sidebar">
+            Right Sidebar
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Use Cases</h5>
+        <ul>
+          <li>Filter panels in e-commerce or search pages</li>
+          <li>Settings or configuration panels</li>
+          <li>Secondary navigation or table of contents</li>
+          <li>Chat or messaging interfaces</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Both Sidebars -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Dual Sidebar Layout (Concept)</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          Advanced layout with both left and right sidebars for complex applications.
+        </p>
+
+        <h5 class="mb-3">Diagram</h5>
+        <div class="sidebar-diagram sidebar-diagram--dual">
+          <div class="sidebar-diagram__item sidebar-diagram__item--sidebar">
+            Left<br>Sidebar
+          </div>
+          <div class="sidebar-diagram__item sidebar-diagram__item--main">
+            Main Content
+          </div>
+          <div class="sidebar-diagram__item sidebar-diagram__item--sidebar">
+            Right<br>Sidebar
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Use Cases</h5>
+        <ul>
+          <li>IDE or code editor interfaces</li>
+          <li>Email clients (folders + preview + details)</li>
+          <li>Project management tools</li>
+          <li>Advanced dashboards with multiple panels</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Sidebar -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Mini Sidebar (Icon Only)</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted">
+          Minimized sidebar showing only icons. Click the toggle button in the current layout to see this in action.
+        </p>
+
+        <h5 class="mb-3">Features</h5>
+        <ul>
+          <li><strong>Space Efficient:</strong> Provides more room for main content</li>
+          <li><strong>Icon Navigation:</strong> Menu items represented by icons only</li>
+          <li><strong>Expandable:</strong> Can expand to full width on hover or click</li>
+          <li><strong>Persistent State:</strong> Remembers user's preference</li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">CSS Class</h5>
+        <pre><code>&lt;body class="sidebar-minimized"&gt;
+  &lt;!-- Minimized state activated --&gt;
+&lt;/body&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Behavior -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Responsive Sidebar Behavior</h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">Desktop (≥1024px)</h5>
+        <ul>
+          <li>Sidebar is visible by default</li>
+          <li>Can be minimized to icon-only mode</li>
+          <li>Fixed position, doesn't scroll with content</li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">Tablet & Mobile (&lt;1024px)</h5>
+        <ul>
+          <li>Sidebar is hidden by default (off-canvas)</li>
+          <li>Accessible via hamburger menu button</li>
+          <li>Overlays main content when opened</li>
+          <li>Can be closed with close button or backdrop click</li>
+        </ul>
+
+        <h5 class="mt-4 mb-3">Breakpoint</h5>
+        <pre><code>/* Tablet & Mobile */
+@media (max-width: 1023px) {
+  .sidenav-menu {
+    position: fixed;
+    left: -280px;
+    transition: left 0.3s;
+  }
+  
+  .sidenav-menu.show {
+    left: 0;
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Sidebar Design Best Practices</h4>
+      </div>
+      <div class="card__body">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Clear Hierarchy:</strong> Organize menu items logically with proper grouping
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Active States:</strong> Clearly indicate the current page or section
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Icons:</strong> Use consistent, recognizable icons for better usability
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Scrollable:</strong> Ensure menu is scrollable when content exceeds viewport
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Accessibility:</strong> Support keyboard navigation and screen readers
+          </li>
+          <li class="mb-2">
+            <i class="material-icons-outlined text-success">check_circle</i>
+            <strong>Performance:</strong> Lazy load sub-menus if the menu is very large
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.sidebar-diagram {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  min-height: 200px;
+}
+
+.sidebar-diagram--dual {
+  min-height: 250px;
+}
+
+.sidebar-diagram__item {
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 1rem;
+}
+
+.sidebar-diagram__item--main {
+  flex: 1;
+  background-color: var(--card-bg);
+}
+
+.sidebar-diagram__item--sidebar {
+  width: 200px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+</style>

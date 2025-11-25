@@ -1,0 +1,142 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "input",
+    "title": "Input Groups 정보",
+    "content": "<p><strong>컴포넌트:</strong> Input Groups</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _forms.scss</p><p><strong>클래스:</strong> .input-group</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"input-group\"&gt;<br>&nbsp;&nbsp;&lt;span class=\"input-group-text\"&gt;@&lt;/span&gt;<br>&nbsp;&nbsp;&lt;input type=\"text\" class=\"form-control\"&gt;<br>&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 텍스트 Addon",
+      "✅ 버튼 Addon",
+      "✅ 아이콘 지원",
+      "✅ 다중 Addon",
+      "✅ 3가지 크기"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Input Groups</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Form Elements</a></li>
+    <li class="breadcrumb-item active">Input Groups</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Input Groups -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Text Addon</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label class="form-label">Prepend</label>
+          <div class="input-group">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="Username">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Append</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Recipient">
+            <span class="input-group-text">@example.com</span>
+          </div>
+        </div>
+        <div class="mb-0">
+          <label class="form-label">Both Sides</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Addon -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Button Addon</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label class="form-label">Button Left</label>
+          <div class="input-group">
+            <button class="btn btn-primary" type="button">검색</button>
+            <input type="text" class="form-control" placeholder="검색어 입력">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Button Right</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="검색어 입력">
+            <button class="btn btn-secondary" type="button">Go</button>
+          </div>
+        </div>
+        <div class="mb-0">
+          <label class="form-label">Multiple Buttons</label>
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <button class="btn btn-success" type="button">확인</button>
+            <button class="btn btn-danger" type="button">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- With Icons -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">With Icons</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="material-icons-outlined">person</i>
+              </span>
+              <input type="text" class="form-control" placeholder="Username">
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="material-icons-outlined">email</i>
+              </span>
+              <input type="email" class="form-control" placeholder="Email">
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="material-icons-outlined">lock</i>
+              </span>
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

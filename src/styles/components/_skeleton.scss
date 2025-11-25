@@ -1,0 +1,242 @@
+/**
+ * Skeleton Component
+ * 스켈레톤 로딩 스타일
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Skeleton
+// ============================================
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base, #f0f0f0) 0%,
+    var(--skeleton-highlight, #f8f8f8) 50%,
+    var(--skeleton-base, #f0f0f0) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ============================================
+// Skeleton Shapes
+// ============================================
+
+.skeleton-text {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 24px;
+  margin-bottom: 12px;
+}
+
+.skeleton-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-rectangle {
+  width: 100%;
+  height: 120px;
+}
+
+.skeleton-square {
+  width: 120px;
+  height: 120px;
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ============================================
+// Skeleton Sizes
+// ============================================
+
+.skeleton-avatar--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.skeleton-avatar--lg {
+  width: 64px;
+  height: 64px;
+}
+
+.skeleton-avatar--xl {
+  width: 96px;
+  height: 96px;
+}
+
+// ============================================
+// Skeleton Card
+// ============================================
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--bg-elevated, white);
+  border-radius: 8px;
+  border: 1px solid var(--border-light, #e0e0e0);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 12px;
+  }
+}
+
+// ============================================
+// Skeleton List
+// ============================================
+
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+// ============================================
+// Skeleton Table
+// ============================================
+
+.skeleton-table {
+  width: 100%;
+
+  &__row {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light, #e0e0e0);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__cell {
+    flex: 1;
+    height: 20px;
+  }
+}
+
+// ============================================
+// Skeleton Variants
+// ============================================
+
+.skeleton-wave {
+  animation: skeleton-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-wave {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--dark-skeleton-base, #2c2c2c) 0%,
+      var(--dark-skeleton-highlight, #3c3c3c) 50%,
+      var(--dark-skeleton-base, #2c2c2c) 100%
+    );
+  }
+
+  .skeleton-card {
+    background-color: var(--dark-bg-elevated, #1e1e1e);
+    border-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+  }
+
+  .skeleton-table__row {
+    border-bottom-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+  }
+}

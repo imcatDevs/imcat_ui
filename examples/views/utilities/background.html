@@ -1,0 +1,424 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "image",
+    "title": "Background 정보",
+    "content": "<p><strong>유틸리티:</strong> Background</p><p><strong>타입:</strong> Utility Classes</p><p><strong>파일:</strong> _background.scss</p><p><strong>카테고리:</strong> Utilities</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"bg-primary-subtle\"&gt;배경색&lt;/div&gt;</code><h4>SCSS Import</h4><code>@use 'utilities/background';</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ Subtle 배경색 (6가지)",
+      "✅ Border 유틸리티",
+      "✅ Border 색상 (6가지)",
+      "✅ Border 방향 (top, bottom)",
+      "✅ CSS Variables 기반",
+      "✅ !important 플래그"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Background Utilities</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Utilities</a></li>
+    <li class="breadcrumb-item active">Background</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">info</i>
+          개요
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">
+          Background 유틸리티는 배경색, 테두리 스타일을 빠르게 적용할 수 있는 클래스를 제공합니다.
+        </p>
+        <ul class="mb-0">
+          <li><strong>Subtle 배경색:</strong> 투명도가 적용된 부드러운 배경색</li>
+          <li><strong>Border:</strong> 테두리 추가/제거 유틸리티</li>
+          <li><strong>Border Color:</strong> 시맨틱 컬러 기반 테두리 색상</li>
+          <li><strong>Directional Border:</strong> 특정 방향에만 테두리 적용</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtle Background Colors -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">palette</i>
+          Subtle Background Colors
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          투명도 10%가 적용된 부드러운 배경색입니다. 알림, 카드, 섹션 강조에 적합합니다.
+        </p>
+        
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="bg-primary-subtle p-4 rounded">
+              <h5 class="mb-2">Primary Subtle</h5>
+              <p class="mb-0"><code>.bg-primary-subtle</code></p>
+              <small class="text-muted">rgba(114, 124, 245, 0.1)</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-secondary-subtle p-4 rounded">
+              <h5 class="mb-2">Secondary Subtle</h5>
+              <p class="mb-0"><code>.bg-secondary-subtle</code></p>
+              <small class="text-muted">rgba(108, 117, 125, 0.1)</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-success-subtle p-4 rounded">
+              <h5 class="mb-2">Success Subtle</h5>
+              <p class="mb-0"><code>.bg-success-subtle</code></p>
+              <small class="text-muted">rgba(10, 207, 151, 0.1)</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-danger-subtle p-4 rounded">
+              <h5 class="mb-2">Danger Subtle</h5>
+              <p class="mb-0"><code>.bg-danger-subtle</code></p>
+              <small class="text-muted">rgba(250, 92, 124, 0.1)</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-warning-subtle p-4 rounded">
+              <h5 class="mb-2">Warning Subtle</h5>
+              <p class="mb-0"><code>.bg-warning-subtle</code></p>
+              <small class="text-muted">rgba(255, 188, 66, 0.1)</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-info-subtle p-4 rounded">
+              <h5 class="mb-2">Info Subtle</h5>
+              <p class="mb-0"><code>.bg-info-subtle</code></p>
+              <small class="text-muted">rgba(57, 175, 209, 0.1)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Border Utilities -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">border_outer</i>
+          Border Utilities
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          요소에 테두리를 추가하거나 제거합니다.
+        </p>
+        
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="border p-4 rounded">
+              <h5 class="mb-2">With Border</h5>
+              <p class="mb-0"><code>.border</code></p>
+              <small class="text-muted">1px solid var(--border-color)</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="border-0 p-4 rounded bg-light">
+              <h5 class="mb-2">No Border</h5>
+              <p class="mb-0"><code>.border-0</code></p>
+              <small class="text-muted">테두리 제거</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Directional Borders -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">border_style</i>
+          Directional Borders
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          특정 방향에만 테두리를 적용합니다.
+        </p>
+        
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="border-top p-4 bg-light">
+              <h5 class="mb-2">Top Border</h5>
+              <p class="mb-0"><code>.border-top</code></p>
+              <small class="text-muted">상단 테두리만 표시</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="border-bottom p-4 bg-light">
+              <h5 class="mb-2">Bottom Border</h5>
+              <p class="mb-0"><code>.border-bottom</code></p>
+              <small class="text-muted">하단 테두리만 표시</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Border Colors -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">color_lens</i>
+          Border Colors
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          시맨틱 컬러를 테두리에 적용합니다. <code>.border</code>와 함께 사용하세요.
+        </p>
+        
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="border border-primary p-4 rounded">
+              <h5 class="mb-2">Primary</h5>
+              <p class="mb-0"><code>.border-primary</code></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border border-secondary p-4 rounded">
+              <h5 class="mb-2">Secondary</h5>
+              <p class="mb-0"><code>.border-secondary</code></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border border-success p-4 rounded">
+              <h5 class="mb-2">Success</h5>
+              <p class="mb-0"><code>.border-success</code></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border border-danger p-4 rounded">
+              <h5 class="mb-2">Danger</h5>
+              <p class="mb-0"><code>.border-danger</code></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border border-warning p-4 rounded">
+              <h5 class="mb-2">Warning</h5>
+              <p class="mb-0"><code>.border-warning</code></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border border-info p-4 rounded">
+              <h5 class="mb-2">Info</h5>
+              <p class="mb-0"><code>.border-info</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">code</i>
+          사용 예제
+        </h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">HTML 예제</h5>
+        <pre class="bg-light p-3 rounded"><code>&lt;!-- Subtle Background --&gt;
+&lt;div class="bg-primary-subtle p-3 rounded"&gt;
+  Primary subtle background
+&lt;/div&gt;
+
+&lt;!-- Border with Color --&gt;
+&lt;div class="border border-success p-3 rounded"&gt;
+  Success border
+&lt;/div&gt;
+
+&lt;!-- Directional Border --&gt;
+&lt;div class="border-bottom pb-3"&gt;
+  Bottom border only
+&lt;/div&gt;
+
+&lt;!-- Combined --&gt;
+&lt;div class="bg-warning-subtle border border-warning p-3 rounded"&gt;
+  Warning alert style
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Reference -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">list</i>
+          클래스 레퍼런스
+        </h4>
+      </div>
+      <div class="card__body">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>설명</th>
+                <th>값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>.bg-primary-subtle</code></td>
+                <td>Primary subtle 배경</td>
+                <td>rgba(114, 124, 245, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.bg-secondary-subtle</code></td>
+                <td>Secondary subtle 배경</td>
+                <td>rgba(108, 117, 125, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.bg-success-subtle</code></td>
+                <td>Success subtle 배경</td>
+                <td>rgba(10, 207, 151, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.bg-danger-subtle</code></td>
+                <td>Danger subtle 배경</td>
+                <td>rgba(250, 92, 124, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.bg-warning-subtle</code></td>
+                <td>Warning subtle 배경</td>
+                <td>rgba(255, 188, 66, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.bg-info-subtle</code></td>
+                <td>Info subtle 배경</td>
+                <td>rgba(57, 175, 209, 0.1)</td>
+              </tr>
+              <tr>
+                <td><code>.border</code></td>
+                <td>테두리 추가</td>
+                <td>1px solid var(--border-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-0</code></td>
+                <td>테두리 제거</td>
+                <td>border: 0</td>
+              </tr>
+              <tr>
+                <td><code>.border-top</code></td>
+                <td>상단 테두리만</td>
+                <td>1px solid var(--border-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-bottom</code></td>
+                <td>하단 테두리만</td>
+                <td>1px solid var(--border-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-primary</code></td>
+                <td>Primary 테두리 색상</td>
+                <td>var(--primary-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-secondary</code></td>
+                <td>Secondary 테두리 색상</td>
+                <td>var(--secondary-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-success</code></td>
+                <td>Success 테두리 색상</td>
+                <td>var(--success-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-danger</code></td>
+                <td>Danger 테두리 색상</td>
+                <td>var(--danger-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-warning</code></td>
+                <td>Warning 테두리 색상</td>
+                <td>var(--warning-color)</td>
+              </tr>
+              <tr>
+                <td><code>.border-info</code></td>
+                <td>Info 테두리 색상</td>
+                <td>var(--info-color)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">tips_and_updates</i>
+          Best Practices
+        </h4>
+      </div>
+      <div class="card__body">
+        <ul class="mb-0">
+          <li class="mb-2">
+            <strong>Subtle 배경색:</strong> 중요하지 않은 정보를 부드럽게 강조할 때 사용하세요.
+          </li>
+          <li class="mb-2">
+            <strong>Border 조합:</strong> <code>.border</code>와 <code>.border-{color}</code>를 함께 사용하세요.
+          </li>
+          <li class="mb-2">
+            <strong>시맨틱 컬러:</strong> 의미를 전달하는 적절한 컬러를 선택하세요 (success = 성공, danger = 오류 등).
+          </li>
+          <li class="mb-2">
+            <strong>Directional Border:</strong> 구분선이나 섹션 구분에 유용합니다.
+          </li>
+          <li class="mb-2">
+            <strong>!important 플래그:</strong> 모든 클래스는 <code>!important</code>를 사용하여 우선순위를 보장합니다.
+          </li>
+          <li class="mb-0">
+            <strong>CSS Variables:</strong> 테마 변경 시 자동으로 색상이 업데이트됩니다.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

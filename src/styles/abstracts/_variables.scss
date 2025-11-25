@@ -118,26 +118,32 @@ $dark-divider-color: rgba(255, 255, 255, 0.12) !default;
 
 // 폰트 패밀리 (시스템 폰트)
 $font-family-base: -apple-system, BlinkMacSystemFont, 
-                   'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕',
+                   'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕',
                    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
-$font-family-korean: -apple-system, BlinkMacSystemFont, 
+$font-family-korean: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 
                      'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 
                      'Segoe UI', sans-serif !default;
 $font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !default;
 
-// 폰트 크기 (UBold 스타일 - 실용적인 크기)
-$font-size-h1: 40px !default;      // 2.5rem
-$font-size-h2: 32px !default;      // 2rem
-$font-size-h3: 28px !default;      // 1.75rem
-$font-size-h4: 24px !default;      // 1.5rem
-$font-size-h5: 20px !default;      // 1.25rem
-$font-size-h6: 16px !default;      // 1rem
+// 폰트 크기 (작고 깔끔한 디자인)
+$font-size-h1: 32px !default;      // 2rem
+$font-size-h2: 24px !default;      // 1.5rem
+$font-size-h3: 20px !default;      // 1.25rem
+$font-size-h4: 18px !default;      // 1.125rem
+$font-size-h5: 16px !default;      // 1rem
+$font-size-h6: 14px !default;      // 0.875rem
 
-$font-size-subtitle1: 16px !default;
-$font-size-subtitle2: 14px !default;
-$font-size-body1: 16px !default;
-$font-size-body2: 14px !default;
-$font-size-button: 14px !default;
+// Display 사이즈 (큰 제목용)
+$font-size-display1: 56px !default;  // 3.5rem
+$font-size-display2: 48px !default;  // 3rem
+$font-size-display3: 40px !default;  // 2.5rem
+$font-size-display4: 36px !default;  // 2.25rem
+
+$font-size-subtitle1: 14px !default;
+$font-size-subtitle2: 13px !default;
+$font-size-body1: 14px !default;
+$font-size-body2: 13px !default;
+$font-size-button: 13px !default;
 $font-size-caption: 12px !default;
 $font-size-overline: 10px !default;
 

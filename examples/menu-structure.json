@@ -9,6 +9,69 @@
           "icon": "smart_button",
           "href": "views/static/buttons.html",
           "badge": true
+        },
+        {
+          "id": "forms",
+          "text": "Forms",
+          "icon": "edit_note",
+          "href": "views/static/forms.html",
+          "badge": true
+        },
+        {
+          "id": "input-groups",
+          "text": "Input Groups",
+          "icon": "input",
+          "href": "views/static/input-groups.html",
+          "badge": true
+        },
+        {
+          "id": "checkboxes",
+          "text": "Checkboxes & Radios",
+          "icon": "check_box",
+          "href": "views/static/checkboxes.html",
+          "badge": true
+        },
+        {
+          "id": "select",
+          "text": "Select",
+          "icon": "arrow_drop_down_circle",
+          "href": "views/static/select.html",
+          "badge": true
+        },
+        {
+          "id": "switches",
+          "text": "Switches",
+          "icon": "toggle_on",
+          "href": "views/static/switches.html",
+          "badge": true
+        },
+        {
+          "id": "range-slider",
+          "text": "Range Slider",
+          "icon": "tune",
+          "href": "views/static/range-slider.html",
+          "badge": true
+        },
+        {
+          "id": "form-layouts",
+          "text": "Form Layouts",
+          "icon": "view_module",
+          "href": "views/static/form-layouts.html",
+          "badge": true
+        },
+        {
+          "id": "form-validation",
+          "text": "Form Validation",
+          "icon": "verified",
+          "href": "views/static/form-validation.html",
+          "badge": true
+        },
+        {
+          "id": "form-wizard",
+          "text": "Form Wizard",
+          "icon": "assistant",
+          "href": "views/static/form-wizard.html",
+          "badge": true
         }
       ]
     },
@@ -27,6 +90,76 @@
           "text": "Avatars",
           "icon": "account_circle",
           "href": "views/static/avatars.html",
+          "badge": true
+        },
+        {
+          "id": "tables",
+          "text": "Tables",
+          "icon": "table_chart",
+          "href": "views/static/tables.html",
+          "badge": true
+        },
+        {
+          "id": "alerts",
+          "text": "Alerts",
+          "icon": "campaign",
+          "href": "views/static/alerts.html",
+          "badge": true
+        },
+        {
+          "id": "media",
+          "text": "Media Objects",
+          "icon": "perm_media",
+          "href": "views/static/media.html",
+          "badge": true
+        },
+        {
+          "id": "images",
+          "text": "Images",
+          "icon": "image",
+          "href": "views/static/images.html",
+          "badge": true
+        },
+        {
+          "id": "avatars",
+          "text": "Avatars",
+          "icon": "account_circle",
+          "href": "views/static/avatars.html",
+          "badge": true
+        },
+        {
+          "id": "chips",
+          "text": "Chips & Tags",
+          "icon": "label",
+          "href": "views/static/chips.html",
+          "badge": true
+        },
+        {
+          "id": "spinners",
+          "text": "Spinners",
+          "icon": "refresh",
+          "href": "views/static/spinners.html",
+          "badge": true
+        },
+        {
+          "id": "empty-states",
+          "text": "Empty States",
+          "icon": "inbox",
+          "href": "views/static/empty-states.html",
+          "badge": true
+        },
+        {
+          "id": "skeleton",
+          "text": "Skeleton",
+          "icon": "view_agenda",
+          "href": "views/static/skeleton.html",
+          "badge": true
+        },
+        {
+          "id": "timeline",
+          "text": "Timeline",
+          "icon": "timeline",
+          "href": "views/static/timeline.html",
           "badge": true
         }
       ]
@@ -236,6 +369,46 @@
           "text": "Boxed Layout",
           "icon": "crop_square",
           "href": "views/layout/boxed-layout.html",
+          "badge": true
+        }
+      ]
+    },
+    {
+      "title": "Utilities",
+      "items": [
+        {
+          "id": "display",
+          "text": "Display",
+          "icon": "visibility",
+          "href": "views/utilities/display.html",
+          "badge": true
+        },
+        {
+          "id": "position",
+          "text": "Position",
+          "icon": "place",
+          "href": "views/utilities/position.html",
+          "badge": true
+        },
+        {
+          "id": "sizing",
+          "text": "Sizing",
+          "icon": "photo_size_select_large",
+          "href": "views/utilities/sizing.html",
+          "badge": true
+        },
+        {
+          "id": "text",
+          "text": "Text",
+          "icon": "title",
+          "href": "views/utilities/text.html",
+          "badge": true
+        },
+        {
+          "id": "background",
+          "text": "Background",
+          "icon": "image",
+          "href": "views/utilities/background.html",
           "badge": true
         }
       ]

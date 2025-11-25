@@ -1,0 +1,176 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "campaign",
+    "title": "Alerts 정보",
+    "content": "<p><strong>컴포넌트:</strong> Alerts</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _alerts.scss</p><p><strong>클래스:</strong> .alert</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"alert alert-primary\"&gt;<br>&nbsp;&nbsp;This is a primary alert<br>&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 8가지 색상 변형",
+      "✅ Dismissible (닫기 버튼)",
+      "✅ Alert Link",
+      "✅ Alert Heading",
+      "✅ Icon 지원"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Alerts</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Alerts</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Alerts -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Alerts</h4>
+      </div>
+      <div class="card__body">
+        <div class="alert alert-primary">
+          A simple primary alert—check it out!
+        </div>
+        <div class="alert alert-secondary">
+          A simple secondary alert—check it out!
+        </div>
+        <div class="alert alert-success">
+          A simple success alert—check it out!
+        </div>
+        <div class="alert alert-danger">
+          A simple danger alert—check it out!
+        </div>
+        <div class="alert alert-warning">
+          A simple warning alert—check it out!
+        </div>
+        <div class="alert alert-info">
+          A simple info alert—check it out!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert with Icons -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Alert with Icons</h4>
+      </div>
+      <div class="card__body">
+        <div class="alert alert-success alert-icon">
+          <div class="alert-icon-symbol">
+            <i class="material-icons-outlined">check_circle</i>
+          </div>
+          <div class="alert-icon-content">
+            <strong>성공!</strong> 작업이 완료되었습니다.
+          </div>
+        </div>
+
+        <div class="alert alert-danger alert-icon">
+          <div class="alert-icon-symbol">
+            <i class="material-icons-outlined">error</i>
+          </div>
+          <div class="alert-icon-content">
+            <strong>오류!</strong> 문제가 발생했습니다.
+          </div>
+        </div>
+
+        <div class="alert alert-warning alert-icon">
+          <div class="alert-icon-symbol">
+            <i class="material-icons-outlined">warning</i>
+          </div>
+          <div class="alert-icon-content">
+            <strong>경고!</strong> 주의가 필요합니다.
+          </div>
+        </div>
+
+        <div class="alert alert-info alert-icon">
+          <div class="alert-icon-symbol">
+            <i class="material-icons-outlined">info</i>
+          </div>
+          <div class="alert-icon-content">
+            <strong>정보!</strong> 참고하세요.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert with Heading -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Alert with Heading</h4>
+      </div>
+      <div class="card__body">
+        <div class="alert alert-success">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+          <hr>
+          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert with Link -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Alert with Link</h4>
+      </div>
+      <div class="card__body">
+        <div class="alert alert-primary">
+          A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
+        <div class="alert alert-success">
+          A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
+        <div class="alert alert-danger">
+          A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dismissible Alerts -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Dismissible Alerts</h4>
+      </div>
+      <div class="card__body">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="this.parentElement.style.display='none'"></button>
+        </div>
+
+        <div class="alert alert-info alert-dismissible alert-icon fade show" role="alert">
+          <div class="alert-icon-symbol">
+            <i class="material-icons-outlined">info</i>
+          </div>
+          <div class="alert-icon-content">
+            <strong>알림!</strong> 이 메시지는 닫을 수 있습니다.
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="this.parentElement.style.display='none'"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

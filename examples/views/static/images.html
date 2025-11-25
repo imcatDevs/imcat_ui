@@ -1,0 +1,182 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "image",
+    "title": "Images 정보",
+    "content": "<p><strong>컴포넌트:</strong> Images</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _images.scss</p><p><strong>클래스:</strong> .img-fluid</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;img src=\"...\" class=\"img-fluid\" alt=\"...\"&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ Responsive Images",
+      "✅ Image Shapes",
+      "✅ Image Sizes",
+      "✅ Image Effects",
+      "✅ Image Overlay"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Images</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Images</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Responsive Images -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Responsive Image</h4>
+      </div>
+      <div class="card__body">
+        <img src="https://picsum.photos/600/300" class="img-fluid" alt="Responsive image">
+        <p class="text-muted small mt-2">.img-fluid - 컨테이너에 맞춰 자동 조절</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Thumbnail -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Image Thumbnail</h4>
+      </div>
+      <div class="card__body">
+        <img src="https://picsum.photos/200/200" class="img-thumbnail" alt="Thumbnail">
+        <p class="text-muted small mt-2">.img-thumbnail - 테두리와 패딩 추가</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Shapes -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Image Shapes</h4>
+      </div>
+      <div class="card__body">
+        <div class="row text-center">
+          <div class="col-md-3 mb-3">
+            <img src="https://picsum.photos/150/150" class="img-rounded" alt="Rounded">
+            <p class="mt-2">.img-rounded</p>
+          </div>
+          <div class="col-md-3 mb-3">
+            <img src="https://picsum.photos/150/150" class="img-circle" alt="Circle">
+            <p class="mt-2">.img-circle</p>
+          </div>
+          <div class="col-md-3 mb-3">
+            <img src="https://picsum.photos/150/100" class="img-square" alt="Square">
+            <p class="mt-2">.img-square</p>
+          </div>
+          <div class="col-md-3 mb-3">
+            <img src="https://picsum.photos/150/150" class="img-thumbnail img-circle" alt="Thumbnail Circle">
+            <p class="mt-2">.img-thumbnail .img-circle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Sizes -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Image Sizes</h4>
+      </div>
+      <div class="card__body">
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://picsum.photos/64/64" class="img-sm img-circle" alt="Small">
+          <span>.img-sm (64x64)</span>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-3">
+          <img src="https://picsum.photos/128/128" class="img-md img-circle" alt="Medium">
+          <span>.img-md (128x128)</span>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-3">
+          <img src="https://picsum.photos/256/256" class="img-lg img-rounded" alt="Large">
+          <span>.img-lg (256x256)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Effects -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Image Effects (Hover to see effect)</h4>
+      </div>
+      <div class="card__body">
+        <div class="row text-center">
+          <div class="col-md-4 mb-3">
+            <img src="https://picsum.photos/200/200" class="img-grayscale img-rounded" alt="Grayscale">
+            <p class="mt-2">.img-grayscale<br><small class="text-muted">Hover to remove grayscale</small></p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="https://picsum.photos/200/200" class="img-blur img-rounded" alt="Blur">
+            <p class="mt-2">.img-blur<br><small class="text-muted">Hover to remove blur</small></p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <img src="https://picsum.photos/200/200" class="img-opacity img-rounded" alt="Opacity">
+            <p class="mt-2">.img-opacity<br><small class="text-muted">Hover to full opacity</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Overlay -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Image Overlay (Hover to see effect)</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="img-overlay">
+              <img src="https://picsum.photos/400/300" alt="Image 1">
+              <div class="img-overlay-content">
+                <h5>Image Title</h5>
+                <p>Hover effect with overlay</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="img-overlay">
+              <img src="https://picsum.photos/400/300" alt="Image 2">
+              <div class="img-overlay-content">
+                <h5>Portfolio Item</h5>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="img-overlay">
+              <img src="https://picsum.photos/400/300" alt="Image 3">
+              <div class="img-overlay-content">
+                <h5>Gallery Image</h5>
+                <p>Click to enlarge</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,408 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "photo_size_select_large",
+    "title": "Sizing 정보",
+    "content": "<p><strong>유틸리티:</strong> Sizing</p><p><strong>타입:</strong> Utility Classes</p><p><strong>파일:</strong> _sizing.scss</p><p><strong>카테고리:</strong> Utilities</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"w-50\"&gt;50% 너비&lt;/div&gt;<br>&lt;div class=\"vh-100\"&gt;100vh 높이&lt;/div&gt;</code><h4>SCSS Import</h4><code>@use 'utilities/sizing';</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 백분율 크기 (25%, 50%, 75%, 100%)",
+      "✅ 뷰포트 크기 (vw, vh)",
+      "✅ 고정 크기 (rem 기반)",
+      "✅ 최대/최소 크기",
+      "✅ Auto 크기",
+      "✅ !important 플래그"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Sizing Utilities</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Utilities</a></li>
+    <li class="breadcrumb-item active">Sizing</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">info</i>
+          개요
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">
+          Sizing 유틸리티는 요소의 너비(width)와 높이(height)를 빠르게 설정할 수 있는 클래스를 제공합니다.
+        </p>
+        <ul class="mb-0">
+          <li><strong>백분율:</strong> 부모 요소 기준 (25%, 50%, 75%, 100%)</li>
+          <li><strong>뷰포트:</strong> 화면 크기 기준 (vw, vh)</li>
+          <li><strong>고정 크기:</strong> rem 단위 (10rem, 20rem, 30rem, 40rem)</li>
+          <li><strong>Max/Min:</strong> 최대/최소 크기 제어</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Width Percentage -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">straighten</i>
+          Width (백분율)
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          부모 요소 너비를 기준으로 한 백분율 너비입니다.
+        </p>
+
+        <div class="mb-2">
+          <div class="w-25 bg-primary text-white p-2 rounded mb-2">
+            w-25 (25%)
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="w-50 bg-secondary text-white p-2 rounded mb-2">
+            w-50 (50%)
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="w-75 bg-success text-white p-2 rounded mb-2">
+            w-75 (75%)
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="w-100 bg-danger text-white p-2 rounded mb-2">
+            w-100 (100%)
+          </div>
+        </div>
+        <div class="mb-0">
+          <div class="w-auto bg-info text-white p-2 rounded d-inline-block">
+            w-auto (콘텐츠 크기)
+          </div>
+        </div>
+
+        <pre class="bg-light p-2 mt-3"><code>&lt;div class="w-25"&gt;25%&lt;/div&gt;
+&lt;div class="w-50"&gt;50%&lt;/div&gt;
+&lt;div class="w-75"&gt;75%&lt;/div&gt;
+&lt;div class="w-100"&gt;100%&lt;/div&gt;
+&lt;div class="w-auto"&gt;Auto&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Height Percentage -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">height</i>
+          Height (백분율)
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          부모 요소 높이를 기준으로 한 백분율 높이입니다.
+        </p>
+
+        <div class="d-flex gap-2" style="height: 200px;">
+          <div class="h-25 bg-primary text-white p-2 rounded" style="width: 100px;">
+            h-25
+          </div>
+          <div class="h-50 bg-secondary text-white p-2 rounded" style="width: 100px;">
+            h-50
+          </div>
+          <div class="h-75 bg-success text-white p-2 rounded" style="width: 100px;">
+            h-75
+          </div>
+          <div class="h-100 bg-danger text-white p-2 rounded" style="width: 100px;">
+            h-100
+          </div>
+        </div>
+
+        <pre class="bg-light p-2 mt-3"><code>&lt;div style="height: 200px;"&gt;
+  &lt;div class="h-25"&gt;25%&lt;/div&gt;
+  &lt;div class="h-50"&gt;50%&lt;/div&gt;
+  &lt;div class="h-75"&gt;75%&lt;/div&gt;
+  &lt;div class="h-100"&gt;100%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Viewport Sizing -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">devices</i>
+          Viewport Sizing (vw, vh)
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          뷰포트(브라우저 창) 크기를 기준으로 한 크기입니다. vw = viewport width, vh = viewport height
+        </p>
+
+        <h5 class="mb-3">Viewport Width</h5>
+        <div class="mb-4">
+          <div class="vw-25 bg-primary text-white p-2 rounded mb-2">
+            vw-25 (뷰포트 너비의 25%)
+          </div>
+          <div class="vw-50 bg-secondary text-white p-2 rounded mb-2">
+            vw-50 (뷰포트 너비의 50%)
+          </div>
+          <div class="vw-75 bg-success text-white p-2 rounded mb-2">
+            vw-75 (뷰포트 너비의 75%)
+          </div>
+        </div>
+
+        <h5 class="mb-3">Viewport Height</h5>
+        <p class="text-muted small mb-2">다음 예제는 뷰포트 높이 기준입니다:</p>
+        <div class="d-flex gap-2 bg-light p-3 rounded">
+          <div class="vh-25 bg-primary text-white p-2 rounded" style="width: 100px;">
+            vh-25
+          </div>
+          <div class="vh-50 bg-secondary text-white p-2 rounded" style="width: 100px;">
+            vh-50
+          </div>
+        </div>
+
+        <pre class="bg-light p-2 mt-3"><code>&lt;div class="vw-50"&gt;뷰포트 너비의 50%&lt;/div&gt;
+&lt;div class="vh-100"&gt;뷰포트 높이의 100% (전체 화면)&lt;/div&gt;
+&lt;div class="min-vh-100"&gt;최소 뷰포트 높이 100%&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Sizing (rem) -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">square_foot</i>
+          Fixed Sizing (rem 기반)
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          고정된 크기를 rem 단위로 설정합니다. 1rem = 16px (기본값)
+        </p>
+
+        <h5 class="mb-3">Fixed Width</h5>
+        <div class="mb-4">
+          <div class="w-rem-10 bg-primary text-white p-2 rounded mb-2">
+            w-rem-10 (10rem = 160px)
+          </div>
+          <div class="w-rem-20 bg-secondary text-white p-2 rounded mb-2">
+            w-rem-20 (20rem = 320px)
+          </div>
+          <div class="w-rem-30 bg-success text-white p-2 rounded mb-2">
+            w-rem-30 (30rem = 480px)
+          </div>
+        </div>
+
+        <h5 class="mb-3">Fixed Height</h5>
+        <div class="d-flex gap-2">
+          <div class="h-rem-10 bg-primary text-white p-2 rounded" style="width: 100px;">
+            h-rem-10
+          </div>
+          <div class="h-rem-20 bg-secondary text-white p-2 rounded" style="width: 100px;">
+            h-rem-20
+          </div>
+        </div>
+
+        <pre class="bg-light p-2 mt-3"><code>&lt;div class="w-rem-20"&gt;320px 고정 너비&lt;/div&gt;
+&lt;div class="h-rem-10"&gt;160px 고정 높이&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Max Width/Height -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">crop_free</i>
+          Max Width & Max Height
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          최대 너비와 높이를 제한합니다.
+        </p>
+
+        <div class="mb-4">
+          <h5 class="mb-3">Max Width 100%</h5>
+          <div class="mw-100 bg-primary text-white p-3 rounded">
+            <img src="https://picsum.photos/800/200" alt="Demo" class="mw-100" style="max-width: 100%;">
+          </div>
+          <p class="text-muted small mt-2">이미지가 부모 요소를 넘지 않습니다.</p>
+        </div>
+
+        <div class="mb-0">
+          <h5 class="mb-3">Max Height 100%</h5>
+          <div class="bg-light p-3 rounded" style="height: 150px;">
+            <div class="mh-100 bg-secondary text-white p-3 rounded" style="height: 200px;">
+              mh-100 (부모보다 높지만 최대 높이 제한)
+            </div>
+          </div>
+        </div>
+
+        <pre class="bg-light p-2 mt-3"><code>&lt;img src="..." class="mw-100"&gt; &lt;!-- 최대 너비 100% --&gt;
+&lt;div class="mh-100"&gt;최대 높이 100%&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Reference -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">list</i>
+          클래스 레퍼런스
+        </h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">Width 클래스</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.w-25</code></td><td>width: 25%</td></tr>
+              <tr><td><code>.w-50</code></td><td>width: 50%</td></tr>
+              <tr><td><code>.w-75</code></td><td>width: 75%</td></tr>
+              <tr><td><code>.w-100</code></td><td>width: 100%</td></tr>
+              <tr><td><code>.w-auto</code></td><td>width: auto</td></tr>
+              <tr><td><code>.mw-100</code></td><td>max-width: 100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">Height 클래스</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.h-25</code></td><td>height: 25%</td></tr>
+              <tr><td><code>.h-50</code></td><td>height: 50%</td></tr>
+              <tr><td><code>.h-75</code></td><td>height: 75%</td></tr>
+              <tr><td><code>.h-100</code></td><td>height: 100%</td></tr>
+              <tr><td><code>.h-auto</code></td><td>height: auto</td></tr>
+              <tr><td><code>.mh-100</code></td><td>max-height: 100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">Viewport 크기</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.vw-25</code></td><td>width: 25vw</td></tr>
+              <tr><td><code>.vw-50</code></td><td>width: 50vw</td></tr>
+              <tr><td><code>.vw-75</code></td><td>width: 75vw</td></tr>
+              <tr><td><code>.vw-100</code></td><td>width: 100vw</td></tr>
+              <tr><td><code>.vh-25</code></td><td>height: 25vh</td></tr>
+              <tr><td><code>.vh-50</code></td><td>height: 50vh</td></tr>
+              <tr><td><code>.vh-75</code></td><td>height: 75vh</td></tr>
+              <tr><td><code>.vh-100</code></td><td>height: 100vh</td></tr>
+              <tr><td><code>.min-vh-100</code></td><td>min-height: 100vh</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">고정 크기 (rem)</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.w-rem-10</code></td><td>width: 10rem (160px)</td></tr>
+              <tr><td><code>.w-rem-20</code></td><td>width: 20rem (320px)</td></tr>
+              <tr><td><code>.w-rem-30</code></td><td>width: 30rem (480px)</td></tr>
+              <tr><td><code>.w-rem-40</code></td><td>width: 40rem (640px)</td></tr>
+              <tr><td><code>.h-rem-10</code></td><td>height: 10rem (160px)</td></tr>
+              <tr><td><code>.h-rem-20</code></td><td>height: 20rem (320px)</td></tr>
+              <tr><td><code>.h-rem-30</code></td><td>height: 30rem (480px)</td></tr>
+              <tr><td><code>.h-rem-40</code></td><td>height: 40rem (640px)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">tips_and_updates</i>
+          Best Practices
+        </h4>
+      </div>
+      <div class="card__body">
+        <ul class="mb-0">
+          <li class="mb-2">
+            <strong>반응형:</strong> vh/vw는 반응형 디자인에 유용하지만, 모바일에서 주소창 높이 문제를 고려하세요.
+          </li>
+          <li class="mb-2">
+            <strong>이미지:</strong> 이미지는 <code>mw-100</code>을 사용하여 부모 요소를 넘지 않도록 하세요.
+          </li>
+          <li class="mb-2">
+            <strong>백분율 높이:</strong> 부모 요소에 명시적인 높이가 있어야 자식의 백분율 높이가 작동합니다.
+          </li>
+          <li class="mb-2">
+            <strong>rem 크기:</strong> rem은 루트 폰트 크기에 상대적이므로 일관된 크기 체계를 유지합니다.
+          </li>
+          <li class="mb-2">
+            <strong>vh-100:</strong> <code>vh-100</code>은 전체 화면 섹션에 유용합니다 (히어로 배너 등).
+          </li>
+          <li class="mb-0">
+            <strong>Auto:</strong> <code>w-auto</code>나 <code>h-auto</code>는 콘텐츠 크기에 맞추고 싶을 때 사용하세요.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

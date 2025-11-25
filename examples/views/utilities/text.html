@@ -1,0 +1,382 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "title",
+    "title": "Text 정보",
+    "content": "<p><strong>유틸리티:</strong> Text</p><p><strong>타입:</strong> Utility Classes</p><p><strong>파일:</strong> _helpers.scss</p><p><strong>카테고리:</strong> Utilities</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;p class=\"text-center\"&gt;중앙 정렬&lt;/p&gt;<br>&lt;p class=\"text-primary-color\"&gt;Primary 색상&lt;/p&gt;</code><h4>SCSS Import</h4><code>@use 'utilities/helpers';</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 텍스트 정렬 (left, center, right)",
+      "✅ 반응형 정렬 (sm, md, lg)",
+      "✅ 텍스트 색상 (primary, secondary)",
+      "✅ 폰트 크기",
+      "✅ !important 플래그"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Text Utilities</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Utilities</a></li>
+    <li class="breadcrumb-item active">Text</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Overview -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">info</i>
+          개요
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">
+          Text 유틸리티는 텍스트 정렬, 색상, 크기 등을 빠르게 제어할 수 있는 클래스를 제공합니다.
+        </p>
+        <ul class="mb-0">
+          <li><strong>정렬:</strong> left, center, right, start, end</li>
+          <li><strong>반응형 정렬:</strong> 브레이크포인트별 정렬 제어</li>
+          <li><strong>색상:</strong> 브랜드 색상 적용</li>
+          <li><strong>크기:</strong> Display 타이포그래피</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text Alignment -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">format_align_left</i>
+          텍스트 정렬
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          텍스트를 좌, 중앙, 우로 정렬합니다.
+        </p>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-left mb-2">
+            <p class="mb-0">text-left - 왼쪽 정렬</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-left"&gt;왼쪽 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-center mb-2">
+            <p class="mb-0">text-center - 중앙 정렬</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-center"&gt;중앙 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-right mb-2">
+            <p class="mb-0">text-right - 오른쪽 정렬</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-right"&gt;오른쪽 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-start mb-2">
+            <p class="mb-0">text-start - 시작 정렬 (LTR: 왼쪽, RTL: 오른쪽)</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-start"&gt;시작 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-0">
+          <div class="bg-light p-3 rounded text-end mb-2">
+            <p class="mb-0">text-end - 끝 정렬 (LTR: 오른쪽, RTL: 왼쪽)</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-end"&gt;끝 정렬&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Text Alignment -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">devices</i>
+          반응형 텍스트 정렬
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          화면 크기에 따라 다른 정렬을 적용합니다. 브라우저 창 크기를 조절하여 테스트하세요.
+        </p>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-sm-start mb-2">
+            <p class="mb-0">text-sm-start - Small 이상에서 시작 정렬 (≥576px)</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-sm-start"&gt;Small 이상 시작 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-md-center mb-2">
+            <p class="mb-0">text-md-center - Medium 이상에서 중앙 정렬 (≥768px)</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-md-center"&gt;Medium 이상 중앙 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-3">
+          <div class="bg-light p-3 rounded text-lg-end mb-2">
+            <p class="mb-0">text-lg-end - Large 이상에서 끝 정렬 (≥1024px)</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-lg-end"&gt;Large 이상 끝 정렬&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-0">
+          <div class="bg-light p-3 rounded text-center text-md-end mb-2">
+            <p class="mb-0">모바일: 중앙, 태블릿 이상: 오른쪽</p>
+          </div>
+          <pre class="bg-light p-2"><code>&lt;p class="text-center text-md-end"&gt;반응형 정렬&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text Color -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">palette</i>
+          텍스트 색상
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          브랜드 색상을 텍스트에 적용합니다.
+        </p>
+
+        <div class="mb-3">
+          <p class="text-primary-color mb-2" style="font-size: 1.25rem;">
+            text-primary-color - Primary 브랜드 색상
+          </p>
+          <pre class="bg-light p-2"><code>&lt;p class="text-primary-color"&gt;Primary 색상&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="mb-0">
+          <p class="text-secondary-color mb-2" style="font-size: 1.25rem;">
+            text-secondary-color - Secondary 브랜드 색상
+          </p>
+          <pre class="bg-light p-2"><code>&lt;p class="text-secondary-color"&gt;Secondary 색상&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Size -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">text_fields</i>
+          폰트 크기
+        </h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-4">
+          Display 타이포그래피를 사용하여 큰 텍스트를 표시합니다.
+        </p>
+
+        <div class="mb-3">
+          <div class="display-4 mb-2">
+            Display 4 - 큰 제목
+          </div>
+          <pre class="bg-light p-2"><code>&lt;h1 class="display-4"&gt;큰 제목&lt;/h1&gt;</code></pre>
+          <p class="text-muted small">
+            font-size: 3rem (48px), font-weight: 300, line-height: 1.2
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Practical Examples -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">code</i>
+          실제 사용 예제
+        </h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">히어로 섹션</h5>
+        <div class="bg-primary text-white p-5 rounded text-center mb-4">
+          <h1 class="display-4 mb-3">환영합니다</h1>
+          <p class="mb-0">중앙 정렬된 히어로 섹션입니다.</p>
+        </div>
+        <pre class="bg-light p-2 mb-4"><code>&lt;div class="text-center"&gt;
+  &lt;h1 class="display-4"&gt;환영합니다&lt;/h1&gt;
+  &lt;p&gt;중앙 정렬된 히어로 섹션입니다.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+        <h5 class="mb-3">브랜드 강조</h5>
+        <div class="bg-light p-4 rounded mb-4">
+          <p class="text-primary-color mb-2">
+            <strong>Primary 브랜드 색상</strong>으로 강조된 텍스트입니다.
+          </p>
+          <p class="text-secondary-color mb-0">
+            <strong>Secondary 브랜드 색상</strong>으로 강조된 텍스트입니다.
+          </p>
+        </div>
+        <pre class="bg-light p-2 mb-4"><code>&lt;p class="text-primary-color"&gt;Primary 강조&lt;/p&gt;
+&lt;p class="text-secondary-color"&gt;Secondary 강조&lt;/p&gt;</code></pre>
+
+        <h5 class="mb-3">반응형 헤더</h5>
+        <div class="bg-light p-4 rounded mb-4">
+          <h2 class="text-center text-md-start">
+            모바일: 중앙, 데스크톱: 왼쪽
+          </h2>
+        </div>
+        <pre class="bg-light p-2"><code>&lt;h2 class="text-center text-md-start"&gt;
+  반응형 헤더
+&lt;/h2&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Reference -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">list</i>
+          클래스 레퍼런스
+        </h4>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">텍스트 정렬</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.text-left</code></td><td>text-align: left</td></tr>
+              <tr><td><code>.text-center</code></td><td>text-align: center</td></tr>
+              <tr><td><code>.text-right</code></td><td>text-align: right</td></tr>
+              <tr><td><code>.text-start</code></td><td>text-align: left</td></tr>
+              <tr><td><code>.text-end</code></td><td>text-align: right</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">반응형 텍스트 정렬</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>브레이크포인트</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.text-sm-start</code></td><td>≥576px</td><td>Small 이상에서 시작 정렬</td></tr>
+              <tr><td><code>.text-md-start</code></td><td>≥768px</td><td>Medium 이상에서 시작 정렬</td></tr>
+              <tr><td><code>.text-md-center</code></td><td>≥768px</td><td>Medium 이상에서 중앙 정렬</td></tr>
+              <tr><td><code>.text-md-end</code></td><td>≥768px</td><td>Medium 이상에서 끝 정렬</td></tr>
+              <tr><td><code>.text-lg-end</code></td><td>≥1024px</td><td>Large 이상에서 끝 정렬</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">텍스트 색상</h5>
+        <div class="table-responsive mb-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>.text-primary-color</code></td><td>color: var(--primary-color)</td></tr>
+              <tr><td><code>.text-secondary-color</code></td><td>color: var(--secondary-color)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5 class="mb-3">폰트 크기</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>클래스</th>
+                <th>CSS 값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>.display-4</code></td>
+                <td>font-size: 3rem, font-weight: 300, line-height: 1.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">
+          <i class="material-icons-outlined me-2">tips_and_updates</i>
+          Best Practices
+        </h4>
+      </div>
+      <div class="card__body">
+        <ul class="mb-0">
+          <li class="mb-2">
+            <strong>start/end vs left/right:</strong> 다국어 지원을 위해 <code>text-start</code>/<code>text-end</code> 사용을 권장합니다.
+          </li>
+          <li class="mb-2">
+            <strong>반응형 정렬:</strong> 모바일 우선(Mobile First) 접근으로 작은 화면부터 정의하세요.
+          </li>
+          <li class="mb-2">
+            <strong>브랜드 색상:</strong> <code>text-primary-color</code>는 CSS Variables를 사용하여 테마 변경 시 자동 업데이트됩니다.
+          </li>
+          <li class="mb-2">
+            <strong>Display 타이포그래피:</strong> 히어로 섹션이나 큰 제목에 사용하세요.
+          </li>
+          <li class="mb-2">
+            <strong>접근성:</strong> 텍스트와 배경 간 충분한 대비율을 유지하세요 (WCAG AA 기준 4.5:1).
+          </li>
+          <li class="mb-0">
+            <strong>일관성:</strong> 프로젝트 전체에서 일관된 정렬 패턴을 사용하세요.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

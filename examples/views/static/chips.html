@@ -1,0 +1,265 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "label",
+    "title": "Chips & Tags 정보",
+    "content": "<p><strong>컴포넌트:</strong> Chips & Tags</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _chips.scss</p><p><strong>설명:</strong> 작은 정보 표시 및 태그</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;span class=\"chip\"&gt;Chip&lt;/span&gt;<br>&lt;span class=\"chip chip--primary\"&gt;Primary&lt;/span&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 아바타 포함 칩",
+      "✅ 아이콘 칩",
+      "✅ 닫기 버튼",
+      "✅ 색상 변형"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Chips & Tags</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Chips & Tags</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Chips -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Chips</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">기본 칩 스타일</p>
+        <div class="chip-group">
+          <span class="chip">Default</span>
+          <span class="chip">Technology</span>
+          <span class="chip">Design</span>
+          <span class="chip">Development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colored Chips -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Colored Chips</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">다양한 색상의 칩</p>
+        <div class="chip-group">
+          <span class="chip chip--primary">Primary</span>
+          <span class="chip chip--secondary">Secondary</span>
+          <span class="chip chip--success">Success</span>
+          <span class="chip chip--danger">Danger</span>
+          <span class="chip chip--warning">Warning</span>
+          <span class="chip chip--info">Info</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outlined Chips -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Outlined Chips</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">아웃라인 스타일 칩</p>
+        <div class="chip-group">
+          <span class="chip chip--outlined chip--primary">Primary</span>
+          <span class="chip chip--outlined chip--secondary">Secondary</span>
+          <span class="chip chip--outlined chip--success">Success</span>
+          <span class="chip chip--outlined chip--danger">Danger</span>
+          <span class="chip chip--outlined chip--warning">Warning</span>
+          <span class="chip chip--outlined chip--info">Info</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chips with Icon -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Chips with Icon</h4>
+      </div>
+      <div class="card__body">
+        <div class="chip-group">
+          <span class="chip chip--primary">
+            <i class="material-icons-outlined chip__icon">home</i>
+            Home
+          </span>
+          <span class="chip chip--success">
+            <i class="material-icons-outlined chip__icon">check</i>
+            Verified
+          </span>
+          <span class="chip chip--warning">
+            <i class="material-icons-outlined chip__icon">warning</i>
+            Alert
+          </span>
+          <span class="chip chip--danger">
+            <i class="material-icons-outlined chip__icon">error</i>
+            Error
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chips with Avatar -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Chips with Avatar</h4>
+      </div>
+      <div class="card__body">
+        <div class="chip-group">
+          <span class="chip chip--avatar chip--primary">
+            <img src="https://picsum.photos/24/24" alt="User" class="chip__avatar">
+            John Doe
+          </span>
+          <span class="chip chip--avatar chip--success">
+            <img src="https://picsum.photos/24/24" alt="User" class="chip__avatar">
+            Jane Smith
+          </span>
+          <span class="chip chip--avatar chip--info">
+            <img src="https://picsum.photos/24/24" alt="User" class="chip__avatar">
+            Bob Johnson
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closeable Chips -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Closeable Chips</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">닫기 버튼이 있는 칩</p>
+        <div class="chip-group" id="closeableChips">
+          <span class="chip chip--primary chip--closeable">
+            JavaScript
+            <button class="chip__close" onclick="this.parentElement.remove()">
+              <i class="material-icons-outlined">close</i>
+            </button>
+          </span>
+          <span class="chip chip--success chip--closeable">
+            React
+            <button class="chip__close" onclick="this.parentElement.remove()">
+              <i class="material-icons-outlined">close</i>
+            </button>
+          </span>
+          <span class="chip chip--info chip--closeable">
+            Vue
+            <button class="chip__close" onclick="this.parentElement.remove()">
+              <i class="material-icons-outlined">close</i>
+            </button>
+          </span>
+          <span class="chip chip--warning chip--closeable">
+            Angular
+            <button class="chip__close" onclick="this.parentElement.remove()">
+              <i class="material-icons-outlined">close</i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chip Sizes -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Chip Sizes</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">다양한 크기의 칩</p>
+        <div class="chip-group mb-3">
+          <span class="chip chip--sm chip--primary">Small</span>
+          <span class="chip chip--primary">Medium (Default)</span>
+          <span class="chip chip--lg chip--primary">Large</span>
+        </div>
+        <div class="chip-group">
+          <span class="chip chip--sm chip--outlined chip--success">Small</span>
+          <span class="chip chip--outlined chip--success">Medium</span>
+          <span class="chip chip--lg chip--outlined chip--success">Large</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clickable Chips -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Clickable Chips</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">클릭 가능한 칩 (커서와 애니메이션)</p>
+        <div class="chip-group">
+          <span class="chip chip--clickable chip--primary" onclick="alert('Chip clicked!')">
+            <i class="material-icons-outlined chip__icon">tag</i>
+            Tag 1
+          </span>
+          <span class="chip chip--clickable chip--success" onclick="alert('Chip clicked!')">
+            <i class="material-icons-outlined chip__icon">category</i>
+            Category
+          </span>
+          <span class="chip chip--clickable chip--info" onclick="alert('Chip clicked!')">
+            <i class="material-icons-outlined chip__icon">label</i>
+            Label
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real World Example -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Real World Example - Product Tags</h4>
+      </div>
+      <div class="card__body">
+        <div class="d-flex align-items-start gap-3 mb-4">
+          <img src="https://picsum.photos/120/120" alt="Product" class="rounded" style="width: 120px; height: 120px; object-fit: cover;">
+          <div class="flex-fill">
+            <h5 class="mb-2">Modern Wireless Headphones</h5>
+            <div class="chip-group mb-3">
+              <span class="chip chip--sm chip--primary">Best Seller</span>
+              <span class="chip chip--sm chip--success">In Stock</span>
+              <span class="chip chip--sm chip--warning">Limited</span>
+            </div>
+            <p class="text-muted mb-2">High-quality wireless headphones with noise cancellation</p>
+            <div class="chip-group">
+              <span class="chip chip--sm">Bluetooth</span>
+              <span class="chip chip--sm">Noise Cancelling</span>
+              <span class="chip chip--sm">40h Battery</span>
+              <span class="chip chip--sm">Fast Charging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

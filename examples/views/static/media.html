@@ -1,0 +1,182 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "perm_media",
+    "title": "Media Objects 정보",
+    "content": "<p><strong>컴포넌트:</strong> Media Objects</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _media.scss</p><p><strong>클래스:</strong> .media</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"media\"&gt;<br>&nbsp;&nbsp;&lt;div class=\"media-image\"&gt;&lt;img src=\"...\"&gt;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div class=\"media-body\"&gt;Content&lt;/div&gt;<br>&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 이미지 + 텍스트 조합",
+      "✅ 3가지 크기 (sm, md, lg)",
+      "✅ 정렬 옵션",
+      "✅ 중첩 가능",
+      "✅ 미디어 리스트"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Media Objects</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Media Objects</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Media Object -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Media Object</h4>
+      </div>
+      <div class="card__body">
+        <div class="media">
+          <div class="media-image">
+            <img src="https://picsum.photos/64/64" alt="User" class="rounded">
+          </div>
+          <div class="media-body">
+            <h5>Media heading</h5>
+            <p>This is some content from a media component. You can replace this with any content and adjust it as needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media Alignments -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Media Alignments</h4>
+      </div>
+      <div class="card__body">
+        <h5>Top Aligned (Default)</h5>
+        <div class="media mb-4">
+          <div class="media-image">
+            <img src="https://picsum.photos/64/64" alt="User" class="rounded">
+          </div>
+          <div class="media-body">
+            <h6>Top-aligned media</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+
+        <h5>Center Aligned</h5>
+        <div class="media media-middle mb-4">
+          <div class="media-image">
+            <img src="https://picsum.photos/64/64" alt="User" class="rounded">
+          </div>
+          <div class="media-body">
+            <h6>Center-aligned media</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+
+        <h5>Bottom Aligned</h5>
+        <div class="media media-bottom">
+          <div class="media-image">
+            <img src="https://picsum.photos/64/64" alt="User" class="rounded">
+          </div>
+          <div class="media-body">
+            <h6>Bottom-aligned media</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media Sizes -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Media Sizes</h4>
+      </div>
+      <div class="card__body">
+        <div class="media media-sm mb-3">
+          <div class="media-image">
+            <img src="https://picsum.photos/40/40" alt="User" class="rounded-circle">
+          </div>
+          <div class="media-body">
+            <h6>Small Media (40px)</h6>
+            <p class="mb-0">Compact size for smaller displays</p>
+          </div>
+        </div>
+
+        <div class="media media-md mb-3">
+          <div class="media-image">
+            <img src="https://picsum.photos/64/64" alt="User" class="rounded-circle">
+          </div>
+          <div class="media-body">
+            <h6>Medium Media (64px)</h6>
+            <p class="mb-0">Default size for most use cases</p>
+          </div>
+        </div>
+
+        <div class="media media-lg">
+          <div class="media-image">
+            <img src="https://picsum.photos/96/96" alt="User" class="rounded-circle">
+          </div>
+          <div class="media-body">
+            <h6>Large Media (96px)</h6>
+            <p class="mb-0">Larger size for emphasis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media List -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Media List (Comments Example)</h4>
+      </div>
+      <div class="card__body">
+        <ul class="media-list">
+          <li class="media">
+            <div class="media-image">
+              <img src="https://picsum.photos/48/48" alt="User 1" class="rounded-circle">
+            </div>
+            <div class="media-body">
+              <h6>John Doe <small class="text-muted">· 2 hours ago</small></h6>
+              <p>Great article! Very informative and well-written.</p>
+            </div>
+          </li>
+          <li class="media">
+            <div class="media-image">
+              <img src="https://picsum.photos/48/48" alt="User 2" class="rounded-circle">
+            </div>
+            <div class="media-body">
+              <h6>Jane Smith <small class="text-muted">· 5 hours ago</small></h6>
+              <p>Thanks for sharing this. Looking forward to more content!</p>
+            </div>
+          </li>
+          <li class="media">
+            <div class="media-image">
+              <img src="https://picsum.photos/48/48" alt="User 3" class="rounded-circle">
+            </div>
+            <div class="media-body">
+              <h6>Bob Johnson <small class="text-muted">· 1 day ago</small></h6>
+              <p>This helped me solve a problem I was having. Much appreciated!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

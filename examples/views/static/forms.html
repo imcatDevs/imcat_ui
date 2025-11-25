@@ -1,0 +1,201 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "edit_note",
+    "title": "Forms 정보",
+    "content": "<p><strong>컴포넌트:</strong> Forms</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _forms.scss</p><p><strong>클래스:</strong> .form-control</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;input type=\"text\" class=\"form-control\" placeholder=\"입력하세요\"&gt;</code><h4>SCSS Import</h4><code>@use 'components/forms';</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ Input, Textarea, Select 스타일",
+      "✅ 3가지 크기 (sm, md, lg)",
+      "✅ 유효성 검사 상태 (valid, invalid)",
+      "✅ Disabled 및 Readonly 상태",
+      "✅ File Upload",
+      "✅ Floating Labels",
+      "✅ 다크 테마 지원"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Forms</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Form Elements</a></li>
+    <li class="breadcrumb-item active">Forms</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Inputs -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Inputs</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label for="textInput" class="form-label">Text Input</label>
+          <input type="text" class="form-control" id="textInput" placeholder="텍스트 입력">
+        </div>
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">Email</label>
+          <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="passwordInput" class="form-label">Password</label>
+          <input type="password" class="form-control" id="passwordInput" placeholder="비밀번호">
+        </div>
+        <div class="mb-0">
+          <label for="numberInput" class="form-label">Number</label>
+          <input type="number" class="form-control" id="numberInput" placeholder="0">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Sizes -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Input Sizes</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label class="form-label">Small</label>
+          <input type="text" class="form-control form-control-sm" placeholder="Small input">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Default</label>
+          <input type="text" class="form-control" placeholder="Default input">
+        </div>
+        <div class="mb-0">
+          <label class="form-label">Large</label>
+          <input type="text" class="form-control form-control-lg" placeholder="Large input">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Textarea</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label for="textarea1" class="form-label">Default Textarea</label>
+          <textarea class="form-control" id="textarea1" rows="3" placeholder="여러 줄 입력"></textarea>
+        </div>
+        <div class="mb-0">
+          <label for="textarea2" class="form-label">With Helper Text</label>
+          <textarea class="form-control" id="textarea2" rows="3"></textarea>
+          <div class="form-text">최대 200자까지 입력 가능합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Select -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Select</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label for="select1" class="form-label">Single Select</label>
+          <select class="form-select" id="select1">
+            <option selected>선택하세요</option>
+            <option value="1">옵션 1</option>
+            <option value="2">옵션 2</option>
+            <option value="3">옵션 3</option>
+          </select>
+        </div>
+        <div class="mb-0">
+          <label for="select2" class="form-label">Multiple Select</label>
+          <select class="form-select" id="select2" multiple size="3">
+            <option>옵션 1</option>
+            <option>옵션 2</option>
+            <option>옵션 3</option>
+            <option>옵션 4</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Validation States -->
+  <div class="col-xl-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Validation States</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="validInput" class="form-label">Valid Input</label>
+            <input type="text" class="form-control is-valid" id="validInput" value="올바른 입력값">
+            <div class="valid-feedback">정상적으로 입력되었습니다!</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="invalidInput" class="form-label">Invalid Input</label>
+            <input type="text" class="form-control is-invalid" id="invalidInput" value="잘못된 입력값">
+            <div class="invalid-feedback">입력값을 확인해주세요.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disabled and Readonly -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Disabled & Readonly</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label class="form-label">Disabled Input</label>
+          <input type="text" class="form-control" placeholder="수정 불가" disabled>
+        </div>
+        <div class="mb-0">
+          <label class="form-label">Readonly Input</label>
+          <input type="text" class="form-control" value="읽기 전용" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Input -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">File Upload</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label for="fileInput" class="form-label">Single File</label>
+          <input class="form-control" type="file" id="fileInput">
+        </div>
+        <div class="mb-0">
+          <label for="multipleFiles" class="form-label">Multiple Files</label>
+          <input class="form-control" type="file" id="multipleFiles" multiple>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

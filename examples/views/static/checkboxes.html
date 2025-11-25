@@ -1,0 +1,155 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "check_box",
+    "title": "Checkboxes & Radios 정보",
+    "content": "<p><strong>컴포넌트:</strong> Checkboxes & Radios</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _forms.scss</p><p><strong>클래스:</strong> .form-check</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"form-check\"&gt;<br>&nbsp;&nbsp;&lt;input class=\"form-check-input\" type=\"checkbox\" id=\"check1\"&gt;<br>&nbsp;&nbsp;&lt;label class=\"form-check-label\" for=\"check1\"&gt;Option&lt;/label&gt;<br>&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ Checkbox",
+      "✅ Radio Button",
+      "✅ Inline Layout",
+      "✅ Disabled 상태",
+      "✅ 커스텀 스타일"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Checkboxes & Radios</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Form Elements</a></li>
+    <li class="breadcrumb-item active">Checkboxes & Radios</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Checkboxes -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Checkboxes</h4>
+      </div>
+      <div class="card__body">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="check1" checked>
+          <label class="form-check-label" for="check1">
+            Option 1 (Checked)
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="check2">
+          <label class="form-check-label" for="check2">
+            Option 2
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="check3">
+          <label class="form-check-label" for="check3">
+            Option 3
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check4" disabled>
+          <label class="form-check-label" for="check4">
+            Option 4 (Disabled)
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Radio Buttons -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Radio Buttons</h4>
+      </div>
+      <div class="card__body">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="radio1" id="radio1" checked>
+          <label class="form-check-label" for="radio1">
+            Option 1 (Selected)
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="radio1" id="radio2">
+          <label class="form-check-label" for="radio2">
+            Option 2
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="radio1" id="radio3">
+          <label class="form-check-label" for="radio3">
+            Option 3
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radio1" id="radio4" disabled>
+          <label class="form-check-label" for="radio4">
+            Option 4 (Disabled)
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline Checkboxes -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Inline Checkboxes</h4>
+      </div>
+      <div class="card__body">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheck1" checked>
+          <label class="form-check-label" for="inlineCheck1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheck2">
+          <label class="form-check-label" for="inlineCheck2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheck3">
+          <label class="form-check-label" for="inlineCheck3">3</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline Radios -->
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Inline Radios</h4>
+      </div>
+      <div class="card__body">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadio" id="inlineRadio1" checked>
+          <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadio" id="inlineRadio2">
+          <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadio" id="inlineRadio3">
+          <label class="form-check-label" for="inlineRadio3">3</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

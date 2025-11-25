@@ -1,0 +1,265 @@
+/**
+ * Timeline Component
+ * 타임라인 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Timeline
+// ============================================
+
+.timeline {
+  position: relative;
+  padding: 0;
+  list-style: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-light, #e0e0e0);
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 56px;
+    padding-bottom: 2rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &__marker {
+    position: absolute;
+    left: 12px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--bg-primary, white);
+    border: 3px solid #2196f3;
+    z-index: 1;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #2196f3;
+    color: white;
+    z-index: 1;
+
+    .material-icons-outlined {
+      font-size: 16px;
+    }
+  }
+
+  &__content {
+    background-color: var(--bg-elevated, white);
+    border: 1px solid var(--border-light, #e0e0e0);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark, rgba(0, 0, 0, 0.87));
+    margin: 0;
+  }
+
+  &__time {
+    font-size: 0.8125rem;
+    color: var(--text-secondary, rgba(0, 0, 0, 0.6));
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    color: var(--text-primary, rgba(0, 0, 0, 0.87));
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ============================================
+// Timeline with Icon
+// ============================================
+
+.timeline--with-icon {
+  .timeline__item {
+    padding-left: 64px;
+  }
+
+  &::before {
+    left: 20px;
+  }
+}
+
+// ============================================
+// Timeline Centered
+// ============================================
+
+.timeline--centered {
+  &::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline__item {
+    width: 50%;
+    padding-left: 0;
+    padding-right: 56px;
+    text-align: right;
+
+    &:nth-child(even) {
+      margin-left: 50%;
+      padding-left: 56px;
+      padding-right: 0;
+      text-align: left;
+
+      .timeline__marker,
+      .timeline__icon {
+        left: -9px;
+      }
+    }
+  }
+
+  .timeline__marker {
+    left: auto;
+    right: -9px;
+  }
+
+  .timeline__icon {
+    left: auto;
+    right: -15px;
+  }
+}
+
+// ============================================
+// Timeline Variants (Colors)
+// ============================================
+
+.timeline__marker--primary {
+  border-color: #2196f3;
+}
+
+.timeline__marker--success {
+  border-color: #4caf50;
+}
+
+.timeline__marker--warning {
+  border-color: #ff9800;
+}
+
+.timeline__marker--danger {
+  border-color: #f44336;
+}
+
+.timeline__marker--info {
+  border-color: #03a9f4;
+}
+
+.timeline__icon--primary {
+  background-color: #2196f3;
+}
+
+.timeline__icon--success {
+  background-color: #4caf50;
+}
+
+.timeline__icon--warning {
+  background-color: #ff9800;
+}
+
+.timeline__icon--danger {
+  background-color: #f44336;
+}
+
+.timeline__icon--info {
+  background-color: #03a9f4;
+}
+
+// ============================================
+// Timeline Compact
+// ============================================
+
+.timeline--compact {
+  .timeline__item {
+    padding-bottom: 1rem;
+  }
+
+  .timeline__content {
+    padding: 0.75rem;
+  }
+
+  .timeline__title {
+    font-size: 0.875rem;
+  }
+
+  .timeline__description {
+    font-size: 0.8125rem;
+  }
+}
+
+// ============================================
+// Timeline Simple (No Card)
+// ============================================
+
+.timeline--simple {
+  .timeline__content {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .timeline {
+    &::before {
+      background-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+    }
+
+    &__marker {
+      background-color: var(--dark-bg-primary, #1e1e1e);
+    }
+
+    &__content {
+      background-color: var(--dark-bg-elevated, #2c2c2c);
+      border-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+    }
+
+    &__title {
+      color: var(--dark-text-primary, rgba(255, 255, 255, 0.87));
+    }
+
+    &__time {
+      color: var(--dark-text-secondary, rgba(255, 255, 255, 0.6));
+    }
+
+    &__description {
+      color: var(--dark-text-primary, rgba(255, 255, 255, 0.87));
+    }
+  }
+}

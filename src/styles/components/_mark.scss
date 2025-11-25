@@ -1,0 +1,173 @@
+/**
+ * Mark & Highlight Component
+ * 텍스트 강조 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Mark
+// ============================================
+
+mark {
+  padding: 0.125rem 0.25rem;
+  background-color: #ffeb3b;
+  color: inherit;
+  border-radius: 2px;
+}
+
+.mark {
+  padding: 0.125rem 0.25rem;
+  background-color: #ffeb3b;
+  color: inherit;
+  border-radius: 2px;
+}
+
+// ============================================
+// Mark Color Variants
+// ============================================
+
+.mark--primary {
+  background-color: rgba(33, 150, 243, 0.2);
+  color: #1565c0;
+}
+
+.mark--success {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #2e7d32;
+}
+
+.mark--danger {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #c62828;
+}
+
+.mark--warning {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: #e65100;
+}
+
+.mark--info {
+  background-color: rgba(3, 169, 244, 0.2);
+  color: #0277bd;
+}
+
+.mark--yellow {
+  background-color: #ffeb3b;
+  color: #000000;
+}
+
+.mark--green {
+  background-color: #c6ff00;
+  color: #000000;
+}
+
+.mark--pink {
+  background-color: #ff4081;
+  color: #ffffff;
+}
+
+.mark--purple {
+  background-color: #e040fb;
+  color: #ffffff;
+}
+
+// ============================================
+// Highlight (Strong emphasis)
+// ============================================
+
+.highlight {
+  padding: 0.25rem 0.5rem;
+  background-color: #ffeb3b;
+  color: #000000;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.highlight--primary {
+  background-color: #2196f3;
+  color: #ffffff;
+}
+
+.highlight--success {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.highlight--danger {
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+.highlight--warning {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  mark,
+  .mark {
+    background-color: rgba(255, 235, 59, 0.3);
+  }
+
+  .mark--primary {
+    background-color: rgba(33, 150, 243, 0.3);
+    color: #64b5f6;
+  }
+
+  .mark--success {
+    background-color: rgba(76, 175, 80, 0.3);
+    color: #81c784;
+  }
+
+  .mark--danger {
+    background-color: rgba(244, 67, 54, 0.3);
+    color: #e57373;
+  }
+
+  .mark--warning {
+    background-color: rgba(255, 152, 0, 0.3);
+    color: #ffb74d;
+  }
+
+  .mark--info {
+    background-color: rgba(3, 169, 244, 0.3);
+    color: #4fc3f7;
+  }
+
+  .mark--yellow {
+    background-color: rgba(255, 235, 59, 0.4);
+    color: #ffffff;
+  }
+
+  .mark--green {
+    background-color: rgba(198, 255, 0, 0.3);
+    color: #ffffff;
+  }
+
+  .highlight {
+    background-color: rgba(255, 235, 59, 0.4);
+    color: #ffffff;
+  }
+
+  .highlight--primary {
+    background-color: #1976d2;
+  }
+
+  .highlight--success {
+    background-color: #388e3c;
+  }
+
+  .highlight--danger {
+    background-color: #d32f2f;
+  }
+
+  .highlight--warning {
+    background-color: #f57c00;
+  }
+}

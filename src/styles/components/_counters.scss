@@ -1,0 +1,150 @@
+/**
+ * Counters Component
+ * 카운터 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Counter
+// ============================================
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  background-color: var(--danger-color);
+  border-radius: 0.75rem;
+  white-space: nowrap;
+}
+
+// ============================================
+// Counter Variants
+// ============================================
+
+.counter--primary {
+  background-color: var(--primary-color);
+}
+
+.counter--secondary {
+  background-color: var(--secondary-color);
+}
+
+.counter--success {
+  background-color: var(--success-color);
+}
+
+.counter--danger {
+  background-color: var(--danger-color);
+}
+
+.counter--warning {
+  background-color: var(--warning-color);
+  color: #000000;
+}
+
+.counter--info {
+  background-color: var(--info-color);
+}
+
+// ============================================
+// Counter Sizes
+// ============================================
+
+.counter--sm {
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.25rem;
+  font-size: 0.625rem;
+  border-radius: 0.625rem;
+}
+
+.counter--lg {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 1rem;
+}
+
+// ============================================
+// Dot Counter (simple dot without number)
+// ============================================
+
+.counter--dot {
+  min-width: 0.625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+// ============================================
+// Positioned Counter (for use with icons/buttons)
+// ============================================
+
+.counter--positioned {
+  position: absolute;
+  top: -0.375rem;
+  right: -0.375rem;
+  border: 2px solid var(--bg-primary);
+}
+
+// ============================================
+// Outline Counter
+// ============================================
+
+.counter--outline {
+  background-color: transparent;
+  border: 2px solid var(--danger-color);
+  color: var(--danger-color);
+
+  &.counter--primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  &.counter--success {
+    border-color: var(--success-color);
+    color: var(--success-color);
+  }
+
+  &.counter--info {
+    border-color: var(--info-color);
+    color: var(--info-color);
+  }
+}
+
+// ============================================
+// Pulsing Counter
+// ============================================
+
+.counter--pulse {
+  animation: counter-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes counter-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .counter--positioned {
+    border-color: var(--bg-primary);
+  }
+}

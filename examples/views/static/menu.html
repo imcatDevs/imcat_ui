@@ -1,0 +1,253 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "menu",
+    "title": "Menu 정보",
+    "content": "<p><strong>컴포넌트:</strong> Menu</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _menu.scss</p><p><strong>설명:</strong> 수직/수평 메뉴</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;ul class=\"menu\"&gt;<br>&nbsp;&nbsp;&lt;li class=\"menu__item\"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class=\"menu__link\"&gt;Item&lt;/a&gt;<br>&nbsp;&nbsp;&lt;/li&gt;<br>&lt;/ul&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 수직/수평 레이아웃",
+      "✅ 아이콘 지원",
+      "✅ 배지 지원",
+      "✅ 3가지 크기"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Menu</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Navigation</a></li>
+    <li class="breadcrumb-item active">Menu</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Vertical Menu -->
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Vertical Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu menu--vertical">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <i class="material-icons-outlined menu__icon">home</i>
+              <span class="menu__text">홈</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">dashboard</i>
+              <span class="menu__text">대시보드</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">settings</i>
+              <span class="menu__text">설정</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">help</i>
+              <span class="menu__text">도움말</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu with Badges -->
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Menu with Badges</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">inbox</i>
+              <span class="menu__text">받은편지함</span>
+              <span class="menu__badge">12</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">send</i>
+              <span class="menu__text">보낸편지함</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">notifications</i>
+              <span class="menu__text">알림</span>
+              <span class="menu__badge">5</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">delete</i>
+              <span class="menu__text">휴지통</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simple Menu -->
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Simple Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <span class="menu__text">Profile</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">Account Settings</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">Billing</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Horizontal Menu -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Horizontal Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu menu--horizontal">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <span class="menu__text">홈</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">제품</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">서비스</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <span class="menu__text">연락처</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Sizes -->
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Small Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu menu--sm">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <i class="material-icons-outlined menu__icon">home</i>
+              <span class="menu__text">홈</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">folder</i>
+              <span class="menu__text">파일</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Default Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <i class="material-icons-outlined menu__icon">home</i>
+              <span class="menu__text">홈</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">folder</i>
+              <span class="menu__text">파일</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Large Menu</h4>
+      </div>
+      <div class="card__body">
+        <ul class="menu menu--lg">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link--active">
+              <i class="material-icons-outlined menu__icon">home</i>
+              <span class="menu__text">홈</span>
+            </a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">
+              <i class="material-icons-outlined menu__icon">folder</i>
+              <span class="menu__text">파일</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

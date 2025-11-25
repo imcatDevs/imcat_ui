@@ -187,3 +187,70 @@ $table-header-color: #495057;
     font-size: 0.75rem;
   }
 }
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .table {
+    color: var(--text-primary);
+
+    th,
+    td {
+      border-color: var(--border-color);
+    }
+
+    thead th {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+  }
+
+  .table-striped {
+    tbody tr:nth-of-type(odd) {
+      background-color: var(--bg-secondary);
+    }
+  }
+
+  .table-hover {
+    tbody tr:hover {
+      background-color: var(--bg-tertiary);
+    }
+  }
+
+  .table-bordered {
+    border-color: var(--border-color);
+
+    th,
+    td {
+      border-color: var(--border-color);
+    }
+  }
+
+  .table-primary {
+    background-color: rgba(33, 150, 243, 0.15);
+  }
+
+  .table-success {
+    background-color: rgba(76, 175, 80, 0.15);
+  }
+
+  .table-danger {
+    background-color: rgba(244, 67, 54, 0.15);
+  }
+
+  .table-warning {
+    background-color: rgba(255, 152, 0, 0.15);
+  }
+
+  .table-info {
+    background-color: rgba(3, 169, 244, 0.15);
+  }
+
+  .table-light {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+}

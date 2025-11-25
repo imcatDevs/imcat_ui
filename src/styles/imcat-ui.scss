@@ -68,6 +68,34 @@
 @use 'components/empty-states';
 @use 'components/skeleton';
 @use 'components/timeline';
+@use 'components/dividers';
+@use 'components/blockquotes';
+@use 'components/code-blocks';
+@use 'components/callouts';
+@use 'components/figures';
+@use 'components/wells';
+@use 'components/videos';
+@use 'components/kbd';
+@use 'components/mark';
+@use 'components/text-utilities';
+@use 'components/embeds';
+@use 'components/ratios';
+@use 'components/navbar';
+@use 'components/menu';
+@use 'components/steps';
+@use 'components/button-group';
+@use 'components/link';
+@use 'components/tags';
+@use 'components/status-dots';
+@use 'components/counters';
+@use 'components/ribbons';
+@use 'components/rating';
+@use 'components/avatar-badge';
+@use 'components/file-upload';
+@use 'components/form-validation';
+@use 'components/fab';
+@use 'components/stats-cards';
+@use 'components/gauge';
 
 // ============================================
 // 5. Utilities (유틸리티 클래스)

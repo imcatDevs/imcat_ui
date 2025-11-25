@@ -1,0 +1,133 @@
+/**
+ * Status Dots Component
+ * 상태 점 표시 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Status Dot
+// ============================================
+
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+
+  &__indicator {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background-color: var(--text-secondary);
+  }
+}
+
+// ============================================
+// Status Variants
+// ============================================
+
+.status-dot--online .status-dot__indicator {
+  background-color: var(--success-color);
+}
+
+.status-dot--offline .status-dot__indicator {
+  background-color: var(--text-secondary);
+}
+
+.status-dot--busy .status-dot__indicator {
+  background-color: var(--danger-color);
+}
+
+.status-dot--away .status-dot__indicator {
+  background-color: var(--warning-color);
+}
+
+.status-dot--idle .status-dot__indicator {
+  background-color: var(--info-color);
+}
+
+// ============================================
+// Pulsing Animation
+// ============================================
+
+.status-dot--pulse .status-dot__indicator {
+  position: relative;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: inherit;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+// ============================================
+// Size Variants
+// ============================================
+
+.status-dot--sm .status-dot__indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.status-dot--lg .status-dot__indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+// ============================================
+// Position Variants (for use with avatars)
+// ============================================
+
+.status-dot--absolute {
+  position: absolute;
+  
+  .status-dot__indicator {
+    border: 2px solid var(--bg-primary);
+  }
+}
+
+.status-dot--top-right {
+  top: 0;
+  right: 0;
+}
+
+.status-dot--bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .status-dot--absolute .status-dot__indicator {
+    border-color: var(--bg-primary);
+  }
+}

@@ -1,0 +1,255 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "code",
+    "title": "Code Blocks 정보",
+    "content": "<p><strong>컴포넌트:</strong> Code Blocks</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _code-blocks.scss</p><p><strong>설명:</strong> 코드 표시 블록</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>Inline</h4><code>&lt;code&gt;inline code&lt;/code&gt;</code><h4>Block</h4><code>&lt;div class=\"code-block\"&gt;&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 인라인 코드",
+      "✅ 코드 블록",
+      "✅ 헤더 포함",
+      "✅ 다크/라이트 테마"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Code Blocks</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Code Blocks</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Inline Code -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Inline Code</h4>
+      </div>
+      <div class="card__body">
+        <p>
+          텍스트 중간에 <code>inline code</code>를 삽입할 수 있습니다.
+          예를 들어 <code>const greeting = 'Hello World';</code>와 같이 사용합니다.
+        </p>
+        <p>
+          CSS 속성도 표시할 수 있습니다: <code>display: flex</code>, <code>margin: 1rem</code>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Basic Code Block -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Code Block</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">기본 코드 블록 (다크 테마)</p>
+        <div class="code-block">
+          <pre><code>function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+const message = greet('World');
+console.log(message);</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Block with Header -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Code Block with Header</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">파일명과 언어 표시</p>
+        <div class="code-block code-block--with-header">
+          <div class="code-block__header">
+            <span class="code-block__title">app.js</span>
+            <span class="code-block__language">JavaScript</span>
+          </div>
+          <pre><code>import React from 'react';
+import ReactDOM from 'react-dom';
+
+function App() {
+  return (
+    &lt;div className="app"&gt;
+      &lt;h1&gt;Hello React&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Light Theme Code Block -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Light Theme Code Block</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">라이트 테마 코드 블록</p>
+        <div class="code-block code-block--light code-block--with-header">
+          <div class="code-block__header">
+            <span class="code-block__title">styles.css</span>
+            <span class="code-block__language">CSS</span>
+          </div>
+          <pre><code>.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HTML Example -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">HTML Example</h4>
+      </div>
+      <div class="card__body">
+        <div class="code-block code-block--with-header">
+          <div class="code-block__header">
+            <span class="code-block__title">index.html</span>
+            <span class="code-block__language">HTML</span>
+          </div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Python Example -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Python Example</h4>
+      </div>
+      <div class="card__body">
+        <div class="code-block code-block--with-header">
+          <div class="code-block__header">
+            <span class="code-block__title">main.py</span>
+            <span class="code-block__language">Python</span>
+          </div>
+          <pre><code>def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Print first 10 numbers
+for i in range(10):
+    print(fibonacci(i))</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON Example -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">JSON Example</h4>
+      </div>
+      <div class="card__body">
+        <div class="code-block code-block--with-header">
+          <div class="code-block__header">
+            <span class="code-block__title">package.json</span>
+            <span class="code-block__language">JSON</span>
+          </div>
+          <pre><code>{
+  "name": "imcat-ui",
+  "version": "1.0.0",
+  "description": "Modern UI Framework",
+  "main": "dist/imcat-ui.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:css": "sass src/styles/imcat-ui.scss dist/imcat-ui.css"
+  },
+  "keywords": ["ui", "framework", "components"],
+  "author": "IMCAT UI Team",
+  "license": "MIT"
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multiple Languages -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Multiple Languages in One View</h4>
+      </div>
+      <div class="card__body">
+        <p class="text-muted mb-3">여러 언어 예제</p>
+        
+        <h6 class="mb-2">JavaScript</h6>
+        <div class="code-block mb-3">
+          <pre><code>const arr = [1, 2, 3, 4, 5];
+const doubled = arr.map(x => x * 2);
+console.log(doubled); // [2, 4, 6, 8, 10]</code></pre>
+        </div>
+
+        <h6 class="mb-2">SCSS</h6>
+        <div class="code-block mb-3">
+          <pre><code>.button {
+  padding: 0.5rem 1rem;
+  background-color: $primary;
+  
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}</code></pre>
+        </div>
+
+        <h6 class="mb-2">Bash</h6>
+        <div class="code-block">
+          <pre><code>npm install imcat-ui
+npm run build
+npm run serve</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

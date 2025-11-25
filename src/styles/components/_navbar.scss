@@ -1,0 +1,232 @@
+/**
+ * Navbar Component
+ * 네비게이션 바 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Navbar
+// ============================================
+
+.navbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  z-index: 100;
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+
+    img {
+      height: 32px;
+      width: auto;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+    }
+
+    &--active {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+// ============================================
+// Navbar Variants
+// ============================================
+
+.navbar--light {
+  background-color: #ffffff;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar--dark {
+  background-color: #1a1a1a;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+
+  .navbar__brand,
+  .navbar__link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .navbar__link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.navbar--primary {
+  background-color: var(--primary-color);
+  border-bottom-color: transparent;
+
+  .navbar__brand,
+  .navbar__link {
+    color: #ffffff;
+  }
+
+  .navbar__link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar__link--active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+// ============================================
+// Navbar Positions
+// ============================================
+
+.navbar--fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar--fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: none;
+  border-top: 1px solid var(--border-color);
+}
+
+.navbar--sticky {
+  position: sticky;
+  top: 0;
+}
+
+// ============================================
+// Navbar Sizes
+// ============================================
+
+.navbar--sm {
+  padding: 0.75rem 1rem;
+
+  .navbar__brand {
+    font-size: 1.125rem;
+
+    img {
+      height: 24px;
+    }
+  }
+}
+
+.navbar--lg {
+  padding: 1.5rem 2rem;
+
+  .navbar__brand {
+    font-size: 1.5rem;
+
+    img {
+      height: 40px;
+    }
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+
+    &__nav {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding-top: 1rem;
+
+      &--open {
+        display: flex;
+      }
+    }
+
+    &__item {
+      width: 100%;
+    }
+
+    &__link {
+      padding: 0.75rem 1rem;
+      border-radius: 0;
+    }
+  }
+
+  .navbar__toggle {
+    display: block;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar__toggle {
+    display: none;
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .navbar {
+    background-color: var(--bg-primary);
+    border-bottom-color: var(--border-color);
+  }
+
+  .navbar--light {
+    background-color: var(--bg-secondary);
+  }
+}

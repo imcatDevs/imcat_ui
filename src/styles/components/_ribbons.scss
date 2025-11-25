@@ -1,0 +1,185 @@
+/**
+ * Ribbons Component
+ * 리본 배너 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Ribbon
+// ============================================
+
+.ribbon {
+  position: absolute;
+  padding: 0.5rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+
+  
+}
+
+// ============================================
+// Ribbon Positions
+// ============================================
+
+.ribbon--top-left {
+  top: 1rem;
+  left: -0.5rem;
+  
+  &::before {
+    bottom: -0.5rem;
+    left: 0;
+    border-width: 0.5rem 0 0 0.5rem;
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.2);
+  }
+}
+
+.ribbon--top-right {
+  top: 1rem;
+  right: -0.5rem;
+  
+  &::after {
+    bottom: -0.5rem;
+    right: 0;
+    border-width: 0.5rem 0.5rem 0 0;
+    border-color: transparent rgba(0, 0, 0, 0.2) transparent transparent;
+  }
+}
+
+.ribbon--corner-top-right {
+  top: 0;
+  right: 0;
+  padding: 1.5rem 2rem 0.5rem;
+  transform: translate(30%, -30%) rotate(45deg);
+  transform-origin: center;
+  min-width: 8rem;
+}
+
+.ribbon--corner-top-left {
+  top: 0;
+  left: 0;
+  padding: 1.5rem 2rem 0.5rem;
+  transform: translate(-30%, -30%) rotate(-45deg);
+  transform-origin: center;
+  min-width: 8rem;
+}
+
+// ============================================
+// Ribbon Variants
+// ============================================
+
+.ribbon--primary {
+  background-color: var(--primary-color);
+}
+
+.ribbon--secondary {
+  background-color: var(--secondary-color);
+}
+
+.ribbon--success {
+  background-color: var(--success-color);
+}
+
+.ribbon--danger {
+  background-color: var(--danger-color);
+}
+
+.ribbon--warning {
+  background-color: var(--warning-color);
+  color: #000000;
+}
+
+.ribbon--info {
+  background-color: var(--info-color);
+}
+
+// ============================================
+// Bookmark Ribbon
+// ============================================
+
+.ribbon--bookmark {
+  top: 0;
+  padding: 1rem 1rem 1.5rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background: linear-gradient(135deg, transparent 0.75rem, currentColor 0),
+                linear-gradient(-135deg, transparent 0.75rem, currentColor 0);
+    background-size: 50% 100%;
+    background-position: left bottom, right bottom;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+
+  &.ribbon--left {
+    left: 1rem;
+  }
+
+  &.ribbon--right {
+    right: 1rem;
+  }
+}
+
+// ============================================
+// Folded Ribbon
+// ============================================
+
+.ribbon--folded {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.75rem;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 1.5rem 0.75rem;
+    border-color: transparent transparent currentColor transparent;
+    opacity: 0.5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -0.75rem;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1.5rem 0.75rem 0 0;
+    border-color: currentColor transparent transparent transparent;
+    opacity: 0.5;
+  }
+}
+
+// ============================================
+// Ribbon Container
+// ============================================
+
+.ribbon-container {
+  position: relative;
+  overflow: hidden;
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .ribbon {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}

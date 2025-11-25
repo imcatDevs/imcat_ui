@@ -1,0 +1,147 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "link",
+    "title": "Link 정보",
+    "content": "<p><strong>컴포넌트:</strong> Link</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _link.scss</p><p><strong>설명:</strong> 링크 스타일</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;a href=\"#\" class=\"link\"&gt;Link Text&lt;/a&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ Primary/Secondary/Muted",
+      "✅ 밑줄 옵션",
+      "✅ External 링크 표시",
+      "✅ 다크 테마 지원"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Link</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Navigation</a></li>
+    <li class="breadcrumb-item active">Link</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Links -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Links</h4>
+      </div>
+      <div class="card__body">
+        <p>This is a <a href="#" class="link">basic link</a> in a paragraph.</p>
+        <p>Here is a <a href="#" class="link link--secondary">secondary link</a> example.</p>
+        <p>This is a <a href="#" class="link link--muted">muted link</a> for less emphasis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link Variants -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Link Variants</h4>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <a href="#" class="link">Primary Link (Default)</a>
+        </div>
+        <div class="mb-3">
+          <a href="#" class="link link--secondary">Secondary Link</a>
+        </div>
+        <div class="mb-3">
+          <a href="#" class="link link--muted">Muted Link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Underline Options -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">With Underline</h4>
+      </div>
+      <div class="card__body">
+        <p><a href="#" class="link link--underline">Link with underline</a></p>
+        <p><a href="#" class="link link--underline">Another underlined link</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Without Underline</h4>
+      </div>
+      <div class="card__body">
+        <p><a href="#" class="link link--no-underline">Link without underline</a></p>
+        <p><a href="#" class="link link--no-underline">Another plain link</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- External Links -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">External Links</h4>
+      </div>
+      <div class="card__body">
+        <p>Visit our <a href="https://example.com" class="link link--external">website</a> for more information.</p>
+        <p>Read the <a href="https://docs.example.com" class="link link--external">documentation</a> to get started.</p>
+        <p>Check out the <a href="https://github.com" class="link link--external link--no-underline">GitHub repository</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links in Context -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Links in Context</h4>
+      </div>
+      <div class="card__body">
+        <h5>Article Example</h5>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          <a href="#" class="link">Learn more about this topic</a> or 
+          <a href="#" class="link link--external">visit our blog</a> for detailed articles.
+        </p>
+        <p>
+          For support, please <a href="#" class="link">contact us</a> or 
+          check our <a href="#" class="link link--external">help center</a>.
+        </p>
+
+        <h5 class="mt-4">Navigation Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="link link--no-underline">Home</a></li>
+          <li><a href="#" class="link link--no-underline">About</a></li>
+          <li><a href="#" class="link link--no-underline">Services</a></li>
+          <li><a href="#" class="link link--no-underline">Contact</a></li>
+        </ul>
+
+        <h5 class="mt-4">Footer Links</h5>
+        <div class="d-flex gap-3">
+          <a href="#" class="link link--muted link--no-underline">Privacy</a>
+          <a href="#" class="link link--muted link--no-underline">Terms</a>
+          <a href="#" class="link link--muted link--no-underline">Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+/**
+ * Aspect Ratios Component
+ * 비율 유지 컨테이너
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Ratio Container
+// ============================================
+
+.ratio {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    display: block;
+    padding-top: var(--aspect-ratio);
+    content: "";
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ============================================
+// Predefined Ratios
+// ============================================
+
+.ratio-1x1 {
+  --aspect-ratio: 100%;
+}
+
+.ratio-4x3 {
+  --aspect-ratio: calc(3 / 4 * 100%);
+}
+
+.ratio-16x9 {
+  --aspect-ratio: calc(9 / 16 * 100%);
+}
+
+.ratio-21x9 {
+  --aspect-ratio: calc(9 / 21 * 100%);
+}
+
+.ratio-3x2 {
+  --aspect-ratio: calc(2 / 3 * 100%);
+}
+
+.ratio-2x3 {
+  --aspect-ratio: calc(3 / 2 * 100%);
+}
+
+.ratio-9x16 {
+  --aspect-ratio: calc(16 / 9 * 100%);
+}
+
+// ============================================
+// Object Fit Utilities
+// ============================================
+
+.ratio-cover > * {
+  object-fit: cover;
+}
+
+.ratio-contain > * {
+  object-fit: contain;
+}
+
+.ratio-fill > * {
+  object-fit: fill;
+}
+
+.ratio-none > * {
+  object-fit: none;
+}
+
+.ratio-scale-down > * {
+  object-fit: scale-down;
+}
+
+// ============================================
+// Ratio with Border/Shadow
+// ============================================
+
+.ratio-bordered {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.ratio-shadow {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+// ============================================
+// Ratio Container (with caption)
+// ============================================
+
+.ratio-container {
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .ratio-caption {
+    padding: 0.75rem 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+}
+
+// ============================================
+// Ratio Grid
+// ============================================
+
+.ratio-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  .ratio {
+    margin-bottom: 0;
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .ratio-bordered {
+    border-color: var(--border-color);
+  }
+
+  .ratio-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .ratio-container .ratio-caption {
+    color: var(--text-secondary);
+  }
+}

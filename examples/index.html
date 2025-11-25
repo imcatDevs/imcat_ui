@@ -57,7 +57,12 @@
       <!-- Topbar Start -->
       <header class="app-topbar">
         <div class="topbar-menu">
-          <div class="d-flex align-items-center gap-2">            
+          <div class="d-flex align-items-center gap-2">
+            <!-- Mobile Sidebar Toggle -->
+            <button class="topbar-link btn-icon d-lg-none" id="mobileSidebarToggle" title="Menu">
+              <i class="material-icons-outlined">menu</i>
+            </button>
+            
             <!-- Page Title -->
             <h4 class="page-title" id="pageTitle">IMCAT UI Component Library</h4>
           </div>
@@ -234,15 +239,38 @@
         IMCAT(document.body).toggleClass('sidebar-minimized');
       });
 
+      // Mobile Sidebar Toggle (모바일에서 사이드바 열기)
+      IMCAT('#mobileSidebarToggle').on('click', () => {
+        IMCAT('.sidenav-menu').addClass('show');
+      });
+
       // Sidebar Close
       IMCAT('#sidebarClose').on('click', () => {
         IMCAT('.sidenav-menu').removeClass('show');
+      });
+
+      // 모바일에서 오버레이 클릭 시 사이드바 닫기
+      document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidenav-menu');
+        const mobileToggle = document.querySelector('#mobileSidebarToggle');
+        
+        // 사이드바가 열려있고, 사이드바 외부 클릭 시
+        if (sidebar && sidebar.classList.contains('show')) {
+          if (!sidebar.contains(e.target) && e.target !== mobileToggle && !mobileToggle.contains(e.target)) {
+            sidebar.classList.remove('show');
+          }
+        }
       });
 
       // Page Load Handler
       IMCAT.view.afterLoad((path) => {
         updateActiveMenu(path);
         updatePageTitle();
+        
+        // 모바일에서 페이지 로드 시 사이드바 닫기
+        if (window.innerWidth < 992) {
+          IMCAT('.sidenav-menu').removeClass('show');
+        }
       });
     });
 

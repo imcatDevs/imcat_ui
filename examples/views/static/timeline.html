@@ -1,0 +1,345 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "timeline",
+    "title": "Timeline 정보",
+    "content": "<p><strong>컴포넌트:</strong> Timeline</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _timeline.scss</p><p><strong>설명:</strong> 시간순 이벤트 표시</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;ul class=\"timeline\"&gt;<br>&nbsp;&nbsp;&lt;li class=\"timeline__item\"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"timeline__marker\"&gt;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"timeline__content\"&gt;...&lt;/div&gt;<br>&nbsp;&nbsp;&lt;/li&gt;<br>&lt;/ul&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 기본 타임라인",
+      "✅ 아이콘 타임라인",
+      "✅ 색상 변형",
+      "✅ 센터 정렬"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Timeline</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Timeline</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Timeline -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Timeline</h4>
+      </div>
+      <div class="card__body">
+        <ul class="timeline">
+          <li class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">프로젝트 시작</h5>
+                <span class="timeline__time">2024-01-15</span>
+              </div>
+              <p class="timeline__description">
+                새로운 프로젝트가 시작되었습니다. 팀원들과 킥오프 미팅을 진행했습니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--success"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">디자인 완료</h5>
+                <span class="timeline__time">2024-02-01</span>
+              </div>
+              <p class="timeline__description">
+                UI/UX 디자인이 완료되어 개발 단계로 진행합니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--info"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">개발 진행 중</h5>
+                <span class="timeline__time">2024-02-15</span>
+              </div>
+              <p class="timeline__description">
+                프론트엔드와 백엔드 개발이 동시에 진행되고 있습니다.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline with Icon -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Timeline with Icons</h4>
+      </div>
+      <div class="card__body">
+        <ul class="timeline timeline--with-icon">
+          <li class="timeline__item">
+            <div class="timeline__icon timeline__icon--primary">
+              <i class="material-icons-outlined">rocket_launch</i>
+            </div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">프로젝트 런칭</h5>
+                <span class="timeline__time">10:00 AM</span>
+              </div>
+              <p class="timeline__description">
+                프로젝트가 성공적으로 런칭되었습니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon timeline__icon--success">
+              <i class="material-icons-outlined">check_circle</i>
+            </div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">첫 주문 완료</h5>
+                <span class="timeline__time">11:30 AM</span>
+              </div>
+              <p class="timeline__description">
+                첫 번째 고객 주문이 접수되었습니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon timeline__icon--warning">
+              <i class="material-icons-outlined">warning</i>
+            </div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">서버 경고</h5>
+                <span class="timeline__time">2:00 PM</span>
+              </div>
+              <p class="timeline__description">
+                서버 부하가 증가하고 있습니다. 모니터링 중입니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__icon timeline__icon--success">
+              <i class="material-icons-outlined">done_all</i>
+            </div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">문제 해결</h5>
+                <span class="timeline__time">3:30 PM</span>
+              </div>
+              <p class="timeline__description">
+                서버 최적화 완료. 모든 시스템 정상 작동 중입니다.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simple Timeline (No Card) -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Simple Timeline</h4>
+      </div>
+      <div class="card__body">
+        <ul class="timeline timeline--simple">
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--primary"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">회의 예정</h5>
+                <span class="timeline__time">오후 2:00</span>
+              </div>
+              <p class="timeline__description">
+                팀 미팅이 예정되어 있습니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--success"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">코드 리뷰</h5>
+                <span class="timeline__time">오후 4:00</span>
+              </div>
+              <p class="timeline__description">
+                PR 리뷰가 필요합니다.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--warning"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">배포 예정</h5>
+                <span class="timeline__time">오후 6:00</span>
+              </div>
+              <p class="timeline__description">
+                프로덕션 배포 예정입니다.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compact Timeline -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Compact Timeline</h4>
+      </div>
+      <div class="card__body">
+        <ul class="timeline timeline--compact">
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--primary"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">로그인</h5>
+                <span class="timeline__time">09:00</span>
+              </div>
+              <p class="timeline__description">사용자가 로그인했습니다.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--info"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">프로필 수정</h5>
+                <span class="timeline__time">09:15</span>
+              </div>
+              <p class="timeline__description">프로필 정보를 업데이트했습니다.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--success"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">파일 업로드</h5>
+                <span class="timeline__time">09:30</span>
+              </div>
+              <p class="timeline__description">3개의 파일을 업로드했습니다.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__marker timeline__marker--danger"></div>
+            <div class="timeline__content">
+              <div class="timeline__header">
+                <h5 class="timeline__title">삭제</h5>
+                <span class="timeline__time">09:45</span>
+              </div>
+              <p class="timeline__description">1개의 항목을 삭제했습니다.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real World Example - Order Tracking -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Real World Example - Order Tracking</h4>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <ul class="timeline timeline--with-icon">
+              <li class="timeline__item">
+                <div class="timeline__icon timeline__icon--success">
+                  <i class="material-icons-outlined">shopping_cart</i>
+                </div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <h5 class="timeline__title">주문 접수</h5>
+                    <span class="timeline__time">2024-03-15 10:30</span>
+                  </div>
+                  <p class="timeline__description">
+                    주문이 성공적으로 접수되었습니다. 주문번호: #ORD-12345
+                  </p>
+                </div>
+              </li>
+              <li class="timeline__item">
+                <div class="timeline__icon timeline__icon--success">
+                  <i class="material-icons-outlined">payment</i>
+                </div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <h5 class="timeline__title">결제 완료</h5>
+                    <span class="timeline__time">2024-03-15 10:31</span>
+                  </div>
+                  <p class="timeline__description">
+                    결제가 완료되었습니다. 결제 금액: ₩129,000
+                  </p>
+                </div>
+              </li>
+              <li class="timeline__item">
+                <div class="timeline__icon timeline__icon--info">
+                  <i class="material-icons-outlined">inventory_2</i>
+                </div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <h5 class="timeline__title">상품 준비 중</h5>
+                    <span class="timeline__time">2024-03-15 14:00</span>
+                  </div>
+                  <p class="timeline__description">
+                    주문하신 상품을 포장하고 있습니다.
+                  </p>
+                </div>
+              </li>
+              <li class="timeline__item">
+                <div class="timeline__icon timeline__icon--primary">
+                  <i class="material-icons-outlined">local_shipping</i>
+                </div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <h5 class="timeline__title">배송 시작</h5>
+                    <span class="timeline__time">2024-03-16 09:00</span>
+                  </div>
+                  <p class="timeline__description">
+                    상품이 배송되기 시작했습니다. 운송장번호: 123456789012
+                  </p>
+                </div>
+              </li>
+              <li class="timeline__item">
+                <div class="timeline__icon timeline__icon--success">
+                  <i class="material-icons-outlined">check_circle</i>
+                </div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <h5 class="timeline__title">배송 완료</h5>
+                    <span class="timeline__time">예상: 2024-03-17</span>
+                  </div>
+                  <p class="timeline__description">
+                    곧 배송이 완료됩니다. 문앞 배송 예정입니다.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

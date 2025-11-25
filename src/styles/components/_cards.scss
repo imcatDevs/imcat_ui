@@ -387,8 +387,8 @@ $card-footer-padding: 1rem 1.5rem !default;
 
 [data-theme="dark"] {
   .card {
-    background-color: var(--dark-bg-elevated);
-    border-color: var(--dark-border-color);
+    background-color: var(--bg-elevated);
+    border-color: var(--border-color);
 
     &:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -397,17 +397,17 @@ $card-footer-padding: 1rem 1.5rem !default;
 
   .card__header,
   .card__footer {
-    background-color: var(--dark-bg-secondary);
-    border-color: var(--dark-border-color);
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
   }
 
   .card__title {
-    color: var(--dark-text-primary);
+    color: var(--text-primary);
   }
 
   .card__subtitle,
   .card__text {
-    color: var(--dark-text-primary);
+    color: var(--text-primary);
   }
 
   .card__link {
@@ -419,6 +419,6 @@ $card-footer-padding: 1rem 1.5rem !default;
   }
 
   .card__list-item {
-    border-color: var(--dark-border-color);
+    border-color: var(--border-color);
   }
 }

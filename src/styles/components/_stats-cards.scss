@@ -1,0 +1,308 @@
+/**
+ * Stats Cards Component
+ * 통계 카드 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Stats Card
+// ============================================
+
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-color);
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__trend {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+
+    i {
+      font-size: 1rem;
+    }
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1;
+  }
+
+  &__subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  &__footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+}
+
+// ============================================
+// Trend Variants
+// ============================================
+
+.stats-card__trend--up {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stats-card__trend--down {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+}
+
+.stats-card__trend--neutral {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+// ============================================
+// Icon Variants
+// ============================================
+
+.stats-card__icon--primary {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--primary-color);
+}
+
+.stats-card__icon--success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stats-card__icon--danger {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+}
+
+.stats-card__icon--warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.stats-card__icon--info {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+// ============================================
+// Horizontal Layout
+// ============================================
+
+.stats-card--horizontal {
+  flex-direction: row;
+  align-items: center;
+
+  .stats-card__header {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  .stats-card__icon {
+    width: 4rem;
+    height: 4rem;
+
+    i {
+      font-size: 2rem;
+    }
+  }
+
+  .stats-card__body {
+    flex: 1;
+  }
+
+  .stats-card__trend {
+    margin-left: auto;
+  }
+
+  .stats-card__footer {
+    margin-top: 0.5rem;
+  }
+}
+
+// ============================================
+// Compact Stats Card
+// ============================================
+
+.stats-card--compact {
+  padding: 1rem;
+
+  .stats-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+
+  .stats-card__value {
+    font-size: 1.5rem;
+  }
+}
+
+// ============================================
+// Stats Card with Chart
+// ============================================
+
+.stats-card--with-chart {
+  .stats-card__chart {
+    height: 80px;
+    margin-top: 1rem;
+    background: linear-gradient(to top, rgba(79, 70, 229, 0.1), transparent);
+    border-radius: 0.25rem;
+  }
+}
+
+// ============================================
+// Colored Stats Card
+// ============================================
+
+.stats-card--colored {
+  color: #ffffff;
+  border: none;
+
+  .stats-card__title,
+  .stats-card__subtitle,
+  .stats-card__footer {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .stats-card__value {
+    color: #ffffff;
+  }
+
+  .stats-card__icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .stats-card__footer {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.stats-card--primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #5b51d8 100%);
+}
+
+.stats-card--success {
+  background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+}
+
+.stats-card--danger {
+  background: linear-gradient(135deg, var(--danger-color) 0%, #b91c1c 100%);
+}
+
+.stats-card--warning {
+  background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);
+}
+
+.stats-card--info {
+  background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);
+}
+
+// ============================================
+// Stats Grid
+// ============================================
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-card--horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .stats-card__header {
+      width: 100%;
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+
+    .stats-card__trend {
+      margin-left: 0;
+    }
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .stats-card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+
+    &:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .stats-card__footer {
+    border-top-color: var(--border-color);
+  }
+}

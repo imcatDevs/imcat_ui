@@ -1,0 +1,196 @@
+/**
+ * Rating Component
+ * 별점 표시 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Rating
+// ============================================
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.25rem;
+  color: var(--warning-color);
+
+  &__star {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    i {
+      font-size: inherit;
+    }
+
+    &--filled {
+      color: var(--warning-color);
+    }
+
+    &--empty {
+      color: var(--border-color);
+    }
+
+    &--half {
+      position: relative;
+      color: var(--border-color);
+
+      &::before {
+        content: 'star_half';
+        font-family: 'Material Icons Outlined';
+        position: absolute;
+        left: 0;
+        color: var(--warning-color);
+      }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// ============================================
+// Rating Variants
+// ============================================
+
+.rating--primary {
+  color: var(--primary-color);
+
+  .rating__star--filled,
+  .rating__star--half::before {
+    color: var(--primary-color);
+  }
+}
+
+.rating--success {
+  color: var(--success-color);
+
+  .rating__star--filled,
+  .rating__star--half::before {
+    color: var(--success-color);
+  }
+}
+
+.rating--danger {
+  color: var(--danger-color);
+
+  .rating__star--filled,
+  .rating__star--half::before {
+    color: var(--danger-color);
+  }
+}
+
+.rating--info {
+  color: var(--info-color);
+
+  .rating__star--filled,
+  .rating__star--half::before {
+    color: var(--info-color);
+  }
+}
+
+// ============================================
+// Rating Sizes
+// ============================================
+
+.rating--sm {
+  font-size: 1rem;
+  gap: 0.125rem;
+}
+
+.rating--lg {
+  font-size: 1.5rem;
+  gap: 0.375rem;
+}
+
+.rating--xl {
+  font-size: 2rem;
+  gap: 0.5rem;
+}
+
+// ============================================
+// Rating Read-only
+// ============================================
+
+.rating--readonly {
+  .rating__star {
+    cursor: default;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// ============================================
+// Rating with Label
+// ============================================
+
+.rating--with-label {
+  .rating__label {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .rating__count {
+    margin-left: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+}
+
+// ============================================
+// Heart Rating
+// ============================================
+
+.rating--hearts {
+  .rating__star {
+    i::before {
+      content: 'favorite';
+    }
+
+    &--empty i::before {
+      content: 'favorite_border';
+    }
+
+    &--half::before {
+      content: 'favorite';
+      width: 50%;
+      overflow: hidden;
+    }
+  }
+}
+
+// ============================================
+// Thumbs Rating
+// ============================================
+
+.rating--thumbs {
+  gap: 0.5rem;
+
+  .rating__star {
+    i::before {
+      content: 'thumb_up';
+    }
+
+    &--empty i::before {
+      content: 'thumb_up_off_alt';
+    }
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .rating__star--empty {
+    color: var(--border-color);
+  }
+}

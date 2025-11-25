@@ -1,0 +1,169 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "announcement",
+    "title": "Callouts 정보",
+    "content": "<p><strong>컴포넌트:</strong> Callouts</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _callouts.scss</p><p><strong>설명:</strong> 정보 강조 박스</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;div class=\"callout callout--primary\"&gt;<br>&nbsp;&nbsp;&lt;div class=\"callout__title\"&gt;Title&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div class=\"callout__content\"&gt;Content&lt;/div&gt;<br>&lt;/div&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 5가지 색상 변형",
+      "✅ 아이콘 지원",
+      "✅ 3가지 크기",
+      "✅ 테두리 제거 옵션"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Callouts</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Content</a></li>
+    <li class="breadcrumb-item active">Callouts</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Callouts -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Callouts</h4>
+      </div>
+      <div class="card__body">
+        <div class="callout callout--primary">
+          <div class="callout__title">
+            <i class="material-icons-outlined">info</i>
+            참고사항
+          </div>
+          <div class="callout__content">
+            <p>이것은 기본 Callout 박스입니다. 중요한 정보를 강조하는 데 사용됩니다.</p>
+          </div>
+        </div>
+
+        <div class="callout callout--success">
+          <div class="callout__title">
+            <i class="material-icons-outlined">check_circle</i>
+            성공
+          </div>
+          <div class="callout__content">
+            <p>작업이 성공적으로 완료되었습니다!</p>
+          </div>
+        </div>
+
+        <div class="callout callout--warning">
+          <div class="callout__title">
+            <i class="material-icons-outlined">warning</i>
+            경고
+          </div>
+          <div class="callout__content">
+            <p>이 작업은 되돌릴 수 없습니다. 신중하게 진행하세요.</p>
+          </div>
+        </div>
+
+        <div class="callout callout--danger">
+          <div class="callout__title">
+            <i class="material-icons-outlined">error</i>
+            오류
+          </div>
+          <div class="callout__content">
+            <p>오류가 발생했습니다. 관리자에게 문의하세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Callout Sizes -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Small Callout</h4>
+      </div>
+      <div class="card__body">
+        <div class="callout callout--info callout--sm">
+          <div class="callout__title">
+            <i class="material-icons-outlined">lightbulb</i>
+            팁
+          </div>
+          <div class="callout__content">
+            <p>작은 크기의 Callout입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Large Callout</h4>
+      </div>
+      <div class="card__body">
+        <div class="callout callout--primary callout--lg">
+          <div class="callout__title">
+            <i class="material-icons-outlined">campaign</i>
+            공지사항
+          </div>
+          <div class="callout__content">
+            <p>큰 크기의 Callout입니다. 더 많은 콘텐츠를 담을 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Borderless Callout -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Borderless Callout</h4>
+      </div>
+      <div class="card__body">
+        <div class="callout callout--success callout--borderless">
+          <div class="callout__title">
+            <i class="material-icons-outlined">done_all</i>
+            완료
+          </div>
+          <div class="callout__content">
+            <p>왼쪽 테두리가 없는 Callout입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- With Code Example -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">With Code Example</h4>
+      </div>
+      <div class="card__body">
+        <div class="callout callout--primary">
+          <div class="callout__title">
+            <i class="material-icons-outlined">code</i>
+            코드 예제
+          </div>
+          <div class="callout__content">
+            <p>다음 코드를 사용하여 컴포넌트를 초기화할 수 있습니다:</p>
+            <p><code>const component = new Component();</code></p>
+            <p>자세한 내용은 <a href="#">문서</a>를 참조하세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

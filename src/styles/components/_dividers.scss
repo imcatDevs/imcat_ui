@@ -1,0 +1,167 @@
+/**
+ * Dividers Component
+ * 구분선 컴포넌트
+ */
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Base Divider
+// ============================================
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color, #e0e0e0);
+  border: none;
+  margin: 1.5rem 0;
+
+  &--sm {
+    margin: 1rem 0;
+  }
+
+  &--lg {
+    margin: 2rem 0;
+  }
+
+  &--xl {
+    margin: 3rem 0;
+  }
+}
+
+// ============================================
+// Divider with Text
+// ============================================
+
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary, rgba(0, 0, 0, 0.6));
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color, #e0e0e0);
+  }
+}
+
+// ============================================
+// Divider with Icon
+// ============================================
+
+.divider-icon {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  gap: 1rem;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color, #e0e0e0);
+  }
+
+  .material-icons-outlined {
+    font-size: 20px;
+    color: var(--text-secondary, rgba(0, 0, 0, 0.6));
+  }
+}
+
+// ============================================
+// Vertical Divider
+// ============================================
+
+.divider-vertical {
+  display: inline-block;
+  width: 1px;
+  height: 24px;
+  background-color: var(--border-color, #e0e0e0);
+  margin: 0 0.75rem;
+  vertical-align: middle;
+
+  &--sm {
+    height: 16px;
+  }
+
+  &--lg {
+    height: 32px;
+  }
+}
+
+// ============================================
+// Divider Styles
+// ============================================
+
+.divider--dashed {
+  background-image: linear-gradient(
+    to right,
+    var(--border-color, #e0e0e0) 50%,
+    transparent 50%
+  );
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+  background-color: transparent;
+}
+
+.divider--dotted {
+  background-image: linear-gradient(
+    to right,
+    var(--border-color, #e0e0e0) 50%,
+    transparent 50%
+  );
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  background-color: transparent;
+}
+
+.divider--thick {
+  height: 2px;
+}
+
+.divider--primary {
+  background-color: #2196f3;
+}
+
+.divider--success {
+  background-color: #4caf50;
+}
+
+.divider--danger {
+  background-color: #f44336;
+}
+
+.divider--warning {
+  background-color: #ff9800;
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .divider {
+    background-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+  }
+
+  .divider-text,
+  .divider-icon {
+    color: var(--dark-text-secondary, rgba(255, 255, 255, 0.6));
+
+    &::before,
+    &::after {
+      background-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+    }
+  }
+
+  .divider-vertical {
+    background-color: var(--dark-border-color, rgba(255, 255, 255, 0.12));
+  }
+}

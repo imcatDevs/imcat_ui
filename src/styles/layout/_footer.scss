@@ -22,6 +22,76 @@
   @media (max-width: 1024px) {
     margin-left: 0;
   }
+
+  // Footer Component Styles
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  &__col {
+    h5 {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &__bottom {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  // Footer Variant - Dark
+  &--dark {
+    background-color: #1a1a1a;
+    border-top-color: rgba(255, 255, 255, 0.1);
+
+    .footer__col a {
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+
+    .footer__bottom {
+      border-top-color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
 }
 
 // Sidebar Minimized State

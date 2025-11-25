@@ -1,0 +1,249 @@
+<!-- Page Metadata -->
+<script type="application/json" id="pageMetadata">
+{
+  "info": {
+    "icon": "linear_scale",
+    "title": "Steps 정보",
+    "content": "<p><strong>컴포넌트:</strong> Steps</p><p><strong>타입:</strong> Static Component</p><p><strong>파일:</strong> _steps.scss</p><p><strong>설명:</strong> 단계 표시 컴포넌트</p>"
+  },
+  "usage": {
+    "icon": "code",
+    "title": "기본 사용법",
+    "content": "<h4>HTML</h4><code>&lt;ul class=\"steps\"&gt;<br>&nbsp;&nbsp;&lt;li class=\"steps__item steps__item--active\"&gt;...&lt;/li&gt;<br>&lt;/ul&gt;</code>"
+  },
+  "features": {
+    "icon": "check_circle",
+    "title": "주요 기능",
+    "items": [
+      "✅ 수평/수직 레이아웃",
+      "✅ Active/Completed 상태",
+      "✅ 3가지 크기",
+      "✅ 다크 테마 지원"
+    ]
+  }
+}
+</script>
+
+<!-- Page Title -->
+<div class="page-title-box">
+  <h4 class="page-title">Steps</h4>
+  <ol class="breadcrumb m-0">
+    <li class="breadcrumb-item"><a href="#">IMCAT UI</a></li>
+    <li class="breadcrumb-item"><a href="#">Navigation</a></li>
+    <li class="breadcrumb-item active">Steps</li>
+  </ol>
+</div>
+
+<!-- Content Start -->
+<div class="row">
+  <!-- Basic Steps -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Basic Steps</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">계정 생성</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--active">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">정보 입력</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">결제</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>4</span></div>
+              <div class="steps__label">완료</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Completed -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">All Steps Completed</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">주문 확인</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">배송 중</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">배송 완료</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertical Steps -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Vertical Steps</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps steps--vertical">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">가입 신청</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">이메일 인증</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--active">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">프로필 작성</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>4</span></div>
+              <div class="steps__label">완료</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small Vertical Steps -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Small Vertical Steps</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps steps--vertical steps--sm">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">단계 1</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--active">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">단계 2</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">단계 3</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step Sizes -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Small Steps</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps steps--sm">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">Step 1</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--active">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">Step 2</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">Step 3</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h4 class="card__title">Large Steps</h4>
+      </div>
+      <div class="card__body">
+        <ul class="steps steps--lg">
+          <li class="steps__item steps__item--completed">
+            <div class="steps__step">
+              <div class="steps__number"><span>1</span></div>
+              <div class="steps__label">개인 정보</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item steps__item--active">
+            <div class="steps__step">
+              <div class="steps__number"><span>2</span></div>
+              <div class="steps__label">연락처</div>
+            </div>
+            <div class="steps__line"></div>
+          </li>
+          <li class="steps__item">
+            <div class="steps__step">
+              <div class="steps__number"><span>3</span></div>
+              <div class="steps__label">확인</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

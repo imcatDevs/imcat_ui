@@ -301,9 +301,16 @@
 
         // Add menu items
         section.items.forEach(item => {
-          const badgeHtml = item.badge 
-            ? '<span class="badge badge--dot badge--danger"></span>' 
-            : '';
+          // Badge 상태에 따라 표시
+          let badgeHtml = '';
+          if (item.badge === 'complete' || item.badge === false) {
+            // 예제 완료: 녹색 체크
+            badgeHtml = '<span class="badge--complete"></span>';
+          } else if (item.badge === 'pending' || item.badge === true) {
+            // 예제 미구현: X
+            badgeHtml = '<span class="badge--pending"></span>';
+          }
+          // badge 속성이 없으면 아무것도 표시 안 함
           
           const itemHtml = `
             <li class="side-nav-item">

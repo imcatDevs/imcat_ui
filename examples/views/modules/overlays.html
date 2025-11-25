@@ -1,0 +1,1511 @@
+<!-- 페이지 헤더 -->
+<div style="margin-bottom: 1.5rem;">
+  <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--text-primary);">Overlays & Dialogs</h2>
+</div>
+
+<!-- 컨텐츠 -->
+<div class="row">
+  
+  <!-- 1. Modal -->
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">Modal</h3>
+      </div>
+      <div class="card__body">
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_modal_basic()">기본 모달</button>
+          <button class="btn btn--secondary" onclick="demo_modal_small()">Small 모달</button>
+          <button class="btn btn--success" onclick="demo_modal_large()">Large 모달</button>
+          <button class="btn btn--info" onclick="demo_modal_fullscreen()">전체화면 모달</button>
+        </div>
+        <div style="margin-top: 0.25rem; margin-bottom: 0.25rem; height: 1px; background: var(--border-color, #e0e0e0);"></div>
+        <div class="mb-2">
+          <button class="btn btn--warning" onclick="demo_modal_confirm()">Confirm Dialog</button>
+          <button class="btn btn--danger" onclick="demo_modal_alert()">Alert Dialog</button>
+        </div>
+        <div style="margin-top: 0.25rem; margin-bottom: 0.25rem; height: 1px; background: var(--border-color, #e0e0e0);"></div>
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_modal_form()">로그인 폼</button>
+          <button class="btn btn--success" onclick="demo_modal_settings()">설정 패널</button>
+          <button class="btn btn--danger" onclick="demo_modal_delete()">삭제 확인</button>
+          <button class="btn btn--info" onclick="demo_modal_notifications()">알림 목록</button>
+        </div>
+        <div style="margin-top: 0.25rem; margin-bottom: 0.25rem; height: 1px; background: var(--border-color, #e0e0e0);"></div>
+        <div class="mb-2">
+          <button class="btn btn--warning" onclick="demo_modal_notice()">공지사항</button>
+          <button class="btn btn--warning" onclick="demo_modal_multi_notices()">여러 공지사항 (3개)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Drawer -->
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">Drawer</h3>
+      </div>
+      <div class="card__body">
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_drawer_left()">
+            <i class="material-icons-outlined">chevron_right</i>
+            Left Drawer
+          </button>
+          <button class="btn btn--secondary" onclick="demo_drawer_right()">
+            Right Drawer
+            <i class="material-icons-outlined">chevron_left</i>
+          </button>
+          <button class="btn btn--success" onclick="demo_drawer_top()">
+            <i class="material-icons-outlined">expand_more</i>
+            Top Drawer
+          </button>
+          <button class="btn btn--info" onclick="demo_drawer_bottom()">
+            <i class="material-icons-outlined">expand_less</i>
+            Bottom Drawer
+          </button>
+        </div>
+        <div style="margin-top: 0.25rem; margin-bottom: 0.25rem; height: 1px; background: var(--border-color, #e0e0e0);"></div>
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_drawer_navigation()">
+            <i class="material-icons-outlined">menu</i>
+            네비게이션 메뉴
+          </button>
+          <button class="btn btn--success" onclick="demo_drawer_filter()">
+            <i class="material-icons-outlined">filter_list</i>
+            필터 패널
+          </button>
+          <button class="btn btn--info" onclick="demo_drawer_notifications()">
+            <i class="material-icons-outlined">notifications</i>
+            알림 센터
+          </button>
+          <button class="btn btn--warning" onclick="demo_drawer_cart()">
+            <i class="material-icons-outlined">shopping_cart</i>
+            장바구니
+          </button>
+          <button class="btn btn--secondary" onclick="demo_drawer_profile()">
+            <i class="material-icons-outlined">person</i>
+            프로필
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Offcanvas -->
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">Offcanvas</h3>
+      </div>
+      <div class="card__body">
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_offcanvas()">
+            <i class="material-icons-outlined">notifications</i>
+            Offcanvas 열기
+          </button>
+          <button class="btn btn--success" onclick="demo_offcanvas_search()">
+            <i class="material-icons-outlined">search</i>
+            검색 패널
+          </button>
+          <button class="btn btn--info" onclick="demo_offcanvas_help()">
+            <i class="material-icons-outlined">help_outline</i>
+            도움말
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Lightbox -->
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">Lightbox</h3>
+      </div>
+      <div class="card__body">
+        <div class="demo-gallery mb-2">
+          <div class="demo-gallery__item" onclick="demo_lightbox(0)" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); cursor: pointer; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; border-radius: 8px; margin: 0.25rem;">
+            <div>
+              <i class="material-icons-outlined" style="font-size: 3rem;">image</i>
+              <div>Image 1</div>
+            </div>
+          </div>
+          <div class="demo-gallery__item" onclick="demo_lightbox(1)" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); cursor: pointer; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; border-radius: 8px; margin: 0.25rem;">
+            <div>
+              <i class="material-icons-outlined" style="font-size: 3rem;">image</i>
+              <div>Image 2</div>
+            </div>
+          </div>
+          <div class="demo-gallery__item" onclick="demo_lightbox(2)" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); cursor: pointer; height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; border-radius: 8px; margin: 0.25rem;">
+            <div>
+              <i class="material-icons-outlined" style="font-size: 3rem;">image</i>
+              <div>Image 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 이벤트 -->
+  <div class="col-12 mb-3">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">이벤트</h3>
+      </div>
+      <div class="card__body">
+        <div class="mb-2">
+          <button class="btn btn--primary" onclick="demo_events()">이벤트 예제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- JavaScript -->
+<script type="module">
+// Overlays 모듈 로드
+const Overlays = await IMCAT.use('overlays');
+
+// ============================================
+// 1. Modal 예제
+// ============================================
+
+// 기본 모달
+window.demo_modal_basic = function() {
+  const modal = new Overlays.Modal({
+    title: '기본 모달',
+    content: `
+      <p>이것은 기본 모달입니다.</p>
+      <p>백드롭을 클릭하거나 ESC 키를 눌러 닫을 수 있습니다.</p>
+    `,
+    size: 'md',
+    buttons: [
+      { text: '취소', action: 'close' },
+      { 
+        text: '확인', 
+        type: 'primary',
+        action: () => {
+          console.log('확인 클릭!');
+          modal.hide();
+        }
+      }
+    ]
+  });
+  modal.show();
+
+  // Router에 등록 (자동 메모리 관리)
+  IMCAT.view.registerInstance(modal);
+};
+
+// Small 모달
+window.demo_modal_small = function() {
+  const modal = new Overlays.Modal({
+    title: 'Small 모달',
+    content: '<p>작은 크기의 모달입니다.</p>',
+    size: 'sm',
+    buttons: [
+      { text: '닫기', type: 'primary', action: 'close' }
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// Large 모달
+window.demo_modal_large = function() {
+  const modal = new Overlays.Modal({
+    title: 'Large 모달',
+    content: `
+      <p>큰 크기의 모달입니다.</p>
+      <p>많은 내용을 담을 수 있습니다.</p>
+      ${Array(10).fill('<p>Lorem ipsum dolor sit amet...</p>').join('')}
+    `,
+    size: 'lg',
+    scrollable: true,
+    buttons: [
+      { text: '닫기', type: 'primary', action: 'close' }
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 전체화면 모달
+window.demo_modal_fullscreen = function() {
+  const modal = new Overlays.Modal({
+    title: '전체화면 모달',
+    content: '<p>전체 화면을 차지하는 모달입니다.</p>',
+    fullscreen: true,
+    buttons: [
+      { text: '닫기', type: 'primary', action: 'close' }
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// Confirm Dialog
+window.demo_modal_confirm = async function() {
+  const result = await Overlays.Modal.confirm({
+    title: '삭제 확인',
+    content: '정말로 삭제하시겠습니까?<br>이 작업은 되돌릴 수 없습니다.',
+    confirmText: '삭제',
+    cancelText: '취소'
+  });
+
+  if (result) {
+    await Overlays.Modal.alert({
+      title: '삭제됨',
+      content: '항목이 삭제되었습니다.'
+    });
+  } else {
+    console.log('취소됨');
+  }
+};
+
+// Alert Dialog
+window.demo_modal_alert = async function() {
+  await Overlays.Modal.alert({
+    title: '알림',
+    content: '이것은 알림 메시지입니다.',
+    confirmText: '확인'
+  });
+};
+
+// 로그인 폼 모달
+window.demo_modal_form = function() {
+  const modal = new Overlays.Modal({
+    title: '로그인',
+    content: `
+      <form class="form">
+        <div class="form-group">
+          <label class="form-label">이메일</label>
+          <input 
+            type="email" 
+            class="form-control"
+            placeholder="email@example.com"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">비밀번호</label>
+          <input 
+            type="password" 
+            class="form-control"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" />
+            <span class="form-check-label">로그인 상태 유지</span>
+          </label>
+        </div>
+      </form>
+    `,
+    size: 'sm',
+    buttons: [
+      { text: '취소', action: 'close' },
+      { text: '로그인', type: 'primary', action: () => {
+        console.log('로그인 처리');
+        modal.hide();
+      }}
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 설정 패널 모달
+window.demo_modal_settings = function() {
+  const modal = new Overlays.Modal({
+    title: '설정',
+    content: `
+      <div>
+        <div class="form-section">
+          <h4 class="form-section-title">알림 설정</h4>
+          <label class="form-check form-switch">
+            <span class="form-check-label">이메일 알림</span>
+            <input type="checkbox" class="form-check-input" checked />
+          </label>
+          <label class="form-check form-switch">
+            <span class="form-check-label">푸시 알림</span>
+            <input type="checkbox" class="form-check-input" />
+          </label>
+        </div>
+        
+        <div class="form-section">
+          <h4 class="form-section-title">테마 설정</h4>
+          <select class="form-select">
+            <option>라이트 모드</option>
+            <option>다크 모드</option>
+            <option>시스템 설정 따르기</option>
+          </select>
+        </div>
+        
+        <div class="form-section">
+          <h4 class="form-section-title">언어</h4>
+          <select class="form-select">
+            <option>한국어</option>
+            <option>English</option>
+            <option>日本語</option>
+          </select>
+        </div>
+      </div>
+    `,
+    size: 'md',
+    buttons: [
+      { text: '취소', action: 'close' },
+      { text: '저장', type: 'primary', action: () => {
+        console.log('설정 저장');
+        modal.hide();
+      }}
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 삭제 확인 모달 (위험 경고)
+window.demo_modal_delete = function() {
+  const modal = new Overlays.Modal({
+    title: '계정 삭제',
+    content: `
+      <div style="text-align: center;">
+        <div style="width: 64px; height: 64px; margin: 0 auto 1.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="material-icons-outlined" style="font-size: 2rem; color: #ef4444;">warning</i>
+        </div>
+        <h3 style="margin: 0 0 0.75rem 0; font-size: 1.125rem; font-weight: 600; color: var(--text-primary);">
+          정말로 계정을 삭제하시겠습니까?
+        </h3>
+        <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">
+          계정을 삭제하면 모든 데이터가 영구적으로 삭제됩니다.<br>
+          이 작업은 되돌릴 수 없습니다.
+        </p>
+      </div>
+    `,
+    size: 'sm',
+    buttons: [
+      { text: '취소', action: 'close' },
+      { text: '삭제', type: 'danger', action: async () => {
+        modal.hide();
+        await Overlays.Modal.alert({
+          title: '삭제 완료',
+          content: '계정이 삭제되었습니다.'
+        });
+      }}
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 알림 목록 모달
+window.demo_modal_notifications = function() {
+  const modal = new Overlays.Modal({
+    title: '알림',
+    content: `
+      <div style="max-height: 400px; overflow-y: auto; margin: -0.5rem;">
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background-color 0.15s ease;" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">notifications</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; font-size: 0.9375rem; color: var(--text-primary); margin-bottom: 0.25rem;">새로운 메시지</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">홍길동님이 메시지를 보냈습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">5분 전</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background-color 0.15s ease;" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">favorite</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; font-size: 0.9375rem; color: var(--text-primary); margin-bottom: 0.25rem;">좋아요 알림</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">김철수님이 회원님의 게시물을 좋아합니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">1시간 전</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background-color 0.15s ease;" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">comment</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; font-size: 0.9375rem; color: var(--text-primary); margin-bottom: 0.25rem;">새 댓글</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">이영희님이 댓글을 남겼습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">3시간 전</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="padding: 1rem; opacity: 0.6; cursor: pointer; transition: background-color 0.15s ease;" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: #9ca3af; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">check_circle</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; font-size: 0.9375rem; color: var(--text-primary); margin-bottom: 0.25rem;">시스템 알림</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">프로필 업데이트가 완료되었습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">1일 전</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    size: 'md',
+    buttons: [
+      { text: '모두 읽음으로 표시', action: () => {
+        console.log('모두 읽음 처리');
+        modal.hide();
+      }},
+      { text: '닫기', type: 'primary', action: 'close' }
+    ]
+  });
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 공지사항 모달 (헤더 없음 + 하루동안 안보이기)
+window.demo_modal_notice = function() {
+  // localStorage에서 하루동안 안보기 체크
+  const noticeKey = 'notice_hide_until';
+  const hideUntil = localStorage.getItem(noticeKey);
+  
+  if (hideUntil) {
+    const hideDate = new Date(hideUntil);
+    const now = new Date();
+    
+    if (now < hideDate) {
+      console.log('하루동안 안보기 설정됨. 남은 시간:', Math.round((hideDate - now) / 1000 / 60), '분');
+      return;
+    } else {
+      // 기간 만료시 삭제
+      localStorage.removeItem(noticeKey);
+    }
+  }
+  
+  const modal = new Overlays.Modal({
+    title: '', // title이 없으면 헤더가 표시되지 않음
+    content: `
+      <div style="text-align: center; padding: 1rem 0;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);">
+          <i class="material-icons-outlined" style="font-size: 3rem; color: white;">campaign</i>
+        </div>
+        
+        <h3 style="margin: 0 0 1rem 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">
+          🎉 새로운 기능 업데이트
+        </h3>
+        
+        <div style="background: linear-gradient(to right, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: left;">
+          <h4 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+            <i class="material-icons-outlined" style="font-size: 1.25rem; color: #667eea;">new_releases</i>
+            주요 업데이트 내용
+          </h4>
+          
+          <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+            <li><strong>다크 모드 지원:</strong> 시스템 테마와 자동 동기화</li>
+            <li><strong>성능 개선:</strong> 로딩 속도 50% 향상</li>
+            <li><strong>새로운 컴포넌트:</strong> Modal, Drawer, Lightbox 추가</li>
+            <li><strong>반응형 디자인:</strong> 모바일 최적화 완료</li>
+          </ul>
+        </div>
+        
+        <div style="background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <i class="material-icons-outlined" style="font-size: 1.5rem; color: #ffc107; flex-shrink: 0;">info</i>
+            <div>
+              <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">업데이트 안내</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">
+                이번 업데이트는 <strong>2025년 11월 25일</strong>에 적용되었습니다.<br>
+                자세한 내용은 <a href="#" style="color: #667eea; text-decoration: none; font-weight: 500;">릴리즈 노트</a>를 확인하세요.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    size: 'md',
+    closeButton: false,
+    buttons: [
+      { 
+        text: '하루동안 안보기', 
+        action: () => {
+          // 24시간 후 날짜 저장
+          try {
+            const hideDate = new Date();
+            hideDate.setHours(hideDate.getHours() + 24);
+            localStorage.setItem(noticeKey, hideDate.toISOString());
+            console.log('하루동안 안보기 설정됨:', hideDate);
+          } catch (error) {
+            console.warn('localStorage 저장 실패:', error);
+          }
+          
+          modal.hide();
+        }
+      },
+      { 
+        text: '닫기', 
+        type: 'primary', 
+        action: 'close' 
+      }
+    ]
+  });
+  
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+// 여러 공지사항 순차 표시 (각각 독립적인 하루동안 안보기)
+window.demo_modal_multi_notices = function() {
+  // 설정
+  const TRANSITION_DELAY = 300;
+  const STORAGE_PREFIX = 'notice_hide_until_';
+  const HIDE_DURATION = 24 * 60 * 60 * 1000; // 24시간
+  
+  const notices = [
+    {
+      id: 'notice_update_v2',
+      icon: 'upgrade',
+      iconColor: '#10b981',
+      title: '🚀 버전 2.0 업데이트',
+      content: `
+        <div style="text-align: center; padding: 0.5rem 0;">
+          <div style="background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem; text-align: left;">
+            <h4 style="margin: 0 0 0.75rem 0; font-size: 1rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="material-icons-outlined" style="font-size: 1.25rem; color: #10b981;">celebration</i>
+              새로운 기능
+            </h4>
+            <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); line-height: 1.8; font-size: 0.9375rem;">
+              <li><strong>AI 자동 완성:</strong> 코드 작성 속도 향상</li>
+              <li><strong>실시간 협업:</strong> 팀원과 동시 작업</li>
+              <li><strong>성능 최적화:</strong> 3배 빠른 빌드</li>
+            </ul>
+          </div>
+        </div>
+      `
+    },
+    {
+      id: 'notice_maintenance',
+      icon: 'engineering',
+      iconColor: '#f59e0b',
+      title: '⚠️ 정기 점검 안내',
+      content: `
+        <div style="text-align: center; padding: 0.5rem 0;">
+          <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.25rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
+            <div style="display: flex; align-items: start; gap: 0.75rem;">
+              <i class="material-icons-outlined" style="font-size: 1.5rem; color: #f59e0b; flex-shrink: 0;">schedule</i>
+              <div>
+                <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1rem;">점검 일정</div>
+                <div style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;">
+                  <strong>일시:</strong> 2025년 11월 26일 (화) 02:00 ~ 05:00 (3시간)<br>
+                  <strong>영향:</strong> 서비스 일시 중단<br>
+                  <strong>사유:</strong> 서버 증설 및 보안 업데이트
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    {
+      id: 'notice_event',
+      icon: 'card_giftcard',
+      iconColor: '#ec4899',
+      title: '🎁 이벤트 안내',
+      content: `
+        <div style="text-align: center; padding: 0.5rem 0;">
+          <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem; text-align: left;">
+            <h4 style="margin: 0 0 0.75rem 0; font-size: 1rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="material-icons-outlined" style="font-size: 1.25rem; color: #ec4899;">local_offer</i>
+              신규 가입 이벤트
+            </h4>
+            <div style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;">
+              <p style="margin: 0 0 0.5rem 0;"><strong>혜택:</strong></p>
+              <ul style="margin: 0; padding-left: 1.5rem;">
+                <li>프리미엄 기능 30일 무료</li>
+                <li>클라우드 스토리지 100GB 제공</li>
+                <li>추천인 보너스 적립</li>
+              </ul>
+              <p style="margin: 1rem 0 0 0; font-size: 0.875rem; color: var(--text-tertiary);">
+                📅 기간: 2025.11.25 ~ 2025.12.31
+              </p>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  ];
+
+  // 각 공지사항 체크 및 표시
+  function showNextNotice(index) {
+    if (index >= notices.length) {
+      console.log('모든 공지사항 확인 완료');
+      return;
+    }
+
+    const notice = notices[index];
+    const noticeKey = `${STORAGE_PREFIX}${notice.id}`;
+    
+    // 하루동안 안보기 체크
+    try {
+      const hideUntil = localStorage.getItem(noticeKey);
+      
+      if (hideUntil) {
+        const hideDate = new Date(hideUntil);
+        const now = new Date();
+
+        if (now < hideDate) {
+          console.log(`"${notice.title}" 하루동안 안보기 설정됨. 남은 시간:`, Math.round((hideDate - now) / 1000 / 60), '분');
+          // 다음 공지사항으로
+          showNextNotice(index + 1);
+          return;
+        } else {
+          // 기간 만료시 삭제
+          localStorage.removeItem(noticeKey);
+        }
+      }
+    } catch (error) {
+      console.warn('localStorage 읽기 실패:', error);
+    }
+
+    // 인디케이터 생성
+    const indicators = notices.map((n, i) => {
+      const isActive = i === index;
+      const width = isActive ? '24px' : '8px';
+      const background = isActive ? notice.iconColor : 'var(--border-color, #e0e0e0)';
+      return `<div style="width: ${width}; height: 8px; background: ${background}; border-radius: 4px; transition: all 0.3s ease;"></div>`;
+    }).join('');
+    
+    // 공지사항 표시 (title 없음 = 헤더 없음)
+    const modal = new Overlays.Modal({
+      title: '', // title이 없으면 헤더가 표시되지 않음
+      content: `
+        <div style="text-align: center; padding: 1rem 0;">
+          <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: ${notice.iconColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px ${notice.iconColor}40;">
+            <i class="material-icons-outlined" style="font-size: 3rem; color: white;">${notice.icon}</i>
+          </div>
+          
+          <h3 style="margin: 0 0 1.25rem 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">
+            ${notice.title}
+          </h3>
+          
+          ${notice.content}
+          
+          <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color, #e0e0e0);">
+            ${indicators}
+          </div>
+        </div>
+      `,
+      size: 'md',
+      closeButton: false,
+      buttons: [
+        {
+          text: '하루동안 안보기',
+          action: () => {
+            // 24시간 후 날짜 저장
+            try {
+              const hideDate = new Date(Date.now() + HIDE_DURATION);
+              localStorage.setItem(noticeKey, hideDate.toISOString());
+              console.log(`"${notice.title}" 하루동안 안보기 설정됨:`, hideDate);
+            } catch (error) {
+              console.warn('localStorage 저장 실패:', error);
+            }
+            
+            modal.hide();
+            modal.destroy(); // 메모리 정리
+
+            // 다음 공지사항 표시
+            setTimeout(() => showNextNotice(index + 1), TRANSITION_DELAY);
+          }
+        },
+        {
+          text: index < notices.length - 1 ? '다음' : '닫기',
+          type: 'primary',
+          action: () => {
+            modal.hide();
+            modal.destroy(); // 메모리 정리
+            
+            // 다음 공지사항 표시
+            if (index < notices.length - 1) {
+              setTimeout(() => showNextNotice(index + 1), TRANSITION_DELAY);
+            }
+          }
+        }
+      ]
+    });
+
+    modal.show();
+    IMCAT.view.registerInstance(modal);
+  }
+
+  // 첫 번째 공지사항부터 시작
+  showNextNotice(0);
+};
+
+// ============================================
+// 2. Drawer 예제
+// ============================================
+
+window.demo_drawer_left = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'left',
+    title: '왼쪽 메뉴',
+    content: `
+      <nav>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid #eee;">
+            <a href="#" style="text-decoration: none; color: inherit;">
+              <i class="material-icons-outlined" style="vertical-align: middle;">home</i>
+              홈
+            </a>
+          </li>
+          <li style="padding: 0.75rem 0; border-bottom: 1px solid #eee;">
+            <a href="#" style="text-decoration: none; color: inherit;">
+              <i class="material-icons-outlined" style="vertical-align: middle;">info</i>
+              소개
+            </a>
+          </li>
+          <li style="padding: 0.75rem 0;">
+            <a href="#" style="text-decoration: none; color: inherit;">
+              <i class="material-icons-outlined" style="vertical-align: middle;">contact_mail</i>
+              연락처
+            </a>
+          </li>
+        </ul>
+      </nav>
+    `,
+    width: '280px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+window.demo_drawer_right = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'right',
+    title: '설정',
+    content: `
+      <div>
+        <h4>테마 설정</h4>
+        <p>라이트/다크 테마를 선택하세요.</p>
+        <div style="margin-top: 1rem;">
+          <button class="btn btn--primary" style="width: 100%; margin-bottom: 0.5rem;">라이트</button>
+          <button class="btn btn--secondary" style="width: 100%;">다크</button>
+        </div>
+      </div>
+    `
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+window.demo_drawer_top = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'top',
+    title: '공지사항',
+    content: `
+      <p><strong>새로운 업데이트가 있습니다!</strong></p>
+      <p>버전 2.0이 출시되었습니다. 지금 업데이트하세요.</p>
+    `,
+    height: '200px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+window.demo_drawer_bottom = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'bottom',
+    title: '쿠키 동의',
+    content: `
+      <p>이 웹사이트는 쿠키를 사용합니다. 계속 사용하시면 쿠키 사용에 동의하는 것으로 간주합니다.</p>
+      <button class="btn btn--primary" onclick="this.closest('.drawer').querySelector('.drawer__close').click()">동의</button>
+    `,
+    height: '180px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// ============================================
+// Drawer 실전 예제
+// ============================================
+
+// 1. 네비게이션 메뉴 Drawer
+window.demo_drawer_navigation = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'left',
+    title: '메뉴',
+    content: `
+      <nav style="padding: 0;">
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          <li style="border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: var(--text-primary); transition: all 0.2s ease;">
+              <i class="material-icons-outlined">home</i>
+              <span style="font-weight: 500;">홈</span>
+              <i class="material-icons-outlined" style="margin-left: auto; font-size: 1.25rem;">chevron_right</i>
+            </a>
+          </li>
+          <li style="border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: var(--text-primary); transition: all 0.2s ease;">
+              <i class="material-icons-outlined">dashboard</i>
+              <span style="font-weight: 500;">대시보드</span>
+              <span style="margin-left: auto; background: #ff5722; color: white; padding: 0.125rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">NEW</span>
+            </a>
+          </li>
+          <li style="border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: var(--text-primary); transition: all 0.2s ease;">
+              <i class="material-icons-outlined">shopping_cart</i>
+              <span style="font-weight: 500;">쇼핑</span>
+              <span style="margin-left: auto; background: #667eea; color: white; padding: 0.125rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">5</span>
+            </a>
+          </li>
+          <li style="border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: var(--text-primary); transition: all 0.2s ease;">
+              <i class="material-icons-outlined">favorite</i>
+              <span style="font-weight: 500;">즐겨찾기</span>
+            </a>
+          </li>
+          <li style="border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: var(--text-primary); transition: all 0.2s ease;">
+              <i class="material-icons-outlined">settings</i>
+              <span style="font-weight: 500;">설정</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; text-decoration: none; color: #f44336; transition: all 0.2s ease;">
+              <i class="material-icons-outlined">logout</i>
+              <span style="font-weight: 500;">로그아웃</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    `,
+    width: '320px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// 2. 필터 패널 Drawer
+window.demo_drawer_filter = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'right',
+    title: '필터',
+    content: `
+      <div>
+        <div class="form-section">
+          <h4 class="form-section-title">가격 범위</h4>
+          <div style="padding: 0.5rem 0;">
+            <input type="range" min="0" max="100000" value="50000" style="width: 100%;" />
+            <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <span>₩0</span>
+              <span>₩50,000</span>
+              <span>₩100,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4 class="form-section-title">카테고리</h4>
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" checked />
+            <span class="form-check-label">전자제품 (45)</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" />
+            <span class="form-check-label">패션 (128)</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" />
+            <span class="form-check-label">도서 (89)</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" class="form-check-input" />
+            <span class="form-check-label">스포츠 (56)</span>
+          </label>
+        </div>
+
+        <div class="form-section">
+          <h4 class="form-section-title">브랜드</h4>
+          <select class="form-select">
+            <option>전체</option>
+            <option>삼성</option>
+            <option>LG</option>
+            <option>애플</option>
+            <option>소니</option>
+          </select>
+        </div>
+
+        <div class="form-section">
+          <h4 class="form-section-title">평점</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-secondary)'" onmouseout="this.style.background='transparent'">
+              <input type="radio" name="rating" style="margin-right: 0.5rem;" />
+              <span style="color: #ffc107;">★★★★★</span>
+              <span style="margin-left: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">(120)</span>
+            </label>
+            <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-secondary)'" onmouseout="this.style.background='transparent'">
+              <input type="radio" name="rating" style="margin-right: 0.5rem;" />
+              <span style="color: #ffc107;">★★★★</span><span style="color: #ccc;">★</span>
+              <span style="margin-left: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">(85)</span>
+            </label>
+            <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-secondary)'" onmouseout="this.style.background='transparent'">
+              <input type="radio" name="rating" style="margin-right: 0.5rem;" />
+              <span style="color: #ffc107;">★★★</span><span style="color: #ccc;">★★</span>
+              <span style="margin-left: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">(42)</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+          <button class="btn btn--secondary" style="flex: 1;" onclick="console.log('필터 초기화')">초기화</button>
+          <button class="btn btn--primary" style="flex: 1;" onclick="console.log('필터 적용')">적용</button>
+        </div>
+      </div>
+    `,
+    width: '360px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// 3. 알림 센터 Drawer
+window.demo_drawer_notifications = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'right',
+    title: '알림',
+    content: `
+      <div style="margin: -0.5rem;">
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.02)'" onmouseout="this.style.background='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">shopping_bag</i>
+              <span style="position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #10b981; border: 2px solid white; border-radius: 50%;"></span>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem;">주문이 배송 시작됨</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">주문하신 상품이 배송을 시작했습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">5분 전</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.02)'" onmouseout="this.style.background='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">favorite</i>
+              <span style="position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #10b981; border: 2px solid white; border-radius: 50%;"></span>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem;">좋아요 알림</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">김철수님이 회원님의 게시물을 좋아합니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">1시간 전</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0); cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.02)'" onmouseout="this.style.background='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">comment</i>
+              <span style="position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; background: #10b981; border: 2px solid white; border-radius: 50%;"></span>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem;">새 댓글</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">이영희님이 댓글을 남겼습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">3시간 전</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 1rem; opacity: 0.6; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.02)'" onmouseout="this.style.background='transparent'">
+          <div style="display: flex; align-items: start; gap: 0.75rem;">
+            <div style="width: 40px; height: 40px; background: #9ca3af; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.25rem;">check_circle</i>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem;">시스템 업데이트</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">프로필 업데이트가 완료되었습니다.</div>
+              <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem;">1일 전</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 1rem; text-align: center; border-top: 1px solid var(--border-color, #e0e0e0); margin-top: 0.5rem;">
+        <button class="btn btn--primary" style="width: 100%;">모두 읽음으로 표시</button>
+      </div>
+    `,
+    width: '380px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// 4. 장바구니 Drawer
+window.demo_drawer_cart = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'right',
+    title: '장바구니',
+    content: `
+      <div style="display: flex; flex-direction: column; height: 100%;">
+        <div style="flex: 1; overflow-y: auto; margin: -0.5rem; padding: 0.5rem;">
+          <!-- 상품 1 -->
+          <div style="display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="font-size: 2rem; color: white;">headphones</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; margin-bottom: 0.25rem;">무선 헤드폰</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem;">블랙, 50mm 드라이버</div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button style="width: 24px; height: 24px; border: 1px solid var(--border-color); border-radius: 4px; background: white; cursor: pointer;">-</button>
+                <span style="min-width: 30px; text-align: center;">1</span>
+                <button style="width: 24px; height: 24px; border: 1px solid var(--border-color); border-radius: 4px; background: white; cursor: pointer;">+</button>
+                <button style="margin-left: auto; color: #f44336; background: none; border: none; cursor: pointer;">
+                  <i class="material-icons-outlined">delete</i>
+                </button>
+              </div>
+            </div>
+            <div style="text-align: right; flex-shrink: 0;">
+              <div style="font-weight: 700; font-size: 1.125rem;">₩89,000</div>
+            </div>
+          </div>
+
+          <!-- 상품 2 -->
+          <div style="display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="material-icons-outlined" style="font-size: 2rem; color: white;">watch</i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 600; margin-bottom: 0.25rem;">스마트워치</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem;">실버, GPS 기능</div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button style="width: 24px; height: 24px; border: 1px solid var(--border-color); border-radius: 4px; background: white; cursor: pointer;">-</button>
+                <span style="min-width: 30px; text-align: center;">2</span>
+                <button style="width: 24px; height: 24px; border: 1px solid var(--border-color); border-radius: 4px; background: white; cursor: pointer;">+</button>
+                <button style="margin-left: auto; color: #f44336; background: none; border: none; cursor: pointer;">
+                  <i class="material-icons-outlined">delete</i>
+                </button>
+              </div>
+            </div>
+            <div style="text-align: right; flex-shrink: 0;">
+              <div style="font-weight: 700; font-size: 1.125rem;">₩158,000</div>
+            </div>
+          </div>
+
+          <!-- 쿠폰 입력 -->
+          <div style="padding: 1rem;">
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" class="form-control" placeholder="쿠폰 코드 입력" style="flex: 1;" />
+              <button class="btn btn--secondary">적용</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 하단 고정 합계 및 결제 버튼 -->
+        <div style="padding: 1rem; border-top: 2px solid var(--border-color, #e0e0e0); background: var(--bg-primary);">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+            <span style="color: var(--text-secondary);">상품 금액</span>
+            <span>₩247,000</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+            <span style="color: var(--text-secondary);">배송비</span>
+            <span>₩3,000</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color, #e0e0e0);">
+            <span style="font-weight: 700; font-size: 1.125rem;">총 금액</span>
+            <span style="font-weight: 700; font-size: 1.25rem; color: #667eea;">₩250,000</span>
+          </div>
+          <button class="btn btn--primary" style="width: 100%; padding: 0.875rem;">
+            <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.5rem;">payment</i>
+            결제하기
+          </button>
+        </div>
+      </div>
+    `,
+    width: '420px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// 5. 프로필 Drawer
+window.demo_drawer_profile = function() {
+  const drawer = new Overlays.Drawer({
+    position: 'right',
+    title: '내 프로필',
+    content: `
+      <div>
+        <!-- 프로필 헤더 -->
+        <div style="text-align: center; padding: 1.5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: -1rem -1rem 1.5rem -1rem; border-radius: 0 0 20px 20px;">
+          <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <i class="material-icons-outlined" style="font-size: 3rem; color: #667eea;">person</i>
+          </div>
+          <div style="color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;">홍길동</div>
+          <div style="color: rgba(255,255,255,0.9); font-size: 0.875rem;">hong@example.com</div>
+        </div>
+
+        <!-- 통계 -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.5rem;">
+          <div style="text-align: center; padding: 1rem; background: var(--bg-secondary); border-radius: 12px;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: #667eea; margin-bottom: 0.25rem;">24</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">게시물</div>
+          </div>
+          <div style="text-align: center; padding: 1rem; background: var(--bg-secondary); border-radius: 12px;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 0.25rem;">1.2K</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">팔로워</div>
+          </div>
+          <div style="text-align: center; padding: 1rem; background: var(--bg-secondary); border-radius: 12px;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.25rem;">325</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">팔로잉</div>
+          </div>
+        </div>
+
+        <!-- 프로필 정보 -->
+        <div class="form-section">
+          <h4 class="form-section-title">개인 정보</h4>
+          <div style="display: flex; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <i class="material-icons-outlined" style="color: var(--text-secondary); margin-right: 0.75rem;">email</i>
+            <div style="flex: 1;">
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">이메일</div>
+              <div style="font-weight: 500;">hong@example.com</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color, #e0e0e0);">
+            <i class="material-icons-outlined" style="color: var(--text-secondary); margin-right: 0.75rem;">phone</i>
+            <div style="flex: 1;">
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">전화번호</div>
+              <div style="font-weight: 500;">010-1234-5678</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; padding: 0.75rem 0;">
+            <i class="material-icons-outlined" style="color: var(--text-secondary); margin-right: 0.75rem;">location_on</i>
+            <div style="flex: 1;">
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">위치</div>
+              <div style="font-weight: 500;">서울, 대한민국</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+          <button class="btn btn--secondary" style="flex: 1;">
+            <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.25rem; font-size: 1.125rem;">edit</i>
+            편집
+          </button>
+          <button class="btn btn--primary" style="flex: 1;">
+            <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.25rem; font-size: 1.125rem;">share</i>
+            공유
+          </button>
+        </div>
+      </div>
+    `,
+    width: '380px'
+  });
+  drawer.show();
+  IMCAT.view.registerInstance(drawer);
+};
+
+// ============================================
+// 3. Offcanvas 예제
+// ============================================
+
+window.demo_offcanvas = function() {
+  const offcanvas = new Overlays.Offcanvas({
+    position: 'right',
+    title: '알림',
+    content: `
+      <div>
+        <div style="padding: 1rem; background: #e3f2fd; border-radius: 8px; margin-bottom: 1rem;">
+          <h4 style="margin: 0 0 0.5rem 0;">새 메시지</h4>
+          <p style="margin: 0;">홍길동님이 메시지를 보냈습니다.</p>
+        </div>
+        <div style="padding: 1rem; background: #f3e5f5; border-radius: 8px;">
+          <h4 style="margin: 0 0 0.5rem 0;">댓글 알림</h4>
+          <p style="margin: 0;">회원님의 게시물에 댓글이 달렸습니다.</p>
+        </div>
+      </div>
+    `
+  });
+  offcanvas.show();
+  IMCAT.view.registerInstance(offcanvas);
+};
+
+// ============================================
+// Offcanvas 실전 예제
+// ============================================
+
+// 1. 검색 패널 Offcanvas
+window.demo_offcanvas_search = function() {
+  const offcanvas = new Overlays.Offcanvas({
+    position: 'top',
+    title: '', // title 없으면 헤더 없음
+    content: `
+      <div style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+        <!-- 검색 입력 -->
+        <div style="position: relative; margin-bottom: 2rem;">
+          <i class="material-icons-outlined" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.5rem;">search</i>
+          <input type="text" class="form-control" placeholder="검색어를 입력하세요..." style="padding-left: 3.5rem; padding-right: 3.5rem; font-size: 1.125rem; height: 60px;" autofocus />
+          <button style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+            <i class="material-icons-outlined" style="font-size: 1.5rem;">close</i>
+          </button>
+        </div>
+
+        <!-- 인기 검색어 -->
+        <div style="margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <i class="material-icons-outlined" style="color: #667eea;">trending_up</i>
+            <h4 style="margin: 0; font-size: 1rem; font-weight: 600;">인기 검색어</h4>
+          </div>
+          <div style="display: flex; flex-wrap: gap; gap: 0.5rem;">
+            <button class="btn btn--secondary" style="border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <span style="font-weight: 700; color: #667eea; margin-right: 0.25rem;">1</span> 무선 이어폰
+            </button>
+            <button class="btn btn--secondary" style="border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <span style="font-weight: 700; color: #667eea; margin-right: 0.25rem;">2</span> 스마트워치
+            </button>
+            <button class="btn btn--secondary" style="border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <span style="font-weight: 700; color: #667eea; margin-right: 0.25rem;">3</span> 노트북
+            </button>
+            <button class="btn btn--secondary" style="border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <span style="font-weight: 700; color: #667eea; margin-right: 0.25rem;">4</span> 키보드
+            </button>
+            <button class="btn btn--secondary" style="border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <span style="font-weight: 700; color: #667eea; margin-right: 0.25rem;">5</span> 마우스
+            </button>
+          </div>
+        </div>
+
+        <!-- 최근 검색어 -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i class="material-icons-outlined" style="color: var(--text-secondary);">history</i>
+              <h4 style="margin: 0; font-size: 1rem; font-weight: 600;">최근 검색어</h4>
+            </div>
+            <button style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 0.875rem;">전체 삭제</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 8px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'" onmouseout="this.style.background='var(--bg-secondary)'">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <i class="material-icons-outlined" style="color: var(--text-secondary); font-size: 1.25rem;">search</i>
+                <span>블루투스 헤드폰</span>
+              </div>
+              <button style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+                <i class="material-icons-outlined" style="font-size: 1.125rem;">close</i>
+              </button>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 8px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'" onmouseout="this.style.background='var(--bg-secondary)'">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <i class="material-icons-outlined" style="color: var(--text-secondary); font-size: 1.25rem;">search</i>
+                <span>게이밍 마우스</span>
+              </div>
+              <button style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+                <i class="material-icons-outlined" style="font-size: 1.125rem;">close</i>
+              </button>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 8px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'" onmouseout="this.style.background='var(--bg-secondary)'">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <i class="material-icons-outlined" style="color: var(--text-secondary); font-size: 1.25rem;">search</i>
+                <span>기계식 키보드</span>
+              </div>
+              <button style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+                <i class="material-icons-outlined" style="font-size: 1.125rem;">close</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    height: '450px',
+    closeButton: true
+  });
+  offcanvas.show();
+  IMCAT.view.registerInstance(offcanvas);
+};
+
+// 2. 도움말 Offcanvas
+window.demo_offcanvas_help = function() {
+  const offcanvas = new Overlays.Offcanvas({
+    position: 'right',
+    title: '도움말',
+    content: `
+      <div>
+        <!-- 검색 -->
+        <div style="margin-bottom: 1.5rem;">
+          <div style="position: relative;">
+            <i class="material-icons-outlined" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">search</i>
+            <input type="text" class="form-control" placeholder="도움말 검색..." style="padding-left: 2.5rem;" />
+          </div>
+        </div>
+
+        <!-- 주요 도움말 카테고리 -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="margin: 0 0 1rem 0; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">주요 도움말</h4>
+          
+          <a href="#" style="display: flex; align-items: start; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 0.5rem; text-decoration: none; color: inherit; transition: all 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='var(--bg-secondary)'; this.style.transform='translateX(0)'">
+            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.5rem;">rocket_launch</i>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; margin-bottom: 0.25rem;">시작하기</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">처음 사용자를 위한 빠른 시작 가이드</div>
+            </div>
+            <i class="material-icons-outlined" style="color: var(--text-secondary);">chevron_right</i>
+          </a>
+
+          <a href="#" style="display: flex; align-items: start; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 0.5rem; text-decoration: none; color: inherit; transition: all 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='var(--bg-secondary)'; this.style.transform='translateX(0)'">
+            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.5rem;">shopping_cart</i>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; margin-bottom: 0.25rem;">주문 및 결제</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">주문, 결제, 배송에 관한 도움말</div>
+            </div>
+            <i class="material-icons-outlined" style="color: var(--text-secondary);">chevron_right</i>
+          </a>
+
+          <a href="#" style="display: flex; align-items: start; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;" onmouseover="this.style.background='var(--bg-tertiary)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='var(--bg-secondary)'; this.style.transform='translateX(0)'">
+            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="material-icons-outlined" style="color: white; font-size: 1.5rem;">account_circle</i>
+            </div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; margin-bottom: 0.25rem;">계정 관리</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">프로필, 비밀번호, 보안 설정</div>
+            </div>
+            <i class="material-icons-outlined" style="color: var(--text-secondary);">chevron_right</i>
+          </a>
+        </div>
+
+        <!-- 자주 묻는 질문 -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="margin: 0 0 1rem 0; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">자주 묻는 질문</h4>
+          
+          <details style="margin-bottom: 0.5rem; background: var(--bg-secondary); border-radius: 8px; padding: 1rem;">
+            <summary style="cursor: pointer; font-weight: 600; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+              <span>배송은 얼마나 걸리나요?</span>
+              <i class="material-icons-outlined" style="color: var(--text-secondary);">expand_more</i>
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">
+              일반 배송은 주문 후 2-3일, 빠른 배송은 다음날 도착합니다.
+            </div>
+          </details>
+
+          <details style="margin-bottom: 0.5rem; background: var(--bg-secondary); border-radius: 8px; padding: 1rem;">
+            <summary style="cursor: pointer; font-weight: 600; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+              <span>반품은 어떻게 하나요?</span>
+              <i class="material-icons-outlined" style="color: var(--text-secondary);">expand_more</i>
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">
+              마이페이지 > 주문내역에서 반품 신청이 가능합니다.
+            </div>
+          </details>
+
+          <details style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem;">
+            <summary style="cursor: pointer; font-weight: 600; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+              <span>쿠폰은 어떻게 사용하나요?</span>
+              <i class="material-icons-outlined" style="color: var(--text-secondary);">expand_more</i>
+            </summary>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">
+              결제 페이지에서 쿠폰 코드를 입력하시면 자동으로 할인됩니다.
+            </div>
+          </details>
+        </div>
+
+        <!-- 고객 지원 -->
+        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 1.5rem; border-radius: 12px; text-align: center;">
+          <i class="material-icons-outlined" style="font-size: 3rem; color: #667eea; margin-bottom: 0.5rem;">support_agent</i>
+          <h4 style="margin: 0 0 0.5rem 0; font-weight: 600;">더 궁금한 점이 있으신가요?</h4>
+          <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: var(--text-secondary);">고객센터에 문의하시면 친절하게 안내해드립니다.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn--secondary" style="flex: 1;">
+              <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.25rem; font-size: 1.125rem;">call</i>
+              전화
+            </button>
+            <button class="btn btn--primary" style="flex: 1;">
+              <i class="material-icons-outlined" style="vertical-align: middle; margin-right: 0.25rem; font-size: 1.125rem;">chat</i>
+              채팅
+            </button>
+          </div>
+        </div>
+      </div>
+    `,
+    width: '420px'
+  });
+  offcanvas.show();
+  IMCAT.view.registerInstance(offcanvas);
+};
+
+// ============================================
+// 4. Lightbox 예제
+// ============================================
+
+// 샘플 이미지 데이터 (CSS 그라디언트로 대체)
+const sampleImages = [
+  {
+    // CSS 그라디언트를 SVG data URL로 변환
+    src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23667eea;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23764ba2;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="600" fill="url(%23g1)" /%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="white" font-size="48" font-family="Arial"%3EImage 1%3C/text%3E%3C/svg%3E',
+    title: '그라디언트 이미지 1'
+  },
+  {
+    src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g2" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23f093fb;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23f5576c;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="600" fill="url(%23g2)" /%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="white" font-size="48" font-family="Arial"%3EImage 2%3C/text%3E%3C/svg%3E',
+    title: '그라디언트 이미지 2'
+  },
+  {
+    src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g3" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%234facfe;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%2300f2fe;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="800" height="600" fill="url(%23g3)" /%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="white" font-size="48" font-family="Arial"%3EImage 3%3C/text%3E%3C/svg%3E',
+    title: '그라디언트 이미지 3'
+  }
+];
+
+window.demo_lightbox = function(index = 0) {
+  const lightbox = new Overlays.Lightbox({
+    images: sampleImages,
+    index: index
+  });
+  lightbox.show();
+  IMCAT.view.registerInstance(lightbox);
+};
+
+// ============================================
+// 5. 이벤트 예제
+// ============================================
+
+window.demo_events = function() {
+  const modal = new Overlays.Modal({
+    title: '이벤트 예제',
+    content: '<div id="event-log"><p>이벤트 로그:</p></div>',
+    buttons: [
+      { text: '닫기', type: 'primary', action: 'close' }
+    ]
+  });
+
+  const log = (message) => {
+    const logEl = document.getElementById('event-log');
+    if (logEl) {
+      logEl.innerHTML += `<p style="margin: 0.25rem 0; color: #666;">• ${message}</p>`;
+    }
+    console.log(message);
+  };
+
+  modal.on('beforeShow', () => log('beforeShow 이벤트 발생'));
+  modal.on('show', () => log('show 이벤트 발생'));
+  modal.on('beforeHide', () => log('beforeHide 이벤트 발생'));
+  modal.on('hide', () => log('hide 이벤트 발생'));
+
+  modal.show();
+  IMCAT.view.registerInstance(modal);
+};
+
+console.log('✅ Overlays 모듈 로드 완료');
+</script>

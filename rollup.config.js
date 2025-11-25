@@ -46,26 +46,27 @@ const coreConfig = {
   ]
 };
 
-// 모듈 번들 (개별)
-const moduleConfig = {
-  input: {
-    theme: 'src/modules/theme/theme.js'
-    // 필요한 모듈 추가
-  },
-  output: {
-    dir: 'dist/modules',
-    format: 'esm',
-    entryFileNames: '[name]/[name].js',
-    sourcemap: !production
-  },
-  plugins: [
-    babel({
-      babelHelpers: 'bundled',
-      exclude: 'node_modules/**'
-    }),
-    production && terser()
-  ].filter(Boolean)
-};
+// 모듈 번들 함수 (각 모듈을 독립적으로 빌드)
+function createModuleConfig(moduleName) {
+  return {
+    input: `src/modules/${moduleName}/${moduleName}.js`,
+    output: {
+      file: `dist/modules/${moduleName}/${moduleName}.js`,
+      format: 'esm',
+      sourcemap: !production
+    },
+    plugins: [
+      babel({
+        babelHelpers: 'bundled',
+        exclude: 'node_modules/**'
+      }),
+      production && terser()
+    ].filter(Boolean)
+  };
+}
+
+// 각 모듈별 개별 config 생성
+const moduleConfigs = ['theme', 'overlays', 'dropdown', 'navigation'].map(createModuleConfig);
 
 // 코어 + 모듈 빌드
-export default [coreConfig, moduleConfig];
+export default [coreConfig, ...moduleConfigs];

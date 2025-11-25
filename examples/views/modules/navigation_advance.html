@@ -1,0 +1,1173 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Navigation Advanced</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Navigation Advanced Examples</h1>
+  <p class="page-description">고급 네비게이션 패턴 및 실전 예제</p>
+  <div style="margin-top: 1rem;">
+    <a href="#" catui-href="views/modules/navigation.html" 
+       onmouseover="this.style.background='var(--bg-tertiary)';this.style.transform='translateX(-2px)'"
+       onmouseout="this.style.background='var(--bg-secondary)';this.style.transform='translateX(0)'"
+       style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg-secondary); color: var(--text-primary); text-decoration: none; border-radius: 6px; border: 1px solid var(--border-color); font-weight: 500; transition: all 0.2s ease;">
+      <i class="material-icons-outlined" style="font-size: 1.25rem;">arrow_back</i>
+      기본 예제로 돌아가기
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <!-- TreeView 예제 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">TreeView - 트리 뷰</h2>
+        <p class="card__description">계층적 데이터 표시</p>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <!-- 파일 시스템 트리 -->
+          <div class="col-md-4 mb-3">
+            <h4 style="margin-bottom: 1rem;">파일 시스템</h4>
+            <div class="treeview" id="treeview_filesystem">
+              <div class="treeview__item treeview__item--expanded">
+                <div class="treeview__node">
+                  <button class="treeview__toggle">
+                    <i class="material-icons-outlined">chevron_right</i>
+                  </button>
+                  <div class="treeview__label" tabindex="0">
+                    <i class="material-icons-outlined treeview__icon" style="color: #f59e0b;">folder</i>
+                    Documents
+                  </div>
+                </div>
+                <div class="treeview__children">
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon" style="color: #3b82f6;">description</i>
+                        report.pdf
+                      </div>
+                    </div>
+                  </div>
+                  <div class="treeview__item treeview__item--expanded">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <button class="treeview__toggle">
+                        <i class="material-icons-outlined">chevron_right</i>
+                      </button>
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon" style="color: #f59e0b;">folder</i>
+                        Projects
+                      </div>
+                    </div>
+                    <div class="treeview__children">
+                      <div class="treeview__item">
+                        <div class="treeview__node" style="padding-left: 3rem;">
+                          <div class="treeview__label" tabindex="0">
+                            <i class="material-icons-outlined treeview__icon" style="color: #10b981;">code</i>
+                            app.js
+                          </div>
+                        </div>
+                      </div>
+                      <div class="treeview__item">
+                        <div class="treeview__node" style="padding-left: 3rem;">
+                          <div class="treeview__label" tabindex="0">
+                            <i class="material-icons-outlined treeview__icon" style="color: #6366f1;">css</i>
+                            style.css
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="treeview__item">
+                <div class="treeview__node">
+                  <button class="treeview__toggle">
+                    <i class="material-icons-outlined">chevron_right</i>
+                  </button>
+                  <div class="treeview__label" tabindex="0">
+                    <i class="material-icons-outlined treeview__icon" style="color: #f59e0b;">folder</i>
+                    Images
+                  </div>
+                </div>
+                <div class="treeview__children" style="height: 0;">
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon" style="color: #ec4899;">image</i>
+                        photo1.jpg
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 조직도 트리 -->
+          <div class="col-md-4 mb-3">
+            <h4 style="margin-bottom: 1rem;">조직도</h4>
+            <div class="treeview" id="treeview_organization">
+              <div class="treeview__item treeview__item--expanded">
+                <div class="treeview__node">
+                  <button class="treeview__toggle">
+                    <i class="material-icons-outlined">chevron_right</i>
+                  </button>
+                  <div class="treeview__label treeview__label--selected" tabindex="0">
+                    <i class="material-icons-outlined treeview__icon" style="color: #667eea;">corporate_fare</i>
+                    본사
+                  </div>
+                </div>
+                <div class="treeview__children">
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <button class="treeview__toggle">
+                        <i class="material-icons-outlined">chevron_right</i>
+                      </button>
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">groups</i>
+                        개발팀
+                      </div>
+                    </div>
+                    <div class="treeview__children" style="height: 0;">
+                      <div class="treeview__item">
+                        <div class="treeview__node" style="padding-left: 3rem;">
+                          <div class="treeview__label" tabindex="0">
+                            <i class="material-icons-outlined treeview__icon">person</i>
+                            김철수 (팀장)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <button class="treeview__toggle">
+                        <i class="material-icons-outlined">chevron_right</i>
+                      </button>
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">groups</i>
+                        디자인팀
+                      </div>
+                    </div>
+                    <div class="treeview__children" style="height: 0;">
+                      <div class="treeview__item">
+                        <div class="treeview__node" style="padding-left: 3rem;">
+                          <div class="treeview__label" tabindex="0">
+                            <i class="material-icons-outlined treeview__icon">person</i>
+                            이영희 (팀장)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 메뉴 트리 -->
+          <div class="col-md-4 mb-3">
+            <h4 style="margin-bottom: 1rem;">사이트 메뉴</h4>
+            <div class="treeview" id="treeview_menu">
+              <div class="treeview__item treeview__item--expanded">
+                <div class="treeview__node">
+                  <button class="treeview__toggle">
+                    <i class="material-icons-outlined">chevron_right</i>
+                  </button>
+                  <div class="treeview__label" tabindex="0">
+                    <i class="material-icons-outlined treeview__icon">dashboard</i>
+                    대시보드
+                  </div>
+                </div>
+                <div class="treeview__children">
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">bar_chart</i>
+                        통계
+                      </div>
+                    </div>
+                  </div>
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">analytics</i>
+                        분석
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="treeview__item">
+                <div class="treeview__node">
+                  <button class="treeview__toggle">
+                    <i class="material-icons-outlined">chevron_right</i>
+                  </button>
+                  <div class="treeview__label" tabindex="0">
+                    <i class="material-icons-outlined treeview__icon">settings</i>
+                    설정
+                  </div>
+                </div>
+                <div class="treeview__children" style="height: 0;">
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">account_circle</i>
+                        프로필
+                      </div>
+                    </div>
+                  </div>
+                  <div class="treeview__item">
+                    <div class="treeview__node" style="padding-left: 1.5rem;">
+                      <div class="treeview__label" tabindex="0">
+                        <i class="material-icons-outlined treeview__icon">security</i>
+                        보안
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 다단계 수직 메뉴 예제 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">다단계 수직 메뉴</h2>
+        <p class="card__description">관리자 페이지 사이드바 메뉴 패턴 (Menu 컴포넌트)</p>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <!-- 2단계 메뉴 -->
+          <div class="col-md-4">
+            <h4 style="margin-bottom: 1rem;">2단계 메뉴</h4>
+            <ul class="menu menu--vertical menu--nested" id="sidebar_menu_2depth" style="max-width: 280px;">
+              <!-- 대시보드 -->
+              <li class="menu__item">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">dashboard</i>
+                  <span class="menu__text">대시보드</span>
+                </a>
+              </li>
+
+              <!-- 제품 관리 -->
+              <li class="menu__item has-submenu">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">inventory_2</i>
+                  <span class="menu__text">제품 관리</span>
+                </a>
+                <ul class="menu__submenu">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">제품 목록</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">카테고리 관리</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">재고 관리</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 주문 관리 -->
+              <li class="menu__item has-submenu">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">shopping_cart</i>
+                  <span class="menu__text">주문 관리</span>
+                </a>
+                <ul class="menu__submenu">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">주문 목록</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">배송 관리</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">환불 관리</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 사용자 관리 -->
+              <li class="menu__item has-submenu">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">people</i>
+                  <span class="menu__text">사용자 관리</span>
+                </a>
+                <ul class="menu__submenu">
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">회원 목록</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">권한 관리</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 설정 -->
+              <li class="menu__item">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">settings</i>
+                  <span class="menu__text">설정</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3단계 메뉴 -->
+          <div class="col-md-8">
+            <h4 style="margin-bottom: 1rem;">3단계 메뉴</h4>
+            <ul class="menu menu--vertical menu--nested" id="sidebar_menu_3depth" style="max-width: 320px;">
+              <!-- 대시보드 -->
+              <li class="menu__item">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">dashboard</i>
+                  <span class="menu__text">대시보드</span>
+                </a>
+              </li>
+
+              <!-- 콘텐츠 관리 (3단계) -->
+              <li class="menu__item has-submenu">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">article</i>
+                  <span class="menu__text">콘텐츠 관리</span>
+                </a>
+                <ul class="menu__submenu">
+                  <!-- 게시판 (3단계) -->
+                  <li class="menu__item has-submenu">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">게시판</span>
+                    </a>
+                    <ul class="menu__submenu">
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">공지사항</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">FAQ</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">자유게시판</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 블로그 (3단계) -->
+                  <li class="menu__item has-submenu">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">블로그</span>
+                    </a>
+                    <ul class="menu__submenu">
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">포스트 목록</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">카테고리</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">태그 관리</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">미디어 라이브러리</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 전자상거래 (3단계) -->
+              <li class="menu__item has-submenu">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">shopping_bag</i>
+                  <span class="menu__text">전자상거래</span>
+                </a>
+                <ul class="menu__submenu">
+                  <!-- 제품 (3단계) -->
+                  <li class="menu__item has-submenu">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">제품</span>
+                    </a>
+                    <ul class="menu__submenu">
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">전체 제품</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">카테고리</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">재고</span>
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a href="#" class="menu__link">
+                          <span class="menu__text">리뷰</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">주문</span>
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="#" class="menu__link">
+                      <span class="menu__text">쿠폰</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 설정 -->
+              <li class="menu__item">
+                <a href="#" class="menu__link">
+                  <i class="material-icons-outlined menu__icon">settings</i>
+                  <span class="menu__text">설정</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MegaMenu 예제 -->
+  <div class="col-12">
+    <div class="card mb-4" style="padding-bottom: 450px;">
+      <div class="card__header">
+        <h2 class="card__title">MegaMenu - 메가 메뉴</h2>
+        <p class="card__description">대형 드롭다운 메뉴 실전 예제</p>
+      </div>
+      <div class="card__body">
+        <!-- E-commerce MegaMenu -->
+        <h4 style="margin-bottom: 1rem;">쇼핑몰 카테고리 메뉴</h4>
+        <div class="megamenu" id="megamenu_ecommerce" style="margin-bottom: 3rem;">
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">devices</i>
+              전자제품
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">인기 카테고리</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">smartphone</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">스마트폰</div>
+                      <div class="megamenu__link-desc">최신 스마트폰</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">laptop</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">노트북</div>
+                      <div class="megamenu__link-desc">게이밍, 업무용</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">tablet</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">태블릿</div>
+                      <div class="megamenu__link-desc">iPad, Galaxy Tab</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">headphones</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">오디오</div>
+                      <div class="megamenu__link-desc">이어폰, 헤드폰</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">watch</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">웨어러블</div>
+                      <div class="megamenu__link-desc">스마트워치</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">camera_alt</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">카메라</div>
+                      <div class="megamenu__link-desc">DSLR, 미러리스</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">checkroom</i>
+              패션
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">의류</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">man</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">남성의류</div>
+                      <div class="megamenu__link-desc">상의, 하의, 아우터</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">woman</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">여성의류</div>
+                      <div class="megamenu__link-desc">원피스, 블라우스</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">child_care</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">아동의류</div>
+                      <div class="megamenu__link-desc">유아, 아동복</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">hiking</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">신발</div>
+                      <div class="megamenu__link-desc">운동화, 구두</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">backpack</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">가방</div>
+                      <div class="megamenu__link-desc">백팩, 크로스백</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">diamond</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">액세서리</div>
+                      <div class="megamenu__link-desc">시계, 주얼리</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">home</i>
+              홈/리빙
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">가구 & 인테리어</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">chair</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">가구</div>
+                      <div class="megamenu__link-desc">침대, 소파, 책상</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">kitchen</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">주방용품</div>
+                      <div class="megamenu__link-desc">조리도구, 식기</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">bed</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">침구</div>
+                      <div class="megamenu__link-desc">이불, 베개</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">lightbulb</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">조명</div>
+                      <div class="megamenu__link-desc">스탠드, 천장등</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">yard</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">인테리어</div>
+                      <div class="megamenu__link-desc">커튼, 벽지</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">cleaning_services</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">생활용품</div>
+                      <div class="megamenu__link-desc">청소, 수납</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">sports_esports</i>
+              스포츠
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">운동 & 레저</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">fitness_center</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">헬스</div>
+                      <div class="megamenu__link-desc">덤벨, 매트</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">directions_run</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">러닝</div>
+                      <div class="megamenu__link-desc">운동화, 의류</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">pool</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">수영</div>
+                      <div class="megamenu__link-desc">수영복, 고글</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">sports_soccer</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">구기종목</div>
+                      <div class="megamenu__link-desc">축구, 농구</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">downhill_skiing</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">아웃도어</div>
+                      <div class="megamenu__link-desc">등산, 캠핑</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">self_improvement</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">요가</div>
+                      <div class="megamenu__link-desc">매트, 의류</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Provider MegaMenu -->
+        <h4 style="margin-bottom: 1rem;">서비스 제공자 메뉴</h4>
+        <div class="megamenu" id="megamenu_services" style="margin-bottom: 3rem;">
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">apps</i>
+              솔루션
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">비즈니스 솔루션</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #667eea;">cloud</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">클라우드</div>
+                      <div class="megamenu__link-desc">IaaS, PaaS, SaaS</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #10b981;">security</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">보안</div>
+                      <div class="megamenu__link-desc">방화벽, 암호화</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #f59e0b;">analytics</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">분석</div>
+                      <div class="megamenu__link-desc">데이터 분석, BI</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #3b82f6;">storage</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">스토리지</div>
+                      <div class="megamenu__link-desc">백업, 아카이브</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #ec4899;">support_agent</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">고객지원</div>
+                      <div class="megamenu__link-desc">헬프데스크, 챗봇</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon" style="color: #8b5cf6;">hub</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">통합</div>
+                      <div class="megamenu__link-desc">API, 워크플로우</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">business</i>
+              산업군
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">산업별 솔루션</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">account_balance</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">금융</div>
+                      <div class="megamenu__link-desc">은행, 보험, 증권</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">shopping_cart</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">리테일</div>
+                      <div class="megamenu__link-desc">유통, 전자상거래</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">local_hospital</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">헬스케어</div>
+                      <div class="megamenu__link-desc">의료, 제약</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">school</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">교육</div>
+                      <div class="megamenu__link-desc">학교, 이러닝</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">precision_manufacturing</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">제조</div>
+                      <div class="megamenu__link-desc">공장, 생산관리</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">public</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">공공</div>
+                      <div class="megamenu__link-desc">정부, 지자체</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="megamenu__item">
+            <button class="megamenu__trigger">
+              <i class="material-icons-outlined">book</i>
+              리소스
+            </button>
+            <div class="megamenu__panel">
+              <div class="megamenu__section">
+                <h5 class="megamenu__section-title">학습 자료</h5>
+                <div class="megamenu__grid">
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">description</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">문서</div>
+                      <div class="megamenu__link-desc">가이드, API 문서</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">video_library</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">동영상</div>
+                      <div class="megamenu__link-desc">튜토리얼, 웨비나</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">code</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">샘플 코드</div>
+                      <div class="megamenu__link-desc">GitHub, CodePen</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">forum</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">커뮤니티</div>
+                      <div class="megamenu__link-desc">포럼, Q&A</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">article</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">블로그</div>
+                      <div class="megamenu__link-desc">기술 블로그</div>
+                    </div>
+                  </a>
+                  <a href="#" class="megamenu__link">
+                    <i class="material-icons-outlined megamenu__link-icon">event</i>
+                    <div class="megamenu__link-content">
+                      <div class="megamenu__link-title">이벤트</div>
+                      <div class="megamenu__link-desc">컨퍼런스, 밋업</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 통합 네비게이션 예제 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">통합 네비게이션</h2>
+        <p class="card__description">여러 컴포넌트를 조합한 실전 예제</p>
+      </div>
+      <div class="card__body">
+        <!-- 관리자 대시보드 -->
+        <h4 style="margin-bottom: 1rem;">관리자 대시보드</h4>
+        <div style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+          <!-- 상단 네비게이션 -->
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <i class="material-icons-outlined" style="font-size: 2rem; color: #667eea;">dashboard</i>
+              <h3 style="margin: 0;">관리자 콘솔</h3>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button style="padding: 0.5rem; border: none; background: none; cursor: pointer; border-radius: 6px;">
+                <i class="material-icons-outlined">notifications</i>
+              </button>
+              <button style="padding: 0.5rem; border: none; background: none; cursor: pointer; border-radius: 6px;">
+                <i class="material-icons-outlined">account_circle</i>
+              </button>
+            </div>
+          </div>
+
+          <div class="tabs tabs--vertical" id="tabs_admin_sidebar">
+            <div style="display: flex;">
+              <!-- 사이드바 -->
+              <div style="width: 250px; background: var(--bg-primary); border-right: 1px solid var(--border-color); padding: 1rem;">
+                <div role="tablist" class="tabs__list">
+                  <button role="tab" class="tabs__tab" aria-selected="true">
+                    <i class="material-icons-outlined tabs__tab-icon">dashboard</i>
+                    개요
+                  </button>
+                  <button role="tab" class="tabs__tab">
+                    <i class="material-icons-outlined tabs__tab-icon">people</i>
+                    사용자
+                    <span class="tabs__tab-badge">156</span>
+                  </button>
+                  <button role="tab" class="tabs__tab">
+                    <i class="material-icons-outlined tabs__tab-icon">inventory_2</i>
+                    제품
+                  </button>
+                  <button role="tab" class="tabs__tab">
+                    <i class="material-icons-outlined tabs__tab-icon">bar_chart</i>
+                    통계
+                  </button>
+                </div>
+              </div>
+
+              <!-- 메인 콘텐츠 -->
+              <div style="flex: 1; padding: 1.5rem;">
+                <div class="tabs__panels">
+                  <div role="tabpanel" class="tabs__panel">
+                    <h4>대시보드 개요</h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                      <div style="padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white;">
+                        <div style="font-size: 0.875rem; opacity: 0.9;">총 사용자</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem;">2,847</div>
+                      </div>
+                      <div style="padding: 1rem; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 8px; color: white;">
+                        <div style="font-size: 0.875rem; opacity: 0.9;">총 제품</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem;">1,234</div>
+                      </div>
+                      <div style="padding: 1rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 8px; color: white;">
+                        <div style="font-size: 0.875rem; opacity: 0.9;">총 매출</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem;">₩12M</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tabs__panel">
+                    <h4>사용자 관리</h4>
+                    <p>사용자 목록 및 권한 관리</p>
+                  </div>
+                  <div role="tabpanel" class="tabs__panel">
+                    <h4>제품 관리</h4>
+                    <p>제품 카탈로그 및 재고 관리</p>
+                  </div>
+                  <div role="tabpanel" class="tabs__panel">
+                    <h4>통계 분석</h4>
+                    <p>매출, 트래픽, 전환율 분석</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 사용법 -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">사용법</h2>
+      </div>
+      <div class="card__body">
+        <h3>TreeView 사용법</h3>
+        <pre><code>const Navigation = await IMCAT.use('navigation');
+
+// TreeView 생성
+const treeview = new Navigation.TreeView('#container', {
+  multipleSelect: false,  // 다중 선택 허용
+  expandIcon: 'chevron_right',
+  onChange: (node, isExpanded) => {
+    console.log('TreeView 변경:', node, isExpanded);
+  }
+});
+
+// 노드 확장/축소
+treeview.expandNode(nodeElement);
+treeview.collapseNode(nodeElement);
+
+// 모두 확장/축소
+treeview.expandAll();
+treeview.collapseAll();
+
+// 노드 선택
+treeview.selectNode(nodeElement);
+
+// 정리
+treeview.destroy();</code></pre>
+
+        <h3 style="margin-top: 2rem;">다단계 수직 메뉴 사용법</h3>
+        <pre><code>// HTML 구조
+&lt;ul class="menu menu--vertical menu--nested"&gt;
+  &lt;li class="menu__item"&gt;
+    &lt;a href="#" class="menu__link"&gt;
+      &lt;i class="material-icons-outlined menu__icon"&gt;dashboard&lt;/i&gt;
+      &lt;span class="menu__text"&gt;대시보드&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  
+  &lt;li class="menu__item has-submenu"&gt;
+    &lt;a href="#" class="menu__link"&gt;
+      &lt;i class="material-icons-outlined menu__icon"&gt;settings&lt;/i&gt;
+      &lt;span class="menu__text"&gt;설정&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class="menu__submenu"&gt;
+      &lt;li class="menu__item"&gt;
+        &lt;a href="#" class="menu__link"&gt;
+          &lt;span class="menu__text"&gt;일반 설정&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+// JavaScript 초기화
+function initNestedMenu(menuId) {
+  const menu = document.getElementById(menuId);
+  menu.querySelectorAll('.menu__item.has-submenu > .menu__link').forEach(link =&gt; {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('is-open');
+    });
+  });
+}
+
+initNestedMenu('sidebar_menu');</code></pre>
+
+        <h3 style="margin-top: 2rem;">MegaMenu 사용법</h3>
+        <pre><code>const Navigation = await IMCAT.use('navigation');
+
+// MegaMenu 생성
+const megamenu = new Navigation.MegaMenu('#megamenu', {
+  trigger: 'hover',        // 'hover' 또는 'click'
+  hoverDelay: 200,         // hover 지연 시간 (ms)
+  closeOnOutside: true,    // 외부 클릭 시 닫기
+  onChange: (index, isOpen, item) => {
+    console.log('MegaMenu 변경:', index, isOpen);
+  }
+});
+
+// 메뉴 열기/닫기
+megamenu.openItem(0);
+megamenu.closeItem(0);
+megamenu.closeAll();
+
+// 정리
+megamenu.destroy();</code></pre>
+
+        <h3 style="margin-top: 2rem;">통합 사용 예제</h3>
+        <pre><code>// Tabs + TreeView + Accordion + MegaMenu 통합
+const tabs = new Navigation.Tabs('#sidebar-tabs', {
+  orientation: 'vertical'
+});
+
+const treeview = new Navigation.TreeView('#file-tree', {
+  multipleSelect: true
+});
+
+const accordion = new Navigation.Accordion('#settings', {
+  multiple: false
+});
+
+const megamenu = new Navigation.MegaMenu('#main-menu', {
+  trigger: 'hover',
+  hoverDelay: 200
+});
+
+// 메모리 관리
+IMCAT.view.registerInstance(tabs);
+IMCAT.view.registerInstance(treeview);
+IMCAT.view.registerInstance(accordion);
+IMCAT.view.registerInstance(megamenu);</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script type="module">
+  const Navigation = await IMCAT.use('navigation');
+
+  // TreeView 자동 초기화
+  const treeviewIds = ['treeview_filesystem', 'treeview_organization', 'treeview_menu'];
+  treeviewIds.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      const treeview = new Navigation.TreeView(`#${id}`, {
+        multipleSelect: false
+      });
+      IMCAT.view.registerInstance(treeview);
+    }
+  });
+
+  // 다단계 수직 메뉴 토글 기능
+  function initNestedMenu(menuId) {
+    const menu = document.getElementById(menuId);
+    if (!menu) return;
+
+    // 서브메뉴가 있는 아이템에 클릭 이벤트 추가
+    menu.querySelectorAll('.menu__item.has-submenu > .menu__link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const menuItem = this.parentElement;
+        const isOpen = menuItem.classList.contains('is-open');
+        
+        // 같은 레벨의 다른 메뉴 닫기
+        const siblings = Array.from(menuItem.parentElement.children).filter(el => 
+          el !== menuItem && el.classList.contains('has-submenu')
+        );
+        siblings.forEach(sibling => sibling.classList.remove('is-open'));
+        
+        // 현재 메뉴 토글
+        menuItem.classList.toggle('is-open');
+      });
+    });
+  }
+
+  // 2단계 및 3단계 메뉴 초기화
+  initNestedMenu('sidebar_menu_2depth');
+  initNestedMenu('sidebar_menu_3depth');
+
+  // 관리자 사이드바 탭
+  const adminSidebar = new Navigation.Tabs('#tabs_admin_sidebar', {
+    orientation: 'vertical'
+  });
+  IMCAT.view.registerInstance(adminSidebar);
+
+  // MegaMenu 초기화
+  const megamenuIds = ['megamenu_ecommerce', 'megamenu_services'];
+  megamenuIds.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      const megamenu = new Navigation.MegaMenu(`#${id}`, {
+        trigger: 'hover',
+        hoverDelay: 200,
+        closeOnOutside: true
+      });
+      IMCAT.view.registerInstance(megamenu);
+    }
+  });
+
+  console.log('Navigation Advanced 예제 로드 완료');
+</script>

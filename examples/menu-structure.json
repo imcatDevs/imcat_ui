@@ -8,56 +8,56 @@
           "text": "Buttons",
           "icon": "smart_button",
           "href": "views/static/buttons.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "forms",
           "text": "Forms",
           "icon": "edit_note",
           "href": "views/static/forms.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "input-groups",
           "text": "Input Groups",
           "icon": "input",
           "href": "views/static/input-groups.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "checkboxes",
           "text": "Checkboxes & Radios",
           "icon": "check_box",
           "href": "views/static/checkboxes.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "select",
           "text": "Select",
           "icon": "arrow_drop_down_circle",
           "href": "views/static/select.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "switches",
           "text": "Switches",
           "icon": "toggle_on",
           "href": "views/static/switches.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "range-slider",
           "text": "Range Slider",
           "icon": "tune",
           "href": "views/static/range-slider.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "form-layouts",
           "text": "Form Layouts",
           "icon": "view_module",
           "href": "views/static/form-layouts.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -69,140 +69,140 @@
           "text": "Cards",
           "icon": "credit_card",
           "href": "views/static/cards.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "tables",
           "text": "Tables",
           "icon": "table_chart",
           "href": "views/static/tables.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "alerts",
           "text": "Alerts",
           "icon": "campaign",
           "href": "views/static/alerts.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "avatars",
           "text": "Avatars",
           "icon": "account_circle",
           "href": "views/static/avatars.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "chips",
           "text": "Chips & Tags",
           "icon": "label",
           "href": "views/static/chips.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "media",
           "text": "Media Objects",
           "icon": "perm_media",
           "href": "views/static/media.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "images",
           "text": "Images",
           "icon": "image",
           "href": "views/static/images.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "timeline",
           "text": "Timeline",
           "icon": "timeline",
           "href": "views/static/timeline.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "dividers",
           "text": "Dividers",
           "icon": "horizontal_rule",
           "href": "views/static/dividers.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "blockquotes",
           "text": "Blockquotes",
           "icon": "format_quote",
           "href": "views/static/blockquotes.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "code-blocks",
           "text": "Code Blocks",
           "icon": "code",
           "href": "views/static/code-blocks.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "callouts",
           "text": "Callouts",
           "icon": "announcement",
           "href": "views/static/callouts.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "figures",
           "text": "Figures",
           "icon": "photo_library",
           "href": "views/static/figures.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "wells",
           "text": "Wells",
           "icon": "crop_square",
           "href": "views/static/wells.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "videos",
           "text": "Videos",
           "icon": "videocam",
           "href": "views/static/videos.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "kbd",
           "text": "Keyboard Keys",
           "icon": "keyboard_alt",
           "href": "views/static/kbd.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "mark",
           "text": "Mark & Highlight",
           "icon": "highlight_alt",
           "href": "views/static/mark.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "text-utilities",
           "text": "Text Utilities",
           "icon": "format_size",
           "href": "views/static/text-utilities.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "embeds",
           "text": "Embeds",
           "icon": "code",
           "href": "views/static/embeds.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "ratios",
           "text": "Aspect Ratios",
           "icon": "aspect_ratio",
           "href": "views/static/ratios.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -214,7 +214,7 @@
           "text": "Overlays & Dialogs",
           "icon": "web_asset",
           "href": "views/modules/overlays.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "navigation",
@@ -338,70 +338,70 @@
           "text": "Breadcrumb",
           "icon": "chevron_right",
           "href": "views/static/breadcrumb.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "lists",
           "text": "Lists",
           "icon": "format_list_bulleted",
           "href": "views/static/lists.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "pagination",
           "text": "Pagination",
           "icon": "last_page",
           "href": "views/static/pagination.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "navbar",
           "text": "Navbar",
           "icon": "view_headline",
           "href": "views/static/navbar.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "menu",
           "text": "Menu",
           "icon": "menu",
           "href": "views/static/menu.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "steps",
           "text": "Steps",
           "icon": "linear_scale",
           "href": "views/static/steps.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "sidebar",
           "text": "Sidebar",
           "icon": "view_sidebar",
           "href": "views/static/sidebar.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "footer",
           "text": "Footer",
           "icon": "web",
           "href": "views/static/footer.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "link",
           "text": "Link",
           "icon": "link",
           "href": "views/static/link.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "button-group",
           "text": "Button Group",
           "icon": "view_week",
           "href": "views/static/button-group.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -413,77 +413,77 @@
           "text": "Badges",
           "icon": "sell",
           "href": "views/static/badges.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "progress",
           "text": "Progress",
           "icon": "data_usage",
           "href": "views/static/progress.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "spinners",
           "text": "Spinners",
           "icon": "autorenew",
           "href": "views/static/spinners.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "skeleton",
           "text": "Skeleton",
           "icon": "view_agenda",
           "href": "views/static/skeleton.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "empty-states",
           "text": "Empty States",
           "icon": "inbox",
           "href": "views/static/empty-states.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "tags",
           "text": "Tags",
           "icon": "label",
           "href": "views/static/tags.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "status-dots",
           "text": "Status Dots",
           "icon": "circle",
           "href": "views/static/status-dots.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "counters",
           "text": "Counters",
           "icon": "counter_1",
           "href": "views/static/counters.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "ribbons",
           "text": "Ribbons",
           "icon": "style",
           "href": "views/static/ribbons.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "rating",
           "text": "Rating",
           "icon": "star",
           "href": "views/static/rating.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "avatar-badge",
           "text": "Avatar Badge",
           "icon": "account_circle",
           "href": "views/static/avatar-badge.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -495,21 +495,21 @@
           "text": "Floating Action Button",
           "icon": "add_circle",
           "href": "views/static/fab.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "stats-cards",
           "text": "Stats Cards",
           "icon": "analytics",
           "href": "views/static/stats-cards.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "gauge",
           "text": "Gauge",
           "icon": "speed",
           "href": "views/static/gauge.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -521,56 +521,56 @@
           "text": "Typography",
           "icon": "text_format",
           "href": "views/design/typography.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "colors",
           "text": "Colors",
           "icon": "palette",
           "href": "views/design/colors.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "spacing",
           "text": "Spacing",
           "icon": "space_bar",
           "href": "views/design/spacing.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "shadows",
           "text": "Shadows",
           "icon": "blur_on",
           "href": "views/design/shadows.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "icons",
           "text": "Icons",
           "icon": "emoji_emotions",
           "href": "views/design/icons.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "borders",
           "text": "Borders",
           "icon": "border_outer",
           "href": "views/design/borders.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "animations",
           "text": "Animations",
           "icon": "animation",
           "href": "views/design/animations.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "breakpoints",
           "text": "Breakpoints",
           "icon": "devices",
           "href": "views/design/breakpoints.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -582,91 +582,91 @@
           "text": "Grid System",
           "icon": "grid_on",
           "href": "views/layout/grid.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "flexbox",
           "text": "Flexbox",
           "icon": "view_column",
           "href": "views/layout/flexbox.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "containers",
           "text": "Containers",
           "icon": "web",
           "href": "views/layout/containers.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "responsive",
           "text": "Responsive",
           "icon": "devices",
           "href": "views/layout/responsive.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "sidebar-layouts",
           "text": "Sidebar Layouts",
           "icon": "view_sidebar",
           "href": "views/layout/sidebar-layouts.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "two-column",
           "text": "Two Column",
           "icon": "view_week",
           "href": "views/layout/two-column.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "dashboard",
           "text": "Dashboard",
           "icon": "dashboard",
           "href": "views/layout/dashboard.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "full-width",
           "text": "Full Width",
           "icon": "fullscreen",
           "href": "views/layout/full-width.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "sticky",
           "text": "Sticky Elements",
           "icon": "push_pin",
           "href": "views/layout/sticky.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "split-screen",
           "text": "Split Screen",
           "icon": "vertical_split",
           "href": "views/layout/split-screen.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "sections",
           "text": "Page Sections",
           "icon": "article",
           "href": "views/layout/sections.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "fixed-layout",
           "text": "Fixed Layout",
           "icon": "lock",
           "href": "views/layout/fixed-layout.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "boxed-layout",
           "text": "Boxed Layout",
           "icon": "crop_square",
           "href": "views/layout/boxed-layout.html",
-          "badge": true
+          "badge": false
         }
       ]
     },
@@ -678,35 +678,35 @@
           "text": "Display",
           "icon": "visibility",
           "href": "views/utilities/display.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "position",
           "text": "Position",
           "icon": "place",
           "href": "views/utilities/position.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "sizing",
           "text": "Sizing",
           "icon": "photo_size_select_large",
           "href": "views/utilities/sizing.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "text",
           "text": "Text",
           "icon": "title",
           "href": "views/utilities/text.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "background",
           "text": "Background",
           "icon": "image",
           "href": "views/utilities/background.html",
-          "badge": true
+          "badge": false
         }
       ]
     }

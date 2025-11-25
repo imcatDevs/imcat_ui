@@ -118,6 +118,75 @@
 }
 
 // ============================================
+// Nested Menu (Vertical Sidebar)
+// ============================================
+
+.menu--nested {
+  .menu__item {
+    &.has-submenu {
+      > .menu__link {
+        position: relative;
+        padding-right: 2.5rem;
+
+        &::after {
+          content: 'expand_more';
+          font-family: 'Material Icons Outlined';
+          position: absolute;
+          right: 1rem;
+          font-size: 1.25rem;
+          transition: transform 0.2s ease;
+        }
+      }
+
+      &.is-open {
+        > .menu__link::after {
+          transform: rotate(180deg);
+        }
+
+        > .menu__submenu {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .menu__submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-secondary);
+
+    .menu__item {
+      border-bottom: none;
+    }
+
+    .menu__link {
+      padding-left: 3rem;
+      font-size: 0.9375rem;
+
+      &:hover {
+        background-color: var(--bg-tertiary);
+      }
+    }
+
+    // 3단계 중첩
+    .menu__submenu {
+      background-color: var(--bg-tertiary);
+
+      .menu__link {
+        padding-left: 4.5rem;
+        font-size: 0.875rem;
+
+        &:hover {
+          background-color: rgba(102, 126, 234, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// ============================================
 // Dark Theme
 // ============================================
 
@@ -133,5 +202,23 @@
 
   .menu__link:hover {
     background-color: var(--bg-secondary);
+  }
+
+  .menu--nested {
+    .menu__submenu {
+      background-color: var(--bg-secondary);
+
+      .menu__link:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      .menu__submenu {
+        background-color: var(--bg-tertiary);
+
+        .menu__link:hover {
+          background-color: rgba(102, 126, 234, 0.15);
+        }
+      }
+    }
   }
 }

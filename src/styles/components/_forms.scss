@@ -32,6 +32,31 @@ $input-disabled-bg: var(--gray-100, #f8f9fa);
 $input-disabled-border-color: var(--gray-300, #dee2e6);
 
 // ============================================
+// Form Container
+// ============================================
+
+.form {
+  margin: 0;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-section-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #212529);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// ============================================
 // Base Form Control
 // ============================================
 
@@ -242,6 +267,8 @@ textarea.form-control {
 
 .form-switch {
   padding-left: 2.5em;
+  display: flex;
+  align-items: center;
 
   .form-check-input {
     width: 2em;

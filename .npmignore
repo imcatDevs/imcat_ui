@@ -1,0 +1,20 @@
+# 개발 관련 폴더
+html/
+examples/
+docs/
+tests/
+scripts/
+release/
+
+# 설정 파일
+.editorconfig
+.eslintrc.js
+.gitignore
+jsdoc.json
+rollup.config.js
+vitest.config.js
+
+# 기타
+*.log
+*.zip
+node_modules/

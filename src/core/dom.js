@@ -82,17 +82,19 @@ class DOMElement {
   }
 
   /**
-   * 텍스트 설정/조회 (자동 이스케이프)
+   * 텍스트 설정/조회
    * @param {string} [value] - 설정할 텍스트
    * @returns {string|DOMElement}
+   * 
+   * @note textContent는 브라우저에서 자동으로 안전하게 처리됨
+   * (HTML 태그가 텍스트로 표시됨, XSS 위험 없음)
    */
   text(value) {
     if (value === undefined) {
       return this.elements[0]?.textContent || '';
     }
-    // 자동 이스케이프
-    const escaped = Security.escape(value);
-    return this.each(el => el.textContent = escaped);
+    // textContent는 자동으로 안전함 (HTML 파싱 안 함)
+    return this.each(el => el.textContent = value);
   }
 
   /**

@@ -80,22 +80,29 @@ class FileUpload {
   }
 
   _bindEvents() {
-    this.input.addEventListener('change', (e) => this._handleFiles(e.target.files));
+    // 이벤트 핸들러 추적
+    this._onInputChange = (e) => this._handleFiles(e.target.files);
+    this.input.addEventListener('change', this._onInputChange);
     
     if (this.dropzone) {
-      this.dropzone.addEventListener('click', () => this.input.click());
-      this.dropzone.addEventListener('dragover', (e) => {
+      this._onDropzoneClick = () => this.input.click();
+      this._onDragover = (e) => {
         e.preventDefault();
         this.dropzone.classList.add('is-dragover');
-      });
-      this.dropzone.addEventListener('dragleave', () => {
+      };
+      this._onDragleave = () => {
         this.dropzone.classList.remove('is-dragover');
-      });
-      this.dropzone.addEventListener('drop', (e) => {
+      };
+      this._onDrop = (e) => {
         e.preventDefault();
         this.dropzone.classList.remove('is-dragover');
         this._handleFiles(e.dataTransfer.files);
-      });
+      };
+      
+      this.dropzone.addEventListener('click', this._onDropzoneClick);
+      this.dropzone.addEventListener('dragover', this._onDragover);
+      this.dropzone.addEventListener('dragleave', this._onDragleave);
+      this.dropzone.addEventListener('drop', this._onDrop);
     }
   }
 
@@ -269,9 +276,28 @@ class FileUpload {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onInputChange) this.input.removeEventListener('change', this._onInputChange);
+    if (this.dropzone) {
+      if (this._onDropzoneClick) this.dropzone.removeEventListener('click', this._onDropzoneClick);
+      if (this._onDragover) this.dropzone.removeEventListener('dragover', this._onDragover);
+      if (this._onDragleave) this.dropzone.removeEventListener('dragleave', this._onDragleave);
+      if (this._onDrop) this.dropzone.removeEventListener('drop', this._onDrop);
+    }
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.style.display = '';
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
+    
+    // 참조 해제
+    this.element = null;
+    this.wrapper = null;
+    this.dropzone = null;
+    this.input = null;
+    this.previewContainer = null;
+    this.files = [];
   }
 }
 
@@ -322,23 +348,26 @@ class Rating {
   _bindEvents() {
     if (this.options.readonly) return;
 
-    this.element.addEventListener('click', (e) => {
+    // 이벤트 핸들러 추적
+    this._onClick = (e) => {
       const star = e.target.closest('.rating__star');
       if (star) {
         this.setValue(parseInt(star.dataset.value));
       }
-    });
-
-    this.element.addEventListener('mouseover', (e) => {
+    };
+    this._onMouseover = (e) => {
       const star = e.target.closest('.rating__star');
       if (star) {
         this._highlight(parseInt(star.dataset.value));
       }
-    });
-
-    this.element.addEventListener('mouseout', () => {
+    };
+    this._onMouseout = () => {
       this._render();
-    });
+    };
+
+    this.element.addEventListener('click', this._onClick);
+    this.element.addEventListener('mouseover', this._onMouseover);
+    this.element.addEventListener('mouseout', this._onMouseout);
   }
 
   _highlight(value) {
@@ -360,8 +389,20 @@ class Rating {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (!this.options.readonly) {
+      if (this._onClick) this.element.removeEventListener('click', this._onClick);
+      if (this._onMouseover) this.element.removeEventListener('mouseover', this._onMouseover);
+      if (this._onMouseout) this.element.removeEventListener('mouseout', this._onMouseout);
+    }
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('rating', `rating--${this.options.size}`, 'rating--readonly');
+    
+    // 참조 해제
+    this.element = null;
   }
 }
 
@@ -429,22 +470,31 @@ class SignaturePad {
   }
 
   _bindEvents() {
-    // Mouse events
-    this.canvas.addEventListener('mousedown', (e) => this._startDrawing(e));
-    this.canvas.addEventListener('mousemove', (e) => this._draw(e));
-    this.canvas.addEventListener('mouseup', () => this._stopDrawing());
-    this.canvas.addEventListener('mouseleave', () => this._stopDrawing());
+    // 이벤트 핸들러 추적 - Mouse events
+    this._onMouseDown = (e) => this._startDrawing(e);
+    this._onMouseMove = (e) => this._draw(e);
+    this._onMouseUp = () => this._stopDrawing();
+    this._onMouseLeave = () => this._stopDrawing();
+    
+    this.canvas.addEventListener('mousedown', this._onMouseDown);
+    this.canvas.addEventListener('mousemove', this._onMouseMove);
+    this.canvas.addEventListener('mouseup', this._onMouseUp);
+    this.canvas.addEventListener('mouseleave', this._onMouseLeave);
 
     // Touch events
-    this.canvas.addEventListener('touchstart', (e) => {
+    this._onTouchStart = (e) => {
       e.preventDefault();
       this._startDrawing(e.touches[0]);
-    }, { passive: false });
-    this.canvas.addEventListener('touchmove', (e) => {
+    };
+    this._onTouchMove = (e) => {
       e.preventDefault();
       this._draw(e.touches[0]);
-    }, { passive: false });
-    this.canvas.addEventListener('touchend', () => this._stopDrawing());
+    };
+    this._onTouchEnd = () => this._stopDrawing();
+    
+    this.canvas.addEventListener('touchstart', this._onTouchStart, { passive: false });
+    this.canvas.addEventListener('touchmove', this._onTouchMove, { passive: false });
+    this.canvas.addEventListener('touchend', this._onTouchEnd);
   }
 
   _getPosition(e) {
@@ -506,8 +556,28 @@ class SignaturePad {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this.canvas) {
+      if (this._onMouseDown) this.canvas.removeEventListener('mousedown', this._onMouseDown);
+      if (this._onMouseMove) this.canvas.removeEventListener('mousemove', this._onMouseMove);
+      if (this._onMouseUp) this.canvas.removeEventListener('mouseup', this._onMouseUp);
+      if (this._onMouseLeave) this.canvas.removeEventListener('mouseleave', this._onMouseLeave);
+      if (this._onTouchStart) this.canvas.removeEventListener('touchstart', this._onTouchStart);
+      if (this._onTouchMove) this.canvas.removeEventListener('touchmove', this._onTouchMove);
+      if (this._onTouchEnd) this.canvas.removeEventListener('touchend', this._onTouchEnd);
+    }
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('signature-pad');
+    
+    // 참조 해제
+    this.element = null;
+    this.canvas = null;
+    this.ctx = null;
+    this.toolbar = null;
+    this.points = [];
   }
 }
 
@@ -619,14 +689,17 @@ class FormWizard {
   }
 
   _bindEvents() {
-    this.element.addEventListener('click', (e) => {
+    // 이벤트 핸들러 추적
+    this._onClick = (e) => {
       const btn = e.target.closest('[data-action]');
       if (!btn) return;
       
       if (btn.dataset.action === 'prev') this.prev();
       if (btn.dataset.action === 'next') this.next();
       if (btn.dataset.action === 'submit') this._submit();
-    });
+    };
+    
+    this.element.addEventListener('click', this._onClick);
   }
 
   async _validateCurrentStep() {
@@ -698,8 +771,16 @@ class FormWizard {
   getCurrentStep() { return this.currentStep; }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onClick) this.element.removeEventListener('click', this._onClick);
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('form-wizard');
+    
+    // 참조 해제
+    this.element = null;
   }
 }
 

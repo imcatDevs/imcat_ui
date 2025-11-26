@@ -57,6 +57,13 @@ export class APIUtil {
         if (APIUtil._requestInterceptors[id]) {
           APIUtil._requestInterceptors[id] = null;
         }
+      },
+
+      /**
+       * 모든 요청 인터셉터 제거
+       */
+      clear() {
+        APIUtil._requestInterceptors = [];
       }
     },
 
@@ -94,7 +101,22 @@ export class APIUtil {
         if (APIUtil._responseInterceptors[id]) {
           APIUtil._responseInterceptors[id] = null;
         }
+      },
+
+      /**
+       * 모든 응답 인터셉터 제거
+       */
+      clear() {
+        APIUtil._responseInterceptors = [];
       }
+    },
+
+    /**
+     * 모든 인터셉터 제거
+     */
+    clear() {
+      APIUtil._requestInterceptors = [];
+      APIUtil._responseInterceptors = [];
     }
   };
   /**

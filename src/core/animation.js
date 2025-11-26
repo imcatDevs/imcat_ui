@@ -294,8 +294,6 @@ class Animator {
   scaleIn(duration = 300, easing = 'ease-out') {
     if (!this.element) return Promise.resolve();
     
-    console.log(`  🔹 scaleIn() 호출: duration=${duration}, easing=${easing}`);
-    
     this.element.style.display = 'block';
     
     const keyframes = [
@@ -312,7 +310,6 @@ class Animator {
     return animation.finished.then(() => {
       this.element.style.transform = 'scale(1)';
       this.element.style.opacity = '1';
-      console.log(`  ✅ scaleIn() 완료`);
     });
   }
 
@@ -336,8 +333,6 @@ class Animator {
   bounceIn(duration = 600, easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)') {
     if (!this.element) return Promise.resolve();
     
-    console.log(`  🔹 bounceIn() 호출: duration=${duration}, easing=${easing}`);
-    
     this.element.style.display = 'block';
     
     const keyframes = [
@@ -354,7 +349,6 @@ class Animator {
     return animation.finished.then(() => {
       this.element.style.transform = 'translateY(0)';
       this.element.style.opacity = '1';
-      console.log(`  ✅ bounceIn() 완료`);
     });
   }
 

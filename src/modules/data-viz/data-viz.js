@@ -161,7 +161,8 @@ class DataTable {
   }
 
   _bindEvents() {
-    this.container.addEventListener('click', (e) => {
+    // 이벤트 핸들러 추적
+    this._onClick = (e) => {
       // 툴바 버튼 클릭
       const toolbarBtn = e.target.closest('.data-table__toolbar-btn');
       if (toolbarBtn) {
@@ -200,10 +201,10 @@ class DataTable {
         if (action === 'next') this.currentPage++;
         this._render();
       }
-    });
+    };
 
     // 체크박스 이벤트
-    this.container.addEventListener('change', (e) => {
+    this._onChange = (e) => {
       // 전체 선택
       if (e.target.classList.contains('data-table__select-all')) {
         const checked = e.target.checked;
@@ -244,7 +245,10 @@ class DataTable {
         }
         this._triggerSelectCallback();
       }
-    });
+    };
+    
+    this.container.addEventListener('click', this._onClick);
+    this.container.addEventListener('change', this._onChange);
   }
 
   _isAllSelected(pageData, start) {
@@ -362,8 +366,19 @@ class DataTable {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onClick) this.container.removeEventListener('click', this._onClick);
+    if (this._onChange) this.container.removeEventListener('change', this._onChange);
+    
+    // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('data-table-wrapper');
+    
+    // 참조 해제
+    this.container = null;
+    this.data = [];
+    this.filteredData = [];
+    this.selectedRows = null;
   }
 }
 
@@ -733,18 +748,17 @@ class Kanban {
   }
 
   _bindEvents() {
-    // 드래그 시작
-    this.container.addEventListener('dragstart', (e) => {
+    // 이벤트 핸들러 추적
+    this._onDragstart = (e) => {
       const card = e.target.closest('.kanban__card');
       if (card) {
         this.draggedCard = card;
         card.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
       }
-    });
+    };
 
-    // 드래그 끝
-    this.container.addEventListener('dragend', (e) => {
+    this._onDragend = (e) => {
       if (this.draggedCard) {
         this.draggedCard.classList.remove('dragging');
         this.draggedCard = null;
@@ -752,27 +766,24 @@ class Kanban {
       this.container.querySelectorAll('.kanban__cards').forEach(col => {
         col.classList.remove('drag-over');
       });
-    });
+    };
 
-    // 드래그 오버
-    this.container.addEventListener('dragover', (e) => {
+    this._onDragover = (e) => {
       e.preventDefault();
       const cardsContainer = e.target.closest('.kanban__cards');
       if (cardsContainer) {
         cardsContainer.classList.add('drag-over');
       }
-    });
+    };
 
-    // 드래그 리브
-    this.container.addEventListener('dragleave', (e) => {
+    this._onDragleave = (e) => {
       const cardsContainer = e.target.closest('.kanban__cards');
       if (cardsContainer && !cardsContainer.contains(e.relatedTarget)) {
         cardsContainer.classList.remove('drag-over');
       }
-    });
+    };
 
-    // 드롭
-    this.container.addEventListener('drop', (e) => {
+    this._onDrop = (e) => {
       e.preventDefault();
       const cardsContainer = e.target.closest('.kanban__cards');
       if (cardsContainer && this.draggedCard) {
@@ -783,17 +794,15 @@ class Kanban {
         cardsContainer.appendChild(this.draggedCard);
         cardsContainer.classList.remove('drag-over');
 
-        // 카운트 업데이트
         this._updateCounts();
 
         if (this.options.onMove) {
           this.options.onMove(cardId, fromColumnId, toColumnId);
         }
       }
-    });
+    };
 
-    // 카드 클릭
-    this.container.addEventListener('click', (e) => {
+    this._onClick = (e) => {
       const card = e.target.closest('.kanban__card');
       if (card && this.options.onCardClick) {
         this.options.onCardClick(card.dataset.cardId);
@@ -804,7 +813,14 @@ class Kanban {
         const columnId = addBtn.dataset.columnId;
         this._showAddCardDialog(columnId);
       }
-    });
+    };
+
+    this.container.addEventListener('dragstart', this._onDragstart);
+    this.container.addEventListener('dragend', this._onDragend);
+    this.container.addEventListener('dragover', this._onDragover);
+    this.container.addEventListener('dragleave', this._onDragleave);
+    this.container.addEventListener('drop', this._onDrop);
+    this.container.addEventListener('click', this._onClick);
   }
 
   _updateCounts() {
@@ -844,8 +860,21 @@ class Kanban {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onDragstart) this.container.removeEventListener('dragstart', this._onDragstart);
+    if (this._onDragend) this.container.removeEventListener('dragend', this._onDragend);
+    if (this._onDragover) this.container.removeEventListener('dragover', this._onDragover);
+    if (this._onDragleave) this.container.removeEventListener('dragleave', this._onDragleave);
+    if (this._onDrop) this.container.removeEventListener('drop', this._onDrop);
+    if (this._onClick) this.container.removeEventListener('click', this._onClick);
+    
+    // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('kanban');
+    
+    // 참조 해제
+    this.container = null;
+    this.draggedCard = null;
   }
 }
 
@@ -958,7 +987,8 @@ class Calendar {
   }
 
   _bindEvents() {
-    this.container.addEventListener('click', (e) => {
+    // 이벤트 핸들러 추적
+    this._onClick = (e) => {
       // 네비게이션
       const navBtn = e.target.closest('.calendar__nav-btn');
       if (navBtn) {
@@ -985,7 +1015,9 @@ class Calendar {
       if (event && this.options.onEventClick) {
         this.options.onEventClick(event.dataset.eventId);
       }
-    });
+    };
+    
+    this.container.addEventListener('click', this._onClick);
   }
 
   goToDate(date) {
@@ -1009,8 +1041,15 @@ class Calendar {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onClick) this.container.removeEventListener('click', this._onClick);
+    
+    // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('calendar');
+    
+    // 참조 해제
+    this.container = null;
   }
 }
 

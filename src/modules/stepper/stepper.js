@@ -54,6 +54,7 @@ class Stepper {
     this.options = { ...Stepper.defaults(), ...options };
     this._completedSteps = new Set();
     this._eventHandlers = [];
+    this._timers = []; // setTimeout 추적
     
     this.init();
     Stepper.instances.set(this.container, this);
@@ -334,7 +335,8 @@ class Stepper {
 
     if (this.options.animated) {
       this.contentContainer.classList.add('is-changing');
-      setTimeout(() => {
+      const timerId = setTimeout(() => {
+        if (!this.contentContainer) return; // destroy 후 안전 체크
         this.contentContainer.innerHTML = `
           <div class="stepper__panel" 
                id="step-panel-${this.options.currentStep}"
@@ -345,6 +347,7 @@ class Stepper {
         `;
         this.contentContainer.classList.remove('is-changing');
       }, 150);
+      this._timers.push(timerId);
     } else {
       this.contentContainer.innerHTML = `
         <div class="stepper__panel" 
@@ -420,6 +423,10 @@ class Stepper {
    * 정리
    */
   destroy() {
+    // 타이머 정리
+    this._timers.forEach(id => clearTimeout(id));
+    this._timers = [];
+    
     // 이벤트 리스너 제거
     this._eventHandlers.forEach(({ element, type, handler }) => {
       element.removeEventListener(type, handler);

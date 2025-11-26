@@ -58,11 +58,15 @@ class Autocomplete {
   }
 
   _bindEvents() {
-    this.element.addEventListener('input', () => this._handleInput());
-    this.element.addEventListener('focus', () => { if (this.results.length) this._open(); });
-    this.element.addEventListener('keydown', (e) => this._handleKeydown(e));
-    
+    // 이벤트 핸들러 추적
+    this._onInput = () => this._handleInput();
+    this._onFocus = () => { if (this.results.length) this._open(); };
+    this._onKeydown = (e) => this._handleKeydown(e);
     this._outside = (e) => { if (!this.wrapper.contains(e.target)) this._close(); };
+    
+    this.element.addEventListener('input', this._onInput);
+    this.element.addEventListener('focus', this._onFocus);
+    this.element.addEventListener('keydown', this._onKeydown);
     document.addEventListener('click', this._outside);
   }
 
@@ -205,9 +209,23 @@ class Autocomplete {
 
   destroy() {
     clearTimeout(this.debounceTimer);
+    
+    // 이벤트 리스너 제거
+    if (this._onInput) this.element.removeEventListener('input', this._onInput);
+    if (this._onFocus) this.element.removeEventListener('focus', this._onFocus);
+    if (this._onKeydown) this.element.removeEventListener('keydown', this._onKeydown);
     document.removeEventListener('click', this._outside);
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
+    
+    // 참조 해제
+    this.element = null;
+    this.wrapper = null;
+    this.dropdown = null;
+    this.results = [];
   }
 }
 
@@ -301,28 +319,30 @@ class MultiSelect {
   }
 
   _bindEvents() {
-    this.tagsContainer.addEventListener('click', (e) => {
+    // 이벤트 핸들러 추적
+    this._onTagsClick = (e) => {
       if (e.target.classList.contains('multiselect__tag-remove')) {
         this._removeValue(e.target.dataset.value);
       } else {
         this._open();
         this.searchInput.focus();
       }
-    });
-
-    this.searchInput.addEventListener('input', () => {
+    };
+    this._onSearchInput = () => {
       this._renderDropdown(this.searchInput.value);
       if (!this.isOpen) this._open();
-    });
-
-    this.searchInput.addEventListener('keydown', (e) => {
+    };
+    this._onSearchKeydown = (e) => {
       if (e.key === 'Backspace' && !this.searchInput.value && this.selectedValues.length) {
         this._removeValue(this.selectedValues[this.selectedValues.length - 1]);
       }
       if (e.key === 'Escape') this._close();
-    });
-
+    };
     this._outside = (e) => { if (!this.wrapper.contains(e.target)) this._close(); };
+    
+    this.tagsContainer.addEventListener('click', this._onTagsClick);
+    this.searchInput.addEventListener('input', this._onSearchInput);
+    this.searchInput.addEventListener('keydown', this._onSearchKeydown);
     document.addEventListener('click', this._outside);
   }
 
@@ -381,10 +401,25 @@ class MultiSelect {
   }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onTagsClick) this.tagsContainer.removeEventListener('click', this._onTagsClick);
+    if (this._onSearchInput && this.searchInput) this.searchInput.removeEventListener('input', this._onSearchInput);
+    if (this._onSearchKeydown && this.searchInput) this.searchInput.removeEventListener('keydown', this._onSearchKeydown);
     document.removeEventListener('click', this._outside);
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.style.display = '';
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
+    
+    // 참조 해제
+    this.element = null;
+    this.wrapper = null;
+    this.dropdown = null;
+    this.tagsContainer = null;
+    this.searchInput = null;
+    this.selectedValues = [];
   }
 }
 
@@ -476,12 +511,18 @@ class RangeSlider {
   }
 
   _bindEvents() {
+    // 핸들 이벤트 핸들러 추적
+    this._handleEvents = [];
     this.handles.forEach(handle => {
-      handle.addEventListener('mousedown', (e) => this._startDrag(e, handle));
-      handle.addEventListener('touchstart', (e) => this._startDrag(e, handle), { passive: false });
+      const onMouseDown = (e) => this._startDrag(e, handle);
+      const onTouchStart = (e) => this._startDrag(e, handle);
+      handle.addEventListener('mousedown', onMouseDown);
+      handle.addEventListener('touchstart', onTouchStart, { passive: false });
+      this._handleEvents.push({ handle, onMouseDown, onTouchStart });
     });
 
-    this.track.addEventListener('click', (e) => this._handleTrackClick(e));
+    this._onTrackClick = (e) => this._handleTrackClick(e);
+    this.track.addEventListener('click', this._onTrackClick);
 
     this._onMove = (e) => this._drag(e);
     this._onEnd = () => this._endDrag();
@@ -621,12 +662,37 @@ class RangeSlider {
   }
 
   destroy() {
+    // document 이벤트 리스너 제거
     document.removeEventListener('mousemove', this._onMove);
     document.removeEventListener('mouseup', this._onEnd);
     document.removeEventListener('touchmove', this._onMove);
     document.removeEventListener('touchend', this._onEnd);
+    
+    // 핸들 이벤트 리스너 제거
+    if (this._handleEvents) {
+      this._handleEvents.forEach(({ handle, onMouseDown, onTouchStart }) => {
+        handle.removeEventListener('mousedown', onMouseDown);
+        handle.removeEventListener('touchstart', onTouchStart);
+      });
+      this._handleEvents = [];
+    }
+    
+    // 트랙 이벤트 리스너 제거
+    if (this._onTrackClick && this.track) {
+      this.track.removeEventListener('click', this._onTrackClick);
+    }
+    
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('range-slider');
+    
+    // 참조 해제
+    this.element = null;
+    this.track = null;
+    this.fill = null;
+    this.handles = null;
   }
 }
 

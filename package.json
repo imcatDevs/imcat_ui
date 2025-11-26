@@ -27,7 +27,9 @@
     "serve": "http-server . -p 3000 -o",
     "docs": "jsdoc -c jsdoc.json",
     "docs:clean": "rimraf docs/jsdoc",
-    "docs:serve": "http-server docs/jsdoc -p 8080 -o"
+    "docs:serve": "http-server docs/jsdoc -p 8080 -o",
+    "release": "npm run build && node scripts/create-release.cjs",
+    "release:only": "node scripts/create-release.cjs"
   },
   "keywords": [
     "framework",
@@ -53,6 +55,7 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-terser": "^0.4.4",
     "@vitest/ui": "^1.0.0",
+    "archiver": "^6.0.2",
     "docdash": "^2.0.2",
     "eslint": "^8.55.0",
     "gzip-size-cli": "^5.1.0",

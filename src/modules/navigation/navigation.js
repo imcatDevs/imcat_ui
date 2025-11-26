@@ -1117,6 +1117,7 @@ class TreeView {
     this.nodes = [];
     this.selectedNodes = [];
     this.eventBus = new EventBus();
+    this._timers = []; // setTimeout 추적
 
     // 이벤트 핸들러 바인딩
     this._handleToggleClick = this._handleToggleClick.bind(this);
@@ -1249,10 +1250,12 @@ class TreeView {
         nodeData.children.style.transition = `height ${this.options.animationDuration}ms ease`;
         nodeData.children.style.height = height + 'px';
         
-        setTimeout(() => {
+        const timerId = setTimeout(() => {
+          if (!this.container) return; // destroy 후 안전 체크
           nodeData.children.style.height = 'auto';
           nodeData.children.style.overflow = 'visible';
         }, this.options.animationDuration);
+        this._timers.push(timerId);
       });
     } else {
       nodeData.children.style.display = 'block';
@@ -1294,10 +1297,12 @@ class TreeView {
         nodeData.children.style.transition = `height ${this.options.animationDuration}ms ease`;
         nodeData.children.style.height = '0';
         
-        setTimeout(() => {
+        const timerId = setTimeout(() => {
+          if (!this.container) return; // destroy 후 안전 체크
           nodeData.children.style.display = 'none';
           nodeData.children.style.height = 'auto';
         }, this.options.animationDuration);
+        this._timers.push(timerId);
       });
     } else {
       nodeData.children.style.display = 'none';
@@ -1375,6 +1380,10 @@ class TreeView {
    * 정리 (메모리 관리)
    */
   destroy() {
+    // 타이머 정리
+    this._timers.forEach(id => clearTimeout(id));
+    this._timers = [];
+
     // 이벤트 리스너 제거
     this.nodes.forEach(node => {
       if (node.toggle) {

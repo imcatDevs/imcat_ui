@@ -251,10 +251,15 @@ class TimePicker {
     this.picker.innerHTML = `<div class="timepicker__list">${times.map(t => `<div class="timepicker__option" data-time="${t}">${t}</div>`).join('')}</div>`;
     this.wrapper.appendChild(this.picker);
 
-    this.element.addEventListener('click', () => this.open());
-    this.icon.addEventListener('click', () => this.open());
-    this.picker.addEventListener('click', (e) => { const o = e.target.closest('.timepicker__option'); if (o) { this.setValue(o.dataset.time); this.close(); } });
+    // 이벤트 핸들러 추적
+    this._onElementClick = () => this.open();
+    this._onIconClick = () => this.open();
+    this._onPickerClick = (e) => { const o = e.target.closest('.timepicker__option'); if (o) { this.setValue(o.dataset.time); this.close(); } };
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
+    
+    this.element.addEventListener('click', this._onElementClick);
+    this.icon.addEventListener('click', this._onIconClick);
+    this.picker.addEventListener('click', this._onPickerClick);
     document.addEventListener('click', this._outside);
   }
 
@@ -262,7 +267,24 @@ class TimePicker {
   close() { this.isOpen = false; this.picker.classList.remove('is-open'); }
   setValue(v) { this.element.value = v; this.picker.querySelectorAll('.timepicker__option').forEach(o => o.classList.toggle('is-selected', o.dataset.time===v)); this.options.onChange?.(v); }
   getValue() { return this.element.value; }
-  destroy() { document.removeEventListener('click', this._outside); this.wrapper.parentNode.insertBefore(this.element, this.wrapper); this.wrapper.remove(); }
+  destroy() {
+    // 이벤트 리스너 제거
+    if (this._onElementClick) this.element.removeEventListener('click', this._onElementClick);
+    if (this._onIconClick) this.icon.removeEventListener('click', this._onIconClick);
+    if (this._onPickerClick) this.picker.removeEventListener('click', this._onPickerClick);
+    document.removeEventListener('click', this._outside);
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
+    this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
+    this.wrapper.remove();
+    
+    // 참조 해제
+    this.element = null;
+    this.wrapper = null;
+    this.picker = null;
+    this.icon = null;
+  }
 }
 
 // ============================================
@@ -307,10 +329,15 @@ class ColorPicker {
     this.wrapper.appendChild(this.picker);
     this.nativeInput = this.picker.querySelector('.colorpicker__native');
 
-    this.preview.addEventListener('click', () => this.toggle());
-    this.picker.addEventListener('click', (e) => { const p = e.target.closest('.colorpicker__preset'); if (p) this.setValue(p.dataset.color); });
-    this.nativeInput.addEventListener('input', (e) => this.setValue(e.target.value));
+    // 이벤트 핸들러 추적
+    this._onPreviewClick = () => this.toggle();
+    this._onPickerClick = (e) => { const p = e.target.closest('.colorpicker__preset'); if (p) this.setValue(p.dataset.color); };
+    this._onNativeInput = (e) => this.setValue(e.target.value);
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
+    
+    this.preview.addEventListener('click', this._onPreviewClick);
+    this.picker.addEventListener('click', this._onPickerClick);
+    this.nativeInput.addEventListener('input', this._onNativeInput);
     document.addEventListener('click', this._outside);
 
     this.setValue(this.element.value || this.options.defaultColor);
@@ -321,7 +348,25 @@ class ColorPicker {
   close() { this.isOpen = false; this.picker.classList.remove('is-open'); }
   setValue(c) { this.element.value = c; this.preview.style.backgroundColor = c; this.nativeInput.value = c; this.options.onChange?.(c); }
   getValue() { return this.element.value; }
-  destroy() { document.removeEventListener('click', this._outside); this.wrapper.parentNode.insertBefore(this.element, this.wrapper); this.wrapper.remove(); }
+  destroy() {
+    // 이벤트 리스너 제거
+    if (this._onPreviewClick) this.preview.removeEventListener('click', this._onPreviewClick);
+    if (this._onPickerClick) this.picker.removeEventListener('click', this._onPickerClick);
+    if (this._onNativeInput) this.nativeInput.removeEventListener('input', this._onNativeInput);
+    document.removeEventListener('click', this._outside);
+    if (this.events) this.events.clear();
+    
+    // DOM 정리
+    this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
+    this.wrapper.remove();
+    
+    // 참조 해제
+    this.element = null;
+    this.wrapper = null;
+    this.picker = null;
+    this.preview = null;
+    this.nativeInput = null;
+  }
 }
 
 // ============================================

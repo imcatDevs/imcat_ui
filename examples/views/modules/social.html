@@ -1,0 +1,346 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#" catui-href="views/modules.html">Modules</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Social</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Social Components</h1>
+  <p class="page-description">Chat UI, Comments, Share Buttons, Reactions 등 소셜 기능 컴포넌트입니다.</p>
+</div>
+
+<!-- Chat UI -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Chat UI</h2>
+        <p class="card__description">실시간 채팅 인터페이스입니다.</p>
+      </div>
+      <div class="card__body">
+        <div id="chat_demo" style="height: 500px; max-width: 600px;"></div>
+        
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="btn btn--outline-primary btn--sm" onclick="showTyping()">타이핑 표시</button>
+          <button class="btn btn--outline-primary btn--sm" onclick="receiveMessage()">메시지 받기</button>
+          <button class="btn btn--outline-secondary btn--sm" onclick="chatUI.clearMessages()">대화 지우기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comments -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Comments</h2>
+        <p class="card__description">댓글/답글 시스템입니다. 좋아요, 수정, 삭제, 답글 기능을 제공합니다.</p>
+      </div>
+      <div class="card__body">
+        <div id="comments_demo" style="max-width: 800px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Share Buttons -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Share Buttons</h2>
+        <p class="card__description">소셜 공유 버튼입니다.</p>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">기본 (수평)</h5>
+        <div id="share_horizontal" class="mb-4"></div>
+        
+        <h5 class="mb-3">수직 레이아웃</h5>
+        <div id="share_vertical" class="mb-4"></div>
+        
+        <h5 class="mb-3">라벨 표시</h5>
+        <div id="share_labels" class="mb-4"></div>
+        
+        <h5 class="mb-3">크기 변형</h5>
+        <div class="d-flex gap-4 align-items-center flex-wrap">
+          <div>
+            <span class="text-secondary d-block mb-2">Small</span>
+            <div id="share_sm"></div>
+          </div>
+          <div>
+            <span class="text-secondary d-block mb-2">Medium</span>
+            <div id="share_md"></div>
+          </div>
+          <div>
+            <span class="text-secondary d-block mb-2">Large</span>
+            <div id="share_lg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reactions -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Reactions</h2>
+        <p class="card__description">이모지 리액션 시스템입니다.</p>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">기본 리액션</h5>
+        <div id="reactions_demo" class="mb-4"></div>
+        
+        <h5 class="mb-3">카운트 포함</h5>
+        <div id="reactions_count"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Code Example -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">사용법</h2>
+      </div>
+      <div class="card__body">
+        <pre><code class="language-javascript">// 모듈 로드
+const Social = await IMCAT.use('social');
+
+// Chat UI - 채팅 인터페이스
+const chat = new Social.ChatUI('#chat', {
+  messages: [],               // 초기 메시지 배열
+  currentUser: { id: 'user1', name: '나', avatar: '' },
+  placeholder: '메시지를 입력하세요...',
+  showTimestamp: true,
+  showAvatar: true,
+  groupMessages: true,        // 같은 유저 메시지 그룹화
+  onSend: (message) => console.log('Sent:', message),
+  onTyping: () => console.log('Typing...')
+});
+
+// Chat API
+chat.addMessage({ userId: 'user2', userName: '상대방', text: '안녕!' });
+chat.setMessages([...]);
+chat.clearMessages();
+chat.showTyping([{ name: '상대방' }]);
+chat.hideTyping();
+
+// Comments - 댓글 시스템
+const comments = new Social.Comments('#comments', {
+  comments: [],
+  currentUser: { id: 'me', name: '내 이름', avatar: '' },
+  allowReplies: true,
+  allowEdit: true,
+  allowDelete: true,
+  maxDepth: 3,                // 답글 최대 깊이
+  placeholder: '댓글을 입력하세요...',
+  onSubmit: (comment) => console.log('New comment:', comment),
+  onEdit: (id, newText) => console.log('Edited:', id),
+  onDelete: (id) => console.log('Deleted:', id),
+  onLike: (id) => console.log('Liked:', id)
+});
+
+// Comments API
+comments.addComment({ ... });
+comments.setComments([...]);
+
+// Share Buttons - 공유 버튼
+const share = new Social.ShareButtons('#share', {
+  url: 'https://example.com',
+  title: '공유 제목',
+  description: '공유 설명',
+  platforms: ['copy', 'twitter', 'facebook', 'linkedin', 'email'],
+  layout: 'horizontal',      // 'horizontal' | 'vertical'
+  size: 'md',                // 'sm' | 'md' | 'lg'
+  showLabels: false,
+  onShare: (platform) => console.log('Shared to:', platform)
+});
+
+// Share API
+share.setUrl('new-url');
+share.setTitle('new-title');
+
+// Reactions - 리액션
+const reactions = new Social.Reactions('#reactions', {
+  reactions: [
+    { emoji: '👍', label: '좋아요', count: 0, active: false },
+    { emoji: '❤️', label: '사랑해요', count: 5, active: false },
+    { emoji: '😂', label: '웃겨요', count: 2, active: true }
+  ],
+  onReact: (emoji, active) => console.log(emoji, active)
+});
+
+// Reactions API
+reactions.setReactions([...]);
+const state = reactions.getReactions();
+
+// 메모리 관리
+IMCAT.view.registerInstance(chat);
+IMCAT.view.registerInstance(comments);
+IMCAT.view.registerInstance(share);
+IMCAT.view.registerInstance(reactions);</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// 모듈 로드
+window.SocialModule = await IMCAT.use('social');
+const { ChatUI, Comments, ShareButtons, Reactions } = SocialModule;
+
+// Chat UI 데모
+const sampleMessages = [
+  { id: '1', userId: 'user2', userName: '김철수', text: '안녕하세요! 오늘 회의 일정 확인하셨나요?', timestamp: new Date(Date.now() - 3600000).toISOString() },
+  { id: '2', userId: 'user1', userName: '나', text: '네, 확인했어요. 오후 3시 맞죠?', timestamp: new Date(Date.now() - 3500000).toISOString() },
+  { id: '3', userId: 'user2', userName: '김철수', text: '맞습니다! 회의실 A에서 진행합니다.', timestamp: new Date(Date.now() - 3400000).toISOString() },
+  { id: '4', userId: 'user2', userName: '김철수', text: '자료는 미리 공유해 드릴게요.', timestamp: new Date(Date.now() - 3300000).toISOString() },
+  { id: '5', userId: 'user1', userName: '나', text: '네, 감사합니다! 👍', timestamp: new Date(Date.now() - 60000).toISOString() },
+];
+
+window.chatUI = new ChatUI('#chat_demo', {
+  messages: sampleMessages,
+  currentUser: { id: 'user1', name: '나', avatar: '' },
+  onSend: (msg) => console.log('Message sent:', msg),
+  onTyping: () => console.log('User is typing...')
+});
+IMCAT.view.registerInstance(chatUI);
+
+window.showTyping = function() {
+  chatUI.showTyping([{ name: '김철수' }]);
+  setTimeout(() => chatUI.hideTyping(), 3000);
+};
+
+window.receiveMessage = function() {
+  chatUI.addMessage({
+    id: Date.now().toString(),
+    userId: 'user2',
+    userName: '김철수',
+    text: '새로운 메시지가 도착했습니다! 🎉',
+    timestamp: new Date().toISOString()
+  });
+};
+
+// Comments 데모
+const sampleComments = [
+  {
+    id: '1',
+    userId: 'user2',
+    userName: '이영희',
+    text: '정말 유용한 글이네요! 많은 도움이 됐습니다.',
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    likes: 12,
+    liked: false,
+    replies: [
+      {
+        id: '1-1',
+        userId: 'user3',
+        userName: '박민수',
+        text: '저도 동의합니다. 특히 실무 예제가 좋았어요.',
+        createdAt: new Date(Date.now() - 43200000).toISOString(),
+        likes: 3,
+        liked: false,
+        replies: []
+      }
+    ]
+  },
+  {
+    id: '2',
+    userId: 'user4',
+    userName: '최지훈',
+    text: '질문이 있는데요, 이 방법을 React 프로젝트에도 적용할 수 있나요?',
+    createdAt: new Date(Date.now() - 7200000).toISOString(),
+    likes: 5,
+    liked: true,
+    replies: []
+  }
+];
+
+window.commentsUI = new Comments('#comments_demo', {
+  comments: sampleComments,
+  currentUser: { id: 'user1', name: '내 닉네임', avatar: '' },
+  allowReplies: true,
+  allowEdit: true,
+  allowDelete: true,
+  onSubmit: (comment) => console.log('New comment:', comment),
+  onEdit: (id, text) => console.log('Edit:', id, text),
+  onDelete: (id) => console.log('Delete:', id),
+  onLike: (id) => console.log('Like:', id)
+});
+IMCAT.view.registerInstance(commentsUI);
+
+// Share Buttons 데모
+window.shareHorizontal = new ShareButtons('#share_horizontal', {
+  url: window.location.href,
+  title: 'IMCAT UI Framework',
+  platforms: ['copy', 'twitter', 'facebook', 'linkedin', 'email'],
+  size: 'md',
+  onShare: (p) => console.log('Shared to:', p)
+});
+IMCAT.view.registerInstance(shareHorizontal);
+
+window.shareVertical = new ShareButtons('#share_vertical', {
+  url: window.location.href,
+  title: 'IMCAT UI Framework',
+  platforms: ['copy', 'twitter', 'facebook'],
+  layout: 'vertical',
+  size: 'md'
+});
+IMCAT.view.registerInstance(shareVertical);
+
+window.shareLabels = new ShareButtons('#share_labels', {
+  url: window.location.href,
+  title: 'IMCAT UI Framework',
+  platforms: ['copy', 'twitter', 'facebook'],
+  size: 'md',
+  showLabels: true
+});
+IMCAT.view.registerInstance(shareLabels);
+
+// Size variants
+window.shareSm = new ShareButtons('#share_sm', {
+  platforms: ['copy', 'twitter', 'facebook'],
+  size: 'sm'
+});
+IMCAT.view.registerInstance(shareSm);
+
+window.shareMd = new ShareButtons('#share_md', {
+  platforms: ['copy', 'twitter', 'facebook'],
+  size: 'md'
+});
+IMCAT.view.registerInstance(shareMd);
+
+window.shareLg = new ShareButtons('#share_lg', {
+  platforms: ['copy', 'twitter', 'facebook'],
+  size: 'lg'
+});
+IMCAT.view.registerInstance(shareLg);
+
+// Reactions 데모
+window.reactionsBasic = new Reactions('#reactions_demo', {
+  onReact: (emoji, active) => console.log(`${emoji} ${active ? 'selected' : 'deselected'}`)
+});
+IMCAT.view.registerInstance(reactionsBasic);
+
+window.reactionsCount = new Reactions('#reactions_count', {
+  reactions: [
+    { emoji: '👍', label: '좋아요', count: 24, active: false },
+    { emoji: '❤️', label: '사랑해요', count: 12, active: true },
+    { emoji: '😂', label: '웃겨요', count: 8, active: false },
+    { emoji: '😮', label: '놀랐어요', count: 3, active: false },
+    { emoji: '😢', label: '슬퍼요', count: 1, active: false },
+    { emoji: '😡', label: '화나요', count: 0, active: false }
+  ],
+  onReact: (emoji, active) => console.log(`${emoji} ${active ? 'selected' : 'deselected'}`)
+});
+IMCAT.view.registerInstance(reactionsCount);
+</script>

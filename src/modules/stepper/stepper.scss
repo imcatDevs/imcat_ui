@@ -1,0 +1,677 @@
+/**
+ * Stepper Module Styles
+ * 단계별 진행 표시 컴포넌트 스타일
+ */
+
+// ============================================
+// Variables
+// ============================================
+
+$stepper-indicator-size-sm: 28px;
+$stepper-indicator-size-md: 36px;
+$stepper-indicator-size-lg: 44px;
+
+$stepper-connector-width: 2px;
+$stepper-transition: all 0.3s ease;
+
+// ============================================
+// Stepper Base
+// ============================================
+
+.stepper {
+  --stepper-primary: var(--primary-color, #6366f1);
+  --stepper-success: var(--success-color, #10b981);
+  --stepper-text: var(--text-primary, #1f2937);
+  --stepper-text-secondary: var(--text-secondary, #6b7280);
+  --stepper-border: var(--border-color, #e5e7eb);
+  --stepper-bg: var(--bg-primary, #ffffff);
+  --stepper-indicator-size: #{$stepper-indicator-size-md};
+  
+  display: flex;
+  width: 100%;
+}
+
+// ============================================
+// Steps Container
+// ============================================
+
+.stepper__steps {
+  display: flex;
+  width: 100%;
+}
+
+// ============================================
+// Step Item
+// ============================================
+
+.stepper__step {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: $stepper-transition;
+  
+  &:focus-visible .stepper__indicator {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  }
+  
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// Indicator (Circle/Number)
+// ============================================
+
+.stepper__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--stepper-indicator-size);
+  height: var(--stepper-indicator-size);
+  border-radius: 50%;
+  background: var(--stepper-bg);
+  border: 2px solid var(--stepper-border);
+  color: var(--stepper-text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  transition: $stepper-transition;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stepper__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .material-icons-outlined {
+    font-size: 18px;
+  }
+}
+
+.stepper__check {
+  display: none;
+  
+  .material-icons-outlined {
+    font-size: 18px;
+    color: #fff;
+  }
+}
+
+// Active State
+.stepper__step.is-active {
+  .stepper__indicator {
+    background: var(--stepper-primary);
+    border-color: var(--stepper-primary);
+    color: #fff;
+  }
+  
+  .stepper__title {
+    color: var(--stepper-primary);
+    font-weight: 600;
+  }
+}
+
+// Completed State
+.stepper__step.is-completed {
+  .stepper__indicator {
+    background: var(--stepper-success);
+    border-color: var(--stepper-success);
+  }
+  
+  .stepper__number {
+    display: none;
+  }
+  
+  .stepper__check {
+    display: flex;
+  }
+}
+
+// ============================================
+// Connector Line
+// ============================================
+
+.stepper__connector {
+  position: absolute;
+  background: var(--stepper-border);
+  transition: $stepper-transition;
+}
+
+.stepper__step.is-completed .stepper__connector {
+  background: var(--stepper-success);
+}
+
+// ============================================
+// Label
+// ============================================
+
+.stepper__label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stepper__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--stepper-text);
+  transition: $stepper-transition;
+  line-height: 1.4;
+}
+
+.stepper__subtitle {
+  font-size: 12px;
+  color: var(--stepper-text-secondary);
+  line-height: 1.4;
+}
+
+// ============================================
+// Horizontal Layout
+// ============================================
+
+.stepper--horizontal {
+  flex-direction: row;
+  
+  .stepper__steps {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .stepper__step {
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+    
+    &:first-child {
+      padding-left: 0;
+    }
+    
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+  
+  .stepper__indicator {
+    margin-bottom: 8px;
+  }
+  
+  .stepper__connector {
+    top: calc(var(--stepper-indicator-size) / 2);
+    left: calc(50% + var(--stepper-indicator-size) / 2 + 8px);
+    right: calc(-50% + var(--stepper-indicator-size) / 2 + 8px);
+    height: $stepper-connector-width;
+  }
+  
+  .stepper__label {
+    align-items: center;
+  }
+}
+
+// ============================================
+// Vertical Layout
+// ============================================
+
+.stepper--vertical {
+  flex-direction: column;
+  
+  .stepper__steps {
+    flex-direction: column;
+  }
+  
+  .stepper__step {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 0 24px 0;
+    
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+  
+  .stepper__indicator {
+    margin-right: 12px;
+  }
+  
+  .stepper__connector {
+    left: calc(var(--stepper-indicator-size) / 2 - 1px);
+    top: calc(var(--stepper-indicator-size) + 4px);
+    bottom: 4px;
+    width: $stepper-connector-width;
+  }
+  
+  .stepper__label {
+    padding-top: 6px;
+  }
+}
+
+// ============================================
+// Size Variants
+// ============================================
+
+.stepper--sm {
+  --stepper-indicator-size: #{$stepper-indicator-size-sm};
+  
+  .stepper__number {
+    font-size: 12px;
+    
+    .material-icons-outlined {
+      font-size: 14px;
+    }
+  }
+  
+  .stepper__check .material-icons-outlined {
+    font-size: 14px;
+  }
+  
+  .stepper__title {
+    font-size: 13px;
+  }
+  
+  .stepper__subtitle {
+    font-size: 11px;
+  }
+}
+
+.stepper--lg {
+  --stepper-indicator-size: #{$stepper-indicator-size-lg};
+  
+  .stepper__number {
+    font-size: 16px;
+    
+    .material-icons-outlined {
+      font-size: 22px;
+    }
+  }
+  
+  .stepper__check .material-icons-outlined {
+    font-size: 22px;
+  }
+  
+  .stepper__title {
+    font-size: 16px;
+  }
+  
+  .stepper__subtitle {
+    font-size: 13px;
+  }
+}
+
+// ============================================
+// Variant: Dots
+// ============================================
+
+.stepper--dots {
+  .stepper__indicator {
+    width: 12px;
+    height: 12px;
+    border-width: 0;
+    background: var(--stepper-border);
+  }
+  
+  .stepper__number,
+  .stepper__check {
+    display: none;
+  }
+  
+  .stepper__step.is-active .stepper__indicator {
+    background: var(--stepper-primary);
+    transform: scale(1.3);
+  }
+  
+  .stepper__step.is-completed .stepper__indicator {
+    background: var(--stepper-success);
+  }
+  
+  &.stepper--horizontal .stepper__connector {
+    top: 5px;
+  }
+  
+  &.stepper--vertical .stepper__connector {
+    left: 5px;
+  }
+}
+
+// ============================================
+// Variant: Pills
+// ============================================
+
+.stepper--pills {
+  .stepper__step {
+    flex: 0 0 auto;
+  }
+  
+  .stepper__indicator {
+    width: auto;
+    min-width: var(--stepper-indicator-size);
+    padding: 0 16px;
+    border-radius: 20px;
+    gap: 6px;
+  }
+  
+  .stepper__number {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    &::after {
+      content: attr(data-title);
+      font-weight: 500;
+    }
+  }
+  
+  .stepper__label {
+    display: none;
+  }
+  
+  .stepper__connector {
+    display: none;
+  }
+  
+  &.stepper--horizontal .stepper__steps {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+}
+
+// ============================================
+// Connector: Arrow
+// ============================================
+
+.stepper--connector-arrow {
+  &.stepper--horizontal {
+    .stepper__connector {
+      height: auto;
+      background: none;
+      
+      &::after {
+        content: '→';
+        font-size: 18px;
+        color: var(--stepper-border);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    
+    .stepper__step.is-completed .stepper__connector::after {
+      color: var(--stepper-success);
+    }
+  }
+}
+
+// ============================================
+// Content Panel
+// ============================================
+
+.stepper__content {
+  margin-top: 24px;
+  transition: opacity 0.15s ease;
+  
+  &.is-changing {
+    opacity: 0;
+  }
+}
+
+.stepper__panel {
+  padding: 16px;
+  background: var(--stepper-bg);
+  border: 1px solid var(--stepper-border);
+  border-radius: 8px;
+}
+
+// ============================================
+// Vertical Stepper (Inline Content)
+// ============================================
+
+.vertical-stepper {
+  --stepper-primary: var(--primary-color, #6366f1);
+  --stepper-success: var(--success-color, #10b981);
+  --stepper-text: var(--text-primary, #1f2937);
+  --stepper-text-secondary: var(--text-secondary, #6b7280);
+  --stepper-border: var(--border-color, #e5e7eb);
+  --stepper-bg: var(--bg-primary, #ffffff);
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-stepper__item {
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 24px;
+  
+  &:last-child {
+    padding-bottom: 0;
+    
+    .vertical-stepper__connector {
+      display: none;
+    }
+  }
+}
+
+.vertical-stepper__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 0;
+  
+  &:focus-visible {
+    outline: 2px solid var(--stepper-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.vertical-stepper__indicator {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--stepper-bg);
+  border: 2px solid var(--stepper-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--stepper-text-secondary);
+  transition: $stepper-transition;
+  z-index: 1;
+}
+
+.vertical-stepper__number {
+  display: flex;
+  
+  .material-icons-outlined {
+    font-size: 16px;
+  }
+}
+
+.vertical-stepper__check {
+  display: none;
+  
+  .material-icons-outlined {
+    font-size: 16px;
+    color: #fff;
+  }
+}
+
+.vertical-stepper__connector {
+  position: absolute;
+  left: 15px;
+  top: 44px;
+  bottom: 0;
+  width: 2px;
+  background: var(--stepper-border);
+  transition: $stepper-transition;
+}
+
+.vertical-stepper__label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.vertical-stepper__title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--stepper-text);
+  transition: $stepper-transition;
+}
+
+.vertical-stepper__subtitle {
+  font-size: 13px;
+  color: var(--stepper-text-secondary);
+  margin-top: 2px;
+}
+
+.vertical-stepper__edit {
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--stepper-text-secondary);
+  border-radius: 4px;
+  transition: $stepper-transition;
+  
+  &:hover {
+    background: var(--stepper-border);
+    color: var(--stepper-primary);
+  }
+  
+  .material-icons-outlined {
+    font-size: 18px;
+  }
+}
+
+.vertical-stepper__content {
+  margin-top: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &[hidden] {
+    display: none;
+  }
+}
+
+.vertical-stepper__body {
+  padding: 16px;
+  background: var(--bg-secondary, #f9fafb);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.vertical-stepper__actions {
+  display: flex;
+  gap: 8px;
+  
+  .btn {
+    min-width: 80px;
+  }
+}
+
+// Active State
+.vertical-stepper__item.is-active {
+  .vertical-stepper__indicator {
+    background: var(--stepper-primary);
+    border-color: var(--stepper-primary);
+    color: #fff;
+  }
+  
+  .vertical-stepper__title {
+    color: var(--stepper-primary);
+    font-weight: 600;
+  }
+  
+  .vertical-stepper__connector {
+    background: linear-gradient(to bottom, var(--stepper-primary) 0%, var(--stepper-border) 100%);
+  }
+}
+
+// Completed State
+.vertical-stepper__item.is-completed {
+  .vertical-stepper__indicator {
+    background: var(--stepper-success);
+    border-color: var(--stepper-success);
+  }
+  
+  .vertical-stepper__number {
+    display: none;
+  }
+  
+  .vertical-stepper__check {
+    display: flex;
+  }
+  
+  .vertical-stepper__connector {
+    background: var(--stepper-success);
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .stepper,
+  .vertical-stepper {
+    --stepper-text: var(--text-primary, #f3f4f6);
+    --stepper-text-secondary: var(--text-secondary, #9ca3af);
+    --stepper-border: var(--border-color, #374151);
+    --stepper-bg: var(--bg-primary, #1f2937);
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .stepper--horizontal {
+    .stepper__steps {
+      flex-direction: column;
+    }
+    
+    .stepper__step {
+      flex-direction: row;
+      text-align: left;
+      padding: 0 0 16px 0;
+      
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+    
+    .stepper__indicator {
+      margin-bottom: 0;
+      margin-right: 12px;
+    }
+    
+    .stepper__connector {
+      left: calc(var(--stepper-indicator-size) / 2 - 1px);
+      top: calc(var(--stepper-indicator-size) + 4px);
+      bottom: 4px;
+      right: auto;
+      width: $stepper-connector-width;
+      height: auto;
+    }
+    
+    .stepper__label {
+      align-items: flex-start;
+      padding-top: 6px;
+    }
+  }
+}

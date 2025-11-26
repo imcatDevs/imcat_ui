@@ -52,6 +52,7 @@ export class Theme {
     this.systemTheme = null;
     this.mediaQuery = null;
     this.boundHandlers = {};
+    this._transitionTimer = null;
     
     if (this.options.autoInit) {
       this.init();
@@ -237,6 +238,12 @@ export class Theme {
    * theme.destroy();
    */
   destroy() {
+    // 타이머 정리
+    if (this._transitionTimer) {
+      clearTimeout(this._transitionTimer);
+      this._transitionTimer = null;
+    }
+    
     // 미디어 쿼리 리스너 제거
     if (this.mediaQuery && this.boundHandlers.mediaQueryChange) {
       this.mediaQuery.removeEventListener('change', this.boundHandlers.mediaQueryChange);
@@ -331,7 +338,7 @@ export class Theme {
     const root = document.documentElement;
     root.classList.add('theme-transition');
     
-    setTimeout(() => {
+    this._transitionTimer = setTimeout(() => {
       root.classList.remove('theme-transition');
     }, this.options.transitionDuration);
   }

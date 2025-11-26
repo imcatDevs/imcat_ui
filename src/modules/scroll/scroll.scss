@@ -1,0 +1,485 @@
+/**
+ * Scroll Components Styles
+ * Virtual Scroll, Scrollspy, Infinite Scroll 스타일
+ */
+
+// ============================================
+// Variables
+// ============================================
+
+$scroll-transition: all 0.3s ease;
+
+// ============================================
+// Virtual Scroll
+// ============================================
+
+.virtual-scroll {
+  --scroll-bg: var(--bg-primary, #ffffff);
+  --scroll-border: var(--border-color, #e5e7eb);
+  --scroll-text: var(--text-primary, #1f2937);
+  
+  background: var(--scroll-bg);
+  border: 1px solid var(--scroll-border);
+  border-radius: 8px;
+  
+  // 스크롤바 스타일링
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--scroll-border);
+    border-radius: 4px;
+    
+    &:hover {
+      background: var(--text-secondary, #9ca3af);
+    }
+  }
+}
+
+.virtual-scroll__item {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--scroll-border);
+  box-sizing: border-box;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// ============================================
+// Infinite Scroll
+// ============================================
+
+.infinite-scroll {
+  position: relative;
+}
+
+.infinite-scroll__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.infinite-scroll__item {
+  // 기본 스타일은 사용자 정의
+  box-sizing: border-box;
+}
+
+.infinite-scroll__sentinel {
+  height: 1px;
+  visibility: hidden;
+}
+
+.infinite-scroll__status {
+  padding: 16px;
+  text-align: center;
+}
+
+.infinite-scroll__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border-color, #e5e7eb);
+    border-top-color: var(--primary-color, #6366f1);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+.infinite-scroll__end {
+  color: var(--text-secondary, #6b7280);
+  font-size: 14px;
+  padding: 16px;
+}
+
+.infinite-scroll__error {
+  color: var(--danger-color, #ef4444);
+  font-size: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.infinite-scroll__retry {
+  padding: 8px 16px;
+  background: var(--primary-color, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: $scroll-transition;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============================================
+// Scrollspy Navigation
+// ============================================
+
+.scrollspy-nav {
+  --nav-bg: var(--bg-primary, #ffffff);
+  --nav-border: var(--border-color, #e5e7eb);
+  --nav-text: var(--text-secondary, #6b7280);
+  --nav-active: var(--primary-color, #6366f1);
+  
+  position: sticky;
+  top: 20px;
+}
+
+.scrollspy-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--nav-border);
+}
+
+.scrollspy-nav__item {
+  margin: 0;
+  
+  &.is-active > .scrollspy-nav__link {
+    color: var(--nav-active);
+    font-weight: 600;
+    border-left-color: var(--nav-active);
+    background: rgba(99, 102, 241, 0.05);
+  }
+}
+
+.scrollspy-nav__link {
+  display: block;
+  padding: 8px 16px;
+  margin-left: -2px;
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 14px;
+  border-left: 2px solid transparent;
+  transition: $scroll-transition;
+  
+  &:hover {
+    color: var(--nav-active);
+    background: rgba(99, 102, 241, 0.05);
+  }
+  
+  &.is-active {
+    color: var(--nav-active);
+    font-weight: 600;
+    border-left-color: var(--nav-active);
+    background: rgba(99, 102, 241, 0.05);
+  }
+}
+
+// Horizontal Scrollspy
+.scrollspy-nav--horizontal {
+  .scrollspy-nav__list {
+    display: flex;
+    border-left: none;
+    border-bottom: 2px solid var(--nav-border);
+    gap: 0;
+  }
+  
+  .scrollspy-nav__link {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    margin-left: 0;
+    margin-bottom: -2px;
+    padding: 12px 20px;
+    
+    &.is-active,
+    &:hover {
+      border-bottom-color: var(--nav-active);
+    }
+  }
+  
+  .scrollspy-nav__item.is-active > .scrollspy-nav__link {
+    border-left: none;
+    border-bottom-color: var(--nav-active);
+  }
+}
+
+// Pills Style
+.scrollspy-nav--pills {
+  .scrollspy-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border: none;
+  }
+  
+  .scrollspy-nav__link {
+    border: none;
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--bg-secondary, #f3f4f6);
+    
+    &:hover {
+      background: var(--bg-tertiary, #e5e7eb);
+    }
+    
+    &.is-active {
+      background: var(--nav-active);
+      color: white;
+    }
+  }
+  
+  .scrollspy-nav__item.is-active > .scrollspy-nav__link {
+    background: var(--nav-active);
+    color: white;
+    border: none;
+  }
+}
+
+// ============================================
+// Back to Top Button
+// ============================================
+
+.back-to-top {
+  --btn-bg: var(--primary-color, #6366f1);
+  --btn-color: #ffffff;
+  --btn-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  
+  position: fixed;
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--btn-shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: $scroll-transition;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .material-icons-outlined {
+    font-size: 24px;
+  }
+}
+
+// Positions
+.back-to-top--bottom-right {
+  bottom: 24px;
+  right: 24px;
+}
+
+.back-to-top--bottom-left {
+  bottom: 24px;
+  left: 24px;
+}
+
+.back-to-top--bottom-center {
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  
+  &.is-visible {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  &:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}
+
+// Size Variants
+.back-to-top--sm {
+  width: 40px;
+  height: 40px;
+  
+  .material-icons-outlined {
+    font-size: 20px;
+  }
+}
+
+.back-to-top--lg {
+  width: 56px;
+  height: 56px;
+  
+  .material-icons-outlined {
+    font-size: 28px;
+  }
+}
+
+// ============================================
+// Scroll Progress Bar
+// ============================================
+
+.scroll-progress {
+  --progress-bg: var(--bg-secondary, #f3f4f6);
+  --progress-fill: var(--primary-color, #6366f1);
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--progress-bg);
+  z-index: 1001;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  background: var(--progress-fill);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+// Gradient Variant
+.scroll-progress--gradient {
+  .scroll-progress__bar {
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  }
+}
+
+// Bottom Position
+.scroll-progress--bottom {
+  top: auto;
+  bottom: 0;
+}
+
+// ============================================
+// Scroll Indicator Dots
+// ============================================
+
+.scroll-dots {
+  --dot-size: 10px;
+  --dot-gap: 12px;
+  --dot-color: var(--border-color, #e5e7eb);
+  --dot-active: var(--primary-color, #6366f1);
+  
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dot-gap);
+  z-index: 1000;
+}
+
+.scroll-dots--right {
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scroll-dots--left {
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scroll-dots__dot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--dot-color);
+  cursor: pointer;
+  transition: $scroll-transition;
+  border: none;
+  padding: 0;
+  
+  &:hover {
+    background: var(--dot-active);
+    opacity: 0.7;
+  }
+  
+  &.is-active {
+    background: var(--dot-active);
+    transform: scale(1.3);
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .virtual-scroll {
+    --scroll-bg: var(--bg-primary, #1f2937);
+    --scroll-border: var(--border-color, #374151);
+  }
+  
+  .scrollspy-nav {
+    --nav-bg: var(--bg-primary, #1f2937);
+    --nav-border: var(--border-color, #374151);
+    --nav-text: var(--text-secondary, #9ca3af);
+  }
+  
+  .back-to-top {
+    --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .scroll-progress {
+    --progress-bg: var(--bg-secondary, #374151);
+  }
+  
+  .scroll-dots {
+    --dot-color: var(--border-color, #374151);
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 44px;
+    height: 44px;
+    bottom: 16px;
+    right: 16px;
+    
+    .material-icons-outlined {
+      font-size: 22px;
+    }
+  }
+  
+  .back-to-top--bottom-left {
+    left: 16px;
+  }
+  
+  .scroll-dots {
+    display: none;
+  }
+  
+  .scrollspy-nav {
+    position: static;
+  }
+}

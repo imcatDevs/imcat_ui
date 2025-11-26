@@ -1,0 +1,177 @@
+{
+  "hero": {
+    "title": "히어로 배너",
+    "slides": [
+      {
+        "id": 1,
+        "background": "https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=800&fit=crop",
+        "overlay": "rgba(0,0,0,0.4)",
+        "title": "혁신적인 디자인 시스템",
+        "subtitle": "IMCAT UI와 함께 빠르고 아름다운 웹을 만들어보세요",
+        "description": "모던하고 일관된 UI 컴포넌트로 개발 생산성을 높이세요",
+        "buttons": [
+          { "text": "시작하기", "href": "#getting-started", "variant": "primary" },
+          { "text": "문서 보기", "href": "#docs", "variant": "outline" }
+        ],
+        "align": "center"
+      },
+      {
+        "id": 2,
+        "background": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920&h=800&fit=crop",
+        "overlay": "rgba(59,130,246,0.6)",
+        "title": "풍부한 컴포넌트",
+        "subtitle": "50+ 재사용 가능한 UI 컴포넌트",
+        "description": "버튼, 카드, 모달, 폼 등 다양한 컴포넌트를 제공합니다",
+        "buttons": [
+          { "text": "컴포넌트 둘러보기", "href": "#components", "variant": "primary" }
+        ],
+        "align": "left"
+      },
+      {
+        "id": 3,
+        "background": "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&h=800&fit=crop",
+        "overlay": "rgba(139,92,246,0.6)",
+        "title": "다크모드 지원",
+        "subtitle": "사용자 경험을 한층 높이는 테마 시스템",
+        "description": "라이트/다크 테마 자동 전환과 커스텀 테마를 지원합니다",
+        "buttons": [
+          { "text": "테마 설정", "href": "#theme", "variant": "primary" },
+          { "text": "자세히 보기", "href": "#theme-docs", "variant": "ghost" }
+        ],
+        "align": "right"
+      }
+    ]
+  },
+  "products": {
+    "title": "추천 상품",
+    "slides": [
+      {
+        "id": 1,
+        "image": "https://picsum.photos/seed/product1/400/300",
+        "category": "전자제품",
+        "title": "무선 블루투스 이어폰",
+        "price": 89000,
+        "originalPrice": 129000,
+        "rating": 4.5,
+        "reviews": 1234,
+        "badge": "BEST"
+      },
+      {
+        "id": 2,
+        "image": "https://picsum.photos/seed/product2/400/300",
+        "category": "가전",
+        "title": "스마트 공기청정기",
+        "price": 299000,
+        "originalPrice": null,
+        "rating": 4.8,
+        "reviews": 567,
+        "badge": "NEW"
+      },
+      {
+        "id": 3,
+        "image": "https://picsum.photos/seed/product3/400/300",
+        "category": "생활용품",
+        "title": "프리미엄 텀블러 세트",
+        "price": 45000,
+        "originalPrice": 59000,
+        "rating": 4.2,
+        "reviews": 89,
+        "badge": "SALE"
+      },
+      {
+        "id": 4,
+        "image": "https://picsum.photos/seed/product4/400/300",
+        "category": "패션",
+        "title": "클래식 가죽 지갑",
+        "price": 78000,
+        "originalPrice": null,
+        "rating": 4.6,
+        "reviews": 234,
+        "badge": null
+      },
+      {
+        "id": 5,
+        "image": "https://picsum.photos/seed/product5/400/300",
+        "category": "스포츠",
+        "title": "요가 매트 프로",
+        "price": 35000,
+        "originalPrice": 45000,
+        "rating": 4.9,
+        "reviews": 456,
+        "badge": "HOT"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "고객 후기",
+    "slides": [
+      {
+        "id": 1,
+        "avatar": "https://i.pravatar.cc/100?img=1",
+        "name": "김민수",
+        "role": "프론트엔드 개발자",
+        "company": "테크스타트",
+        "content": "IMCAT UI 덕분에 개발 시간이 50% 이상 단축되었습니다. 컴포넌트 품질도 훌륭하고 문서화도 잘 되어있어요.",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "avatar": "https://i.pravatar.cc/100?img=2",
+        "name": "이서연",
+        "role": "UI/UX 디자이너",
+        "company": "디자인랩",
+        "content": "디자인 시스템이 체계적으로 구성되어 있어서 디자이너와 개발자 간의 협업이 매우 원활해졌습니다.",
+        "rating": 5
+      },
+      {
+        "id": 3,
+        "avatar": "https://i.pravatar.cc/100?img=3",
+        "name": "박준혁",
+        "role": "풀스택 개발자",
+        "company": "클라우드웍스",
+        "content": "다양한 프로젝트에서 IMCAT UI를 사용하고 있습니다. 커스터마이징이 쉽고 성능도 우수해요.",
+        "rating": 4
+      }
+    ]
+  },
+  "features": {
+    "title": "주요 기능",
+    "slides": [
+      {
+        "id": 1,
+        "icon": "palette",
+        "iconBg": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "title": "테마 시스템",
+        "description": "라이트/다크 모드와 커스텀 테마를 손쉽게 적용할 수 있습니다."
+      },
+      {
+        "id": 2,
+        "icon": "widgets",
+        "iconBg": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "title": "50+ 컴포넌트",
+        "description": "다양한 UI 컴포넌트를 즉시 사용할 수 있습니다."
+      },
+      {
+        "id": 3,
+        "icon": "devices",
+        "iconBg": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "title": "반응형 디자인",
+        "description": "모든 디바이스에서 완벽하게 작동합니다."
+      },
+      {
+        "id": 4,
+        "icon": "speed",
+        "iconBg": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        "title": "최적화된 성능",
+        "description": "가볍고 빠른 로딩으로 최적의 사용자 경험을 제공합니다."
+      },
+      {
+        "id": 5,
+        "icon": "accessibility",
+        "iconBg": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        "title": "접근성",
+        "description": "WCAG 2.1 가이드라인을 준수하여 모든 사용자가 이용할 수 있습니다."
+      }
+    ]
+  }
+}

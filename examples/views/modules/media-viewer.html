@@ -1,0 +1,264 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#" catui-href="views/modules.html">Modules</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Media Viewer</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Media Viewer</h1>
+  <p class="page-description">Video Player, Audio Player, Image Viewer 등 미디어 재생 컴포넌트입니다.</p>
+</div>
+
+<!-- Video Player -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Video Player</h2>
+        <p class="card__description">커스텀 컨트롤을 가진 비디오 플레이어입니다. 키보드 단축키(스페이스바, 방향키, M, F)를 지원합니다.</p>
+      </div>
+      <div class="card__body">
+        <div id="video_player_demo" style="max-width: 800px;"></div>
+        
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="btn btn--primary btn--sm" onclick="videoPlayer.play()">재생</button>
+          <button class="btn btn--outline-primary btn--sm" onclick="videoPlayer.pause()">일시정지</button>
+          <button class="btn btn--outline-secondary btn--sm" onclick="videoPlayer.seek(30)">30초로 이동</button>
+          <button class="btn btn--outline-secondary btn--sm" onclick="videoPlayer.setPlaybackRate(1.5)">1.5배속</button>
+        </div>
+        
+        <div class="alert alert--info mt-3">
+          <i class="material-icons-outlined">info</i>
+          <div>
+            <strong>키보드 단축키:</strong>
+            <ul class="mb-0 mt-1" style="margin-left: 20px;">
+              <li><kbd>Space</kbd> / <kbd>K</kbd> - 재생/일시정지</li>
+              <li><kbd>←</kbd> / <kbd>→</kbd> - 10초 뒤로/앞으로</li>
+              <li><kbd>↑</kbd> / <kbd>↓</kbd> - 볼륨 조절</li>
+              <li><kbd>M</kbd> - 음소거</li>
+              <li><kbd>F</kbd> - 전체 화면</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Audio Player -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Audio Player</h2>
+        <p class="card__description">음악 재생을 위한 오디오 플레이어입니다.</p>
+      </div>
+      <div class="card__body">
+        <div id="audio_player_demo" style="max-width: 600px;"></div>
+        
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="btn btn--primary btn--sm" onclick="audioPlayer.play()">재생</button>
+          <button class="btn btn--outline-primary btn--sm" onclick="audioPlayer.pause()">일시정지</button>
+        </div>
+        
+        <div class="alert alert--warning mt-3">
+          <i class="material-icons-outlined">warning</i>
+          <span>데모에서는 실제 오디오 파일이 없어 재생되지 않습니다. 실제 오디오 URL을 설정하면 작동합니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image Viewer -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Image Viewer</h2>
+        <p class="card__description">확대/축소, 회전이 가능한 이미지 뷰어입니다. 마우스 휠로 줌 조절이 가능합니다.</p>
+      </div>
+      <div class="card__body">
+        <div id="image_viewer_demo" style="max-width: 600px;"></div>
+        
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="btn btn--outline-primary btn--sm" onclick="imageViewer.zoomIn()">확대</button>
+          <button class="btn btn--outline-primary btn--sm" onclick="imageViewer.zoomOut()">축소</button>
+          <button class="btn btn--outline-secondary btn--sm" onclick="imageViewer.rotate(90)">90° 회전</button>
+          <button class="btn btn--outline-secondary btn--sm" onclick="imageViewer.reset()">초기화</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Multiple Images -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">이미지 갤러리 (클릭하여 확대)</h2>
+      </div>
+      <div class="card__body">
+        <div class="d-flex gap-3 flex-wrap">
+          <div class="image-thumbnail" onclick="showImage(0)" style="width: 150px; height: 150px; border-radius: 8px; overflow: hidden; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <span>이미지 1</span>
+          </div>
+          <div class="image-thumbnail" onclick="showImage(1)" style="width: 150px; height: 150px; border-radius: 8px; overflow: hidden; cursor: pointer; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <span>이미지 2</span>
+          </div>
+          <div class="image-thumbnail" onclick="showImage(2)" style="width: 150px; height: 150px; border-radius: 8px; overflow: hidden; cursor: pointer; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <span>이미지 3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Code Example -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">사용법</h2>
+      </div>
+      <div class="card__body">
+        <pre><code class="language-javascript">// 모듈 로드
+const MediaViewer = await IMCAT.use('media-viewer');
+
+// Video Player - 비디오 플레이어
+const video = new MediaViewer.VideoPlayer('#player', {
+  src: 'video.mp4',
+  poster: 'thumbnail.jpg',
+  autoplay: false,
+  muted: false,
+  loop: false,
+  controls: true,
+  customControls: true,    // 커스텀 컨트롤 사용
+  playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2],
+  volume: 1,
+  onPlay: () => console.log('Playing'),
+  onPause: () => console.log('Paused'),
+  onEnded: () => console.log('Ended'),
+  onTimeUpdate: (time) => console.log('Time:', time),
+  onError: () => console.log('Error')
+});
+
+// Video API
+video.play();
+video.pause();
+video.togglePlay();
+video.seek(30);            // 30초로 이동
+video.setVolume(0.5);      // 볼륨 설정 (0~1)
+video.toggleMute();
+video.setPlaybackRate(1.5); // 재생 속도
+video.togglePIP();         // PIP 모드
+video.toggleFullscreen();  // 전체 화면
+video.setSrc('new-video.mp4', 'poster.jpg');
+
+// Audio Player - 오디오 플레이어
+const audio = new MediaViewer.AudioPlayer('#audio', {
+  src: 'music.mp3',
+  title: '노래 제목',
+  artist: '아티스트',
+  cover: 'album-cover.jpg',
+  autoplay: false,
+  loop: false,
+  volume: 1,
+  onPlay: () => console.log('Playing'),
+  onPause: () => console.log('Paused'),
+  onEnded: () => console.log('Ended')
+});
+
+// Audio API
+audio.play();
+audio.pause();
+audio.togglePlay();
+audio.setTrack('new-song.mp3', '새 노래', '새 아티스트', 'cover.jpg');
+
+// Image Viewer - 이미지 뷰어
+const viewer = new MediaViewer.ImageViewer('#viewer', {
+  src: 'image.jpg',
+  alt: '이미지 설명',
+  zoomable: true,         // 확대/축소 가능
+  rotatable: true,        // 회전 가능
+  downloadable: true,     // 다운로드 가능
+  minZoom: 0.5,
+  maxZoom: 3,
+  zoomStep: 0.25
+});
+
+// Image Viewer API
+viewer.zoomIn();
+viewer.zoomOut();
+viewer.setZoom(1.5);      // 150%
+viewer.rotate(90);        // 90도 회전
+viewer.reset();           // 초기화
+viewer.download();
+viewer.setSrc('new-image.jpg', '새 이미지');
+
+// 메모리 관리
+IMCAT.view.registerInstance(video);
+IMCAT.view.registerInstance(audio);
+IMCAT.view.registerInstance(viewer);</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// 모듈 로드
+window.MediaViewerModule = await IMCAT.use('media-viewer');
+const { VideoPlayer, AudioPlayer, ImageViewer } = MediaViewerModule;
+
+// Video Player 데모
+// 샘플 비디오 URL (Big Buck Bunny - 오픈 소스 비디오)
+window.videoPlayer = new VideoPlayer('#video_player_demo', {
+  src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+  poster: 'https://via.placeholder.com/800x450/1f2937/ffffff?text=Video+Poster',
+  customControls: true,
+  onPlay: () => console.log('Video playing'),
+  onPause: () => console.log('Video paused'),
+  onEnded: () => console.log('Video ended')
+});
+IMCAT.view.registerInstance(videoPlayer);
+
+// Audio Player 데모
+window.audioPlayer = new AudioPlayer('#audio_player_demo', {
+  src: '', // 실제 오디오 URL 필요
+  title: 'Sample Track',
+  artist: 'Demo Artist',
+  cover: '',
+  onPlay: () => console.log('Audio playing'),
+  onPause: () => console.log('Audio paused')
+});
+IMCAT.view.registerInstance(audioPlayer);
+
+// Image Viewer 데모
+window.imageViewer = new ImageViewer('#image_viewer_demo', {
+  src: 'https://via.placeholder.com/800x600/667eea/ffffff?text=Sample+Image',
+  alt: '샘플 이미지',
+  zoomable: true,
+  rotatable: true,
+  downloadable: true
+});
+IMCAT.view.registerInstance(imageViewer);
+
+// 갤러리 이미지 클릭
+window.showImage = function(index) {
+  const images = [
+    { src: 'https://via.placeholder.com/800x600/667eea/ffffff?text=Image+1', alt: '이미지 1' },
+    { src: 'https://via.placeholder.com/800x600/f093fb/ffffff?text=Image+2', alt: '이미지 2' },
+    { src: 'https://via.placeholder.com/800x600/4facfe/ffffff?text=Image+3', alt: '이미지 3' }
+  ];
+  
+  const img = images[index];
+  imageViewer.setSrc(img.src, img.alt);
+  
+  // 스크롤하여 뷰어로 이동
+  document.getElementById('image_viewer_demo').scrollIntoView({ behavior: 'smooth' });
+};
+</script>

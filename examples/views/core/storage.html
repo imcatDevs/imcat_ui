@@ -292,7 +292,10 @@ IMCAT.storage.has('key'); // true/false</code></pre>
   }
   
   // TTL
-  let ttlTimer = null;
+  if (typeof window.ttlTimer !== 'undefined' && window.ttlTimer) {
+    clearInterval(window.ttlTimer);
+  }
+  window.ttlTimer = null;
   
   function saveTTL() {
     const value = document.getElementById('ttl_value').value;
@@ -302,18 +305,18 @@ IMCAT.storage.has('key'); // true/false</code></pre>
     document.getElementById('ttl_result').textContent = `✅ "${value}" 저장 (${seconds}초 후 만료)`;
     
     // 카운트다운
-    if (ttlTimer) clearInterval(ttlTimer);
-    let remaining = seconds;
+    if (window.ttlTimer) clearInterval(window.ttlTimer);
+    var remaining = seconds;
     const countdown = document.getElementById('ttl_countdown');
     countdown.textContent = `⏳ ${remaining}초 남음`;
     
-    ttlTimer = setInterval(() => {
+    window.ttlTimer = setInterval(() => {
       remaining--;
       if (remaining > 0) {
         countdown.textContent = `⏳ ${remaining}초 남음`;
       } else {
         countdown.textContent = '⌛ 만료됨!';
-        clearInterval(ttlTimer);
+        clearInterval(window.ttlTimer);
       }
     }, 1000);
     

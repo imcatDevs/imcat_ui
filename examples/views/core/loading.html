@@ -1,0 +1,403 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#core">Core</a></li>
+      <li class="breadcrumb-item active">Loading</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Loading</h1>
+  <p class="page-description">로딩 인디케이터 - 비동기 작업 중 사용자 피드백</p>
+</div>
+
+<div class="row">
+  <!-- 기본 로딩 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">⏳ 기본 로딩</h2>
+        <p class="card__description">전체 화면 로딩 인디케이터</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <button class="btn btn--primary" onclick="showBasicLoading()">로딩 표시 (2초)</button>
+          <button class="btn btn--secondary" onclick="showLoadingWithMessage()">메시지와 함께</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 커스텀 메시지 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">💬 커스텀 메시지</h2>
+        <p class="card__description">사용자 정의 로딩 메시지</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <input type="text" id="loading_message" class="form-control" placeholder="로딩 메시지" value="데이터를 불러오는 중..." style="margin-bottom: 0.5rem;">
+          <button class="btn btn--primary" onclick="showCustomLoading()">표시</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 실전 예제: 데이터 로드 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📥 실전 예제: 데이터 로드 시뮬레이션</h2>
+        <p class="card__description">비동기 작업과 로딩 인디케이터</p>
+      </div>
+      <div class="card__body">
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <button class="btn btn--primary" onclick="loadUsers()">사용자 데이터 로드</button>
+          <button class="btn btn--success" onclick="loadProducts()">상품 데이터 로드</button>
+          <button class="btn btn--warning" onclick="loadWithError()">오류 시뮬레이션</button>
+        </div>
+        
+        <div id="data_result" class="data-display">
+          <div class="empty-state empty-state--sm">
+            <div class="empty-state__icon">
+              <i class="material-icons-outlined">cloud_download</i>
+            </div>
+            <h3 class="empty-state__title">데이터 없음</h3>
+            <p class="empty-state__description">위 버튼을 클릭하여 데이터를 로드하세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 진행률 표시 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📊 진행률 로딩</h2>
+        <p class="card__description">진행 상태를 표시하는 로딩</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <button class="btn btn--primary" onclick="showProgressLoading()">진행률 로딩 시작</button>
+          
+          <div id="progress_demo" style="margin-top: 1rem; display: none;">
+            <div class="progress-bar">
+              <div class="progress-bar__fill" id="progress_fill"></div>
+            </div>
+            <div id="progress_text" style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 버튼 로딩 상태 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🔘 버튼 로딩 상태</h2>
+        <p class="card__description">버튼에 로딩 상태 표시</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <button id="submit_btn" class="btn btn--primary" onclick="submitForm()">
+            <span class="btn-text">폼 제출</span>
+            <span class="btn-spinner" style="display: none;">
+              <i class="material-icons-outlined spinning">sync</i>
+            </span>
+          </button>
+          
+          <button id="save_btn" class="btn btn--success" onclick="saveData()" style="margin-left: 0.5rem;">
+            <span class="btn-text">저장</span>
+            <span class="btn-spinner" style="display: none;">
+              <i class="material-icons-outlined spinning">sync</i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 API 레퍼런스</h2>
+      </div>
+      <div class="card__body">
+        <pre><code>// 로딩 표시
+IMCAT.loading.show();
+IMCAT.loading.show('데이터를 불러오는 중...');
+
+// 로딩 숨김
+IMCAT.loading.hide();
+
+// 표시 여부 확인
+if (IMCAT.loading.isVisible()) {
+  console.log('로딩 중...');
+}
+
+// 비동기 작업과 함께 사용
+async function loadData() {
+  IMCAT.loading.show('데이터 로딩 중...');
+  try {
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    return data;
+  } finally {
+    IMCAT.loading.hide();
+  }
+}
+
+// 라우터와 자동 연동
+// 페이지 전환 시 자동으로 로딩 표시/숨김됨</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-section {
+    padding: 1rem 0;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .data-display {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 200px;
+  }
+  
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .data-card {
+    background: var(--bg-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+  }
+  
+  .data-card__name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .data-card__sub {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-bar__fill {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  
+  .spinning {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .btn-spinner {
+    margin-left: 0.5rem;
+  }
+  
+  .btn[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+  // 기본 로딩
+  function showBasicLoading() {
+    IMCAT.loading.show();
+    setTimeout(() => IMCAT.loading.hide(), 2000);
+  }
+  
+  function showLoadingWithMessage() {
+    IMCAT.loading.show('잠시만 기다려주세요...');
+    setTimeout(() => IMCAT.loading.hide(), 2000);
+  }
+  
+  // 커스텀 메시지
+  function showCustomLoading() {
+    const message = document.getElementById('loading_message').value;
+    IMCAT.loading.show(message);
+    setTimeout(() => IMCAT.loading.hide(), 2000);
+  }
+  
+  // 데이터 로드 시뮬레이션
+  async function loadUsers() {
+    const resultEl = document.getElementById('data_result');
+    IMCAT.loading.show('사용자 데이터를 불러오는 중...');
+    
+    // 시뮬레이션 딜레이
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const users = [
+      { name: '홍길동', email: 'hong@example.com' },
+      { name: '김철수', email: 'kim@example.com' },
+      { name: '이영희', email: 'lee@example.com' },
+      { name: '박지민', email: 'park@example.com' }
+    ];
+    
+    resultEl.innerHTML = `
+      <h4 style="margin-bottom: 1rem;">👥 사용자 목록 (${users.length}명)</h4>
+      <div class="data-grid">
+        ${users.map(u => `
+          <div class="data-card">
+            <div class="data-card__name">${u.name}</div>
+            <div class="data-card__sub">${u.email}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    
+    IMCAT.loading.hide();
+  }
+  
+  async function loadProducts() {
+    const resultEl = document.getElementById('data_result');
+    IMCAT.loading.show('상품 데이터를 불러오는 중...');
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const products = [
+      { name: '맥북 프로', price: '₩2,500,000' },
+      { name: '아이폰 15', price: '₩1,200,000' },
+      { name: '에어팟 프로', price: '₩350,000' },
+      { name: '아이패드 미니', price: '₩700,000' },
+      { name: '애플워치', price: '₩450,000' }
+    ];
+    
+    resultEl.innerHTML = `
+      <h4 style="margin-bottom: 1rem;">📦 상품 목록 (${products.length}개)</h4>
+      <div class="data-grid">
+        ${products.map(p => `
+          <div class="data-card">
+            <div class="data-card__name">${p.name}</div>
+            <div class="data-card__sub" style="color: var(--primary-color); font-weight: 600;">${p.price}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    
+    IMCAT.loading.hide();
+  }
+  
+  async function loadWithError() {
+    const resultEl = document.getElementById('data_result');
+    IMCAT.loading.show('데이터를 불러오는 중...');
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    IMCAT.loading.hide();
+    
+    resultEl.innerHTML = `
+      <div class="empty-state empty-state--sm" style="background: #fee2e2;">
+        <div class="empty-state__icon" style="background: #fca5a5; color: #991b1b;">
+          <i class="material-icons-outlined">error</i>
+        </div>
+        <h3 class="empty-state__title" style="color: #991b1b;">오류 발생</h3>
+        <p class="empty-state__description">데이터를 불러오는 중 오류가 발생했습니다.</p>
+        <button class="btn btn--danger btn--sm" onclick="loadUsers()">다시 시도</button>
+      </div>
+    `;
+  }
+  
+  // 진행률 로딩
+  function showProgressLoading() {
+    const demoEl = document.getElementById('progress_demo');
+    const fillEl = document.getElementById('progress_fill');
+    const textEl = document.getElementById('progress_text');
+    
+    demoEl.style.display = 'block';
+    fillEl.style.width = '0%';
+    textEl.textContent = '0%';
+    
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        textEl.textContent = '완료!';
+        setTimeout(() => {
+          demoEl.style.display = 'none';
+        }, 1000);
+      } else {
+        textEl.textContent = Math.round(progress) + '%';
+      }
+      fillEl.style.width = progress + '%';
+    }, 300);
+  }
+  
+  // 버튼 로딩 상태
+  async function submitForm() {
+    const btn = document.getElementById('submit_btn');
+    const text = btn.querySelector('.btn-text');
+    const spinner = btn.querySelector('.btn-spinner');
+    
+    btn.disabled = true;
+    text.textContent = '처리 중...';
+    spinner.style.display = 'inline';
+    
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    btn.disabled = false;
+    text.textContent = '폼 제출';
+    spinner.style.display = 'none';
+  }
+  
+  async function saveData() {
+    const btn = document.getElementById('save_btn');
+    const text = btn.querySelector('.btn-text');
+    const spinner = btn.querySelector('.btn-spinner');
+    
+    btn.disabled = true;
+    text.textContent = '저장 중...';
+    spinner.style.display = 'inline';
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    btn.disabled = false;
+    text.textContent = '저장 완료!';
+    spinner.style.display = 'none';
+    
+    setTimeout(() => {
+      text.textContent = '저장';
+    }, 1500);
+  }
+</script>

@@ -263,20 +263,20 @@ IMCAT.emit('order:created', { id: 1, total: 50000 }, { notify: true });</code></
   }
   
   // 일회성 이벤트
-  let onceSubscribed = false;
+  window.onceSubscribed = window.onceSubscribed || false;
   
   function subscribeOnce() {
-    if (onceSubscribed) {
+    if (window.onceSubscribed) {
       addLog('once_log', 'system', '이미 구독됨 (once는 한 번만 실행됩니다)');
       return;
     }
     
     IMCAT.once('special:event', (data) => {
       addLog('once_log', 'special:event', data + ' (이 메시지는 한 번만 표시됩니다)');
-      onceSubscribed = false;
+      window.onceSubscribed = false;
     });
     
-    onceSubscribed = true;
+    window.onceSubscribed = true;
     addLog('once_log', 'system', 'once로 구독 완료');
   }
   

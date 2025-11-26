@@ -299,6 +299,20 @@
           "badge": false
         },
         {
+          "id": "tooltips",
+          "text": "Tooltips & Popovers",
+          "icon": "help_outline",
+          "href": "views/modules/tooltips.html",
+          "badge": false
+        },
+        {
+          "id": "carousel",
+          "text": "Carousel & Lightbox",
+          "icon": "view_carousel",
+          "href": "views/modules/carousel.html",
+          "badge": false
+        },
+        {
           "id": "data-viz",
           "text": "Data Visualization",
           "icon": "insert_chart",
@@ -309,28 +323,28 @@
           "id": "scroll-components",
           "text": "Scroll Components",
           "icon": "sync_alt",
-          "href": "views/modules/scroll-components.html",
+          "href": "views/modules/scroll.html",
           "badge": true
         },
         {
           "id": "editors",
           "text": "Text Editors",
           "icon": "edit",
-          "href": "views/modules/editors.html",
+          "href": "views/modules/text-editors.html",
           "badge": true
         },
         {
           "id": "media-viewers",
           "text": "Media Viewers",
           "icon": "play_circle",
-          "href": "views/modules/media-viewers.html",
+          "href": "views/modules/media-viewer.html",
           "badge": true
         },
         {
           "id": "social-components",
           "text": "Social Components",
           "icon": "chat",
-          "href": "views/modules/social-components.html",
+          "href": "views/modules/social.html",
           "badge": true
         },
         {
@@ -346,20 +360,6 @@
           "icon": "arrow_drop_down",
           "href": "views/modules/dropdown.html",
           "badge": false
-        },
-        {
-          "id": "tooltips-popovers",
-          "text": "Tooltips & Popovers",
-          "icon": "help_outline",
-          "href": "views/modules/tooltips-popovers.html",
-          "badge": true
-        },
-        {
-          "id": "carousel",
-          "text": "Carousel",
-          "icon": "view_carousel",
-          "href": "views/modules/carousel.html",
-          "badge": true
         },
         {
           "id": "live-status",

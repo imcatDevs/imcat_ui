@@ -168,50 +168,33 @@ class DatePicker {
   }
 
   _bindEvents() {
-    this.element.addEventListener('click', () => this.open());
-    this.icon.addEventListener('click', () => this.open());
-    this.picker.addEventListener('click', (e) => {
-      e.stopPropagation(); // 이벤트 전파 방지
+    this._onElementClick = () => this.open();
+    this._onIconClick = () => this.open();
+    this._onPickerClick = (e) => {
+      e.stopPropagation();
       const t = e.target.closest('[data-action],[data-date],[data-year],[data-month]');
       if (!t) return;
       
       const action = t.dataset.action;
       
-      // 날짜 뷰 액션
       if (action === 'prev') { this.currentMonth.setMonth(this.currentMonth.getMonth()-1); this._update(); }
       else if (action === 'next') { this.currentMonth.setMonth(this.currentMonth.getMonth()+1); this._update(); }
       else if (action === 'today') { this.viewMode = 'days'; this.setValue(this._formatDate(new Date())); this.close(); }
-      
-      // 뷰 전환
       else if (action === 'showYears') { this.viewMode = 'years'; this._update(); }
       else if (action === 'showMonths') { this.viewMode = 'months'; this._update(); }
-      
-      // 년도 뷰 액션
       else if (action === 'prevDecade') { this.currentMonth.setFullYear(this.currentMonth.getFullYear()-10); this._update(); }
       else if (action === 'nextDecade') { this.currentMonth.setFullYear(this.currentMonth.getFullYear()+10); this._update(); }
-      
-      // 월 뷰 액션
       else if (action === 'prevYear') { this.currentMonth.setFullYear(this.currentMonth.getFullYear()-1); this._update(); }
       else if (action === 'nextYear') { this.currentMonth.setFullYear(this.currentMonth.getFullYear()+1); this._update(); }
-      
-      // 년도 선택
-      else if (t.dataset.year) { 
-        this.currentMonth.setFullYear(parseInt(t.dataset.year)); 
-        this.viewMode = 'months'; 
-        this._update(); 
-      }
-      
-      // 월 선택
-      else if (t.dataset.month !== undefined) { 
-        this.currentMonth.setMonth(parseInt(t.dataset.month)); 
-        this.viewMode = 'days'; 
-        this._update(); 
-      }
-      
-      // 날짜 선택
+      else if (t.dataset.year) { this.currentMonth.setFullYear(parseInt(t.dataset.year)); this.viewMode = 'months'; this._update(); }
+      else if (t.dataset.month !== undefined) { this.currentMonth.setMonth(parseInt(t.dataset.month)); this.viewMode = 'days'; this._update(); }
       else if (t.dataset.date) { this.setValue(t.dataset.date); this.close(); }
-    });
+    };
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
+    
+    this.element.addEventListener('click', this._onElementClick);
+    this.icon.addEventListener('click', this._onIconClick);
+    this.picker.addEventListener('click', this._onPickerClick);
     document.addEventListener('click', this._outside);
   }
 
@@ -220,7 +203,15 @@ class DatePicker {
   close() { this.isOpen = false; this.picker.classList.remove('is-open'); }
   setValue(v) { this.selectedDate = this._parseDate(v); this.element.value = v; this._update(); this.options.onChange?.(v); this.events.emit('change',v); }
   getValue() { return this.element.value; }
-  destroy() { document.removeEventListener('click', this._outside); this.wrapper.parentNode.insertBefore(this.element, this.wrapper); this.wrapper.remove(); }
+  destroy() {
+    if (this._onElementClick) this.element.removeEventListener('click', this._onElementClick);
+    if (this._onIconClick) this.icon.removeEventListener('click', this._onIconClick);
+    if (this._onPickerClick) this.picker.removeEventListener('click', this._onPickerClick);
+    document.removeEventListener('click', this._outside);
+    if (this.events) this.events.clear();
+    this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
+    this.wrapper.remove();
+  }
 }
 
 // ============================================

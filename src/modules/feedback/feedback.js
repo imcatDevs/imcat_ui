@@ -253,13 +253,14 @@ class ProgressTracker {
   }
 
   _bindEvents() {
-    this.element.addEventListener('click', (e) => {
+    this._onClick = (e) => {
       const step = e.target.closest('.progress-tracker__step');
       if (step) {
         const index = parseInt(step.dataset.step);
         this.goTo(index);
       }
-    });
+    };
+    this.element.addEventListener('click', this._onClick);
   }
 
   goTo(index) {
@@ -290,8 +291,20 @@ class ProgressTracker {
   getCurrent() { return this.current; }
 
   destroy() {
+    // 이벤트 리스너 제거
+    if (this._onClick) {
+      this.element.removeEventListener('click', this._onClick);
+      this._onClick = null;
+    }
+    
+    // 이벤트 버스 정리
+    if (this.events) {
+      this.events.clear();
+    }
+    
     this.element.innerHTML = '';
     this.element.classList.remove('progress-tracker', 'progress-tracker--vertical');
+    this.element = null;
   }
 }
 

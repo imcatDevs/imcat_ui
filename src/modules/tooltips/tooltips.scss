@@ -1,0 +1,443 @@
+/**
+ * Tooltips & Popovers Styles
+ * @module modules/tooltips
+ */
+
+// ============================================
+// Variables
+// ============================================
+
+$tooltip-bg: #1e293b;
+$tooltip-color: #ffffff;
+$tooltip-padding: 0.5rem 0.75rem;
+$tooltip-radius: 6px;
+$tooltip-font-size: 0.8125rem;
+$tooltip-max-width: 250px;
+$tooltip-arrow-size: 6px;
+$tooltip-z-index: 1070;
+
+$popover-bg: var(--bg-primary, #ffffff);
+$popover-border: var(--border-color, #e2e8f0);
+$popover-radius: 8px;
+$popover-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+$popover-max-width: 320px;
+$popover-z-index: 1060;
+
+// ============================================
+// Tooltip
+// ============================================
+
+.tooltip {
+  position: absolute;
+  z-index: $tooltip-z-index;
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding;
+  background: $tooltip-bg;
+  color: $tooltip-color;
+  font-size: $tooltip-font-size;
+  line-height: 1.4;
+  border-radius: $tooltip-radius;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  
+  // 애니메이션
+  &--animated {
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  }
+  
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  // 위치별 스타일
+  &[data-placement="top"] {
+    transform: translateY(4px);
+    
+    &.is-visible {
+      transform: translateY(0);
+    }
+    
+    .tooltip__arrow {
+      bottom: -$tooltip-arrow-size;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: $tooltip-arrow-size solid transparent;
+      border-right: $tooltip-arrow-size solid transparent;
+      border-top: $tooltip-arrow-size solid $tooltip-bg;
+    }
+  }
+  
+  &[data-placement="bottom"] {
+    transform: translateY(-4px);
+    
+    &.is-visible {
+      transform: translateY(0);
+    }
+    
+    .tooltip__arrow {
+      top: -$tooltip-arrow-size;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: $tooltip-arrow-size solid transparent;
+      border-right: $tooltip-arrow-size solid transparent;
+      border-bottom: $tooltip-arrow-size solid $tooltip-bg;
+    }
+  }
+  
+  &[data-placement="left"] {
+    transform: translateX(4px);
+    
+    &.is-visible {
+      transform: translateX(0);
+    }
+    
+    .tooltip__arrow {
+      right: -$tooltip-arrow-size;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: $tooltip-arrow-size solid transparent;
+      border-bottom: $tooltip-arrow-size solid transparent;
+      border-left: $tooltip-arrow-size solid $tooltip-bg;
+    }
+  }
+  
+  &[data-placement="right"] {
+    transform: translateX(-4px);
+    
+    &.is-visible {
+      transform: translateX(0);
+    }
+    
+    .tooltip__arrow {
+      left: -$tooltip-arrow-size;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: $tooltip-arrow-size solid transparent;
+      border-bottom: $tooltip-arrow-size solid transparent;
+      border-right: $tooltip-arrow-size solid $tooltip-bg;
+    }
+  }
+  
+  // Arrow
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  
+  // Content
+  &__content {
+    word-wrap: break-word;
+  }
+}
+
+// ============================================
+// Popover
+// ============================================
+
+.popover {
+  position: absolute;
+  z-index: $popover-z-index;
+  max-width: $popover-max-width;
+  background: $popover-bg;
+  border: 1px solid $popover-border;
+  border-radius: $popover-radius;
+  box-shadow: $popover-shadow;
+  opacity: 0;
+  visibility: hidden;
+  
+  &--animated {
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  // 위치별 스타일
+  &[data-placement="top"] {
+    transform: translateY(8px);
+    
+    &.is-visible {
+      transform: translateY(0);
+    }
+    
+    .popover__arrow {
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      
+      &::before {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $popover-border;
+      }
+      
+      &::after {
+        bottom: 1px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $popover-bg;
+      }
+    }
+  }
+  
+  &[data-placement="bottom"] {
+    transform: translateY(-8px);
+    
+    &.is-visible {
+      transform: translateY(0);
+    }
+    
+    .popover__arrow {
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      
+      &::before {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid $popover-border;
+      }
+      
+      &::after {
+        top: 1px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid $popover-bg;
+      }
+    }
+  }
+  
+  &[data-placement="left"] {
+    transform: translateX(8px);
+    
+    &.is-visible {
+      transform: translateX(0);
+    }
+    
+    .popover__arrow {
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      &::before {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 8px solid $popover-border;
+      }
+      
+      &::after {
+        right: 1px;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 8px solid $popover-bg;
+      }
+    }
+  }
+  
+  &[data-placement="right"] {
+    transform: translateX(-8px);
+    
+    &.is-visible {
+      transform: translateX(0);
+    }
+    
+    .popover__arrow {
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      &::before {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 8px solid $popover-border;
+      }
+      
+      &::after {
+        left: 1px;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 8px solid $popover-bg;
+      }
+    }
+  }
+  
+  // Arrow
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+  }
+  
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid $popover-border;
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: $popover-radius $popover-radius 0 0;
+  }
+  
+  &__title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e293b);
+  }
+  
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--text-secondary, #64748b);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    
+    &:hover {
+      background: var(--bg-tertiary, #e2e8f0);
+      color: var(--text-primary, #1e293b);
+    }
+  }
+  
+  // Body
+  &__body {
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-primary, #1e293b);
+  }
+  
+  // Footer (옵션)
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid $popover-border;
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: 0 0 $popover-radius $popover-radius;
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .tooltip {
+    background: #334155;
+    
+    &[data-placement="top"] .tooltip__arrow {
+      border-top-color: #334155;
+    }
+    &[data-placement="bottom"] .tooltip__arrow {
+      border-bottom-color: #334155;
+    }
+    &[data-placement="left"] .tooltip__arrow {
+      border-left-color: #334155;
+    }
+    &[data-placement="right"] .tooltip__arrow {
+      border-right-color: #334155;
+    }
+  }
+  
+  .popover {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    
+    &__header {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+    }
+    
+    &__arrow {
+      &::before {
+        border-color: var(--border-color) !important;
+      }
+      &::after {
+        border-color: var(--bg-primary) !important;
+      }
+    }
+  }
+}
+
+// ============================================
+// Utility Classes
+// ============================================
+
+// 툴팁 비활성화
+.tooltip-disabled {
+  pointer-events: none;
+}
+
+// 팝오버 크기
+.popover--sm {
+  max-width: 200px;
+  
+  .popover__body {
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+.popover--lg {
+  max-width: 450px;
+  
+  .popover__body {
+    padding: 1.25rem;
+  }
+}
+
+// 팝오버 변형
+.popover--info {
+  .popover__header {
+    background: #dbeafe;
+    border-color: #93c5fd;
+  }
+}
+
+.popover--success {
+  .popover__header {
+    background: #dcfce7;
+    border-color: #86efac;
+  }
+}
+
+.popover--warning {
+  .popover__header {
+    background: #fef3c7;
+    border-color: #fcd34d;
+  }
+}
+
+.popover--danger {
+  .popover__header {
+    background: #fee2e2;
+    border-color: #fca5a5;
+  }
+}

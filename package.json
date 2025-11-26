@@ -1,6 +1,6 @@
 {
   "name": "imcat-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Lightweight, zero-build, ES6+ JavaScript web framework with dynamic module loading and integrated SPA routing",
   "type": "module",
   "main": "dist/imcat-ui.js",

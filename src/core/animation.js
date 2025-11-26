@@ -175,8 +175,6 @@ class Animator {
   fadeIn(duration = 300, easing = 'ease-out') {
     if (!this.element) return Promise.resolve();
     
-    console.log(`  🔹 fadeIn() 호출: duration=${duration}, easing=${easing}`);
-    
     this.element.style.display = 'block';
     
     const keyframes = [
@@ -192,7 +190,6 @@ class Animator {
     
     return animation.finished.then(() => {
       this.element.style.opacity = '1';
-      console.log(`  ✅ fadeIn() 완료`);
     });
   }
 

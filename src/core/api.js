@@ -222,7 +222,20 @@ export class APIUtil {
       delete config.url; // fetch에 전달하지 않음
 
       const response = await fetch(finalUrl, config);
-      const data = await response.json();
+      
+      // JSON 파싱 (실패 시 텍스트로 처리)
+      let data;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          data = { message: 'Invalid JSON response' };
+        }
+      } else {
+        const text = await response.text();
+        data = { message: text || 'Non-JSON response' };
+      }
 
       let result;
       if (!response.ok) {

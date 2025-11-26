@@ -1,0 +1,286 @@
+{
+  "orders": [
+    {
+      "id": "ORD-2024-001",
+      "customer": "홍길동",
+      "email": "hong@example.com",
+      "phone": "010-1234-5678",
+      "date": "2024-11-25",
+      "status": "완료",
+      "totalAmount": 1250000,
+      "items": [
+        { "product": "맥북 프로 14인치", "quantity": 1, "price": 1200000 },
+        { "product": "USB-C 어댑터", "quantity": 2, "price": 25000 }
+      ],
+      "shipping": {
+        "address": "서울시 강남구 테헤란로 123",
+        "zipcode": "06234",
+        "method": "일반배송",
+        "trackingNo": "1234567890"
+      },
+      "notes": "배송 전 연락 부탁드립니다."
+    },
+    {
+      "id": "ORD-2024-002",
+      "customer": "김철수",
+      "email": "kim@example.com",
+      "phone": "010-2345-6789",
+      "date": "2024-11-24",
+      "status": "배송중",
+      "totalAmount": 890000,
+      "items": [
+        { "product": "아이패드 미니", "quantity": 1, "price": 750000 },
+        { "product": "애플펜슬 2세대", "quantity": 1, "price": 140000 }
+      ],
+      "shipping": {
+        "address": "부산시 해운대구 해변로 456",
+        "zipcode": "48095",
+        "method": "익일배송",
+        "trackingNo": "2345678901"
+      },
+      "notes": ""
+    },
+    {
+      "id": "ORD-2024-003",
+      "customer": "이영희",
+      "email": "lee@example.com",
+      "phone": "010-3456-7890",
+      "date": "2024-11-23",
+      "status": "처리중",
+      "totalAmount": 2350000,
+      "items": [
+        { "product": "맥북 에어 M3", "quantity": 1, "price": 1500000 },
+        { "product": "매직 마우스", "quantity": 1, "price": 120000 },
+        { "product": "매직 키보드", "quantity": 1, "price": 180000 },
+        { "product": "AirPods Pro 2", "quantity": 2, "price": 275000 }
+      ],
+      "shipping": {
+        "address": "대구시 수성구 범어로 789",
+        "zipcode": "42024",
+        "method": "일반배송",
+        "trackingNo": ""
+      },
+      "notes": "선물 포장 요청"
+    },
+    {
+      "id": "ORD-2024-004",
+      "customer": "박지민",
+      "email": "park@example.com",
+      "phone": "010-4567-8901",
+      "date": "2024-11-22",
+      "status": "완료",
+      "totalAmount": 450000,
+      "items": [
+        { "product": "애플워치 SE", "quantity": 1, "price": 380000 },
+        { "product": "스포츠 밴드", "quantity": 2, "price": 35000 }
+      ],
+      "shipping": {
+        "address": "인천시 연수구 송도대로 321",
+        "zipcode": "21984",
+        "method": "당일배송",
+        "trackingNo": "4567890123"
+      },
+      "notes": ""
+    },
+    {
+      "id": "ORD-2024-005",
+      "customer": "최수진",
+      "email": "choi@example.com",
+      "phone": "010-5678-9012",
+      "date": "2024-11-21",
+      "status": "취소",
+      "totalAmount": 1890000,
+      "items": [
+        { "product": "맥 스튜디오", "quantity": 1, "price": 1890000 }
+      ],
+      "shipping": {
+        "address": "광주시 서구 상무대로 654",
+        "zipcode": "62078",
+        "method": "일반배송",
+        "trackingNo": ""
+      },
+      "notes": "고객 요청으로 취소"
+    },
+    {
+      "id": "ORD-2024-006",
+      "customer": "정민호",
+      "email": "jung@example.com",
+      "phone": "010-6789-0123",
+      "date": "2024-11-20",
+      "status": "완료",
+      "totalAmount": 3250000,
+      "items": [
+        { "product": "아이맥 24인치", "quantity": 1, "price": 2200000 },
+        { "product": "매직 트랙패드", "quantity": 1, "price": 150000 },
+        { "product": "매직 키보드 (Touch ID)", "quantity": 1, "price": 250000 },
+        { "product": "썬더볼트 케이블", "quantity": 2, "price": 65000 },
+        { "product": "USB-C 허브", "quantity": 1, "price": 120000 },
+        { "product": "모니터 암", "quantity": 1, "price": 180000 },
+        { "product": "케이블 정리함", "quantity": 3, "price": 15000 },
+        { "product": "마우스 패드", "quantity": 2, "price": 25000 },
+        { "product": "모니터 클리너", "quantity": 1, "price": 12000 }
+      ],
+      "shipping": {
+        "address": "대전시 유성구 대학로 987",
+        "zipcode": "34134",
+        "method": "일반배송",
+        "trackingNo": "6789012345"
+      },
+      "notes": "엘리베이터 없음, 2층까지 계단 이용"
+    },
+    {
+      "id": "ORD-2024-007",
+      "customer": "강서연",
+      "email": "kang@example.com",
+      "phone": "010-7890-1234",
+      "date": "2024-11-19",
+      "status": "배송중",
+      "totalAmount": 580000,
+      "items": [
+        { "product": "에어팟 맥스", "quantity": 1, "price": 580000 }
+      ],
+      "shipping": {
+        "address": "울산시 남구 삼산로 147",
+        "zipcode": "44676",
+        "method": "익일배송",
+        "trackingNo": "7890123456"
+      },
+      "notes": ""
+    },
+    {
+      "id": "ORD-2024-008",
+      "customer": "윤하나",
+      "email": "yoon@example.com",
+      "phone": "010-8901-2345",
+      "date": "2024-11-18",
+      "status": "완료",
+      "totalAmount": 1650000,
+      "items": [
+        { "product": "아이폰 15 Pro", "quantity": 1, "price": 1550000 },
+        { "product": "실리콘 케이스", "quantity": 1, "price": 65000 },
+        { "product": "MagSafe 충전기", "quantity": 1, "price": 35000 }
+      ],
+      "shipping": {
+        "address": "경기도 성남시 분당구 판교로 258",
+        "zipcode": "13487",
+        "method": "당일배송",
+        "trackingNo": "8901234567"
+      },
+      "notes": ""
+    },
+    {
+      "id": "ORD-2024-009",
+      "customer": "임재현",
+      "email": "lim@example.com",
+      "phone": "010-9012-3456",
+      "date": "2024-11-17",
+      "status": "처리중",
+      "totalAmount": 720000,
+      "items": [
+        { "product": "아이패드 Air", "quantity": 1, "price": 720000 }
+      ],
+      "shipping": {
+        "address": "세종시 보람동 도움로 369",
+        "zipcode": "30127",
+        "method": "일반배송",
+        "trackingNo": ""
+      },
+      "notes": "재고 확인 중"
+    },
+    {
+      "id": "ORD-2024-010",
+      "customer": "한소희",
+      "email": "han@example.com",
+      "phone": "010-0123-4567",
+      "date": "2024-11-16",
+      "status": "완료",
+      "totalAmount": 2890000,
+      "items": [
+        { "product": "맥북 프로 16인치", "quantity": 1, "price": 2700000 },
+        { "product": "노트북 파우치", "quantity": 1, "price": 90000 },
+        { "product": "USB-C 허브", "quantity": 1, "price": 100000 }
+      ],
+      "shipping": {
+        "address": "제주시 노형동 한라로 741",
+        "zipcode": "63099",
+        "method": "항공배송",
+        "trackingNo": "0123456789"
+      },
+      "notes": "제주도 배송"
+    },
+    {
+      "id": "ORD-2024-011",
+      "customer": "오준서",
+      "email": "oh@example.com",
+      "phone": "010-1111-2222",
+      "date": "2024-11-15",
+      "status": "완료",
+      "totalAmount": 350000,
+      "items": [
+        { "product": "AirPods 3세대", "quantity": 1, "price": 230000 },
+        { "product": "무선 충전 케이스", "quantity": 1, "price": 40000 },
+        { "product": "실리콘 케이스", "quantity": 2, "price": 40000 }
+      ],
+      "shipping": {
+        "address": "경기도 고양시 일산동구 중앙로 852",
+        "zipcode": "10401",
+        "method": "일반배송",
+        "trackingNo": "1111222233"
+      },
+      "notes": ""
+    },
+    {
+      "id": "ORD-2024-012",
+      "customer": "신예진",
+      "email": "shin@example.com",
+      "phone": "010-3333-4444",
+      "date": "2024-11-14",
+      "status": "배송중",
+      "totalAmount": 4500000,
+      "items": [
+        { "product": "맥 프로", "quantity": 1, "price": 4500000 }
+      ],
+      "shipping": {
+        "address": "서울시 서초구 반포대로 963",
+        "zipcode": "06536",
+        "method": "특송",
+        "trackingNo": "3333444455"
+      },
+      "notes": "업무용 장비, 빠른 배송 요청"
+    },
+    {
+      "id": "ORD-2024-013",
+      "customer": "김미정",
+      "email": "mj.kim@example.com",
+      "phone": "010-5555-6666",
+      "date": "2024-11-13",
+      "status": "처리중",
+      "totalAmount": 0,
+      "items": [],
+      "shipping": {
+        "address": "",
+        "zipcode": "",
+        "method": "",
+        "trackingNo": ""
+      },
+      "notes": "상품 미정 - 상담 후 결정 예정"
+    },
+    {
+      "id": "ORD-2024-014",
+      "customer": "이동건",
+      "email": "dg.lee@example.com",
+      "phone": "010-7777-8888",
+      "date": "2024-11-12",
+      "status": "대기",
+      "totalAmount": 0,
+      "items": [],
+      "shipping": {
+        "address": "경기도 수원시 팔달구 효원로 123",
+        "zipcode": "16489",
+        "method": "",
+        "trackingNo": ""
+      },
+      "notes": "견적 요청 건"
+    }
+  ]
+}

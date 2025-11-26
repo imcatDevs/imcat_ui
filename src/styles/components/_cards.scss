@@ -31,13 +31,6 @@ $card-footer-padding: 1rem 1.5rem !default;
   border: 1px solid var(--border-color);
   border-radius: $card-border-radius;
   box-shadow: $card-box-shadow;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  // Hover effect
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  }
 }
 
 // ============================================
@@ -389,10 +382,6 @@ $card-footer-padding: 1rem 1.5rem !default;
   .card {
     background-color: var(--bg-elevated);
     border-color: var(--border-color);
-
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
   }
 
   .card__header,

@@ -1,0 +1,775 @@
+/**
+ * Data Visualization Module Styles
+ * @description DataTable, Chart, Masonry, Kanban, Calendar 스타일
+ */
+
+// ============================================
+// Variables
+// ============================================
+
+$dataviz-primary: var(--primary-color, #667eea);
+$dataviz-bg: var(--bg-primary, #ffffff);
+$dataviz-text: var(--text-primary, #1e293b);
+$dataviz-text-secondary: var(--text-secondary, #64748b);
+$dataviz-border: var(--border-color, #e2e8f0);
+$dataviz-radius: 8px;
+$dataviz-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+// ============================================
+// DataTable
+// ============================================
+
+.data-table-wrapper {
+  background: $dataviz-bg;
+  border-radius: $dataviz-radius;
+  border: 1px solid $dataviz-border;
+  overflow: hidden;
+}
+
+.data-table__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid $dataviz-border;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.data-table__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.data-table__toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $dataviz-border;
+  background: $dataviz-bg;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $dataviz-text;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  i {
+    font-size: 18px;
+  }
+
+  &:hover {
+    background: var(--bg-secondary, #f8fafc);
+    border-color: $dataviz-primary;
+    color: $dataviz-primary;
+  }
+
+  // 버튼 변형
+  &.btn--primary {
+    background: $dataviz-primary;
+    border-color: $dataviz-primary;
+    color: white;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &.btn--danger {
+    color: #ef4444;
+    border-color: #fecaca;
+
+    &:hover {
+      background: #fef2f2;
+      border-color: #ef4444;
+    }
+  }
+
+  &.btn--success {
+    color: #22c55e;
+    border-color: #bbf7d0;
+
+    &:hover {
+      background: #f0fdf4;
+      border-color: #22c55e;
+    }
+  }
+}
+
+.data-table__info {
+  font-size: 0.875rem;
+  color: $dataviz-text-secondary;
+}
+
+.data-table__container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table__th {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: $dataviz-text-secondary;
+  background: var(--bg-secondary, #f8fafc);
+  border-bottom: 1px solid $dataviz-border;
+  white-space: nowrap;
+  user-select: none;
+
+  &.sortable {
+    cursor: pointer;
+    
+    &:hover {
+      background: var(--bg-tertiary, #f1f5f9);
+    }
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+.data-table__sort-icon {
+  opacity: 0.3;
+  transition: opacity 0.2s;
+
+  i {
+    font-size: 16px;
+  }
+
+  &.active {
+    opacity: 1;
+    color: $dataviz-primary;
+  }
+}
+
+.data-table__row {
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--bg-secondary, #f8fafc);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $dataviz-border;
+  }
+
+  &.selected {
+    background: rgba(102, 126, 234, 0.1);
+
+    &:hover {
+      background: rgba(102, 126, 234, 0.15);
+    }
+  }
+}
+
+.data-table__td {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: $dataviz-text;
+
+  &--checkbox {
+    width: 50px;
+    text-align: center;
+    padding: 0.875rem 0.5rem;
+  }
+}
+
+.data-table__th--checkbox {
+  text-align: center;
+  padding: 0.875rem 0.5rem !important;
+}
+
+.data-table__select-all,
+.data-table__row-select {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: $dataviz-primary;
+}
+
+.data-table__empty-cell {
+  padding: 0 !important;
+  
+  .empty-state {
+    border: none;
+    background: transparent;
+  }
+}
+
+.data-table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid $dataviz-border;
+}
+
+.data-table__page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid $dataviz-border;
+  background: $dataviz-bg;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-secondary, #f8fafc);
+    border-color: $dataviz-primary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  i {
+    font-size: 20px;
+    color: $dataviz-text;
+  }
+}
+
+.data-table__page-info {
+  font-size: 0.875rem;
+  color: $dataviz-text-secondary;
+}
+
+// ============================================
+// Chart
+// ============================================
+
+.chart-wrapper {
+  background: $dataviz-bg;
+  border-radius: $dataviz-radius;
+  padding: 1rem;
+}
+
+.chart {
+  position: relative;
+
+  &--bar,
+  &--line {
+    .chart__area {
+      position: relative;
+      border-left: 1px solid $dataviz-border;
+      border-bottom: 1px solid $dataviz-border;
+    }
+  }
+
+  &--pie,
+  &--doughnut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.chart__area {
+  position: relative;
+}
+
+.chart__bar {
+  position: absolute;
+  bottom: 0;
+  border-radius: 4px 4px 0 0;
+  transition: opacity 0.2s;
+
+  &.animate {
+    animation: barGrow 0.6s ease-out;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.chart__bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $dataviz-text;
+  white-space: nowrap;
+}
+
+@keyframes barGrow {
+  from {
+    height: 0 !important;
+  }
+}
+
+.chart__line-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.chart__line {
+  &.animate {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: lineGrow 1s ease-out forwards;
+  }
+}
+
+@keyframes lineGrow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chart__point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid $dataviz-bg;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.chart__labels {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  position: relative;
+  height: 30px;
+}
+
+.chart__label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: $dataviz-text-secondary;
+  white-space: nowrap;
+}
+
+.chart__pie-svg {
+  display: block;
+}
+
+.chart__pie-segment {
+  transition: opacity 0.2s, transform 0.2s;
+  transform-origin: center;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+.chart__doughnut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.chart__doughnut-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $dataviz-text;
+}
+
+.chart__doughnut-label {
+  font-size: 0.75rem;
+  color: $dataviz-text-secondary;
+}
+
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: $dataviz-text;
+}
+
+.chart__legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+// ============================================
+// Masonry
+// ============================================
+
+.masonry {
+  width: 100%;
+}
+
+.masonry__item {
+  break-inside: avoid;
+  margin-bottom: 0;
+}
+
+// ============================================
+// Kanban
+// ============================================
+
+.kanban {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem;
+  min-height: 400px;
+}
+
+.kanban__column {
+  flex: 0 0 300px;
+  background: var(--bg-secondary, #f8fafc);
+  border-radius: $dataviz-radius;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.kanban__column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid $dataviz-border;
+}
+
+.kanban__column-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: $dataviz-text;
+  margin: 0;
+}
+
+.kanban__column-count {
+  background: var(--bg-tertiary, #e2e8f0);
+  color: $dataviz-text-secondary;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+}
+
+.kanban__cards {
+  flex: 1;
+  padding: 0.75rem;
+  overflow-y: auto;
+  min-height: 100px;
+  transition: background 0.2s;
+
+  &.drag-over {
+    background: rgba(102, 126, 234, 0.1);
+  }
+}
+
+.kanban__card {
+  background: $dataviz-bg;
+  border-radius: 6px;
+  padding: 0.875rem;
+  margin-bottom: 0.75rem;
+  box-shadow: $dataviz-shadow;
+  cursor: grab;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  &.dragging {
+    opacity: 0.5;
+    transform: rotate(3deg);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.kanban__card-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $dataviz-text;
+  margin-bottom: 0.25rem;
+}
+
+.kanban__card-desc {
+  font-size: 0.8125rem;
+  color: $dataviz-text-secondary;
+  margin-bottom: 0.5rem;
+}
+
+.kanban__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.kanban__tag {
+  font-size: 0.6875rem;
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 10px;
+}
+
+.kanban__add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background: transparent;
+  color: $dataviz-text-secondary;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    color: $dataviz-primary;
+    background: rgba(102, 126, 234, 0.1);
+  }
+
+  i {
+    font-size: 18px;
+  }
+}
+
+// ============================================
+// Calendar
+// ============================================
+
+.calendar {
+  background: $dataviz-bg;
+  border-radius: $dataviz-radius;
+  border: 1px solid $dataviz-border;
+  overflow: hidden;
+}
+
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid $dataviz-border;
+}
+
+.calendar__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $dataviz-text;
+  margin: 0;
+}
+
+.calendar__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: $dataviz-text;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--bg-secondary, #f8fafc);
+  }
+
+  i {
+    font-size: 24px;
+  }
+}
+
+.calendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid $dataviz-border;
+}
+
+.calendar__weekday {
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: $dataviz-text-secondary;
+
+  &.sunday {
+    color: #ef4444;
+  }
+
+  &.saturday {
+    color: #3b82f6;
+  }
+}
+
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar__cell {
+  min-height: 100px;
+  padding: 0.5rem;
+  border-right: 1px solid $dataviz-border;
+  border-bottom: 1px solid $dataviz-border;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:nth-child(7n) {
+    border-right: none;
+  }
+
+  &:hover {
+    background: var(--bg-secondary, #f8fafc);
+  }
+
+  &.other-month {
+    background: var(--bg-secondary, #f8fafc);
+
+    .calendar__day {
+      color: $dataviz-text-secondary;
+      opacity: 0.5;
+    }
+  }
+
+  &.today {
+    .calendar__day {
+      background: $dataviz-primary;
+      color: white;
+    }
+  }
+
+  &.sunday .calendar__day {
+    color: #ef4444;
+  }
+
+  &.saturday .calendar__day {
+    color: #3b82f6;
+  }
+}
+
+.calendar__day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $dataviz-text;
+}
+
+.calendar__events {
+  margin-top: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calendar__event {
+  font-size: 0.6875rem;
+  color: white;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.calendar__more {
+  font-size: 0.6875rem;
+  color: $dataviz-text-secondary;
+  padding: 0.125rem 0.375rem;
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .data-table-wrapper,
+  .chart-wrapper,
+  .calendar {
+    background: var(--bg-elevated, #1e293b);
+    border-color: var(--border-color, #334155);
+  }
+
+  .data-table__th {
+    background: var(--bg-secondary, #0f172a);
+  }
+
+  .kanban__column {
+    background: var(--bg-secondary, #0f172a);
+  }
+
+  .kanban__card {
+    background: var(--bg-elevated, #1e293b);
+  }
+
+  .calendar__cell.other-month {
+    background: var(--bg-secondary, #0f172a);
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .calendar__cell {
+    min-height: 60px;
+    padding: 0.25rem;
+  }
+
+  .calendar__day {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .calendar__events {
+    display: none;
+  }
+
+  .kanban {
+    flex-direction: column;
+  }
+
+  .kanban__column {
+    flex: none;
+    width: 100%;
+  }
+}

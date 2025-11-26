@@ -266,13 +266,17 @@ textarea.form-control {
 // ============================================
 
 .form-switch {
-  padding-left: 2.5em;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  padding-left: 0;
 
   .form-check-input {
-    width: 2em;
-    margin-left: -2.5em;
+    width: 2.5em;
+    height: 1.25em;
+    margin: 0;
+    flex-shrink: 0;
+    order: -1; // input이 항상 먼저 오도록
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(0,0,0,0.25)'/%3e%3c/svg%3e");
     background-position: left center;
     border-radius: 2em;
@@ -286,6 +290,11 @@ textarea.form-control {
       background-position: right center;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
     }
+  }
+
+  .form-check-label {
+    order: 1;
+    margin: 0;
   }
 }
 

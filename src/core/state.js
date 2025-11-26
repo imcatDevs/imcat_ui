@@ -315,7 +315,7 @@ class StateStore {
     // 모든 watcher 제거
     this._watchers.clear();
     
-    // computed 캠시 및 의존성 제거
+    // computed 캐시 및 의존성 제거
     this._computedCache.clear();
     this._computedDeps.clear();
     
@@ -363,6 +363,10 @@ export class GlobalState {
    * @param {string} name - 스토어 이름
    */
   static remove(name) {
+    const store = this._stores.get(name);
+    if (store && typeof store.destroy === 'function') {
+      store.destroy();
+    }
     this._stores.delete(name);
   }
 
@@ -370,6 +374,12 @@ export class GlobalState {
    * 모든 전역 스토어 제거
    */
   static clear() {
+    // 모든 스토어의 destroy() 호출
+    this._stores.forEach(store => {
+      if (store && typeof store.destroy === 'function') {
+        store.destroy();
+      }
+    });
     this._stores.clear();
   }
 }

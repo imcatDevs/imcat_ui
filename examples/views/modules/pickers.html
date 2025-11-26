@@ -1,0 +1,474 @@
+<!-- Page Title -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Pickers</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Pickers - 선택기 컴포넌트</h1>
+  <p class="page-description">날짜, 시간, 색상 선택 및 카운트다운/디데이</p>
+</div>
+
+<div class="row">
+  <!-- DatePicker -->
+  <div class="col-md-6 col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">DatePicker - 날짜 선택</h2>
+        <p class="card__description">달력 기반 날짜 선택기</p>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">기본 날짜 선택</label>
+          <input type="text" id="datepicker_basic">
+        </div>
+        <div class="mb-3">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">선택된 날짜</label>
+          <input type="text" id="datepicker_preset">
+        </div>
+        <div id="datepicker_result" style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; font-size: 0.875rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TimePicker -->
+  <div class="col-md-6 col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">TimePicker - 시간 선택</h2>
+        <p class="card__description">드롭다운 기반 시간 선택기</p>
+      </div>
+      <div class="card__body">
+        <div class="mb-3">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">15분 간격</label>
+          <input type="text" id="timepicker_15">
+        </div>
+        <div class="mb-3">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">30분 간격</label>
+          <input type="text" id="timepicker_30">
+        </div>
+        <div id="timepicker_result" style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; font-size: 0.875rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ColorPicker -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">ColorPicker - 색상 선택</h2>
+        <p class="card__description">프리셋 색상 및 커스텀 색상 선택</p>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">기본 색상</label>
+            <input type="text" id="colorpicker_basic">
+          </div>
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">테마 색상</label>
+            <input type="text" id="colorpicker_theme">
+          </div>
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">미리보기</label>
+            <div id="color_preview" style="width: 100%; height: 40px; border-radius: 6px; background: #667eea; transition: background 0.3s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">Countdown - 카운트다운</h2>
+        <p class="card__description">실시간 카운트다운 타이머 (표시 단위 옵션 지원)</p>
+      </div>
+      <div class="card__body">
+        <div class="row" style="gap: 2rem;">
+          <!-- 기본 카운트다운 (일/시/분/초) -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">🎆 새해 카운트다운 (전체 표시)</h4>
+            <div id="countdown_newyear"></div>
+          </div>
+          
+          <!-- 시/분/초만 표시 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">⏱️ 시:분:초만 표시</h4>
+            <div id="countdown_hms"></div>
+          </div>
+          
+          <!-- 분/초만 표시 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">⏰ 분:초만 표시 (5분 타이머)</h4>
+            <div id="countdown_ms"></div>
+          </div>
+          
+          <!-- 초만 표시 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">⏲️ 초만 표시 (60초 타이머)</h4>
+            <div id="countdown_sec"></div>
+          </div>
+          
+          <!-- 레이블 없이 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">🔢 레이블 없이 (숫자만)</h4>
+            <div id="countdown_nolabel"></div>
+          </div>
+          
+          <!-- 커스텀 레이블 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">🌍 영문 레이블</h4>
+            <div id="countdown_en"></div>
+          </div>
+          
+          <!-- 작은 사이즈 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">📦 Small 사이즈</h4>
+            <div id="countdown_sm" class="countdown--sm"></div>
+          </div>
+          
+          <!-- 큰 사이즈 -->
+          <div class="col-md-6">
+            <h4 style="margin-bottom: 1rem;">🚀 Large 사이즈</h4>
+            <div id="countdown_lg" class="countdown--lg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DDay -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">D-Day - 디데이 카운터</h2>
+        <p class="card__description">특정 날짜까지 남은 일수 표시</p>
+      </div>
+      <div class="card__body">
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+          <!-- 기본 D-Day -->
+          <div id="dday_basic"></div>
+          
+          <!-- 카드 스타일 D-Day -->
+          <div id="dday_card" class="dday--card"></div>
+          
+          <!-- 지난 D-Day -->
+          <div id="dday_past"></div>
+          
+          <!-- 오늘 D-Day -->
+          <div id="dday_today"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 실전 예제 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">실전 예제</h2>
+        <p class="card__description">Picker 조합 활용</p>
+      </div>
+      <div class="card__body">
+        <!-- 이벤트 등록 폼 -->
+        <h4 style="margin-bottom: 1rem;">📅 이벤트 등록</h4>
+        <div style="max-width: 500px; padding: 1.5rem; background: var(--bg-secondary); border-radius: 8px;">
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">이벤트명</label>
+            <input type="text" id="event_name" placeholder="이벤트명 입력" style="width: 100%; padding: 0.625rem 1rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9375rem;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">날짜</label>
+              <input type="text" id="event_date">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">시간</label>
+              <input type="text" id="event_time">
+            </div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">테마 색상</label>
+            <input type="text" id="event_color">
+          </div>
+          <button onclick="registerEvent()" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            이벤트 등록
+          </button>
+        </div>
+        
+        <!-- 등록된 이벤트 -->
+        <div id="event_list" style="margin-top: 1.5rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 사용법 -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">사용법</h2>
+      </div>
+      <div class="card__body">
+        <h3>DatePicker</h3>
+        <pre><code>const Pickers = await IMCAT.use('pickers');
+
+const datePicker = new Pickers.DatePicker('#date-input', {
+  format: 'YYYY-MM-DD',
+  locale: 'ko',
+  onChange: (value) => console.log('선택:', value)
+});
+
+// 값 설정/조회
+datePicker.setValue('2024-12-25');
+datePicker.getValue();
+
+// 정리
+datePicker.destroy();</code></pre>
+
+        <h3 style="margin-top: 2rem;">TimePicker</h3>
+        <pre><code>const timePicker = new Pickers.TimePicker('#time-input', {
+  step: 15,  // 15분 간격
+  onChange: (value) => console.log('선택:', value)
+});
+
+timePicker.setValue('14:30');</code></pre>
+
+        <h3 style="margin-top: 2rem;">ColorPicker</h3>
+        <pre><code>const colorPicker = new Pickers.ColorPicker('#color-input', {
+  defaultColor: '#667eea',
+  presetColors: ['#ef4444', '#22c55e', '#3b82f6'],
+  onChange: (color) => {
+    document.body.style.setProperty('--theme-color', color);
+  }
+});</code></pre>
+
+        <h3 style="margin-top: 2rem;">Countdown</h3>
+        <pre><code>const countdown = new Pickers.Countdown('#countdown', {
+  targetDate: '2025-01-01T00:00:00',
+  labels: { days: '일', hours: '시간', minutes: '분', seconds: '초' },
+  onComplete: () => alert('카운트다운 완료!')
+});
+
+// 제어
+countdown.start();
+countdown.stop();
+countdown.setTarget('2025-06-01');</code></pre>
+
+        <h3 style="margin-top: 2rem;">D-Day</h3>
+        <pre><code>const dday = new Pickers.DDay('#dday', {
+  targetDate: '2025-03-01',
+  title: '프로젝트 마감',
+  showPastDays: true
+});
+
+// D-Day 조회
+console.log(dday.getDays()); // 남은 일수
+
+// 대상 변경
+dday.setTarget('2025-04-01', '새 이벤트');</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script type="module">
+  const Pickers = await IMCAT.use('pickers');
+  const instances = [];
+
+  // DatePicker
+  const datepickerBasic = new Pickers.DatePicker('#datepicker_basic', {
+    onChange: (value) => {
+      document.getElementById('datepicker_result').innerHTML = `선택된 날짜: <strong>${value}</strong>`;
+    }
+  });
+  instances.push(datepickerBasic);
+
+  const datepickerPreset = new Pickers.DatePicker('#datepicker_preset', {
+    onChange: (value) => {
+      document.getElementById('datepicker_result').innerHTML = `선택된 날짜: <strong>${value}</strong>`;
+    }
+  });
+  datepickerPreset.setValue('2024-12-25');
+  instances.push(datepickerPreset);
+
+  // TimePicker
+  const timepicker15 = new Pickers.TimePicker('#timepicker_15', {
+    step: 15,
+    onChange: (value) => {
+      document.getElementById('timepicker_result').innerHTML = `선택된 시간: <strong>${value}</strong>`;
+    }
+  });
+  instances.push(timepicker15);
+
+  const timepicker30 = new Pickers.TimePicker('#timepicker_30', {
+    step: 30,
+    onChange: (value) => {
+      document.getElementById('timepicker_result').innerHTML = `선택된 시간: <strong>${value}</strong>`;
+    }
+  });
+  instances.push(timepicker30);
+
+  // ColorPicker
+  const colorpickerBasic = new Pickers.ColorPicker('#colorpicker_basic', {
+    onChange: (color) => {
+      document.getElementById('color_preview').style.background = color;
+    }
+  });
+  instances.push(colorpickerBasic);
+
+  const colorpickerTheme = new Pickers.ColorPicker('#colorpicker_theme', {
+    defaultColor: '#22c55e',
+    presetColors: ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe'],
+    onChange: (color) => {
+      document.getElementById('color_preview').style.background = color;
+    }
+  });
+  instances.push(colorpickerTheme);
+
+  // Countdown - 새해 (전체 표시)
+  const nextYear = new Date().getFullYear() + 1;
+  const countdownNewyear = new Pickers.Countdown('#countdown_newyear', {
+    targetDate: `${nextYear}-01-01T00:00:00`,
+    onComplete: () => alert('🎉 새해 복 많이 받으세요!')
+  });
+  instances.push(countdownNewyear);
+
+  // Countdown - 시:분:초만 표시 (1시간 후)
+  const hmsTime = new Date(Date.now() + 3600000);
+  const countdownHms = new Pickers.Countdown('#countdown_hms', {
+    targetDate: hmsTime.toISOString(),
+    showDays: false  // 일 숨김
+  });
+  instances.push(countdownHms);
+
+  // Countdown - 분:초만 표시 (5분 타이머)
+  const msTime = new Date(Date.now() + 5 * 60000);
+  const countdownMs = new Pickers.Countdown('#countdown_ms', {
+    targetDate: msTime.toISOString(),
+    showDays: false,
+    showHours: false  // 일, 시간 숨김
+  });
+  instances.push(countdownMs);
+
+  // Countdown - 초만 표시 (60초 타이머)
+  const secTime = new Date(Date.now() + 60000);
+  const countdownSec = new Pickers.Countdown('#countdown_sec', {
+    targetDate: secTime.toISOString(),
+    showDays: false,
+    showHours: false,
+    showMinutes: false  // 초만 표시
+  });
+  instances.push(countdownSec);
+
+  // Countdown - 레이블 없이
+  const nolabelTime = new Date(Date.now() + 2 * 3600000);
+  const countdownNolabel = new Pickers.Countdown('#countdown_nolabel', {
+    targetDate: nolabelTime.toISOString(),
+    showLabels: false  // 레이블 숨김
+  });
+  instances.push(countdownNolabel);
+
+  // Countdown - 영문 레이블
+  const enTime = new Date(Date.now() + 86400000);
+  const countdownEn = new Pickers.Countdown('#countdown_en', {
+    targetDate: enTime.toISOString(),
+    labels: { days: 'Days', hours: 'Hrs', minutes: 'Min', seconds: 'Sec' }
+  });
+  instances.push(countdownEn);
+
+  // Countdown - Small 사이즈
+  const smTime = new Date(Date.now() + 3 * 3600000);
+  const countdownSm = new Pickers.Countdown('#countdown_sm', {
+    targetDate: smTime.toISOString()
+  });
+  instances.push(countdownSm);
+
+  // Countdown - Large 사이즈
+  const lgDate = new Date(Date.now() + 30 * 86400000);
+  const countdownLg = new Pickers.Countdown('#countdown_lg', {
+    targetDate: lgDate.toISOString()
+  });
+  instances.push(countdownLg);
+
+  // D-Day
+  const ddayBasic = new Pickers.DDay('#dday_basic', {
+    targetDate: new Date(Date.now() + 30 * 86400000),
+    title: '프로젝트 마감'
+  });
+  instances.push(ddayBasic);
+
+  const ddayCard = new Pickers.DDay('#dday_card', {
+    targetDate: new Date(Date.now() + 100 * 86400000),
+    title: '여행 출발'
+  });
+  instances.push(ddayCard);
+
+  const ddayPast = new Pickers.DDay('#dday_past', {
+    targetDate: new Date(Date.now() - 15 * 86400000),
+    title: '출시일'
+  });
+  instances.push(ddayPast);
+
+  const ddayToday = new Pickers.DDay('#dday_today', {
+    targetDate: new Date(),
+    title: '오늘의 이벤트'
+  });
+  instances.push(ddayToday);
+
+  // 이벤트 폼
+  const eventDatePicker = new Pickers.DatePicker('#event_date', {});
+  instances.push(eventDatePicker);
+
+  const eventTimePicker = new Pickers.TimePicker('#event_time', { step: 30 });
+  instances.push(eventTimePicker);
+
+  const eventColorPicker = new Pickers.ColorPicker('#event_color', {
+    presetColors: ['#ef4444', '#f59e0b', '#22c55e', '#3b82f6', '#8b5cf6', '#ec4899']
+  });
+  instances.push(eventColorPicker);
+
+  // 이벤트 생성 함수
+  window.registerEvent = function() {
+    const name = document.getElementById('event_name').value;
+    const date = eventDatePicker.getValue();
+    const time = eventTimePicker.getValue();
+    const color = eventColorPicker.getValue();
+
+    if (!name || !date) {
+      alert('이벤트명과 날짜를 입력해주세요.');
+      return;
+    }
+
+    const eventList = document.getElementById('event_list');
+    const eventId = 'event_' + Date.now();
+    
+    eventList.innerHTML += `
+      <div style="display: inline-flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid ${color}; margin-right: 1rem; margin-bottom: 1rem;">
+        <div>
+          <div style="font-weight: 600; color: var(--text-primary);">${name}</div>
+          <div style="font-size: 0.875rem; color: var(--text-secondary);">${date} ${time || ''}</div>
+        </div>
+        <div id="${eventId}" style="margin-left: 1rem;"></div>
+      </div>
+    `;
+
+    const dday = new Pickers.DDay('#' + eventId, {
+      targetDate: date,
+      title: ''
+    });
+    instances.push(dday);
+
+    // 폼 초기화
+    document.getElementById('event_name').value = '';
+  };
+
+  // 인스턴스 등록
+  instances.forEach(inst => IMCAT.view.registerInstance(inst));
+
+  console.log('Pickers 예제 로드 완료');
+</script>

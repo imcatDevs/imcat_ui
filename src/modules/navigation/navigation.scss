@@ -645,4 +645,52 @@ $tabs-hover-bg: var(--bg-secondary, #f8f9fa);
       padding-top: 1.5rem;
     }
   }
+
+  // MegaMenu 반응형
+  .megamenu {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .megamenu__item {
+    position: static;
+  }
+
+  .megamenu__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    transform: none;
+    min-width: 300px;
+    width: calc(100vw - 2rem);
+    max-width: 450px;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+
+    .megamenu__item--active & {
+      transform: none;
+    }
+  }
+
+  .megamenu__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .megamenu__link {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .megamenu__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .megamenu__trigger {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
 }

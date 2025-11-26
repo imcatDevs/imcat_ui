@@ -105,7 +105,9 @@ export class EventBus {
   emit(event, ...args) {
     if (!this.events.has(event)) return;
 
-    this.events.get(event).forEach(handler => {
+    // 핸들러 배열 복사 (순회 중 변경 방지)
+    const handlers = [...this.events.get(event)];
+    handlers.forEach(handler => {
       try {
         handler(...args);
       } catch (error) {

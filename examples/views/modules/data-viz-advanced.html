@@ -1,0 +1,874 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#" catui-href="views/modules/data-viz.html">Data Visualization</a></li>
+      <li class="breadcrumb-item active">고급 예제</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">DataTable 고급 예제</h1>
+  <p class="page-description">마스터-디테일 패턴 - JSON 데이터 로드, 행 선택, 상세 정보 표시</p>
+</div>
+
+<div class="row">
+  <!-- 마스터 테이블 (왼쪽) -->
+  <div class="col-lg-5">
+    <div class="card" style="height: calc(100vh - 220px); display: flex; flex-direction: column;">
+      <div class="card__header" style="flex-shrink: 0;">
+        <h2 class="card__title">📋 주문 목록</h2>
+        <p class="card__description">행을 클릭하여 상세 정보 확인</p>
+      </div>
+      <div class="card__body" style="flex: 1; overflow: hidden; position: relative;">
+        <div id="master_table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 디테일 정보 (오른쪽) -->
+  <div class="col-lg-7">
+    <div class="card" style="height: calc(100vh - 220px); display: flex; flex-direction: column;">
+      <div class="card__header" style="flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2 class="card__title">📄 주문 상세</h2>
+          <p class="card__description" id="detail_subtitle">주문을 선택해주세요</p>
+        </div>
+        <div id="detail_pagination" style="display: none;">
+          <button id="prev_detail" class="btn btn--sm btn--secondary" disabled>
+            <i class="material-icons-outlined" style="font-size: 18px;">chevron_left</i>
+          </button>
+          <span id="detail_page_info" style="margin: 0 0.75rem; font-size: 0.875rem;"></span>
+          <button id="next_detail" class="btn btn--sm btn--secondary">
+            <i class="material-icons-outlined" style="font-size: 18px;">chevron_right</i>
+          </button>
+        </div>
+      </div>
+      <div class="card__body" style="flex: 1; overflow-y: auto; position: relative;" id="detail_container">
+        <!-- 선택 전 안내 -->
+        <div id="detail_placeholder" class="detail-placeholder">
+          <i class="material-icons-outlined" style="font-size: 64px; color: var(--text-secondary); opacity: 0.5;">touch_app</i>
+          <p style="margin-top: 1rem; color: var(--text-secondary);">왼쪽 목록에서 주문을 선택하세요</p>
+        </div>
+        
+        <!-- 디테일 콘텐츠 -->
+        <div id="detail_content" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 인라인 편집 테이블 -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">✏️ 인라인 편집 테이블</h2>
+        <p class="card__description">셀을 더블클릭하여 바로 편집</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_editable_table"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRUD 테이블 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🗃️ CRUD 테이블</h2>
+        <p class="card__description">추가, 수정, 삭제 전체 기능</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_crud_table"></div>
+        
+        <!-- 추가 폼 -->
+        <div id="add_form" style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; display: none;">
+          <h4 style="margin-bottom: 1rem;">새 항목 추가</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <input type="text" id="add_name" placeholder="이름" class="form-control">
+            <input type="email" id="add_email" placeholder="이메일" class="form-control">
+            <select id="add_department" class="form-control">
+              <option value="">부서 선택</option>
+              <option value="개발팀">개발팀</option>
+              <option value="디자인팀">디자인팀</option>
+              <option value="마케팅팀">마케팅팀</option>
+              <option value="인사팀">인사팀</option>
+            </select>
+            <input type="number" id="add_salary" placeholder="연봉" class="form-control">
+          </div>
+          <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+            <button onclick="saveNewRow()" class="btn btn--primary btn--sm">저장</button>
+            <button onclick="cancelAdd()" class="btn btn--secondary btn--sm">취소</button>
+          </div>
+        </div>
+        
+        <!-- 편집 모달 -->
+        <div id="edit_modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center;">
+          <div style="background: var(--bg-primary); border-radius: 12px; padding: 1.5rem; width: 100%; max-width: 500px; margin: 1rem;">
+            <h3 style="margin-bottom: 1rem;">항목 편집</h3>
+            <input type="hidden" id="edit_index">
+            <div style="display: grid; gap: 1rem;">
+              <div>
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.875rem;">이름</label>
+                <input type="text" id="edit_name" class="form-control">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.875rem;">이메일</label>
+                <input type="email" id="edit_email" class="form-control">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.875rem;">부서</label>
+                <select id="edit_department" class="form-control">
+                  <option value="개발팀">개발팀</option>
+                  <option value="디자인팀">디자인팀</option>
+                  <option value="마케팅팀">마케팅팀</option>
+                  <option value="인사팀">인사팀</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.875rem;">연봉</label>
+                <input type="number" id="edit_salary" class="form-control">
+              </div>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; justify-content: flex-end;">
+              <button onclick="closeEditModal()" class="btn btn--secondary btn--sm">취소</button>
+              <button onclick="saveEdit()" class="btn btn--primary btn--sm">저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 사용법</h2>
+      </div>
+      <div class="card__body">
+        <h3 style="margin-bottom: 1rem;">JSON 데이터 로드</h3>
+        <pre><code>// fetch로 JSON 데이터 로드
+IMCAT.loading.show('데이터 로딩 중...');
+
+const response = await fetch('data/tabledata.json');
+const jsonData = await response.json();
+
+// 테이블에 데이터 설정
+table.setData(jsonData.orders);
+
+IMCAT.loading.hide();</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">마스터-디테일 패턴</h3>
+        <pre><code>const masterTable = new DataViz.DataTable('#master', {
+  data: orders,
+  columns: [...],
+  selectable: true,
+  onRowClick: (row, index) => {
+    // 디테일 영역 업데이트
+    showDetail(row);
+  }
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">선택 관련 API</h3>
+        <pre><code>// 선택된 행 데이터 가져오기
+const selected = table.getSelectedRows();
+
+// 선택된 인덱스 가져오기
+const indices = table.getSelectedIndices();
+
+// 선택 이벤트
+onSelect: (selectedData, indices) => {
+  console.log('선택됨:', selectedData);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .detail-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+  }
+  
+  .detail-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .detail-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .detail-section h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .detail-section h4 i {
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+  
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .detail-item label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .detail-item span {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  
+  .items-table th,
+  .items-table td {
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .items-table th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+  
+  .items-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .items-table .text-right {
+    text-align: right;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .status-badge.completed { background: #dcfce7; color: #166534; }
+  .status-badge.shipping { background: #dbeafe; color: #1e40af; }
+  .status-badge.processing { background: #fef3c7; color: #92400e; }
+  .status-badge.cancelled { background: #fee2e2; color: #991b1b; }
+  .status-badge.pending { background: #f3f4f6; color: #4b5563; }
+
+  /* 마스터 테이블 행 선택 하이라이트 */
+  .data-table__row.active-row {
+    background: rgba(102, 126, 234, 0.15) !important;
+  }
+  
+  .data-table__row.active-row:hover {
+    background: rgba(102, 126, 234, 0.2) !important;
+  }
+
+  /* 인라인 편집 셀 */
+  .editable-cell {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  
+  .editable-cell:hover {
+    background: rgba(102, 126, 234, 0.1);
+  }
+
+  /* 폼 컨트롤 */
+  .form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+</style>
+
+<!-- JavaScript -->
+<script type="module">
+  const DataViz = await IMCAT.use('data-viz');
+  const instances = [];
+  
+  let ordersData = [];
+  let currentDetailPage = 1;
+  let selectedOrder = null;
+  const detailItemsPerPage = 5;
+
+  // ============================================
+  // JSON 데이터 로드
+  // ============================================
+  
+  async function loadData() {
+    try {
+      IMCAT.loading.show('주문 데이터 로딩 중...');
+      
+      // 로딩 시뮬레이션 (실제로는 서버 응답 시간)
+      await new Promise(r => setTimeout(r, 800));
+      
+      const response = await fetch('data/tabledata.json');
+      if (!response.ok) throw new Error('데이터를 불러올 수 없습니다.');
+      
+      const jsonData = await response.json();
+      ordersData = jsonData.orders;
+      
+      initMasterTable();
+      
+    } catch (error) {
+      console.error('데이터 로드 실패:', error);
+      document.getElementById('master_table').innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+          <i class="material-icons-outlined" style="font-size: 48px; opacity: 0.5;">error_outline</i>
+          <p style="margin-top: 1rem;">데이터를 불러올 수 없습니다.</p>
+        </div>
+      `;
+    } finally {
+      IMCAT.loading.hide();
+    }
+  }
+
+  // ============================================
+  // 마스터 테이블 초기화
+  // ============================================
+  
+  function initMasterTable() {
+    const masterTable = new DataViz.DataTable('#master_table', {
+      data: ordersData,
+      columns: [
+        { field: 'id', title: '주문번호', width: '120px' },
+        { field: 'customer', title: '고객명', width: '80px' },
+        { field: 'date', title: '날짜', width: '100px' },
+        { 
+          field: 'status', 
+          title: '상태', 
+          width: '80px',
+          render: (value) => {
+            const statusClass = {
+              '완료': 'completed',
+              '배송중': 'shipping',
+              '처리중': 'processing',
+              '취소': 'cancelled',
+              '대기': 'pending'
+            };
+            return `<span class="status-badge ${statusClass[value] || ''}">${value}</span>`;
+          }
+        },
+        { 
+          field: 'totalAmount', 
+          title: '금액', 
+          width: '110px',
+          render: (value) => `₩${value.toLocaleString()}`
+        }
+      ],
+      sortable: true,
+      paginate: true,
+      pageSize: 8,
+      showInfo: true,
+      onRowClick: (row, index) => {
+        selectedOrder = row;
+        currentDetailPage = 1;
+        showDetail(row);
+        
+        // 선택된 행 하이라이트
+        document.querySelectorAll('.data-table__row').forEach(r => r.classList.remove('active-row'));
+        const rows = document.querySelectorAll('#master_table .data-table__row');
+        rows.forEach(r => {
+          if (parseInt(r.dataset.index) === index) {
+            r.classList.add('active-row');
+          }
+        });
+      }
+    });
+    instances.push(masterTable);
+    
+    // 첫 번째 행 자동 선택
+    if (ordersData.length > 0) {
+      selectedOrder = ordersData[0];
+      showDetail(ordersData[0]);
+      setTimeout(() => {
+        const firstRow = document.querySelector('#master_table .data-table__row');
+        if (firstRow) firstRow.classList.add('active-row');
+      }, 100);
+    }
+  }
+
+  // ============================================
+  // 디테일 표시
+  // ============================================
+  
+  function showDetail(order) {
+    document.getElementById('detail_placeholder').style.display = 'none';
+    document.getElementById('detail_content').style.display = 'block';
+    document.getElementById('detail_subtitle').textContent = `주문번호: ${order.id}`;
+    
+    // 상품 목록 페이지네이션
+    const totalItems = order.items.length;
+    const totalPages = Math.ceil(totalItems / detailItemsPerPage);
+    const showPagination = totalPages > 1;
+    
+    document.getElementById('detail_pagination').style.display = showPagination ? 'flex' : 'none';
+    
+    if (showPagination) {
+      updateDetailPagination(totalPages);
+    }
+    
+    renderDetailContent(order);
+  }
+  
+  function updateDetailPagination(totalPages) {
+    document.getElementById('detail_page_info').textContent = `${currentDetailPage} / ${totalPages}`;
+    document.getElementById('prev_detail').disabled = currentDetailPage <= 1;
+    document.getElementById('next_detail').disabled = currentDetailPage >= totalPages;
+  }
+  
+  function renderDetailContent(order) {
+    const start = (currentDetailPage - 1) * detailItemsPerPage;
+    const end = start + detailItemsPerPage;
+    const pageItems = order.items.slice(start, end);
+    const totalPages = Math.ceil(order.items.length / detailItemsPerPage);
+    
+    const statusClass = {
+      '완료': 'completed',
+      '배송중': 'shipping',
+      '처리중': 'processing',
+      '취소': 'cancelled',
+      '대기': 'pending'
+    };
+    
+    document.getElementById('detail_content').innerHTML = `
+      <!-- 기본 정보 -->
+      <div class="detail-section">
+        <h4><i class="material-icons-outlined">info</i> 기본 정보</h4>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>주문번호</label>
+            <span>${order.id}</span>
+          </div>
+          <div class="detail-item">
+            <label>주문일자</label>
+            <span>${order.date}</span>
+          </div>
+          <div class="detail-item">
+            <label>상태</label>
+            <span class="status-badge ${statusClass[order.status] || ''}">${order.status}</span>
+          </div>
+          <div class="detail-item">
+            <label>총 금액</label>
+            <span style="color: var(--primary-color); font-weight: 600;">₩${order.totalAmount.toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 고객 정보 -->
+      <div class="detail-section">
+        <h4><i class="material-icons-outlined">person</i> 고객 정보</h4>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>고객명</label>
+            <span>${order.customer}</span>
+          </div>
+          <div class="detail-item">
+            <label>이메일</label>
+            <span>${order.email}</span>
+          </div>
+          <div class="detail-item">
+            <label>연락처</label>
+            <span>${order.phone}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 상품 목록 -->
+      <div class="detail-section">
+        <h4>
+          <i class="material-icons-outlined">shopping_cart</i> 
+          상품 목록 (${order.items.length}개)
+          ${totalPages > 1 ? `<span style="font-weight: 400; font-size: 0.8125rem; color: var(--text-secondary);"> - 페이지 ${currentDetailPage}/${totalPages}</span>` : ''}
+        </h4>
+        ${order.items.length > 0 ? `
+          <table class="items-table">
+            <thead>
+              <tr>
+                <th>상품명</th>
+                <th class="text-right">수량</th>
+                <th class="text-right">단가</th>
+                <th class="text-right">소계</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${pageItems.map(item => `
+                <tr>
+                  <td>${item.product}</td>
+                  <td class="text-right">${item.quantity}</td>
+                  <td class="text-right">₩${item.price.toLocaleString()}</td>
+                  <td class="text-right" style="font-weight: 600;">₩${(item.quantity * item.price).toLocaleString()}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        ` : `
+          <div class="empty-state empty-state--sm">
+            <div class="empty-state__icon">
+              <i class="material-icons-outlined">shopping_cart</i>
+            </div>
+            <h3 class="empty-state__title">상품 정보가 없습니다</h3>
+            <p class="empty-state__description">등록된 상품이 없습니다.</p>
+          </div>
+        `}
+      </div>
+      
+      <!-- 배송 정보 -->
+      <div class="detail-section">
+        <h4><i class="material-icons-outlined">local_shipping</i> 배송 정보</h4>
+        ${order.shipping.address ? `
+          <div class="detail-grid">
+            <div class="detail-item" style="grid-column: 1 / -1;">
+              <label>배송지</label>
+              <span>${order.shipping.address} (${order.shipping.zipcode})</span>
+            </div>
+            <div class="detail-item">
+              <label>배송방법</label>
+              <span>${order.shipping.method || '-'}</span>
+            </div>
+            <div class="detail-item">
+              <label>운송장번호</label>
+              <span>${order.shipping.trackingNo || '-'}</span>
+            </div>
+          </div>
+        ` : `
+          <div class="empty-state empty-state--sm">
+            <div class="empty-state__icon">
+              <i class="material-icons-outlined">local_shipping</i>
+            </div>
+            <h3 class="empty-state__title">배송 정보가 없습니다</h3>
+            <p class="empty-state__description">배송지가 등록되지 않았습니다.</p>
+          </div>
+        `}
+      </div>
+      
+      ${order.notes ? `
+        <!-- 메모 -->
+        <div class="detail-section">
+          <h4><i class="material-icons-outlined">note</i> 메모</h4>
+          <p style="margin: 0; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; font-size: 0.875rem;">
+            ${order.notes}
+          </p>
+        </div>
+      ` : ''}
+    `;
+    
+    if (totalPages > 1) {
+      updateDetailPagination(totalPages);
+    }
+  }
+
+  // ============================================
+  // 디테일 페이지네이션 이벤트
+  // ============================================
+  
+  document.getElementById('prev_detail').addEventListener('click', () => {
+    if (currentDetailPage > 1 && selectedOrder) {
+      currentDetailPage--;
+      renderDetailContent(selectedOrder);
+    }
+  });
+  
+  document.getElementById('next_detail').addEventListener('click', () => {
+    if (selectedOrder) {
+      const totalPages = Math.ceil(selectedOrder.items.length / detailItemsPerPage);
+      if (currentDetailPage < totalPages) {
+        currentDetailPage++;
+        renderDetailContent(selectedOrder);
+      }
+    }
+  });
+
+  // ============================================
+  // 인라인 편집 테이블
+  // ============================================
+  
+  const editableSampleData = [
+    { id: 1, name: '홍길동', email: 'hong@example.com', department: '개발팀', status: '활성' },
+    { id: 2, name: '김철수', email: 'kim@example.com', department: '디자인팀', status: '활성' },
+    { id: 3, name: '이영희', email: 'lee@example.com', department: '마케팅팀', status: '대기' },
+    { id: 4, name: '박지민', email: 'park@example.com', department: '개발팀', status: '활성' },
+    { id: 5, name: '최수진', email: 'choi@example.com', department: '인사팀', status: '비활성' }
+  ];
+  
+  const editableData = [...editableSampleData];
+  
+  const editableTable = new DataViz.DataTable('#demo_editable_table', {
+    data: editableData,
+    columns: [
+      { field: 'id', title: 'ID', width: '60px' },
+      { 
+        field: 'name', 
+        title: '이름', 
+        width: '150px',
+        render: (value, row, idx) => `
+          <span class="editable-cell" data-field="name" data-index="${idx}">${value}</span>
+        `
+      },
+      { 
+        field: 'email', 
+        title: '이메일',
+        render: (value, row, idx) => `
+          <span class="editable-cell" data-field="email" data-index="${idx}">${value}</span>
+        `
+      },
+      { 
+        field: 'department', 
+        title: '부서', 
+        width: '120px',
+        render: (value, row, idx) => `
+          <span class="editable-cell" data-field="department" data-index="${idx}">${value}</span>
+        `
+      },
+      { 
+        field: 'status', 
+        title: '상태', 
+        width: '100px',
+        render: (value) => {
+          const color = value === '활성' ? '#22c55e' : value === '대기' ? '#f59e0b' : '#ef4444';
+          return `<span style="color: ${color}; font-weight: 500;">${value}</span>`;
+        }
+      }
+    ],
+    paginate: false,
+    showInfo: false
+  });
+  instances.push(editableTable);
+
+  // 인라인 편집 이벤트
+  document.getElementById('demo_editable_table').addEventListener('dblclick', (e) => {
+    const cell = e.target.closest('.editable-cell');
+    if (!cell) return;
+
+    const field = cell.dataset.field;
+    const idx = parseInt(cell.dataset.index);
+    const currentValue = editableData[idx][field];
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = currentValue;
+    input.className = 'form-control';
+    input.style.cssText = 'width: 100%; padding: 0.25rem 0.5rem; font-size: inherit;';
+    
+    cell.innerHTML = '';
+    cell.appendChild(input);
+    input.focus();
+    input.select();
+
+    const save = () => {
+      const newValue = input.value;
+      editableData[idx][field] = newValue;
+      editableTable.setData(editableData);
+    };
+
+    input.addEventListener('blur', save);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') save();
+      if (e.key === 'Escape') editableTable.refresh();
+    });
+  });
+
+  // ============================================
+  // CRUD 테이블
+  // ============================================
+  
+  const crudSampleData = [
+    { id: 1, name: '홍길동', email: 'hong@example.com', department: '개발팀', salary: 5000000 },
+    { id: 2, name: '김철수', email: 'kim@example.com', department: '디자인팀', salary: 4500000 },
+    { id: 3, name: '이영희', email: 'lee@example.com', department: '마케팅팀', salary: 4800000 },
+    { id: 4, name: '박지민', email: 'park@example.com', department: '개발팀', salary: 5200000 },
+    { id: 5, name: '최수진', email: 'choi@example.com', department: '인사팀', salary: 4300000 }
+  ];
+  
+  let crudData = [...crudSampleData];
+  let nextId = 100;
+
+  const crudTable = new DataViz.DataTable('#demo_crud_table', {
+    data: crudData,
+    columns: [
+      { field: 'id', title: 'ID', width: '60px' },
+      { field: 'name', title: '이름', width: '120px' },
+      { field: 'email', title: '이메일' },
+      { field: 'department', title: '부서', width: '100px' },
+      { 
+        field: 'salary', 
+        title: '연봉', 
+        width: '120px',
+        render: (value) => `₩${value.toLocaleString()}`
+      },
+      {
+        field: 'actions',
+        title: '작업',
+        width: '150px',
+        sortable: false,
+        render: (_, row, idx) => `
+          <button class="btn btn--sm" onclick="openEditModal(${idx})" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">
+            <i class="material-icons-outlined" style="font-size: 16px;">edit</i>
+          </button>
+          <button class="btn btn--sm btn--danger" onclick="deleteCrudRow(${idx})" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; margin-left: 0.25rem;">
+            <i class="material-icons-outlined" style="font-size: 16px;">delete</i>
+          </button>
+        `
+      }
+    ],
+    selectable: true,
+    paginate: true,
+    pageSize: 5,
+    toolbar: {
+      buttons: [
+        { 
+          text: '새 항목', 
+          icon: 'add', 
+          class: 'btn--success',
+          onClick: () => {
+            document.getElementById('add_form').style.display = 'block';
+          }
+        },
+        { 
+          text: '선택 삭제', 
+          icon: 'delete', 
+          class: 'btn--danger',
+          onClick: () => {
+            const selected = crudTable.getSelectedRows();
+            if (selected.length === 0) {
+              alert('선택된 항목이 없습니다.');
+              return;
+            }
+            if (confirm(`${selected.length}개 항목을 삭제하시겠습니까?`)) {
+              crudTable.deleteSelectedRows();
+              crudData = crudTable.data;
+            }
+          }
+        }
+      ]
+    }
+  });
+  instances.push(crudTable);
+
+  // CRUD 함수들
+  window.saveNewRow = function() {
+    const name = document.getElementById('add_name').value;
+    const email = document.getElementById('add_email').value;
+    const department = document.getElementById('add_department').value;
+    const salary = parseInt(document.getElementById('add_salary').value);
+
+    if (!name || !email || !department || !salary) {
+      alert('모든 필드를 입력해주세요.');
+      return;
+    }
+
+    crudTable.addRow({
+      id: nextId++,
+      name,
+      email,
+      department,
+      salary
+    });
+    crudData = crudTable.data;
+    cancelAdd();
+  };
+
+  window.cancelAdd = function() {
+    document.getElementById('add_form').style.display = 'none';
+    document.getElementById('add_name').value = '';
+    document.getElementById('add_email').value = '';
+    document.getElementById('add_department').value = '';
+    document.getElementById('add_salary').value = '';
+  };
+
+  window.openEditModal = function(idx) {
+    const row = crudTable.filteredData[idx];
+    document.getElementById('edit_index').value = idx;
+    document.getElementById('edit_name').value = row.name;
+    document.getElementById('edit_email').value = row.email;
+    document.getElementById('edit_department').value = row.department;
+    document.getElementById('edit_salary').value = row.salary;
+    document.getElementById('edit_modal').style.display = 'flex';
+  };
+
+  window.closeEditModal = function() {
+    document.getElementById('edit_modal').style.display = 'none';
+  };
+
+  window.saveEdit = function() {
+    const idx = parseInt(document.getElementById('edit_index').value);
+    crudTable.updateRow(idx, {
+      name: document.getElementById('edit_name').value,
+      email: document.getElementById('edit_email').value,
+      department: document.getElementById('edit_department').value,
+      salary: parseInt(document.getElementById('edit_salary').value)
+    });
+    crudData = crudTable.data;
+    closeEditModal();
+  };
+
+  window.deleteCrudRow = function(idx) {
+    if (confirm('이 항목을 삭제하시겠습니까?')) {
+      crudTable.deleteRow(idx);
+      crudData = crudTable.data;
+    }
+  };
+
+  // ============================================
+  // 초기화
+  // ============================================
+  
+  loadData();
+  
+  // 인스턴스 등록
+  instances.forEach(inst => IMCAT.view.registerInstance(inst));
+  
+  console.log('DataTable 고급 예제 로드 완료');
+</script>

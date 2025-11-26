@@ -1,0 +1,436 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#core">Core</a></li>
+      <li class="breadcrumb-item active">Template Engine</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Template Engine</h1>
+  <p class="page-description">코어 내장 템플릿 엔진 - {{key}} 문법, XSS 방어, 조건부/리스트 렌더링</p>
+</div>
+
+<div class="row">
+  <!-- 기본 렌더링 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📝 기본 렌더링 (render)</h2>
+        <p class="card__description">{{key}} 문법으로 데이터 바인딩 (자동 XSS 방어)</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>템플릿</h4>
+          <pre><code id="basic_template">Hello {{name}}! 나이: {{age}}세</code></pre>
+          
+          <h4 style="margin-top: 1rem;">데이터</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+            <input type="text" id="basic_name" class="form-control" placeholder="이름" value="홍길동">
+            <input type="number" id="basic_age" class="form-control" placeholder="나이" value="25">
+          </div>
+          <button class="btn btn--primary btn--sm" onclick="renderBasic()">렌더링</button>
+          
+          <h4 style="margin-top: 1rem;">결과</h4>
+          <div id="basic_result" class="result-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- XSS 방어 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🛡️ XSS 방어</h2>
+        <p class="card__description">사용자 입력은 자동으로 이스케이프됨</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>위험한 입력 테스트</h4>
+          <input type="text" id="xss_input" class="form-control" value="<script>alert('XSS')</script>" style="margin-bottom: 1rem;">
+          <button class="btn btn--primary btn--sm" onclick="renderXSS()">렌더링</button>
+          
+          <h4 style="margin-top: 1rem;">render() 결과 (안전)</h4>
+          <div id="xss_safe" class="result-box result-box--success"></div>
+          
+          <h4 style="margin-top: 1rem;">renderRaw() 결과 (위험)</h4>
+          <div id="xss_raw" class="result-box result-box--danger"></div>
+          <small style="color: var(--text-secondary);">⚠️ renderRaw()는 신뢰할 수 있는 HTML만 사용</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 조건부 렌더링 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🔀 조건부 렌더링 (if)</h2>
+        <p class="card__description">조건에 따라 템플릿 표시/숨김</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>조건</h4>
+          <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="cond_admin" checked> 관리자
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="cond_premium"> 프리미엄 회원
+            </label>
+          </div>
+          <button class="btn btn--primary btn--sm" onclick="renderConditional()">렌더링</button>
+          
+          <h4 style="margin-top: 1rem;">결과</h4>
+          <div id="cond_result" class="result-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 리스트 렌더링 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📋 리스트 렌더링 (each)</h2>
+        <p class="card__description">배열 데이터를 반복 렌더링</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>데이터 (JSON)</h4>
+          <textarea id="list_data" class="form-control" rows="4" style="font-family: monospace; font-size: 0.8125rem;">[
+  { "name": "홍길동", "role": "개발자" },
+  { "name": "김철수", "role": "디자이너" },
+  { "name": "이영희", "role": "기획자" }
+]</textarea>
+          <button class="btn btn--primary btn--sm" onclick="renderList()" style="margin-top: 0.5rem;">렌더링</button>
+          
+          <h4 style="margin-top: 1rem;">결과</h4>
+          <ul id="list_result" class="result-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 컴파일 (재사용) -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">⚡ 컴파일 (compile)</h2>
+        <p class="card__description">템플릿을 미리 컴파일하여 재사용</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>컴파일된 템플릿</h4>
+          <pre><code>const greeting = IMCAT.template.compile('안녕하세요, {{name}}님!');</code></pre>
+          
+          <h4 style="margin-top: 1rem;">여러 번 호출</h4>
+          <div style="display: grid; gap: 0.5rem; margin-bottom: 1rem;">
+            <input type="text" id="compile_name1" class="form-control" placeholder="이름 1" value="홍길동">
+            <input type="text" id="compile_name2" class="form-control" placeholder="이름 2" value="김철수">
+            <input type="text" id="compile_name3" class="form-control" placeholder="이름 3" value="이영희">
+          </div>
+          <button class="btn btn--primary btn--sm" onclick="renderCompile()">렌더링</button>
+          
+          <h4 style="margin-top: 1rem;">결과</h4>
+          <div id="compile_result" class="result-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 실전 예제: 카드 리스트 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🎯 실전 예제: 사용자 카드</h2>
+        <p class="card__description">템플릿을 활용한 동적 UI 생성</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <button class="btn btn--primary btn--sm" onclick="renderUserCards()">사용자 카드 생성</button>
+          <button class="btn btn--secondary btn--sm" onclick="clearUserCards()">초기화</button>
+          
+          <div id="user_cards" style="margin-top: 1rem; display: grid; gap: 0.75rem;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 API 레퍼런스</h2>
+      </div>
+      <div class="card__body">
+        <h3 style="margin-bottom: 1rem;">기본 사용법</h3>
+        <pre><code>// render() - 자동 XSS 방어
+const html = IMCAT.template.render('Hello {{name}}!', { name: 'John' });
+// 결과: 'Hello John!'
+
+// renderRaw() - 이스케이프 없음 (신뢰할 수 있는 HTML만!)
+const html = IMCAT.template.renderRaw('{{content}}', { content: '<b>Bold</b>' });
+// 결과: '<b>Bold</b>'</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">조건부 렌더링</h3>
+        <pre><code>// if(condition, template, data) - 조건이 true일 때만 렌더링
+const adminBtn = IMCAT.template.if(user.isAdmin, '&lt;button&gt;관리자 패널&lt;/button&gt;', user);
+
+// 복합 조건
+const premium = IMCAT.template.if(user.isPremium && user.points > 1000, 
+  '환영합니다, {{name}}님! 포인트: {{points}}', user);</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">리스트 렌더링</h3>
+        <pre><code>// each(items, template) - 배열 반복 렌더링
+const users = [
+  { name: '홍길동', age: 30 },
+  { name: '김철수', age: 25 }
+];
+
+const html = IMCAT.template.each(users, '&lt;li&gt;{{name}} ({{age}}세)&lt;/li&gt;');
+// 결과: '&lt;li&gt;홍길동 (30세)&lt;/li&gt;&lt;li&gt;김철수 (25세)&lt;/li&gt;'</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">템플릿 컴파일</h3>
+        <pre><code>// compile(template) - 재사용을 위한 함수 생성
+const greeting = IMCAT.template.compile('안녕하세요, {{name}}님!');
+
+greeting({ name: '홍길동' }); // '안녕하세요, 홍길동님!'
+greeting({ name: '김철수' }); // '안녕하세요, 김철수님!'
+greeting({ name: '이영희' }); // '안녕하세요, 이영희님!'</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-section h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .result-box {
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.875rem;
+    word-break: break-all;
+    min-height: 2.5rem;
+  }
+  
+  .result-box--success {
+    background: #dcfce7;
+    border: 1px solid #86efac;
+  }
+  
+  .result-box--danger {
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+  }
+  
+  .result-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .result-list li {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .result-list li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .user-card__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  .user-card__info {
+    flex: 1;
+  }
+  
+  .user-card__name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+  
+  .user-card__role {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+  
+  .user-card__badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .user-card__badge--active {
+    background: #dcfce7;
+    color: #166534;
+  }
+  
+  .user-card__badge--inactive {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+  
+  pre {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+  }
+  
+  code {
+    font-family: 'Consolas', 'Monaco', monospace;
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+  // 기본 렌더링
+  function renderBasic() {
+    const template = 'Hello {{name}}! 나이: {{age}}세';
+    const data = {
+      name: document.getElementById('basic_name').value,
+      age: document.getElementById('basic_age').value
+    };
+    const result = IMCAT.template.render(template, data);
+    document.getElementById('basic_result').textContent = result;
+  }
+  
+  // XSS 방어 테스트
+  function renderXSS() {
+    const input = document.getElementById('xss_input').value;
+    const template = '사용자 입력: {{input}}';
+    
+    // 안전한 렌더링 (자동 이스케이프)
+    const safeResult = IMCAT.template.render(template, { input });
+    document.getElementById('xss_safe').textContent = safeResult;
+    
+    // 위험한 렌더링 (이스케이프 없음)
+    const rawResult = IMCAT.template.renderRaw(template, { input });
+    document.getElementById('xss_raw').textContent = rawResult;
+  }
+  
+  // 조건부 렌더링
+  function renderConditional() {
+    const isAdmin = document.getElementById('cond_admin').checked;
+    const isPremium = document.getElementById('cond_premium').checked;
+    
+    let result = '';
+    result += IMCAT.template.if(isAdmin, '<div style="color: #dc2626;">🔐 관리자 권한 활성화</div>');
+    result += IMCAT.template.if(isPremium, '<div style="color: #2563eb;">⭐ 프리미엄 회원 혜택</div>');
+    result += IMCAT.template.if(!isAdmin && !isPremium, '<div style="color: var(--text-secondary);">일반 회원</div>');
+    
+    document.getElementById('cond_result').innerHTML = result || '조건을 선택하세요';
+  }
+  
+  // 리스트 렌더링
+  function renderList() {
+    try {
+      const data = JSON.parse(document.getElementById('list_data').value);
+      const html = IMCAT.template.each(data, '<li><strong>{{name}}</strong> - {{role}}</li>');
+      document.getElementById('list_result').innerHTML = html || '<li>데이터가 없습니다</li>';
+    } catch (e) {
+      document.getElementById('list_result').innerHTML = '<li style="color: #dc2626;">JSON 파싱 오류: ' + e.message + '</li>';
+    }
+  }
+  
+  // 컴파일 렌더링
+  function renderCompile() {
+    const greeting = IMCAT.template.compile('안녕하세요, {{name}}님!');
+    
+    const names = [
+      document.getElementById('compile_name1').value,
+      document.getElementById('compile_name2').value,
+      document.getElementById('compile_name3').value
+    ];
+    
+    const results = names.map(name => greeting({ name })).join('<br>');
+    document.getElementById('compile_result').innerHTML = results;
+  }
+  
+  // 사용자 카드 렌더링
+  function renderUserCards() {
+    const users = [
+      { name: '홍길동', initial: '홍', role: '시니어 개발자', status: 'active', statusText: '활성' },
+      { name: '김철수', initial: '김', role: 'UX 디자이너', status: 'active', statusText: '활성' },
+      { name: '이영희', initial: '이', role: '프로젝트 매니저', status: 'inactive', statusText: '비활성' },
+      { name: '박지민', initial: '박', role: '주니어 개발자', status: 'active', statusText: '활성' }
+    ];
+    
+    const cardTemplate = `
+      <div class="user-card">
+        <div class="user-card__avatar">{{initial}}</div>
+        <div class="user-card__info">
+          <div class="user-card__name">{{name}}</div>
+          <div class="user-card__role">{{role}}</div>
+        </div>
+        <span class="user-card__badge user-card__badge--{{status}}">{{statusText}}</span>
+      </div>
+    `;
+    
+    const html = IMCAT.template.each(users, cardTemplate);
+    document.getElementById('user_cards').innerHTML = html;
+  }
+  
+  function clearUserCards() {
+    document.getElementById('user_cards').innerHTML = '';
+  }
+  
+  // 초기 실행
+  renderBasic();
+  renderXSS();
+  renderConditional();
+  renderList();
+  renderCompile();
+</script>

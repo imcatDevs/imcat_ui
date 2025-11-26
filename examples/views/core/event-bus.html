@@ -1,0 +1,336 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#core">Core</a></li>
+      <li class="breadcrumb-item active">Event Bus</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Event Bus</h1>
+  <p class="page-description">Pub/Sub 패턴 이벤트 시스템 - 컴포넌트 간 느슨한 결합 통신</p>
+</div>
+
+<div class="row">
+  <!-- 기본 이벤트 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📡 기본 이벤트 (on/emit)</h2>
+        <p class="card__description">이벤트 구독 및 발행</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>이벤트 발행</h4>
+          <input type="text" id="event_name" class="form-control" placeholder="이벤트 이름" value="user:greeting" style="margin-bottom: 0.5rem;">
+          <input type="text" id="event_data" class="form-control" placeholder="데이터" value="안녕하세요!" style="margin-bottom: 0.5rem;">
+          <button class="btn btn--primary btn--sm" onclick="emitEvent()">이벤트 발행</button>
+          
+          <h4 style="margin-top: 1rem;">이벤트 로그</h4>
+          <div id="event_log" class="log-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 일회성 이벤트 -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🎯 일회성 이벤트 (once)</h2>
+        <p class="card__description">한 번만 실행되고 자동 해제</p>
+      </div>
+      <div class="card__body">
+        <div class="demo-section">
+          <h4>일회성 구독 테스트</h4>
+          <button class="btn btn--secondary btn--sm" onclick="subscribeOnce()">once로 구독</button>
+          <button class="btn btn--primary btn--sm" onclick="emitOnceEvent()">이벤트 발행</button>
+          
+          <h4 style="margin-top: 1rem;">로그</h4>
+          <div id="once_log" class="log-box"></div>
+          <small style="color: var(--text-secondary);">once로 구독 후 이벤트를 여러 번 발행해보세요</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 실시간 채팅 시뮬레이션 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">💬 실전 예제: 채팅 시뮬레이션</h2>
+        <p class="card__description">이벤트 버스를 활용한 컴포넌트 간 통신</p>
+      </div>
+      <div class="card__body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <!-- 사용자 A -->
+          <div class="chat-user">
+            <h4 style="color: #2563eb;">👤 사용자 A</h4>
+            <div id="chat_a" class="chat-box"></div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <input type="text" id="msg_a" class="form-control" placeholder="메시지 입력..." onkeypress="if(event.key==='Enter')sendMessage('A')">
+              <button class="btn btn--primary btn--sm" onclick="sendMessage('A')">전송</button>
+            </div>
+          </div>
+          
+          <!-- 사용자 B -->
+          <div class="chat-user">
+            <h4 style="color: #dc2626;">👤 사용자 B</h4>
+            <div id="chat_b" class="chat-box"></div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <input type="text" id="msg_b" class="form-control" placeholder="메시지 입력..." onkeypress="if(event.key==='Enter')sendMessage('B')">
+              <button class="btn btn--primary btn--sm" onclick="sendMessage('B')">전송</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 알림 시스템 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🔔 실전 예제: 알림 시스템</h2>
+        <p class="card__description">여러 컴포넌트에서 알림 이벤트 구독</p>
+      </div>
+      <div class="card__body">
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <button class="btn btn--success btn--sm" onclick="sendNotification('success', '작업이 완료되었습니다!')">성공 알림</button>
+          <button class="btn btn--danger btn--sm" onclick="sendNotification('error', '오류가 발생했습니다!')">오류 알림</button>
+          <button class="btn btn--warning btn--sm" onclick="sendNotification('warning', '주의가 필요합니다!')">경고 알림</button>
+          <button class="btn btn--secondary btn--sm" onclick="sendNotification('info', '새로운 정보가 있습니다.')">정보 알림</button>
+        </div>
+        
+        <div id="notification_area"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 API 레퍼런스</h2>
+      </div>
+      <div class="card__body">
+        <pre><code>// 이벤트 구독
+const unsubscribe = IMCAT.on('user:login', (data) => {
+  console.log('로그인:', data.username);
+});
+
+// 구독 취소
+unsubscribe();
+// 또는: IMCAT.off('user:login', handler);
+
+// 일회성 구독 (한 번만 실행)
+IMCAT.once('data:loaded', () => {
+  console.log('데이터 로드 완료 - 이 메시지는 한 번만 표시됩니다');
+});
+
+// 이벤트 발행
+IMCAT.emit('user:login', { username: '홍길동' });
+
+// 여러 데이터 전달
+IMCAT.emit('order:created', { id: 1, total: 50000 }, { notify: true });</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-section h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .log-box {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.8125rem;
+    min-height: 120px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .log-entry {
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #333;
+  }
+  
+  .log-time {
+    color: #6a9955;
+  }
+  
+  .log-event {
+    color: #569cd6;
+  }
+  
+  .log-data {
+    color: #ce9178;
+  }
+  
+  .chat-box {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 150px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .chat-message {
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+    font-size: 0.875rem;
+  }
+  
+  .chat-message--sent {
+    background: var(--primary-color);
+    color: white;
+    margin-left: auto;
+  }
+  
+  .chat-message--received {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+  }
+  
+  .notification-toast {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideIn 0.3s ease;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .notification-toast--success { background: #dcfce7; color: #166534; border-left: 4px solid #22c55e; }
+  .notification-toast--error { background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; }
+  .notification-toast--warning { background: #fef3c7; color: #92400e; border-left: 4px solid #f59e0b; }
+  .notification-toast--info { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
+</style>
+
+<script>
+  // 기본 이벤트 구독
+  IMCAT.on('user:greeting', (data) => {
+    addLog('event_log', 'user:greeting', data);
+  });
+  
+  function emitEvent() {
+    const name = document.getElementById('event_name').value;
+    const data = document.getElementById('event_data').value;
+    IMCAT.emit(name, data);
+  }
+  
+  function addLog(elementId, event, data) {
+    const log = document.getElementById(elementId);
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `
+      <div class="log-entry">
+        <span class="log-time">[${time}]</span>
+        <span class="log-event">${event}</span>: 
+        <span class="log-data">${JSON.stringify(data)}</span>
+      </div>
+    `;
+    log.scrollTop = log.scrollHeight;
+  }
+  
+  // 일회성 이벤트
+  let onceSubscribed = false;
+  
+  function subscribeOnce() {
+    if (onceSubscribed) {
+      addLog('once_log', 'system', '이미 구독됨 (once는 한 번만 실행됩니다)');
+      return;
+    }
+    
+    IMCAT.once('special:event', (data) => {
+      addLog('once_log', 'special:event', data + ' (이 메시지는 한 번만 표시됩니다)');
+      onceSubscribed = false;
+    });
+    
+    onceSubscribed = true;
+    addLog('once_log', 'system', 'once로 구독 완료');
+  }
+  
+  function emitOnceEvent() {
+    IMCAT.emit('special:event', '일회성 이벤트 발생!');
+    addLog('once_log', 'emit', '이벤트 발행됨');
+  }
+  
+  // 채팅 시뮬레이션
+  IMCAT.on('chat:message', ({ from, message }) => {
+    const chatA = document.getElementById('chat_a');
+    const chatB = document.getElementById('chat_b');
+    
+    if (from === 'A') {
+      chatA.innerHTML += `<div class="chat-message chat-message--sent">${message}</div>`;
+      chatB.innerHTML += `<div class="chat-message chat-message--received">👤A: ${message}</div>`;
+    } else {
+      chatB.innerHTML += `<div class="chat-message chat-message--sent">${message}</div>`;
+      chatA.innerHTML += `<div class="chat-message chat-message--received">👤B: ${message}</div>`;
+    }
+    
+    chatA.scrollTop = chatA.scrollHeight;
+    chatB.scrollTop = chatB.scrollHeight;
+  });
+  
+  function sendMessage(from) {
+    const input = document.getElementById(`msg_${from.toLowerCase()}`);
+    const message = input.value.trim();
+    if (!message) return;
+    
+    IMCAT.emit('chat:message', { from, message });
+    input.value = '';
+  }
+  
+  // 알림 시스템
+  IMCAT.on('notification', ({ type, message }) => {
+    const area = document.getElementById('notification_area');
+    const icons = {
+      success: '✅',
+      error: '❌',
+      warning: '⚠️',
+      info: 'ℹ️'
+    };
+    
+    const toast = document.createElement('div');
+    toast.className = `notification-toast notification-toast--${type}`;
+    toast.innerHTML = `${icons[type]} ${message}`;
+    area.prepend(toast);
+    
+    // 5초 후 자동 제거
+    setTimeout(() => toast.remove(), 5000);
+  });
+  
+  function sendNotification(type, message) {
+    IMCAT.emit('notification', { type, message });
+  }
+</script>

@@ -1,0 +1,469 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active">Data Visualization</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Data Visualization</h1>
+  <p class="page-description">데이터 시각화 컴포넌트 - DataTable, Chart, Masonry, Kanban, Calendar</p>
+</div>
+
+<div class="row">
+  <!-- DataTable -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2 class="card__title">📊 DataTable</h2>
+          <p class="card__description">정렬, 페이지네이션 기능이 있는 데이터 테이블</p>
+        </div>
+        <a href="#" catui-href="views/modules/data-viz-advanced.html" class="btn btn--primary btn--sm">
+          <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle;">arrow_forward</i>
+          고급 예제
+        </a>
+      </div>
+      <div class="card__body">
+        <div id="demo_table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart - Bar & Line -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📈 Bar Chart</h2>
+      </div>
+      <div class="card__body">
+        <div id="demo_bar_chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📉 Line Chart</h2>
+      </div>
+      <div class="card__body">
+        <div id="demo_line_chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart - Pie & Doughnut -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🥧 Pie Chart</h2>
+      </div>
+      <div class="card__body">
+        <div id="demo_pie_chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🍩 Doughnut Chart</h2>
+      </div>
+      <div class="card__body">
+        <div id="demo_doughnut_chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kanban -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📋 Kanban Board</h2>
+        <p class="card__description">드래그 앤 드롭으로 카드 이동 가능</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_kanban" style="height: 450px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">📅 Calendar</h2>
+        <p class="card__description">이벤트가 있는 캘린더</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_calendar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Masonry -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🧱 Masonry Grid</h2>
+        <p class="card__description">타일 레이아웃</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_masonry"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 사용법 -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 사용법</h2>
+      </div>
+      <div class="card__body">
+        <h3 style="margin-bottom: 1rem;">DataTable</h3>
+        <pre><code>const DataViz = await IMCAT.use('data-viz');
+
+const table = new DataViz.DataTable('#table', {
+  data: [
+    { id: 1, name: '홍길동', email: 'hong@example.com' },
+    { id: 2, name: '김철수', email: 'kim@example.com' }
+  ],
+  columns: [
+    { field: 'id', title: 'ID', width: '80px' },
+    { field: 'name', title: '이름' },
+    { field: 'email', title: '이메일' }
+  ],
+  sortable: true,
+  paginate: true,
+  pageSize: 10,
+  // 툴바 버튼 그룹
+  toolbar: {
+    buttons: [
+      { text: '편집', icon: 'edit', class: 'btn--primary', onClick: () => {} },
+      { text: '삭제', icon: 'delete', class: 'btn--danger', onClick: () => {} }
+    ]
+  },
+  onRowClick: (row, index) => console.log(row)
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Chart</h3>
+        <pre><code>// Bar Chart
+const barChart = new DataViz.Chart('#chart', {
+  type: 'bar', // 'bar', 'line', 'pie', 'doughnut'
+  data: {
+    labels: ['1월', '2월', '3월'],
+    datasets: [
+      { label: '판매량', data: [120, 150, 180], color: '#667eea' }
+    ]
+  },
+  height: 300,
+  showLegend: true,
+  showValues: true,
+  animate: true
+});
+
+// Pie Chart
+const pieChart = new DataViz.Chart('#pie', {
+  type: 'pie',
+  data: {
+    labels: ['A', 'B', 'C'],
+    datasets: [{ data: [30, 40, 30] }]
+  }
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Kanban</h3>
+        <pre><code>const kanban = new DataViz.Kanban('#kanban', {
+  columns: [
+    {
+      id: 'todo',
+      title: '할 일',
+      cards: [
+        { id: '1', title: '기획서 작성', tags: [{ text: '급함', color: '#ef4444' }] }
+      ]
+    },
+    { id: 'doing', title: '진행 중', cards: [] },
+    { id: 'done', title: '완료', cards: [] }
+  ],
+  onMove: (cardId, from, to) => console.log('이동:', cardId, from, to),
+  onCardClick: (cardId) => console.log('클릭:', cardId),
+  allowAddCard: true
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Calendar</h3>
+        <pre><code>const calendar = new DataViz.Calendar('#calendar', {
+  defaultDate: new Date(),
+  events: [
+    { id: '1', title: '미팅', date: '2024-03-15', color: '#667eea' },
+    { id: '2', title: '발표', date: '2024-03-20', color: '#22c55e' }
+  ],
+  onDateClick: (date) => console.log('날짜:', date),
+  onEventClick: (eventId) => console.log('이벤트:', eventId),
+  onMonthChange: (date) => console.log('월 변경:', date)
+});
+
+calendar.addEvent({ id: '3', title: '회의', date: '2024-03-25' });
+calendar.goToDate('2024-04-01');</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Masonry</h3>
+        <pre><code>const masonry = new DataViz.Masonry('#grid', {
+  columnWidth: 300,
+  gap: 16,
+  items: [
+    { title: '카드 1', content: '내용...' },
+    { title: '카드 2', content: '긴 내용...' }
+  ],
+  render: (item) => `
+    &lt;div class="card"&gt;
+      &lt;h3&gt;${item.title}&lt;/h3&gt;
+      &lt;p&gt;${item.content}&lt;/p&gt;
+    &lt;/div&gt;
+  `
+});
+
+masonry.addItem({ title: '새 카드', content: '...' });</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script type="module">
+  const DataViz = await IMCAT.use('data-viz');
+  const instances = [];
+
+  // ============================================
+  // DataTable Demo
+  // ============================================
+  
+  const tableData = [
+    { id: 1, name: '홍길동', email: 'hong@example.com', department: '개발팀', salary: 5000000 },
+    { id: 2, name: '김철수', email: 'kim@example.com', department: '디자인팀', salary: 4500000 },
+    { id: 3, name: '이영희', email: 'lee@example.com', department: '마케팅팀', salary: 4800000 },
+    { id: 4, name: '박지민', email: 'park@example.com', department: '개발팀', salary: 5200000 },
+    { id: 5, name: '최수진', email: 'choi@example.com', department: '인사팀', salary: 4300000 },
+    { id: 6, name: '정민호', email: 'jung@example.com', department: '개발팀', salary: 5500000 },
+    { id: 7, name: '강서연', email: 'kang@example.com', department: '디자인팀', salary: 4700000 },
+    { id: 8, name: '윤하나', email: 'yoon@example.com', department: '마케팅팀', salary: 4600000 },
+    { id: 9, name: '임재현', email: 'lim@example.com', department: '개발팀', salary: 5100000 },
+    { id: 10, name: '한소희', email: 'han@example.com', department: '디자인팀', salary: 4900000 },
+    { id: 11, name: '오준서', email: 'oh@example.com', department: '영업팀', salary: 4400000 },
+    { id: 12, name: '신예진', email: 'shin@example.com', department: '개발팀', salary: 5300000 }
+  ];
+
+  const table = new DataViz.DataTable('#demo_table', {
+    data: tableData,
+    columns: [
+      { field: 'id', title: 'ID', width: '60px' },
+      { field: 'name', title: '이름', width: '120px' },
+      { field: 'email', title: '이메일' },
+      { field: 'department', title: '부서', width: '100px' },
+      { 
+        field: 'salary', 
+        title: '연봉', 
+        width: '120px',
+        render: (value) => `₩${value.toLocaleString()}`
+      }
+    ],
+    sortable: true,
+    paginate: true,
+    pageSize: 5,
+    toolbar: {
+      buttons: [
+        { 
+          text: '편집', 
+          icon: 'edit', 
+          class: 'btn--primary',
+          onClick: () => alert('편집 버튼 클릭!')
+        },
+        { 
+          text: '삭제', 
+          icon: 'delete', 
+          class: 'btn--danger',
+          onClick: () => alert('삭제 버튼 클릭!')
+        }
+      ]
+    },
+    onRowClick: (row) => {
+      console.log('Row clicked:', row);
+    }
+  });
+  instances.push(table);
+
+  // ============================================
+  // Bar Chart Demo
+  // ============================================
+  
+  const barChart = new DataViz.Chart('#demo_bar_chart', {
+    type: 'bar',
+    data: {
+      labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+      datasets: [
+        { label: '매출', data: [120, 190, 150, 220, 180, 250], color: '#667eea' },
+        { label: '비용', data: [80, 100, 90, 120, 110, 130], color: '#f59e0b' }
+      ]
+    },
+    height: 280,
+    showLegend: true,
+    showValues: false
+  });
+  instances.push(barChart);
+
+  // ============================================
+  // Line Chart Demo
+  // ============================================
+  
+  const lineChart = new DataViz.Chart('#demo_line_chart', {
+    type: 'line',
+    data: {
+      labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+      datasets: [
+        { label: '방문자', data: [1200, 1900, 1500, 2200, 1800, 2500], color: '#22c55e' },
+        { label: '가입자', data: [300, 450, 400, 550, 500, 700], color: '#8b5cf6' }
+      ]
+    },
+    height: 280,
+    showLegend: true
+  });
+  instances.push(lineChart);
+
+  // ============================================
+  // Pie Chart Demo
+  // ============================================
+  
+  const pieChart = new DataViz.Chart('#demo_pie_chart', {
+    type: 'pie',
+    data: {
+      labels: ['Chrome', 'Safari', 'Firefox', 'Edge', 'Other'],
+      datasets: [{ data: [65, 15, 10, 7, 3] }]
+    },
+    height: 280,
+    showLegend: true
+  });
+  instances.push(pieChart);
+
+  // ============================================
+  // Doughnut Chart Demo
+  // ============================================
+  
+  const doughnutChart = new DataViz.Chart('#demo_doughnut_chart', {
+    type: 'doughnut',
+    data: {
+      labels: ['완료', '진행중', '대기', '취소'],
+      datasets: [{ data: [45, 25, 20, 10] }]
+    },
+    height: 280,
+    showLegend: true,
+    showValues: true,
+    colors: ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444']
+  });
+  instances.push(doughnutChart);
+
+  // ============================================
+  // Kanban Demo
+  // ============================================
+  
+  const kanban = new DataViz.Kanban('#demo_kanban', {
+    columns: [
+      {
+        id: 'backlog',
+        title: '백로그',
+        cards: [
+          { id: '1', title: 'API 문서 작성', description: 'REST API 문서화', tags: [{ text: '문서', color: '#8b5cf6' }] },
+          { id: '2', title: '버그 수정', tags: [{ text: '버그', color: '#ef4444' }] }
+        ]
+      },
+      {
+        id: 'todo',
+        title: '할 일',
+        cards: [
+          { id: '3', title: 'UI 디자인 리뷰', description: '새 디자인 검토', tags: [{ text: '디자인', color: '#3b82f6' }] }
+        ]
+      },
+      {
+        id: 'doing',
+        title: '진행 중',
+        cards: [
+          { id: '4', title: '로그인 기능 구현', description: 'OAuth 2.0 적용', tags: [{ text: '개발', color: '#22c55e' }, { text: '중요', color: '#f59e0b' }] }
+        ]
+      },
+      {
+        id: 'done',
+        title: '완료',
+        cards: [
+          { id: '5', title: '초기 설정', tags: [{ text: '설정', color: '#64748b' }] }
+        ]
+      }
+    ],
+    onMove: (cardId, from, to) => {
+      console.log(`Card ${cardId} moved from ${from} to ${to}`);
+    },
+    onCardClick: (cardId) => {
+      console.log('Card clicked:', cardId);
+    },
+    allowAddCard: true
+  });
+  instances.push(kanban);
+
+  // ============================================
+  // Calendar Demo
+  // ============================================
+  
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  const calendar = new DataViz.Calendar('#demo_calendar', {
+    defaultDate: today,
+    events: [
+      { id: '1', title: '팀 미팅', date: new Date(year, month, 5), color: '#667eea' },
+      { id: '2', title: '프로젝트 발표', date: new Date(year, month, 10), color: '#22c55e' },
+      { id: '3', title: '코드 리뷰', date: new Date(year, month, 15), color: '#f59e0b' },
+      { id: '4', title: '배포', date: new Date(year, month, 15), color: '#ef4444' },
+      { id: '5', title: '스프린트 회고', date: new Date(year, month, 20), color: '#8b5cf6' },
+      { id: '6', title: '기획 회의', date: new Date(year, month, 25), color: '#3b82f6' },
+      { id: '7', title: '테스트', date: new Date(year, month, 25), color: '#22c55e' },
+      { id: '8', title: '릴리즈', date: new Date(year, month, 25), color: '#ef4444' }
+    ],
+    onDateClick: (date) => {
+      console.log('Date clicked:', date);
+    },
+    onEventClick: (eventId) => {
+      console.log('Event clicked:', eventId);
+    }
+  });
+  instances.push(calendar);
+
+  // ============================================
+  // Masonry Demo
+  // ============================================
+  
+  const masonryItems = [
+    { title: '프로젝트 A', content: '새로운 프로젝트가 시작되었습니다. 이 프로젝트는 혁신적인 기술을 사용합니다.', color: '#667eea' },
+    { title: '알림', content: '시스템 점검이 예정되어 있습니다.', color: '#f59e0b' },
+    { title: '프로젝트 B', content: '두 번째 프로젝트입니다. 이 프로젝트는 사용자 경험 개선에 초점을 맞추고 있으며, 다양한 기능을 포함합니다. 더 많은 내용이 여기에 들어갑니다.', color: '#22c55e' },
+    { title: '공지사항', content: '새로운 정책이 발표되었습니다.', color: '#3b82f6' },
+    { title: '프로젝트 C', content: '세 번째 프로젝트는 백엔드 최적화를 목표로 합니다.', color: '#8b5cf6' },
+    { title: '이벤트', content: '다음 주에 팀 빌딩 이벤트가 있습니다. 많은 참여 부탁드립니다. 장소는 추후 공지됩니다.', color: '#ec4899' }
+  ];
+
+  const masonry = new DataViz.Masonry('#demo_masonry', {
+    columnWidth: 280,
+    gap: 16,
+    items: masonryItems,
+    render: (item) => `
+      <div style="background: ${item.color}15; border-left: 4px solid ${item.color}; padding: 1rem; border-radius: 8px;">
+        <h4 style="margin: 0 0 0.5rem; color: ${item.color};">${item.title}</h4>
+        <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem;">${item.content}</p>
+      </div>
+    `
+  });
+  instances.push(masonry);
+
+  // 인스턴스 등록
+  instances.forEach(inst => IMCAT.view.registerInstance(inst));
+
+  console.log('Data Visualization 예제 로드 완료');
+</script>

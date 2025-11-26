@@ -1,6 +1,53 @@
 {
   "menu": [
     {
+      "title": "Core Built-in",
+      "items": [
+        {
+          "id": "template",
+          "text": "Template Engine",
+          "icon": "code",
+          "href": "views/core/template.html",
+          "badge": false
+        },
+        {
+          "id": "storage",
+          "text": "Storage",
+          "icon": "storage",
+          "href": "views/core/storage.html",
+          "badge": false
+        },
+        {
+          "id": "event-bus",
+          "text": "Event Bus",
+          "icon": "broadcast_on_personal",
+          "href": "views/core/event-bus.html",
+          "badge": false
+        },
+        {
+          "id": "state",
+          "text": "State Manager",
+          "icon": "sync_alt",
+          "href": "views/core/state.html",
+          "badge": false
+        },
+        {
+          "id": "loading",
+          "text": "Loading",
+          "icon": "hourglass_empty",
+          "href": "views/core/loading.html",
+          "badge": false
+        },
+        {
+          "id": "utils",
+          "text": "Utils",
+          "icon": "build",
+          "href": "views/core/utils.html",
+          "badge": false
+        }
+      ]
+    },
+    {
       "title": "Form Elements",
       "items": [
         {
@@ -221,42 +268,42 @@
           "text": "Navigation Components",
           "icon": "tab",
           "href": "views/modules/navigation.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "pickers",
           "text": "Pickers (Date/Time/Color)",
           "icon": "calendar_today",
           "href": "views/modules/pickers.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "selectors",
           "text": "Advanced Selectors",
           "icon": "search",
           "href": "views/modules/selectors.html",
-          "badge": true
+          "badge": false
         },
         {
-          "id": "form-components",
+          "id": "forms",
           "text": "Form Components",
           "icon": "upload_file",
-          "href": "views/modules/form-components.html",
-          "badge": true
+          "href": "views/modules/forms.html",
+          "badge": false
         },
         {
           "id": "feedback",
           "text": "Feedback & Loading",
           "icon": "notifications",
           "href": "views/modules/feedback.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "data-viz",
           "text": "Data Visualization",
           "icon": "insert_chart",
           "href": "views/modules/data-viz.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "scroll-components",
@@ -298,7 +345,7 @@
           "text": "Dropdown",
           "icon": "arrow_drop_down",
           "href": "views/modules/dropdown.html",
-          "badge": true
+          "badge": false
         },
         {
           "id": "tooltips-popovers",

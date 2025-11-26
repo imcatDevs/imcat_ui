@@ -78,13 +78,21 @@ class OverlayBase {
   async _removeBackdrop() {
     if (!this.backdropElement) return;
 
-    if (this.options.animation) {
-      await AnimationUtil.animate(this.backdropElement).fadeOut(this.options.animationDuration);
+    const backdrop = this.backdropElement;
+    this.backdropElement = null; // 먼저 null 설정 (중복 호출 방지)
+
+    if (this.options.animation && backdrop) {
+      try {
+        await AnimationUtil.animate(backdrop).fadeOut(this.options.animationDuration);
+      } catch (e) {
+        // 애니메이션 에러 무시
+      }
     }
     
-    this.backdropElement.removeEventListener('click', this._handleBackdropClick);
-    this.backdropElement.remove();
-    this.backdropElement = null;
+    if (backdrop) {
+      backdrop.removeEventListener('click', this._handleBackdropClick);
+      backdrop.remove();
+    }
   }
 
   /**
@@ -244,7 +252,9 @@ class OverlayBase {
     }
 
     // hide 이벤트
-    this.eventBus.emit('hide');
+    if (this.eventBus) {
+      this.eventBus.emit('hide');
+    }
   }
 
   /**
@@ -260,10 +270,10 @@ class OverlayBase {
   /**
    * 정리 (메모리 해제)
    */
-  destroy() {
+  async destroy() {
     // 열려있으면 먼저 닫기
     if (this.isOpen) {
-      this.hide();
+      await this.hide();
     }
 
     // 이벤트 리스너 제거
@@ -284,7 +294,9 @@ class OverlayBase {
     }
 
     // 이벤트 버스 정리
-    this.eventBus.clear();
+    if (this.eventBus) {
+      this.eventBus.clear();
+    }
 
     // 참조 해제
     this.element = null;

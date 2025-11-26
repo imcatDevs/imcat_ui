@@ -1,0 +1,491 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Dynamic Modules</a></li>
+      <li class="breadcrumb-item active">Forms</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Form Components</h1>
+  <p class="page-description">FileUpload, Rating, SignaturePad, FormWizard 등 폼 관련 고급 컴포넌트</p>
+</div>
+
+<div class="row">
+  <!-- FileUpload -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">FileUpload - 파일 업로드</h2>
+        <p class="card__description">드래그 앤 드롭을 지원하는 파일 업로드</p>
+      </div>
+      <div class="card__body">
+        <div class="row" style="gap: 2rem;">
+          <!-- 기본 업로드 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">📁 기본 파일 업로드</label>
+            <input type="file" id="upload_basic">
+          </div>
+          
+          <!-- 이미지 전용 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🖼️ 이미지 업로드 (다중 선택)</label>
+            <input type="file" id="upload_images">
+          </div>
+          
+          <!-- 문서 전용 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">📄 문서 업로드 (PDF, Word)</label>
+            <input type="file" id="upload_docs">
+          </div>
+          
+          <!-- 업로드 시뮬레이션 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🚀 업로드 시뮬레이션 (Progress)</label>
+            <input type="file" id="upload_progress">
+            <button id="btn_upload" onclick="startUpload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;" disabled>
+              <i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle;">cloud_upload</i>
+              업로드 시작
+            </button>
+            <div id="upload_status" style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rating -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">Rating - 별점 입력</h2>
+        <p class="card__description">별점 선택 컴포넌트</p>
+      </div>
+      <div class="card__body">
+        <div class="row" style="gap: 2rem;">
+          <!-- 기본 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">⭐ 기본 별점</label>
+            <div id="rating_basic"></div>
+            <div id="rating_basic_result" style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);"></div>
+          </div>
+          
+          <!-- 작은 사이즈 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🔸 Small 사이즈</label>
+            <div id="rating_sm"></div>
+          </div>
+          
+          <!-- 큰 사이즈 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🔶 Large 사이즈</label>
+            <div id="rating_lg"></div>
+          </div>
+          
+          <!-- 커스텀 색상 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">💜 커스텀 색상</label>
+            <div id="rating_color"></div>
+          </div>
+          
+          <!-- 10점 만점 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🌟 10점 만점</label>
+            <div id="rating_10"></div>
+          </div>
+          
+          <!-- 읽기 전용 -->
+          <div class="col-md-4">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🔒 읽기 전용</label>
+            <div id="rating_readonly"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SignaturePad -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">SignaturePad - 서명 패드</h2>
+        <p class="card__description">터치/마우스로 서명을 그리는 캔버스</p>
+      </div>
+      <div class="card__body">
+        <div class="row" style="gap: 2rem;">
+          <!-- 기본 서명 패드 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">✍️ 서명해주세요</label>
+            <div id="signature_basic"></div>
+          </div>
+          
+          <!-- 커스텀 서명 패드 -->
+          <div class="col-md-6">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">🖊️ 파란 펜 (굵은 선)</label>
+            <div id="signature_custom"></div>
+          </div>
+          
+          <!-- 서명 미리보기 -->
+          <div class="col-12">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">📋 저장된 서명</label>
+            <div id="signature_preview" style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px; min-height: 100px;">
+              <p style="color: var(--text-secondary); margin: 0;">서명을 저장하면 여기에 표시됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FormWizard -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">FormWizard - 단계별 폼</h2>
+        <p class="card__description">여러 단계로 구성된 폼 마법사</p>
+      </div>
+      <div class="card__body">
+        <div id="wizard_demo"></div>
+        <div id="wizard_result" style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 실전 예제 -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card__header">
+        <h2 class="card__title">🛍️ 실전 예제 - 상품 리뷰 작성</h2>
+        <p class="card__description">Forms 컴포넌트를 활용한 리뷰 작성 폼</p>
+      </div>
+      <div class="card__body">
+        <div style="max-width: 600px; margin: 0 auto; padding: 2rem; background: var(--bg-secondary); border-radius: 12px;">
+          <h4 style="margin-bottom: 1.5rem;">상품 리뷰</h4>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">평점</label>
+            <div id="review_rating"></div>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">리뷰 내용</label>
+            <textarea id="review_content" style="width: 100%; min-height: 120px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; resize: vertical;" placeholder="상품에 대한 솔직한 리뷰를 작성해주세요..."></textarea>
+          </div>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">사진 첨부</label>
+            <input type="file" id="review_photos">
+          </div>
+          
+          <button onclick="submitReview()" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            리뷰 등록
+          </button>
+          
+          <div id="review_result" style="margin-top: 1rem; display: none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 사용법 -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">📖 사용법</h2>
+      </div>
+      <div class="card__body">
+        <h3 style="margin-bottom: 1rem;">FileUpload</h3>
+        <pre><code>const Forms = await IMCAT.use('forms');
+
+const uploader = new Forms.FileUpload('#file', {
+  accept: 'image/*',
+  multiple: true,
+  maxSize: 5 * 1024 * 1024, // 5MB
+  onChange: (files) => console.log(files)
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Rating</h3>
+        <pre><code>const rating = new Forms.Rating('#rating', {
+  max: 5,
+  value: 0,
+  color: '#f59e0b',
+  onChange: (value) => console.log('별점:', value)
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">SignaturePad</h3>
+        <pre><code>const signature = new Forms.SignaturePad('#signature', {
+  width: 400,
+  height: 200,
+  penColor: '#000000',
+  penWidth: 2
+});
+
+// 서명 저장
+signature.events.on('save', (dataUrl) => {
+  // dataUrl = base64 이미지
+});</code></pre>
+
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">FormWizard</h3>
+        <pre><code>const wizard = new Forms.FormWizard('#wizard', {
+  steps: [
+    { title: '1단계', content: '&lt;input name="field1"&gt;' },
+    { title: '2단계', content: '&lt;input name="field2"&gt;' },
+    { title: '완료', content: '&lt;p&gt;완료되었습니다.&lt;/p&gt;' }
+  ],
+  onComplete: (data) => console.log('폼 데이터:', data)
+});</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script type="module">
+  const Forms = await IMCAT.use('forms');
+  const instances = [];
+
+  // ============================================
+  // FileUpload 예제
+  // ============================================
+
+  // 기본 업로드
+  const uploadBasic = new Forms.FileUpload('#upload_basic', {
+    dropzoneText: '파일을 드래그하거나 클릭하세요'
+  });
+  instances.push(uploadBasic);
+
+  // 이미지 업로드
+  const uploadImages = new Forms.FileUpload('#upload_images', {
+    accept: 'image/*',
+    multiple: true,
+    maxFiles: 5,
+    dropzoneText: '이미지를 드래그하거나 클릭하세요'
+  });
+  instances.push(uploadImages);
+
+  // 문서 업로드
+  const uploadDocs = new Forms.FileUpload('#upload_docs', {
+    accept: '.pdf,.doc,.docx',
+    multiple: true,
+    maxSize: 20 * 1024 * 1024,
+    dropzoneText: 'PDF 또는 Word 문서를 드래그하거나 클릭하세요'
+  });
+  instances.push(uploadDocs);
+
+  // 업로드 시뮬레이션
+  const uploadProgress = new Forms.FileUpload('#upload_progress', {
+    accept: 'image/*',
+    multiple: true,
+    maxFiles: 3,
+    showProgress: true,
+    dropzoneText: '이미지를 선택 후 업로드 버튼을 클릭하세요',
+    onChange: (files) => {
+      document.getElementById('btn_upload').disabled = files.length === 0;
+      document.getElementById('upload_status').textContent = files.length ? `${files.length}개 파일 선택됨` : '';
+    },
+    onUploadStart: () => {
+      document.getElementById('btn_upload').disabled = true;
+      document.getElementById('btn_upload').innerHTML = '<i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle;">hourglass_empty</i> 업로드 중...';
+    },
+    onUploadComplete: (files) => {
+      document.getElementById('btn_upload').innerHTML = '<i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle;">check_circle</i> 완료!';
+      document.getElementById('upload_status').innerHTML = `<span style="color: #22c55e;">✅ ${files.length}개 파일 업로드 완료!</span>`;
+      setTimeout(() => {
+        document.getElementById('btn_upload').innerHTML = '<i class="material-icons-outlined" style="font-size: 18px; vertical-align: middle;">cloud_upload</i> 업로드 시작';
+        document.getElementById('btn_upload').disabled = true;
+      }, 2000);
+    }
+  });
+  instances.push(uploadProgress);
+
+  // 업로드 시작 함수
+  window.startUpload = async function() {
+    await uploadProgress.simulateUpload(3000); // 3초 시뮬레이션
+  };
+
+  // ============================================
+  // Rating 예제
+  // ============================================
+
+  // 기본 별점
+  const ratingBasic = new Forms.Rating('#rating_basic', {
+    value: 3,
+    onChange: (value) => {
+      document.getElementById('rating_basic_result').textContent = `선택: ${value}점`;
+    }
+  });
+  instances.push(ratingBasic);
+  document.getElementById('rating_basic_result').textContent = '선택: 3점';
+
+  // Small
+  const ratingSm = new Forms.Rating('#rating_sm', {
+    size: 'sm',
+    value: 4
+  });
+  instances.push(ratingSm);
+
+  // Large
+  const ratingLg = new Forms.Rating('#rating_lg', {
+    size: 'lg',
+    value: 4
+  });
+  instances.push(ratingLg);
+
+  // 커스텀 색상
+  const ratingColor = new Forms.Rating('#rating_color', {
+    value: 4,
+    color: '#8b5cf6'
+  });
+  instances.push(ratingColor);
+
+  // 10점 만점
+  const rating10 = new Forms.Rating('#rating_10', {
+    max: 10,
+    value: 7,
+    size: 'sm'
+  });
+  instances.push(rating10);
+
+  // 읽기 전용
+  const ratingReadonly = new Forms.Rating('#rating_readonly', {
+    value: 4,
+    readonly: true
+  });
+  instances.push(ratingReadonly);
+
+  // ============================================
+  // SignaturePad 예제
+  // ============================================
+
+  // 기본 서명 패드
+  const signatureBasic = new Forms.SignaturePad('#signature_basic', {
+    width: 350,
+    height: 150
+  });
+  signatureBasic.events.on('save', (dataUrl) => {
+    document.getElementById('signature_preview').innerHTML = `<img src="${dataUrl}" style="max-width: 100%; border-radius: 8px;">`;
+  });
+  instances.push(signatureBasic);
+
+  // 커스텀 서명 패드
+  const signatureCustom = new Forms.SignaturePad('#signature_custom', {
+    width: 350,
+    height: 150,
+    penColor: '#3b82f6',
+    penWidth: 4
+  });
+  instances.push(signatureCustom);
+
+  // ============================================
+  // FormWizard 예제
+  // ============================================
+
+  const wizard = new Forms.FormWizard('#wizard_demo', {
+    steps: [
+      {
+        title: '개인정보',
+        content: `
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">이름</label>
+            <input type="text" name="name" style="width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="이름을 입력하세요">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">이메일</label>
+            <input type="email" name="email" style="width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="이메일을 입력하세요">
+          </div>
+        `,
+        validate: () => {
+          const name = document.querySelector('[name="name"]').value;
+          const email = document.querySelector('[name="email"]').value;
+          if (!name || !email) {
+            alert('이름과 이메일을 입력해주세요.');
+            return false;
+          }
+          return true;
+        }
+      },
+      {
+        title: '연락처',
+        content: `
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">전화번호</label>
+            <input type="tel" name="phone" style="width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="전화번호를 입력하세요">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">주소</label>
+            <input type="text" name="address" style="width: 100%; padding: 0.625rem; border: 1px solid var(--border-color); border-radius: 6px;" placeholder="주소를 입력하세요">
+          </div>
+        `
+      },
+      {
+        title: '완료',
+        content: `
+          <div style="text-align: center; padding: 2rem;">
+            <i class="material-icons-outlined" style="font-size: 64px; color: #22c55e;">check_circle</i>
+            <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">입력 완료!</h3>
+            <p style="color: var(--text-secondary);">모든 정보가 입력되었습니다.</p>
+          </div>
+        `
+      }
+    ],
+    onComplete: (data) => {
+      const resultEl = document.getElementById('wizard_result');
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = `
+        <h4 style="margin-bottom: 1rem;">📋 입력된 데이터</h4>
+        <pre style="background: var(--bg-tertiary); padding: 1rem; border-radius: 6px; overflow-x: auto;">${JSON.stringify(data, null, 2)}</pre>
+      `;
+    }
+  });
+  instances.push(wizard);
+
+  // ============================================
+  // 실전 예제 - 상품 리뷰
+  // ============================================
+
+  const reviewRating = new Forms.Rating('#review_rating', {
+    value: 0,
+    size: 'lg'
+  });
+  instances.push(reviewRating);
+
+  const reviewPhotos = new Forms.FileUpload('#review_photos', {
+    accept: 'image/*',
+    multiple: true,
+    maxFiles: 3,
+    dropzoneText: '리뷰 사진을 첨부하세요 (최대 3장)'
+  });
+  instances.push(reviewPhotos);
+
+  // 리뷰 제출 함수
+  window.submitReview = function() {
+    const rating = reviewRating.getValue();
+    const content = document.getElementById('review_content').value;
+    const photos = reviewPhotos.getFiles();
+
+    if (rating === 0) {
+      alert('평점을 선택해주세요.');
+      return;
+    }
+    if (!content.trim()) {
+      alert('리뷰 내용을 입력해주세요.');
+      return;
+    }
+
+    const resultEl = document.getElementById('review_result');
+    resultEl.style.display = 'block';
+    resultEl.innerHTML = `
+      <div style="padding: 1rem; background: #22c55e22; border: 1px solid #22c55e; border-radius: 8px; color: #22c55e;">
+        <strong>✅ 리뷰가 등록되었습니다!</strong><br>
+        평점: ${'⭐'.repeat(rating)} (${rating}점)<br>
+        사진: ${photos.length}장 첨부
+      </div>
+    `;
+  };
+
+  // 인스턴스 등록
+  instances.forEach(inst => IMCAT.view.registerInstance(inst));
+
+  console.log('Forms 예제 로드 완료');
+</script>

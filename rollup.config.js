@@ -66,7 +66,7 @@ function createModuleConfig(moduleName) {
 }
 
 // 각 모듈별 개별 config 생성
-const moduleConfigs = ['theme', 'overlays', 'dropdown', 'navigation'].map(createModuleConfig);
+const moduleConfigs = ['theme', 'overlays', 'dropdown', 'navigation', 'pickers', 'selectors', 'forms', 'feedback', 'data-viz'].map(createModuleConfig);
 
 // 코어 + 모듈 빌드
 export default [coreConfig, ...moduleConfigs];

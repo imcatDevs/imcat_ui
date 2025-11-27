@@ -188,15 +188,18 @@ CDN을 통한 즉시 사용:
 <head>
   <meta charset="UTF-8">
   <title>IMCAT UI</title>
-  <link rel="stylesheet" href="https://cdn.imcat.io/ui/1.0.0/imcat-ui.css">
+  <!-- unpkg -->
+  <link rel="stylesheet" href="https://unpkg.com/@imcat-ckim/catui@1.1.0/dist/imcat-ui.css">
+  <!-- 또는 jsDelivr -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@imcat-ckim/catui@1.1.0/dist/imcat-ui.css"> -->
 </head>
 <body>
   <div id="app">
     <button id="btn">Click Me</button>
   </div>
 
-  <script type="module">
-    import IMCAT from 'https://cdn.imcat.io/ui/1.0.0/imcat-ui.js';
+  <script src="https://unpkg.com/@imcat-ckim/catui@1.1.0/dist/imcat-ui.js"></script>
+  <script>
     
     // DOM 조작
     IMCAT('#btn').on('click', () => {
@@ -204,11 +207,23 @@ CDN을 통한 즉시 사용:
     });
     
     // 모듈 사용
-    const modal = await IMCAT.use('modal');
-    modal.show('Welcome', 'IMCAT UI Framework');
+    IMCAT.ready(async () => {
+      const Overlays = await IMCAT.use('overlays');
+      const modal = new Overlays.Modal({
+        title: 'Welcome',
+        content: 'IMCAT UI Framework'
+      });
+      modal.show();
+    });
   </script>
 </body>
 </html>
+```
+
+### NPM 설치
+
+```bash
+npm install @imcat-ckim/catui
 ```
 
 ### SPA 애플리케이션
@@ -306,6 +321,19 @@ const [modal, tooltip] = await IMCAT.use('modal', 'tooltip');
 
 - [x] 플러그인 시스템
 - [x] 테마 시스템 (다크/라이트 모드)
+- [x] Scroll - VirtualScroll, Scrollspy, InfiniteScroll, BackToTop
+- [x] Text Editors - RichTextEditor, MarkdownEditor
+- [x] Media Viewer - VideoPlayer, AudioPlayer, ImageViewer
+- [x] Social - ChatUI, Comments, ShareButtons, Reactions
+- [x] Advanced UI - SplitPane, QRCode, CodeBlock
+- [x] Live Status - OnlineStatus, TypingIndicator, ConnectionStatus
+- [x] ImageList - ImageList, Lightbox, ImageCompare, LazyImage
+- [x] WordCloud - WordCloud, TagCloud
+
+### Phase 5: 보안 & 프로젝트 관리 ✅ 완료
+
+- [x] Security Input - OTPInput, PinInput (보안 입력)
+- [x] Gantt - Gantt Chart (프로젝트 관리)
 
 ---
 

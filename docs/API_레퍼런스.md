@@ -4,8 +4,8 @@
 
 IMCAT UI 프레임워크의 전체 공개 API 레퍼런스입니다.
 
-**버전:** 1.0.0  
-**최종 업데이트:** 2025-11-23
+**버전:** 1.1.0  
+**최종 업데이트:** 2025-11-27
 
 ---
 
@@ -1524,7 +1524,102 @@ IMCAT.ready(() => {
 
 ```javascript
 console.log('IMCAT UI 버전:', IMCAT.version);
-// '1.0.0'
+// '1.1.0'
+```
+
+---
+
+## 🔐 Security Input API
+
+### OTPInput
+
+OTP(One-Time Password) 입력 컴포넌트입니다.
+
+```javascript
+const SecurityInput = await IMCAT.use('security-input');
+
+const otp = new SecurityInput.OTPInput('#otp-container', {
+  length: 6,              // OTP 길이 (default: 6)
+  masked: false,          // 마스킹 여부
+  separator: '-',         // 구분자
+  separatorPosition: 3,   // 구분자 위치
+  autoSubmit: true,       // 자동 제출
+  onComplete: (value) => console.log('OTP:', value),
+  onInput: (value) => console.log('입력 중:', value)
+});
+
+// 메서드
+otp.getValue();           // 현재 값 반환
+otp.setValue('123456');   // 값 설정
+otp.clear();              // 초기화
+otp.focus();              // 포커스
+otp.setError('오류');     // 오류 표시
+otp.clearError();         // 오류 해제
+otp.destroy();            // 정리
+```
+
+### PinInput
+
+PIN 코드 입력 컴포넌트입니다.
+
+```javascript
+const pin = new SecurityInput.PinInput('#pin-container', {
+  length: 4,              // PIN 길이 (default: 4)
+  masked: true,           // 마스킹 (default: true)
+  keypad: true,           // 가상 키패드 표시
+  shuffleKeypad: true,    // 키패드 셔플 (보안)
+  onComplete: (value) => console.log('PIN:', value)
+});
+
+// 메서드
+pin.getValue();
+pin.clear();
+pin.setError('잘못된 PIN');
+pin.destroy();
+```
+
+---
+
+## 📊 Gantt Chart API
+
+프로젝트 관리를 위한 Gantt Chart 컴포넌트입니다.
+
+```javascript
+const Gantt = await IMCAT.use('gantt');
+
+const gantt = new Gantt('#gantt-container', {
+  tasks: [
+    {
+      id: '1',
+      name: '기획',
+      start: '2024-01-01',
+      end: '2024-01-15',
+      progress: 100,
+      color: '#4CAF50'
+    },
+    {
+      id: '2',
+      name: '개발',
+      start: '2024-01-10',
+      end: '2024-02-10',
+      progress: 50,
+      dependencies: ['1']  // 의존성
+    }
+  ],
+  viewMode: 'week',       // 'day' | 'week' | 'month'
+  editable: true,         // 드래그 편집
+  todayLine: true,        // 오늘 선 표시
+  onTaskClick: (task) => console.log('클릭:', task),
+  onTaskChange: (task) => console.log('변경:', task)
+});
+
+// 메서드
+gantt.addTask({ id: '3', name: '새 작업', ... });
+gantt.updateTask('1', { progress: 100 });
+gantt.removeTask('1');
+gantt.setViewMode('month');
+gantt.scrollToToday();
+gantt.destroy();
 ```
 
 ---

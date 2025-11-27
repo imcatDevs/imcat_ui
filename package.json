@@ -1,7 +1,8 @@
 {
   "name": "@imcat-ckim/catui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Lightweight, zero-build, ES6+ JavaScript web framework with dynamic module loading and integrated SPA routing",
+  "homepage": "https://imcat.dev",
   "type": "module",
   "main": "dist/imcat-ui.js",
   "module": "dist/imcat-ui.js",

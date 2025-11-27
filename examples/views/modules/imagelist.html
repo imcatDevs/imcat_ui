@@ -1,0 +1,588 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active">ImageList</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">ImageList</h1>
+  <p class="page-description">이미지 갤러리 컴포넌트 (그리드, 라이트박스, 비교, 지연로딩)</p>
+</div>
+
+<!-- ImageList 기본 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">grid_view</i>
+          ImageList - 그리드 레이아웃
+        </h2>
+        <p class="card__description">클릭하면 라이트박스로 확대됩니다</p>
+      </div>
+      <div class="card__body">
+        <div id="imagelist_grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ImageList 레이아웃 옵션 -->
+<div class="row mb-4">
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card__header">
+        <h2 class="card__title">Masonry 레이아웃</h2>
+        <p class="card__description">핀터레스트 스타일 배치</p>
+      </div>
+      <div class="card__body">
+        <div id="imagelist_masonry"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card__header">
+        <h2 class="card__title">Quilted 레이아웃</h2>
+        <p class="card__description">다양한 크기 타일</p>
+      </div>
+      <div class="card__body">
+        <div id="imagelist_quilted"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hover 효과 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Hover 효과</h2>
+        <p class="card__description">다양한 마우스 오버 효과</p>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <h6 class="mb-2">Zoom</h6>
+            <div id="imagelist_hover_zoom"></div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6 class="mb-2">Fade</h6>
+            <div id="imagelist_hover_fade"></div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6 class="mb-2">Overlay</h6>
+            <div id="imagelist_hover_overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 다양한 형태 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">view_list</i>
+          다양한 형태
+        </h2>
+        <p class="card__description">뉴스형, 카드형, 리스트형 등 다양한 레이아웃</p>
+      </div>
+      <div class="card__body">
+        <!-- 뉴스 카드형 -->
+        <h5 class="mb-3">📰 뉴스 카드형</h5>
+        <div id="imagelist_news" class="mb-4"></div>
+        
+        <!-- 가로 리스트형 -->
+        <h5 class="mb-3">📋 가로 리스트형</h5>
+        <div id="imagelist_horizontal" class="mb-4"></div>
+        
+        <!-- 피쳐드 형 (대형 + 소형) -->
+        <h5 class="mb-3">⭐ 피쳐드형</h5>
+        <div id="imagelist_featured" class="mb-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-5">
+
+<!-- ImageCompare -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">compare</i>
+          ImageCompare - Before/After 비교
+        </h2>
+        <p class="card__description">드래그하여 비교 (사진 보정 전/후 등에 활용)</p>
+      </div>
+      <div class="card__body">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <h6 class="mb-2">Horizontal (좌우 비교)</h6>
+            <div id="compare_horizontal" style="height: 300px; border-radius: 12px; overflow: hidden;"></div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <h6 class="mb-2">Vertical (상하 비교)</h6>
+            <div id="compare_vertical" style="height: 300px; border-radius: 12px; overflow: hidden;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox 단독 사용 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">fullscreen</i>
+          Lightbox - 독립 사용
+        </h2>
+        <p class="card__description">버튼 클릭으로 라이트박스 열기</p>
+      </div>
+      <div class="card__body">
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn--primary" onclick="demo_open_lightbox(0)">
+            <i class="material-icons-outlined">image</i> 첫 번째 이미지
+          </button>
+          <button class="btn btn--outline-primary" onclick="demo_open_lightbox(2)">
+            <i class="material-icons-outlined">photo_library</i> 세 번째 이미지
+          </button>
+          <button class="btn btn--outline-secondary" onclick="demo_open_lightbox_with_thumbs()">
+            <i class="material-icons-outlined">view_comfy</i> 썸네일 표시
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LazyImage -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">hourglass_empty</i>
+          LazyImage - 지연 로딩
+        </h2>
+        <p class="card__description">스크롤 시 이미지가 로드됩니다 (DevTools Network 탭에서 확인)</p>
+      </div>
+      <div class="card__body">
+        <div id="lazy_demo" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">code</i>
+          사용법
+        </h2>
+      </div>
+      <div class="card__body">
+        <h5>ImageList</h5>
+        <pre class="bg-dark text-light p-3 rounded mb-4"><code>const ImageListModule = await IMCAT.use('imagelist');
+
+const gallery = new ImageListModule.ImageList('#container', {
+  images: [
+    { src: 'image1.jpg', thumb: 'thumb1.jpg', title: '제목' },
+    { src: 'image2.jpg', title: '설명' },
+  ],
+  layout: 'grid',         // grid, masonry, quilted
+  columns: 4,
+  gap: 8,
+  aspectRatio: '1:1',     // 1:1, 4:3, 16:9, auto
+  hover: 'zoom',          // zoom, fade, overlay, none
+  lightbox: true,
+  lazy: true,
+  onClick: (image, index) => {}
+});
+
+IMCAT.view.registerInstance(gallery);</code></pre>
+        
+        <h5>Lightbox</h5>
+        <pre class="bg-dark text-light p-3 rounded mb-4"><code>const lightbox = new ImageListModule.Lightbox({
+  images: [...],
+  zoom: true,
+  download: true,
+  counter: true,
+  thumbnails: true,
+  keyboard: true,
+  swipe: true,
+  onOpen: (index) => {},
+  onClose: () => {},
+  onChange: (index) => {}
+});
+
+lightbox.open(0);  // 첫 번째 이미지 열기
+lightbox.next();   // 다음
+lightbox.prev();   // 이전
+lightbox.close();  // 닫기</code></pre>
+
+        <h5>ImageCompare</h5>
+        <pre class="bg-dark text-light p-3 rounded mb-4"><code>const compare = new ImageListModule.ImageCompare('#container', {
+  before: { src: 'before.jpg', label: 'Before' },
+  after: { src: 'after.jpg', label: 'After' },
+  orientation: 'horizontal',  // horizontal, vertical
+  initialPosition: 50,
+  showLabels: true,
+  onSlide: (position) => console.log(position + '%')
+});
+
+compare.setPosition(30);  // 위치 설정</code></pre>
+
+        <h5>LazyImage</h5>
+        <pre class="bg-dark text-light p-3 rounded"><code>// HTML
+&lt;img data-lazy-src="image.jpg" alt="..."&gt;
+
+// JavaScript
+const lazy = new ImageListModule.LazyImage({
+  selector: '[data-lazy-src]',
+  rootMargin: '50px',
+  placeholder: 'blur',    // blur, skeleton, color, none
+  animation: 'fade',
+  onLoad: (img) => console.log('Loaded:', img.src)
+});
+
+lazy.refresh();  // 새 이미지 감지</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+const ImageListModule = await IMCAT.use('imagelist');
+const { ImageList, Lightbox, ImageCompare, LazyImage } = ImageListModule;
+
+// 샘플 이미지 (Picsum)
+const sampleImages = Array.from({ length: 12 }, (_, i) => ({
+  src: `https://picsum.photos/800/600?random=${i + 1}`,
+  thumb: `https://picsum.photos/400/300?random=${i + 1}`,
+  title: `이미지 ${i + 1}`,
+  alt: `샘플 이미지 ${i + 1}`
+}));
+
+// 다양한 높이 이미지 (Masonry용)
+const masonryImages = [
+  { src: 'https://picsum.photos/400/300?random=101', title: '가로형' },
+  { src: 'https://picsum.photos/400/500?random=102', title: '세로형' },
+  { src: 'https://picsum.photos/400/400?random=103', title: '정사각형' },
+  { src: 'https://picsum.photos/400/600?random=104', title: '긴 세로형' },
+  { src: 'https://picsum.photos/400/350?random=105', title: '가로형' },
+  { src: 'https://picsum.photos/400/450?random=106', title: '세로형' },
+];
+
+// Quilted용 (첫 번째 featured)
+const quiltedImages = [
+  { src: 'https://picsum.photos/800/800?random=201', title: '대형', featured: true },
+  { src: 'https://picsum.photos/400/400?random=202', title: '소형 1' },
+  { src: 'https://picsum.photos/400/400?random=203', title: '소형 2' },
+  { src: 'https://picsum.photos/400/400?random=204', title: '소형 3' },
+  { src: 'https://picsum.photos/400/400?random=205', title: '소형 4' },
+  { src: 'https://picsum.photos/400/400?random=206', title: '소형 5' },
+];
+
+// ====================
+// ImageList 예제
+// ====================
+
+// 기본 그리드
+if (window._imagelist_grid && window._imagelist_grid.destroy) {
+  window._imagelist_grid.destroy();
+}
+window._imagelist_grid = new ImageList('#imagelist_grid', {
+  images: sampleImages.slice(0, 8),
+  layout: 'grid',
+  columns: 4,
+  gap: 8,
+  aspectRatio: '1:1',
+  hover: 'zoom',
+  rounded: 8,
+  responsive: { 992: 3, 768: 2 }
+});
+IMCAT.view.registerInstance(window._imagelist_grid);
+
+// Masonry
+if (window._imagelist_masonry && window._imagelist_masonry.destroy) {
+  window._imagelist_masonry.destroy();
+}
+window._imagelist_masonry = new ImageList('#imagelist_masonry', {
+  images: masonryImages,
+  layout: 'masonry',
+  columns: 2,
+  gap: 8,
+  aspectRatio: 'auto',
+  hover: 'overlay',
+  showTitle: true,
+  rounded: 8
+});
+IMCAT.view.registerInstance(window._imagelist_masonry);
+
+// Quilted
+if (window._imagelist_quilted && window._imagelist_quilted.destroy) {
+  window._imagelist_quilted.destroy();
+}
+window._imagelist_quilted = new ImageList('#imagelist_quilted', {
+  images: quiltedImages,
+  layout: 'quilted',
+  columns: 3,
+  gap: 8,
+  aspectRatio: '1:1',
+  hover: 'fade',
+  rounded: 8
+});
+IMCAT.view.registerInstance(window._imagelist_quilted);
+
+// Hover 효과들
+const hoverImages = sampleImages.slice(0, 4);
+
+['zoom', 'fade', 'overlay'].forEach(hover => {
+  const id = `imagelist_hover_${hover}`;
+  if (window[`_${id}`] && window[`_${id}`].destroy) {
+    window[`_${id}`].destroy();
+  }
+  window[`_${id}`] = new ImageList(`#${id}`, {
+    images: hoverImages,
+    layout: 'grid',
+    columns: 2,
+    gap: 6,
+    aspectRatio: '1:1',
+    hover: hover,
+    showTitle: hover === 'overlay',
+    rounded: 6,
+    lightbox: false
+  });
+  IMCAT.view.registerInstance(window[`_${id}`]);
+});
+
+// ====================
+// 다양한 형태 예제
+// ====================
+
+// 뉴스 데이터
+const newsData = [
+  { 
+    src: 'https://picsum.photos/seed/news1/400/250', 
+    title: '새로운 기술 트렌드 2024',
+    category: '테크',
+    date: '2024.03.15',
+    desc: 'AI와 클라우드 기술이 주도하는 새로운 변화의 물결이 다가오고 있습니다.'
+  },
+  { 
+    src: 'https://picsum.photos/seed/news2/400/250', 
+    title: '글로벌 경제 전망',
+    category: '경제',
+    date: '2024.03.14',
+    desc: '전문가들이 예측하는 2024년 하반기 경제 흐름을 분석합니다.'
+  },
+  { 
+    src: 'https://picsum.photos/seed/news3/400/250', 
+    title: '친환경 에너지의 미래',
+    category: '환경',
+    date: '2024.03.13',
+    desc: '태양광과 풍력 에너지가 만드는 지속 가능한 내일.'
+  },
+  { 
+    src: 'https://picsum.photos/seed/news4/400/250', 
+    title: '건강한 라이프스타일',
+    category: '라이프',
+    date: '2024.03.12',
+    desc: '바쁜 일상 속에서도 실천할 수 있는 건강 습관들.'
+  },
+];
+
+// 뉴스 카드형 렌더링
+const newsContainer = document.getElementById('imagelist_news');
+if (newsContainer) {
+  newsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;';
+  newsContainer.innerHTML = newsData.map(item => `
+    <div style="background: var(--bg-secondary); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;"
+         onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.15)'"
+         onmouseout="this.style.transform=''; this.style.boxShadow=''">
+      <img src="${item.src}" alt="${item.title}" style="width: 100%; height: 160px; object-fit: cover;">
+      <div style="padding: 16px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: var(--primary-color); font-size: 12px; font-weight: 600;">${item.category}</span>
+          <span style="color: var(--text-tertiary); font-size: 12px;">${item.date}</span>
+        </div>
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: var(--text-primary);">${item.title}</h4>
+        <p style="margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.5;">${item.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// 가로 리스트형 렌더링
+const horizontalContainer = document.getElementById('imagelist_horizontal');
+if (horizontalContainer) {
+  horizontalContainer.style.cssText = 'display: flex; flex-direction: column; gap: 12px;';
+  horizontalContainer.innerHTML = newsData.slice(0, 3).map((item, i) => `
+    <div style="display: flex; gap: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 10px; cursor: pointer; transition: background 0.2s;"
+         onmouseover="this.style.background='var(--bg-tertiary)'"
+         onmouseout="this.style.background='var(--bg-secondary)'">
+      <img src="${item.src}" alt="${item.title}" style="width: 120px; height: 80px; object-fit: cover; border-radius: 8px; flex-shrink: 0;">
+      <div style="flex: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="color: var(--primary-color); font-size: 11px; font-weight: 600; background: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px;">${item.category}</span>
+          <span style="color: var(--text-tertiary); font-size: 11px;">${item.date}</span>
+        </div>
+        <h4 style="margin: 0 0 4px 0; font-size: 15px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.title}</h4>
+        <p style="margin: 0; font-size: 12px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.desc}</p>
+      </div>
+      <div style="display: flex; align-items: center; color: var(--text-tertiary); font-size: 20px; font-weight: bold; padding: 0 8px;">${i + 1}</div>
+    </div>
+  `).join('');
+}
+
+// 피쳐드형 렌더링 (1개 대형 + 4개 소형)
+const featuredContainer = document.getElementById('imagelist_featured');
+if (featuredContainer) {
+  const mainItem = newsData[0];
+  const sideItems = newsData.slice(1);
+  
+  featuredContainer.innerHTML = `
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
+      <!-- 메인 (대형) -->
+      <div style="position: relative; border-radius: 12px; overflow: hidden; cursor: pointer;"
+           onmouseover="this.querySelector('img').style.transform='scale(1.05)'"
+           onmouseout="this.querySelector('img').style.transform=''">
+        <img src="https://picsum.photos/seed/featured/800/500" alt="${mainItem.title}" 
+             style="width: 100%; height: 320px; object-fit: cover; transition: transform 0.3s;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);"></div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; color: #fff;">
+          <span style="background: var(--primary-color); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">HOT</span>
+          <h3 style="margin: 12px 0 8px 0; font-size: 22px; font-weight: 700;">${mainItem.title}</h3>
+          <p style="margin: 0; font-size: 14px; opacity: 0.9;">${mainItem.desc}</p>
+        </div>
+      </div>
+      
+      <!-- 사이드 (소형 목록) -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        ${sideItems.map(item => `
+          <div style="display: flex; gap: 12px; padding: 10px; background: var(--bg-secondary); border-radius: 8px; cursor: pointer; transition: background 0.2s;"
+               onmouseover="this.style.background='var(--bg-tertiary)'"
+               onmouseout="this.style.background='var(--bg-secondary)'">
+            <img src="${item.src}" alt="${item.title}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; flex-shrink: 0;">
+            <div style="min-width: 0;">
+              <span style="color: var(--primary-color); font-size: 10px; font-weight: 600;">${item.category}</span>
+              <h5 style="margin: 2px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.title}</h5>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ====================
+// ImageCompare 예제
+// ====================
+
+// Horizontal - 흑백 vs 컬러 (seed로 같은 이미지 보장)
+if (window._compare_h && window._compare_h.destroy) {
+  window._compare_h.destroy();
+}
+window._compare_h = new ImageCompare('#compare_horizontal', {
+  before: { 
+    src: 'https://picsum.photos/seed/compare1/800/600?grayscale', 
+    label: 'Before (흑백)' 
+  },
+  after: { 
+    src: 'https://picsum.photos/seed/compare1/800/600', 
+    label: 'After (컬러)' 
+  },
+  orientation: 'horizontal',
+  initialPosition: 50
+});
+IMCAT.view.registerInstance(window._compare_h);
+
+// Vertical - 블러 vs 선명 (seed로 같은 이미지 보장)
+if (window._compare_v && window._compare_v.destroy) {
+  window._compare_v.destroy();
+}
+window._compare_v = new ImageCompare('#compare_vertical', {
+  before: { 
+    src: 'https://picsum.photos/seed/compare2/800/600?blur=5', 
+    label: 'Blur (흐림)' 
+  },
+  after: { 
+    src: 'https://picsum.photos/seed/compare2/800/600', 
+    label: 'Sharp (선명)' 
+  },
+  orientation: 'vertical',
+  initialPosition: 50
+});
+IMCAT.view.registerInstance(window._compare_v);
+
+// ====================
+// Lightbox 데모
+// ====================
+
+window.demo_open_lightbox = function(index) {
+  const lightbox = new Lightbox({
+    images: sampleImages,
+    startIndex: index,
+    zoom: true,
+    download: true
+  });
+  lightbox.open();
+};
+
+window.demo_open_lightbox_with_thumbs = function() {
+  const lightbox = new Lightbox({
+    images: sampleImages.slice(0, 6),
+    thumbnails: true,
+    zoom: true
+  });
+  lightbox.open();
+};
+
+// ====================
+// LazyImage 데모
+// ====================
+
+// 지연 로딩 이미지 생성
+const lazyContainer = document.getElementById('lazy_demo');
+if (lazyContainer) {
+  lazyContainer.innerHTML = Array.from({ length: 8 }, (_, i) => `
+    <div style="aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--bg-tertiary);">
+      <img 
+        data-lazy-src="https://picsum.photos/400/400?random=${400 + i}" 
+        alt="Lazy ${i + 1}"
+        style="width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s;"
+      >
+    </div>
+  `).join('');
+  
+  // LazyImage 초기화
+  if (window._lazy && window._lazy.destroy) {
+    window._lazy.destroy();
+  }
+  window._lazy = new LazyImage({
+    selector: '#lazy_demo [data-lazy-src]',
+    placeholder: 'color',
+    animation: 'fade',
+    onLoad: (img) => {
+      img.style.opacity = '1';
+    }
+  });
+}
+</script>

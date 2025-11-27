@@ -1,0 +1,320 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active">Gantt Chart</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">
+    <i class="material-icons-outlined">view_timeline</i>
+    Gantt Chart
+  </h1>
+  <p class="page-description">프로젝트 일정 관리를 위한 간트 차트</p>
+</div>
+
+<!-- 기본 간트 차트 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">프로젝트 일정</h2>
+        <p class="card__description">웹사이트 리뉴얼 프로젝트</p>
+      </div>
+      <div class="card__body p-0">
+        <div id="gantt_basic" style="height: 450px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 편집 가능 간트 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">edit</i>
+          편집 가능
+        </h2>
+        <p class="card__description">드래그하여 일정 조정 (작업 바를 드래그하세요)</p>
+      </div>
+      <div class="card__body p-0">
+        <div id="gantt_editable" style="height: 350px;"></div>
+      </div>
+      <div class="card__footer">
+        <div id="gantt_editable_log" style="font-size: 13px; color: var(--text-secondary);"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 그룹 및 의존성 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">
+          <i class="material-icons-outlined">account_tree</i>
+          그룹 및 의존성
+        </h2>
+        <p class="card__description">작업 그룹화 및 의존 관계 표시</p>
+      </div>
+      <div class="card__body p-0">
+        <div id="gantt_groups" style="height: 500px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- API 테스트 -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">API 테스트</h2>
+      </div>
+      <div class="card__body">
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <button class="btn btn--sm btn--primary" onclick="demo_addTask()">
+            <i class="material-icons-outlined">add</i> 작업 추가
+          </button>
+          <button class="btn btn--sm btn--outline" onclick="demo_updateProgress()">
+            <i class="material-icons-outlined">trending_up</i> 진행률 업데이트
+          </button>
+          <button class="btn btn--sm btn--outline" onclick="demo_scrollToTask()">
+            <i class="material-icons-outlined">my_location</i> 작업으로 이동
+          </button>
+        </div>
+        <div id="gantt_api" style="height: 300px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">사용법</h2>
+      </div>
+      <div class="card__body">
+        <pre style="background: var(--bg-secondary); padding: 16px; border-radius: 8px; overflow-x: auto;"><code>// 모듈 로드
+const Gantt = await IMCAT.use('gantt');
+
+// 간트 차트 생성
+const gantt = new Gantt('#container', {
+  tasks: [
+    {
+      id: 'task-1',
+      name: '기획',
+      start: '2024-01-01',
+      end: '2024-01-15',
+      progress: 100,
+      color: '#6366f1',
+      assignee: '홍길동'
+    },
+    {
+      id: 'task-2',
+      name: '디자인',
+      start: '2024-01-10',
+      end: '2024-01-25',
+      progress: 80,
+      dependencies: ['task-1']  // 의존성
+    }
+  ],
+  viewMode: 'day',      // 'day' | 'week' | 'month'
+  editable: true,       // 드래그 수정
+  todayLine: true,      // 오늘 라인
+  showProgress: true,   // 진행률 표시
+  showDependencies: true, // 의존성 선
+  onTaskClick: (task) => {
+    console.log('클릭:', task);
+  },
+  onTaskChange: (task) => {
+    console.log('변경:', task);
+  }
+});
+
+// API
+gantt.setViewMode('week');           // 뷰 모드 변경
+gantt.addTask({ ... });              // 작업 추가
+gantt.updateTask('id', { ... });     // 작업 수정
+gantt.removeTask('id');              // 작업 삭제
+gantt.scrollToTask('id');            // 작업으로 스크롤
+gantt.refresh();                     // 새로고침
+gantt.destroy();                     // 정리</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+const Gantt = await IMCAT.use('gantt');
+
+// 오늘 날짜 기준으로 날짜 계산
+const today = new Date();
+const formatDate = (daysOffset) => {
+  const date = new Date(today);
+  date.setDate(date.getDate() + daysOffset);
+  return date.toISOString().split('T')[0];
+};
+
+// ====================
+// 기본 간트 차트
+// ====================
+const basicTasks = [
+  { id: 'task-1', name: '요구사항 분석', start: formatDate(-14), end: formatDate(-10), progress: 100, color: '#10b981', assignee: '김기획' },
+  { id: 'task-2', name: 'UI/UX 설계', start: formatDate(-10), end: formatDate(-5), progress: 100, color: '#6366f1', assignee: '이디자인' },
+  { id: 'task-3', name: '와이어프레임 제작', start: formatDate(-7), end: formatDate(-3), progress: 100, color: '#6366f1', assignee: '이디자인' },
+  { id: 'task-4', name: '디자인 시안', start: formatDate(-5), end: formatDate(2), progress: 75, color: '#8b5cf6', assignee: '박그래픽' },
+  { id: 'task-5', name: '프론트엔드 개발', start: formatDate(-3), end: formatDate(10), progress: 40, color: '#3b82f6', assignee: '최개발' },
+  { id: 'task-6', name: '백엔드 API', start: formatDate(-1), end: formatDate(8), progress: 30, color: '#f59e0b', assignee: '정서버' },
+  { id: 'task-7', name: 'DB 설계', start: formatDate(-5), end: formatDate(0), progress: 90, color: '#ef4444', assignee: '강DB' },
+  { id: 'task-8', name: 'QA 테스트', start: formatDate(8), end: formatDate(14), progress: 0, color: '#ec4899', assignee: 'QA팀' },
+  { id: 'task-9', name: '배포', start: formatDate(14), end: formatDate(16), progress: 0, color: '#14b8a6', assignee: 'DevOps' },
+];
+
+if (window._gantt_basic && window._gantt_basic.destroy) window._gantt_basic.destroy();
+window._gantt_basic = new Gantt('#gantt_basic', {
+  tasks: basicTasks,
+  viewMode: 'day',
+  showProgress: true,
+  onTaskClick: (task) => {
+    alert(`작업: ${task.name}\n진행률: ${task.progress}%\n담당자: ${task.assignee || '미지정'}`);
+  }
+});
+IMCAT.view.registerInstance(window._gantt_basic);
+
+// ====================
+// 편집 가능 간트
+// ====================
+const editableTasks = [
+  { id: 'e-1', name: '작업 A', start: formatDate(0), end: formatDate(5), progress: 50, color: '#6366f1' },
+  { id: 'e-2', name: '작업 B', start: formatDate(3), end: formatDate(8), progress: 30, color: '#10b981' },
+  { id: 'e-3', name: '작업 C', start: formatDate(6), end: formatDate(12), progress: 0, color: '#f59e0b' },
+];
+
+if (window._gantt_editable && window._gantt_editable.destroy) window._gantt_editable.destroy();
+window._gantt_editable = new Gantt('#gantt_editable', {
+  tasks: editableTasks,
+  viewMode: 'day',
+  editable: true,
+  onTaskChange: (task) => {
+    const start = task.start.toLocaleDateString('ko-KR');
+    const end = task.end.toLocaleDateString('ko-KR');
+    document.getElementById('gantt_editable_log').innerHTML = 
+      `<strong>${task.name}</strong> 일정 변경: ${start} ~ ${end}`;
+  }
+});
+IMCAT.view.registerInstance(window._gantt_editable);
+
+// ====================
+// 그룹 및 의존성
+// ====================
+const groupTasks = [
+  {
+    id: 'g-1',
+    name: '1단계: 기획',
+    start: formatDate(-10),
+    end: formatDate(-5),
+    progress: 100,
+    color: '#6366f1',
+    children: [
+      { id: 'g-1-1', name: '시장 조사', start: formatDate(-10), end: formatDate(-8), progress: 100, color: '#818cf8' },
+      { id: 'g-1-2', name: '경쟁사 분석', start: formatDate(-9), end: formatDate(-7), progress: 100, color: '#818cf8' },
+      { id: 'g-1-3', name: '요구사항 정의', start: formatDate(-7), end: formatDate(-5), progress: 100, color: '#818cf8' },
+    ]
+  },
+  {
+    id: 'g-2',
+    name: '2단계: 설계',
+    start: formatDate(-5),
+    end: formatDate(0),
+    progress: 80,
+    color: '#10b981',
+    children: [
+      { id: 'g-2-1', name: '시스템 설계', start: formatDate(-5), end: formatDate(-2), progress: 100, color: '#34d399', dependencies: ['g-1-3'] },
+      { id: 'g-2-2', name: 'DB 설계', start: formatDate(-3), end: formatDate(0), progress: 60, color: '#34d399', dependencies: ['g-2-1'] },
+    ]
+  },
+  {
+    id: 'g-3',
+    name: '3단계: 개발',
+    start: formatDate(0),
+    end: formatDate(14),
+    progress: 20,
+    color: '#f59e0b',
+    children: [
+      { id: 'g-3-1', name: '프론트엔드', start: formatDate(0), end: formatDate(10), progress: 30, color: '#fbbf24', dependencies: ['g-2-2'] },
+      { id: 'g-3-2', name: '백엔드', start: formatDate(0), end: formatDate(12), progress: 20, color: '#fbbf24', dependencies: ['g-2-2'] },
+      { id: 'g-3-3', name: '통합', start: formatDate(10), end: formatDate(14), progress: 0, color: '#fbbf24', dependencies: ['g-3-1', 'g-3-2'] },
+    ]
+  },
+  {
+    id: 'g-4',
+    name: '4단계: 테스트 및 배포',
+    start: formatDate(14),
+    end: formatDate(20),
+    progress: 0,
+    color: '#ef4444',
+    children: [
+      { id: 'g-4-1', name: 'QA 테스트', start: formatDate(14), end: formatDate(18), progress: 0, color: '#f87171', dependencies: ['g-3-3'] },
+      { id: 'g-4-2', name: '버그 수정', start: formatDate(16), end: formatDate(19), progress: 0, color: '#f87171', dependencies: ['g-4-1'] },
+      { id: 'g-4-3', name: '배포', start: formatDate(19), end: formatDate(20), progress: 0, color: '#f87171', dependencies: ['g-4-2'] },
+    ]
+  }
+];
+
+if (window._gantt_groups && window._gantt_groups.destroy) window._gantt_groups.destroy();
+window._gantt_groups = new Gantt('#gantt_groups', {
+  tasks: groupTasks,
+  viewMode: 'day',
+  showDependencies: true,
+  onTaskClick: (task) => {
+    console.log('클릭:', task);
+  }
+});
+IMCAT.view.registerInstance(window._gantt_groups);
+
+// ====================
+// API 테스트
+// ====================
+const apiTasks = [
+  { id: 'api-1', name: '초기 작업', start: formatDate(0), end: formatDate(5), progress: 50, color: '#6366f1' },
+];
+
+if (window._gantt_api && window._gantt_api.destroy) window._gantt_api.destroy();
+window._gantt_api = new Gantt('#gantt_api', {
+  tasks: apiTasks,
+  viewMode: 'day',
+  showProgress: true
+});
+IMCAT.view.registerInstance(window._gantt_api);
+
+let taskCounter = 1;
+
+window.demo_addTask = function() {
+  taskCounter++;
+  window._gantt_api.addTask({
+    id: `api-${taskCounter}`,
+    name: `새 작업 ${taskCounter}`,
+    start: formatDate(taskCounter * 3),
+    end: formatDate(taskCounter * 3 + 5),
+    progress: 0,
+    color: ['#6366f1', '#10b981', '#f59e0b', '#ef4444'][taskCounter % 4]
+  });
+};
+
+window.demo_updateProgress = function() {
+  window._gantt_api.updateTask('api-1', {
+    progress: Math.min(100, (window._gantt_api._findTask('api-1')?.progress || 0) + 20)
+  });
+};
+
+window.demo_scrollToTask = function() {
+  window._gantt_api.scrollToTask('api-1');
+};
+</script>

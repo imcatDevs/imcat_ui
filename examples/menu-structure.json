@@ -374,6 +374,34 @@
           "icon": "linear_scale",
           "href": "views/modules/stepper.html",
           "badge": true
+        },
+        {
+          "id": "wordcloud",
+          "text": "Word Cloud",
+          "icon": "cloud",
+          "href": "views/modules/wordcloud.html",
+          "badge": true
+        },
+        {
+          "id": "imagelist",
+          "text": "Image List",
+          "icon": "collections",
+          "href": "views/modules/imagelist.html",
+          "badge": true
+        },
+        {
+          "id": "security-input",
+          "text": "Security Input (OTP/PIN)",
+          "icon": "pin",
+          "href": "views/modules/security-input.html",
+          "badge": true
+        },
+        {
+          "id": "gantt",
+          "text": "Gantt Chart",
+          "icon": "view_timeline",
+          "href": "views/modules/gantt.html",
+          "badge": true
         }
       ]
     },

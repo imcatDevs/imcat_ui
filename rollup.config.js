@@ -69,7 +69,13 @@ function createModuleConfig(moduleName) {
 const moduleConfigs = [
   'theme', 'overlays', 'dropdown', 'navigation', 'pickers', 'selectors', 'forms', 'feedback', 'tooltips', 'carousel', 'data-viz',
   // Phase 3 Advanced Features
-  'stepper', 'scroll', 'live-status', 'advanced-ui', 'text-editors', 'media-viewer', 'social'
+  'stepper', 'scroll', 'live-status', 'advanced-ui', 'text-editors', 'media-viewer', 'social',
+  // Text Visualization
+  'wordcloud',
+  // Image Gallery
+  'imagelist',
+  // Security & Project Management
+  'security-input', 'gantt'
 ].map(createModuleConfig);
 
 // 코어 + 모듈 빌드

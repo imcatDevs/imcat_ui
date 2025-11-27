@@ -3,7 +3,8 @@
 **Lightweight, Zero-Build, ES6+ JavaScript Web Framework**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/imcat/imcat-ui)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](https://github.com/imcatDevs/imcat_ui)
+[![npm](https://img.shields.io/npm/v/@imcat-ckim/catui.svg)](https://www.npmjs.com/package/@imcat-ckim/catui)
 
 ---
 
@@ -20,17 +21,24 @@
 
 ## 📦 설치
 
-### CDN
+### CDN (unpkg)
 
 ```html
-<link rel="stylesheet" href="https://cdn.imcat.io/ui/1.0.0/imcat-ui.css">
-<script type="module" src="https://cdn.imcat.io/ui/1.0.0/imcat-ui.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@imcat-ckim/catui@1.1.0/dist/imcat-ui.css">
+<script src="https://unpkg.com/@imcat-ckim/catui@1.1.0/dist/imcat-ui.js"></script>
+```
+
+### CDN (jsDelivr)
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@imcat-ckim/catui@1.1.0/dist/imcat-ui.css">
+<script src="https://cdn.jsdelivr.net/npm/@imcat-ckim/catui@1.1.0/dist/imcat-ui.js"></script>
 ```
 
 ### NPM
 
 ```bash
-npm install imcat-ui
+npm install @imcat-ckim/catui
 ```
 
 ---
@@ -66,20 +74,7 @@ npm install imcat-ui
 </html>
 ```
 
----
-
-## 📚 문서
-
-전체 문서는 [docs](./docs) 폴더를 참조하세요.
-
-- [프레임워크 설계 이념](./docs/프레임워크_설계_이념.md)
-- [코어 설계서](./docs/코어_설계서.md)
-- [API 레퍼런스](./docs/API_레퍼런스.md)
-- [코딩 가이드](./docs/코딩_가이드.md)
-- [모듈 시스템](./docs/모듈_시스템_설계서.md)
-- [디자인 시스템](./docs/디자인_시스템_설계서.md)
-
----
+--
 
 ## 🛠️ 개발
 
@@ -148,7 +143,6 @@ MIT License - 자유롭게 사용, 수정, 배포 가능
 
 ## 🔗 링크
 
-- **Documentation**: [./docs](./docs)
 - **Issues**: GitHub Issues
 - **Discussions**: GitHub Discussions
 

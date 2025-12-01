@@ -26,7 +26,7 @@ class Toast {
 
     const toast = document.createElement('div');
     toast.className = `toast toast--${type}`;
-    
+
     const icons = {
       success: 'check_circle',
       error: 'error',
@@ -45,7 +45,7 @@ class Toast {
     });
 
     Toast.container.appendChild(toast);
-    
+
     // Trigger animation
     requestAnimationFrame(() => {
       toast.classList.add('is-visible');
@@ -86,12 +86,12 @@ class Notification {
 
   static init(position = 'top-right') {
     Notification.position = position;
-    
+
     if (Notification.container) {
       Notification.container.className = `notification-container notification-container--${position}`;
       return;
     }
-    
+
     Notification.container = document.createElement('div');
     Notification.container.className = `notification-container notification-container--${position}`;
     document.body.appendChild(Notification.container);
@@ -124,8 +124,8 @@ class Notification {
 
     let actionsHtml = '';
     if (config.actions.length) {
-      actionsHtml = '<div class="notification__actions">' + 
-        config.actions.map((action, i) => 
+      actionsHtml = '<div class="notification__actions">' +
+        config.actions.map((action, i) =>
           `<button class="notification__action" data-action="${i}">${action.text}</button>`
         ).join('') + '</div>';
     }
@@ -296,12 +296,12 @@ class ProgressTracker {
       this.element.removeEventListener('click', this._onClick);
       this._onClick = null;
     }
-    
+
     // 이벤트 버스 정리
     if (this.events) {
       this.events.clear();
     }
-    
+
     this.element.innerHTML = '';
     this.element.classList.remove('progress-tracker', 'progress-tracker--vertical');
     this.element = null;
@@ -376,7 +376,7 @@ class Skeleton {
 
       case 'text':
       default:
-        html = Array(lines).fill('').map((_, i) => 
+        html = Array(lines).fill('').map((_, i) =>
           `<div class="skeleton skeleton--text ${animClass}" style="width: ${i === lines - 1 ? '60%' : '100%'};"></div>`
         ).join('');
         break;

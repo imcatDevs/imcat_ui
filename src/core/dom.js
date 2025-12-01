@@ -10,7 +10,7 @@ import { Security } from './security.js';
  * @class
  * @description jQuery 스타일의 체이닝 가능한 DOM 조작 API를 제공하는 래퍼 클래스입니다.
  * 하나 또는 여러 개의 DOM 요소를 감싸서 편리한 메서드 체이닝을 제공합니다.
- * 
+ *
  * @example
  * // jQuery 스타일 체이닝
  * new DOMElement(element)
@@ -23,10 +23,10 @@ class DOMElement {
    * DOMElement 생성자
    * @constructor
    * @param {HTMLElement|HTMLElement[]} elements - DOM 요소 또는 요소 배열
-   * 
+   *
    * @example
    * const elem = new DOMElement(document.getElementById('app'));
-   * 
+   *
    * @example
    * const elems = new DOMElement(document.querySelectorAll('.item'));
    */
@@ -85,7 +85,7 @@ class DOMElement {
    * 텍스트 설정/조회
    * @param {string} [value] - 설정할 텍스트
    * @returns {string|DOMElement}
-   * 
+   *
    * @note textContent는 브라우저에서 자동으로 안전하게 처리됨
    * (HTML 태그가 텍스트로 표시됨, XSS 위험 없음)
    */
@@ -189,15 +189,15 @@ class DOMElement {
    * @param {string|Function} selector - 선택자 또는 핸들러
    * @param {Function} [handler] - 핸들러
    * @returns {DOMElement}
-   * 
+   *
    * @example
    * // 직접 바인딩
    * IMCAT('#button').on('click', (e) => console.log('clicked'));
-   * 
+   *
    * @example
    * // 이벤트 위임 (권장: 동적 요소에 유리)
    * IMCAT('#list').on('click', '.item', (e) => console.log('item clicked'));
-   * 
+   *
    * @performance
    * - 이벤트 위임 사용 시 메모리 효율적 (리스너 1개로 여러 요소 처리)
    * - _delegates Map으로 off() 시 정확한 cleanup 보장
@@ -457,11 +457,11 @@ class DOMElement {
  * @class
  * @description DOM 선택, 요소 생성 등의 유틸리티 메서드를 제공합니다.
  * IMCAT() 함수의 기본 구현체입니다.
- * 
+ *
  * @example
  * // 요소 선택
  * const element = DOM.select('#app');
- * 
+ *
  * @example
  * // 요소 생성
  * const div = DOM.create('div', { class: 'container' });

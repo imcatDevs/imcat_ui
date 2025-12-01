@@ -83,7 +83,7 @@ class FileUpload {
     // 이벤트 핸들러 추적
     this._onInputChange = (e) => this._handleFiles(e.target.files);
     this.input.addEventListener('change', this._onInputChange);
-    
+
     if (this.dropzone) {
       this._onDropzoneClick = () => this.input.click();
       this._onDragover = (e) => {
@@ -98,7 +98,7 @@ class FileUpload {
         this.dropzone.classList.remove('is-dragover');
         this._handleFiles(e.dataTransfer.files);
       };
-      
+
       this.dropzone.addEventListener('click', this._onDropzoneClick);
       this.dropzone.addEventListener('dragover', this._onDragover);
       this.dropzone.addEventListener('dragleave', this._onDragleave);
@@ -108,7 +108,7 @@ class FileUpload {
 
   _handleFiles(fileList) {
     const newFiles = Array.from(fileList);
-    
+
     for (const file of newFiles) {
       // 파일 타입 체크
       if (!this._isValidFileType(file)) {
@@ -121,7 +121,7 @@ class FileUpload {
         this._emitError(`파일 크기가 너무 큽니다: ${file.name}`);
         continue;
       }
-      
+
       // 파일 수 체크
       if (this.files.length >= this.options.maxFiles) {
         this._emitError(`최대 ${this.options.maxFiles}개까지 업로드 가능합니다`);
@@ -167,11 +167,11 @@ class FileUpload {
     const item = document.createElement('div');
     item.className = 'file-upload__item';
     item.dataset.fileName = file.name;
-    
+
     const isImage = file.type.startsWith('image/');
-    const progressHtml = this.options.showProgress ? 
-      `<div class="file-upload__progress"><div class="file-upload__progress-bar" style="width: 0%"></div></div>` : '';
-    
+    const progressHtml = this.options.showProgress ?
+      '<div class="file-upload__progress"><div class="file-upload__progress-bar" style="width: 0%"></div></div>' : '';
+
     const bindRemoveEvent = () => {
       const removeBtn = item.querySelector('.file-upload__remove');
       if (removeBtn) {
@@ -181,7 +181,7 @@ class FileUpload {
         });
       }
     };
-    
+
     if (isImage) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -235,7 +235,7 @@ class FileUpload {
     for (const file of this.files) {
       const steps = 20;
       const stepDuration = duration / steps;
-      
+
       for (let i = 1; i <= steps; i++) {
         await new Promise(r => setTimeout(r, stepDuration));
         const percent = (i / steps) * 100;
@@ -268,7 +268,7 @@ class FileUpload {
   }
 
   getFiles() { return [...this.files]; }
-  
+
   clear() {
     this.files = [];
     if (this.previewContainer) this.previewContainer.innerHTML = '';
@@ -285,12 +285,12 @@ class FileUpload {
       if (this._onDrop) this.dropzone.removeEventListener('drop', this._onDrop);
     }
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.style.display = '';
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
-    
+
     // 참조 해제
     this.element = null;
     this.wrapper = null;
@@ -396,11 +396,11 @@ class Rating {
       if (this._onMouseout) this.element.removeEventListener('mouseout', this._onMouseout);
     }
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('rating', `rating--${this.options.size}`, 'rating--readonly');
-    
+
     // 참조 해제
     this.element = null;
   }
@@ -441,7 +441,7 @@ class SignaturePad {
 
   _createUI() {
     this.element.classList.add('signature-pad');
-    
+
     this.canvas = document.createElement('canvas');
     this.canvas.className = 'signature-pad__canvas';
     this.canvas.width = this.options.width;
@@ -475,7 +475,7 @@ class SignaturePad {
     this._onMouseMove = (e) => this._draw(e);
     this._onMouseUp = () => this._stopDrawing();
     this._onMouseLeave = () => this._stopDrawing();
-    
+
     this.canvas.addEventListener('mousedown', this._onMouseDown);
     this.canvas.addEventListener('mousemove', this._onMouseMove);
     this.canvas.addEventListener('mouseup', this._onMouseUp);
@@ -491,7 +491,7 @@ class SignaturePad {
       this._draw(e.touches[0]);
     };
     this._onTouchEnd = () => this._stopDrawing();
-    
+
     this.canvas.addEventListener('touchstart', this._onTouchStart, { passive: false });
     this.canvas.addEventListener('touchmove', this._onTouchMove, { passive: false });
     this.canvas.addEventListener('touchend', this._onTouchEnd);
@@ -519,7 +519,7 @@ class SignaturePad {
     if (!this.isDrawing) return;
     const pos = this._getPosition(e);
     this.points.push(pos);
-    
+
     this.ctx.strokeStyle = this.options.penColor;
     this.ctx.lineWidth = this.options.penWidth;
     this.ctx.lineTo(pos.x, pos.y);
@@ -567,11 +567,11 @@ class SignaturePad {
       if (this._onTouchEnd) this.canvas.removeEventListener('touchend', this._onTouchEnd);
     }
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('signature-pad');
-    
+
     // 참조 해제
     this.element = null;
     this.canvas = null;
@@ -676,11 +676,11 @@ class FormWizard {
     // Navigation 업데이트
     const prevBtn = this.element.querySelector('[data-action="prev"]');
     const nextBtn = this.element.querySelector('[data-action="next"], [data-action="submit"]');
-    
+
     if (prevBtn) {
       prevBtn.disabled = this.currentStep === 0;
     }
-    
+
     if (nextBtn) {
       const isLast = this.currentStep === this.options.steps.length - 1;
       nextBtn.dataset.action = isLast ? 'submit' : 'next';
@@ -693,12 +693,12 @@ class FormWizard {
     this._onClick = (e) => {
       const btn = e.target.closest('[data-action]');
       if (!btn) return;
-      
+
       if (btn.dataset.action === 'prev') this.prev();
       if (btn.dataset.action === 'next') this.next();
       if (btn.dataset.action === 'submit') this._submit();
     };
-    
+
     this.element.addEventListener('click', this._onClick);
   }
 
@@ -717,7 +717,7 @@ class FormWizard {
 
   async next() {
     if (this.currentStep >= this.options.steps.length - 1) return;
-    
+
     const isValid = await this._validateCurrentStep();
     if (!isValid) return;
 
@@ -774,11 +774,11 @@ class FormWizard {
     // 이벤트 리스너 제거
     if (this._onClick) this.element.removeEventListener('click', this._onClick);
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('form-wizard');
-    
+
     // 참조 해제
     this.element = null;
   }

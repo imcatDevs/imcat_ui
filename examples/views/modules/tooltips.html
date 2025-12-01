@@ -327,77 +327,93 @@ Tooltips.initAll();</code></pre>
 (async function() {
   const Tooltips = await IMCAT.use('tooltips');
   
+  // 인스턴스 배열 (메모리 관리용)
+  const instances = [];
+  
+  // 헬퍼 함수: 인스턴스 생성 및 등록
+  function createTooltip(selector, options) {
+    const instance = new Tooltips.Tooltip(selector, options);
+    instances.push(instance);
+    return instance;
+  }
+  
+  function createPopover(selector, options) {
+    const instance = new Tooltips.Popover(selector, options);
+    instances.push(instance);
+    return instance;
+  }
+  
   // Tooltip 기본 - 위치
-  new Tooltips.Tooltip('#tooltip_top', {
+  createTooltip('#tooltip_top', {
     content: '위쪽에 표시됩니다',
     placement: 'top'
   });
   
-  new Tooltips.Tooltip('#tooltip_bottom', {
+  createTooltip('#tooltip_bottom', {
     content: '아래쪽에 표시됩니다',
     placement: 'bottom'
   });
   
-  new Tooltips.Tooltip('#tooltip_left', {
+  createTooltip('#tooltip_left', {
     content: '왼쪽에 표시됩니다',
     placement: 'left'
   });
   
-  new Tooltips.Tooltip('#tooltip_right', {
+  createTooltip('#tooltip_right', {
     content: '오른쪽에 표시됩니다',
     placement: 'right'
   });
   
   // Tooltip 트리거
-  new Tooltips.Tooltip('#tooltip_hover', {
+  createTooltip('#tooltip_hover', {
     content: '마우스를 올리면 표시됩니다',
     trigger: 'hover'
   });
   
-  new Tooltips.Tooltip('#tooltip_focus', {
+  createTooltip('#tooltip_focus', {
     content: '포커스 시 표시됩니다 (Tab으로 이동)',
     trigger: 'focus'
   });
   
-  new Tooltips.Tooltip('#tooltip_click', {
+  createTooltip('#tooltip_click', {
     content: '클릭하면 표시됩니다',
     trigger: 'click'
   });
   
   // HTML 툴팁
-  new Tooltips.Tooltip('#tooltip_html', {
+  createTooltip('#tooltip_html', {
     content: '<strong>굵은 텍스트</strong><br><em>기울임 텍스트</em>',
     html: true,
     placement: 'right'
   });
   
   // Popover 기본 - 위치
-  new Tooltips.Popover('#popover_top', {
+  createPopover('#popover_top', {
     title: '위쪽 팝오버',
     content: '팝오버는 툴팁보다 더 많은 정보를 표시할 수 있습니다.',
     placement: 'top'
   });
   
-  new Tooltips.Popover('#popover_bottom', {
+  createPopover('#popover_bottom', {
     title: '아래쪽 팝오버',
     content: '클릭하면 표시되고, 외부를 클릭하면 닫힙니다.',
     placement: 'bottom'
   });
   
-  new Tooltips.Popover('#popover_left', {
+  createPopover('#popover_left', {
     title: '왼쪽 팝오버',
     content: 'HTML 콘텐츠도 지원합니다.',
     placement: 'left'
   });
   
-  new Tooltips.Popover('#popover_right', {
+  createPopover('#popover_right', {
     title: '오른쪽 팝오버',
     content: '제목, 본문, 닫기 버튼이 포함됩니다.',
     placement: 'right'
   });
   
   // 확인 대화상자
-  var confirmPopover = new Tooltips.Popover('#popover_confirm', {
+  var confirmPopover = createPopover('#popover_confirm', {
     title: '삭제 확인',
     content: `
       <p style="margin: 0 0 12px;">정말 이 항목을 삭제하시겠습니까?</p>
@@ -412,7 +428,7 @@ Tooltips.initAll();</code></pre>
   window.confirmPopover = confirmPopover;
   
   // 사용자 정보
-  new Tooltips.Popover('#popover_user', {
+  createPopover('#popover_user', {
     title: '',
     content: `
       <div style="text-align: center; padding: 8px;">
@@ -431,7 +447,7 @@ Tooltips.initAll();</code></pre>
   });
   
   // 공유 버튼
-  new Tooltips.Popover('#popover_share', {
+  createPopover('#popover_share', {
     title: '공유하기',
     content: `
       <div style="display: flex; gap: 12px; justify-content: center;">
@@ -453,7 +469,7 @@ Tooltips.initAll();</code></pre>
   });
   
   // 알림 설정
-  new Tooltips.Popover('#popover_settings', {
+  createPopover('#popover_settings', {
     title: '알림 설정',
     content: `
       <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -479,26 +495,26 @@ Tooltips.initAll();</code></pre>
   // ===== 실전 예제 =====
   
   // 아이콘 버튼 툴팁
-  new Tooltips.Tooltip('#tooltip_icon_edit', { content: '편집', placement: 'top' });
-  new Tooltips.Tooltip('#tooltip_icon_delete', { content: '삭제', placement: 'top' });
-  new Tooltips.Tooltip('#tooltip_icon_share', { content: '공유', placement: 'top' });
-  new Tooltips.Tooltip('#tooltip_icon_favorite', { content: '좋아요', placement: 'top' });
-  new Tooltips.Tooltip('#tooltip_icon_download', { content: '다운로드', placement: 'top' });
+  createTooltip('#tooltip_icon_edit', { content: '편집', placement: 'top' });
+  createTooltip('#tooltip_icon_delete', { content: '삭제', placement: 'top' });
+  createTooltip('#tooltip_icon_share', { content: '공유', placement: 'top' });
+  createTooltip('#tooltip_icon_favorite', { content: '좋아요', placement: 'top' });
+  createTooltip('#tooltip_icon_download', { content: '다운로드', placement: 'top' });
   
   // 폼 필드 도움말
-  new Tooltips.Tooltip('#tooltip_help_email', {
+  createTooltip('#tooltip_help_email', {
     content: '유효한 이메일 주소를 입력하세요<br>예: user@example.com',
     html: true,
     placement: 'right'
   });
-  new Tooltips.Tooltip('#tooltip_help_password', {
+  createTooltip('#tooltip_help_password', {
     content: '비밀번호 규칙:<br>• 8자 이상<br>• 대문자 포함<br>• 숫자 포함<br>• 특수문자 포함',
     html: true,
     placement: 'right'
   });
   
   // 상품 미리보기
-  new Tooltips.Popover('#popover_product1', {
+  createPopover('#popover_product1', {
     title: 'MacBook Pro 14"',
     content: `
       <div style="width: 240px;">
@@ -515,7 +531,7 @@ Tooltips.initAll();</code></pre>
     placement: 'right'
   });
   
-  new Tooltips.Popover('#popover_product2', {
+  createPopover('#popover_product2', {
     title: 'iPhone 15 Pro',
     content: `
       <div style="width: 240px;">
@@ -533,7 +549,7 @@ Tooltips.initAll();</code></pre>
   });
   
   // 이모지 선택
-  new Tooltips.Popover('#popover_emoji', {
+  createPopover('#popover_emoji', {
     title: '이모지',
     content: `
       <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px;">
@@ -549,7 +565,7 @@ Tooltips.initAll();</code></pre>
   });
   
   // 색상 선택
-  var colorPopover = new Tooltips.Popover('#popover_color', {
+  var colorPopover = createPopover('#popover_color', {
     title: '색상 선택',
     content: `
       <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
@@ -564,7 +580,7 @@ Tooltips.initAll();</code></pre>
   window.colorPopover = colorPopover;
   
   // 단축키 도움말
-  new Tooltips.Popover('#popover_shortcuts', {
+  createPopover('#popover_shortcuts', {
     title: '키보드 단축키',
     content: `
       <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8125rem;">
@@ -592,5 +608,8 @@ Tooltips.initAll();</code></pre>
     `,
     placement: 'bottom'
   });
+  
+  // 모든 인스턴스를 Router에 등록 (페이지 전환 시 자동 정리)
+  instances.forEach(instance => IMCAT.view.registerInstance(instance));
 })();
 </script>

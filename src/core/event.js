@@ -8,7 +8,7 @@
  * @class
  * @description 전역 이벤트 버스를 통한 publish-subscribe 패턴을 제공합니다.
  * 컴포넌트 간 느슨한 결합으로 통신할 수 있습니다.
- * 
+ *
  * @example
  * const bus = new EventBus();
  * bus.on('user:login', (data) => console.log(data));
@@ -28,7 +28,7 @@ export class EventBus {
    * @param {string} event - 이벤트 이름
    * @param {Function} handler - 이벤트 핸들러
    * @returns {Function} 구독 취소 함수
-   * 
+   *
    * @example
    * const unsubscribe = eventBus.on('user:login', (user) => {
    *   console.log('User logged in:', user);
@@ -51,7 +51,7 @@ export class EventBus {
    * @param {string} event - 이벤트 이름
    * @param {Function} handler - 이벤트 핸들러
    * @returns {Function} 구독 취소 함수
-   * 
+   *
    * @example
    * eventBus.once('data:loaded', () => {
    *   console.log('Data loaded - this runs only once');
@@ -69,7 +69,7 @@ export class EventBus {
    * 이벤트 리스너 제거
    * @param {string} event - 이벤트 이름
    * @param {Function} [handler] - 이벤트 핸들러 (없으면 모든 핸들러 제거)
-   * 
+   *
    * @example
    * eventBus.off('user:login', handler); // 특정 핸들러 제거
    * eventBus.off('user:login'); // 모든 핸들러 제거
@@ -97,7 +97,7 @@ export class EventBus {
    * 이벤트 발생
    * @param {string} event - 이벤트 이름
    * @param {...*} args - 핸들러에 전달할 인자들
-   * 
+   *
    * @example
    * eventBus.emit('user:login', { id: 1, name: 'John' });
    * eventBus.emit('data:updated', data, timestamp);
@@ -118,7 +118,7 @@ export class EventBus {
 
   /**
    * 모든 리스너 제거
-   * 
+   *
    * @example
    * eventBus.clear(); // 모든 이벤트 리스너 제거
    */

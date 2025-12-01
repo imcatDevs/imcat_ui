@@ -42,10 +42,10 @@ class Gantt {
   }
 
   constructor(container, options = {}) {
-    this.container = typeof container === 'string' 
-      ? document.querySelector(container) 
+    this.container = typeof container === 'string'
+      ? document.querySelector(container)
       : container;
-    
+
     if (!this.container) {
       console.error('Gantt: Container not found');
       return;
@@ -59,7 +59,7 @@ class Gantt {
     this.tasks = this._normalizeTasks(this.options.tasks);
     this.dateRange = this._calculateDateRange();
     this.cellWidth = this._getCellWidth();
-    
+
     this._handlers = {};
     this._scrollLeft = 0;
     this._dragging = null;
@@ -93,28 +93,28 @@ class Gantt {
   _calculateDateRange() {
     let minDate = this.options.startDate ? new Date(this.options.startDate) : null;
     let maxDate = this.options.endDate ? new Date(this.options.endDate) : null;
-    
+
     const allTasks = this._flattenTasks(this.tasks);
-    
+
     allTasks.forEach(task => {
       if (!minDate || task.start < minDate) minDate = new Date(task.start);
       if (!maxDate || task.end > maxDate) maxDate = new Date(task.end);
     });
-    
+
     // 패딩 추가
     if (minDate) {
       minDate.setDate(minDate.getDate() - 3);
     } else {
       minDate = new Date();
     }
-    
+
     if (maxDate) {
       maxDate.setDate(maxDate.getDate() + 7);
     } else {
       maxDate = new Date();
       maxDate.setMonth(maxDate.getMonth() + 1);
     }
-    
+
     return { start: minDate, end: maxDate };
   }
 
@@ -145,10 +145,10 @@ class Gantt {
 
   _render() {
     this.container.classList.add('gantt');
-    
+
     const totalDays = this._getDaysBetween(this.dateRange.start, this.dateRange.end);
     const chartWidth = totalDays * this.cellWidth;
-    
+
     this.container.innerHTML = `
       <div class="gantt__header">
         <div class="gantt__controls">
@@ -186,7 +186,7 @@ class Gantt {
         </div>
       </div>
     `;
-    
+
     // DOM 참조 저장
     this._sidebar = this.container.querySelector('.gantt__sidebar-content');
     this._chartWrapper = this.container.querySelector('.gantt__chart-wrapper');
@@ -199,11 +199,11 @@ class Gantt {
     const end = this.dateRange.end;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     while (current <= end) {
       const isWeekend = current.getDay() === 0 || current.getDay() === 6;
       const isToday = current.toDateString() === today.toDateString();
-      
+
       let label = '';
       switch (this.options.viewMode) {
         case 'day':
@@ -220,7 +220,7 @@ class Gantt {
           }
           break;
       }
-      
+
       html += `
         <div class="gantt__timeline-cell 
           ${isWeekend && this.options.weekends ? 'gantt__timeline-cell--weekend' : ''}
@@ -229,21 +229,21 @@ class Gantt {
           ${label ? `<span class="gantt__timeline-label">${label}</span>` : ''}
         </div>
       `;
-      
+
       current.setDate(current.getDate() + 1);
     }
-    
+
     html += '</div>';
     return html;
   }
 
   _renderTaskList(tasks, level = 0) {
     let html = '';
-    
+
     tasks.forEach(task => {
       const hasChildren = task.children && task.children.length > 0;
       const indent = level * 20;
-      
+
       html += `
         <div class="gantt__task-row" data-task-id="${task.id}" style="height: ${this.options.rowHeight}px;">
           <div class="gantt__task-name" style="padding-left: ${16 + indent}px;">
@@ -257,12 +257,12 @@ class Gantt {
           </div>
         </div>
       `;
-      
+
       if (hasChildren && !task.collapsed) {
         html += this._renderTaskList(task.children, level + 1);
       }
     });
-    
+
     return html;
   }
 
@@ -270,13 +270,13 @@ class Gantt {
     let html = '';
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     tasks.forEach(task => {
       const startOffset = this._getDaysBetween(this.dateRange.start, task.start);
       const duration = this._getDaysBetween(task.start, task.end) + 1;
       const left = startOffset * this.cellWidth;
       const width = duration * this.cellWidth - 4;
-      
+
       // 진행 상태에 따른 색상
       let statusColor = task.color;
       if (task.progress === 100) {
@@ -284,7 +284,7 @@ class Gantt {
       } else if (task.end < today && task.progress < 100) {
         statusColor = this.options.colors.danger;
       }
-      
+
       html += `
         <div class="gantt__bar-row" data-task-id="${task.id}" style="height: ${this.options.rowHeight}px;">
           ${this._renderGridCells()}
@@ -308,12 +308,12 @@ class Gantt {
           </div>
         </div>
       `;
-      
+
       if (task.children && task.children.length && !task.collapsed) {
         html += this._renderTasks(task.children, level + 1);
       }
     });
-    
+
     return html;
   }
 
@@ -321,7 +321,7 @@ class Gantt {
     let html = '';
     const current = new Date(this.dateRange.start);
     const end = this.dateRange.end;
-    
+
     while (current <= end) {
       const isWeekend = current.getDay() === 0 || current.getDay() === 6;
       html += `
@@ -330,21 +330,21 @@ class Gantt {
       `;
       current.setDate(current.getDate() + 1);
     }
-    
+
     return html;
   }
 
   _renderTodayLine() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     if (today < this.dateRange.start || today > this.dateRange.end) {
       return '';
     }
-    
+
     const offset = this._getDaysBetween(this.dateRange.start, today);
     const left = offset * this.cellWidth + this.cellWidth / 2;
-    
+
     return `
       <div class="gantt__today-line" style="left: ${left}px;">
         <div class="gantt__today-marker">오늘</div>
@@ -355,7 +355,7 @@ class Gantt {
   _renderDependencies() {
     let html = '<svg class="gantt__dependencies">';
     const allTasks = this._flattenTasks(this.tasks);
-    
+
     allTasks.forEach(task => {
       if (task.dependencies && task.dependencies.length) {
         task.dependencies.forEach(depId => {
@@ -363,15 +363,15 @@ class Gantt {
           if (depTask) {
             const fromX = this._getDaysBetween(this.dateRange.start, depTask.end) * this.cellWidth + this.cellWidth;
             const toX = this._getDaysBetween(this.dateRange.start, task.start) * this.cellWidth;
-            
+
             const fromIndex = allTasks.indexOf(depTask);
             const toIndex = allTasks.indexOf(task);
-            
+
             const fromY = fromIndex * this.options.rowHeight + this.options.rowHeight / 2;
             const toY = toIndex * this.options.rowHeight + this.options.rowHeight / 2;
-            
+
             const midX = fromX + (toX - fromX) / 2;
-            
+
             html += `
               <path class="gantt__dependency-line" 
                     d="M ${fromX} ${fromY} 
@@ -385,7 +385,7 @@ class Gantt {
         });
       }
     });
-    
+
     html += `
       <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="7" 
@@ -394,7 +394,7 @@ class Gantt {
         </marker>
       </defs>
     </svg>`;
-    
+
     return html;
   }
 
@@ -406,12 +406,12 @@ class Gantt {
         this.setViewMode(btn.dataset.view);
       }
     };
-    
+
     // 오늘로 이동
     this._handlers.onTodayClick = () => {
       this._scrollToToday();
     };
-    
+
     // 작업 클릭
     this._handlers.onBarClick = (e) => {
       const bar = e.target.closest('.gantt__bar');
@@ -423,7 +423,7 @@ class Gantt {
         }
       }
     };
-    
+
     // 접기/펼치기
     this._handlers.onCollapseClick = (e) => {
       const btn = e.target.closest('.gantt__collapse-btn');
@@ -432,37 +432,37 @@ class Gantt {
         this._toggleCollapse(taskId);
       }
     };
-    
+
     // 스크롤 동기화
     this._handlers.onScroll = () => {
       if (this._sidebar && this._chartWrapper) {
         this._sidebar.scrollTop = this._chartWrapper.scrollTop;
       }
     };
-    
+
     // 이벤트 바인딩
     const controls = this.container.querySelector('.gantt__controls');
     if (controls) {
       controls.addEventListener('click', this._handlers.onViewChange);
     }
-    
+
     const todayBtn = this.container.querySelector('.gantt__today-btn');
     if (todayBtn) {
       todayBtn.addEventListener('click', this._handlers.onTodayClick);
     }
-    
+
     if (this._chart) {
       this._chart.addEventListener('click', this._handlers.onBarClick);
     }
-    
+
     if (this._sidebar) {
       this._sidebar.addEventListener('click', this._handlers.onCollapseClick);
     }
-    
+
     if (this._chartWrapper) {
       this._chartWrapper.addEventListener('scroll', this._handlers.onScroll);
     }
-    
+
     // 드래그 (editable 옵션)
     if (this.options.editable) {
       this._setupDrag();
@@ -473,7 +473,7 @@ class Gantt {
     this._handlers.onMouseDown = (e) => {
       const bar = e.target.closest('.gantt__bar');
       const handle = e.target.closest('.gantt__bar-handle');
-      
+
       if (bar) {
         e.preventDefault();
         this._dragging = {
@@ -487,13 +487,13 @@ class Gantt {
         bar.classList.add('gantt__bar--dragging');
       }
     };
-    
+
     this._handlers.onMouseMove = (e) => {
       if (!this._dragging) return;
-      
+
       const deltaX = e.clientX - this._dragging.startX;
       const bar = this._dragging.bar;
-      
+
       if (this._dragging.handle === 'move') {
         bar.style.left = `${this._dragging.origLeft + deltaX}px`;
       } else if (this._dragging.handle === 'left') {
@@ -503,38 +503,38 @@ class Gantt {
         bar.style.width = `${this._dragging.origWidth + deltaX}px`;
       }
     };
-    
+
     this._handlers.onMouseUp = () => {
       if (!this._dragging) return;
-      
+
       const bar = this._dragging.bar;
       bar.classList.remove('gantt__bar--dragging');
-      
+
       // 날짜 계산 및 업데이트
       const newLeft = parseInt(bar.style.left);
       const newWidth = parseInt(bar.style.width);
       const newStartDays = Math.round(newLeft / this.cellWidth);
       const newDuration = Math.round(newWidth / this.cellWidth);
-      
+
       const task = this._findTask(this._dragging.taskId);
       if (task) {
         const newStart = new Date(this.dateRange.start);
         newStart.setDate(newStart.getDate() + newStartDays);
-        
+
         const newEnd = new Date(newStart);
         newEnd.setDate(newEnd.getDate() + newDuration - 1);
-        
+
         task.start = newStart;
         task.end = newEnd;
-        
+
         if (this.options.onTaskChange) {
           this.options.onTaskChange(task);
         }
       }
-      
+
       this._dragging = null;
     };
-    
+
     this._chart.addEventListener('mousedown', this._handlers.onMouseDown);
     document.addEventListener('mousemove', this._handlers.onMouseMove);
     document.addEventListener('mouseup', this._handlers.onMouseUp);
@@ -563,10 +563,10 @@ class Gantt {
   _scrollToToday() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     const offset = this._getDaysBetween(this.dateRange.start, today);
     const scrollPos = offset * this.cellWidth - this._chartWrapper?.clientWidth / 2;
-    
+
     if (this._chartWrapper) {
       this._chartWrapper.scrollLeft = Math.max(0, scrollPos);
     }
@@ -579,7 +579,7 @@ class Gantt {
       this.cellWidth = this._getCellWidth();
       this._render();
       this._bindEvents();
-      
+
       if (this.options.onViewChange) {
         this.options.onViewChange(mode);
       }
@@ -625,7 +625,7 @@ class Gantt {
       }
       return false;
     };
-    
+
     removeFromArray(this.tasks);
     this._render();
     this._bindEvents();
@@ -650,24 +650,24 @@ class Gantt {
     if (controls && this._handlers.onViewChange) {
       controls.removeEventListener('click', this._handlers.onViewChange);
     }
-    
+
     const todayBtn = this.container.querySelector('.gantt__today-btn');
     if (todayBtn && this._handlers.onTodayClick) {
       todayBtn.removeEventListener('click', this._handlers.onTodayClick);
     }
-    
+
     if (this._chart && this._handlers.onBarClick) {
       this._chart.removeEventListener('click', this._handlers.onBarClick);
     }
-    
+
     if (this._sidebar && this._handlers.onCollapseClick) {
       this._sidebar.removeEventListener('click', this._handlers.onCollapseClick);
     }
-    
+
     if (this._chartWrapper && this._handlers.onScroll) {
       this._chartWrapper.removeEventListener('scroll', this._handlers.onScroll);
     }
-    
+
     if (this.options.editable) {
       if (this._chart && this._handlers.onMouseDown) {
         this._chart.removeEventListener('mousedown', this._handlers.onMouseDown);
@@ -679,14 +679,14 @@ class Gantt {
         document.removeEventListener('mouseup', this._handlers.onMouseUp);
       }
     }
-    
+
     Gantt.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
       this.container.className = '';
     }
-    
+
     this.container = null;
     this.tasks = null;
     this._handlers = null;

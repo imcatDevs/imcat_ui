@@ -33,7 +33,7 @@ class Stepper {
       size: 'md',             // 'sm' | 'md' | 'lg'
       variant: 'default',     // 'default' | 'dots' | 'pills'
       onChange: null,         // (step, prevStep) => {}
-      onComplete: null,       // () => {}
+      onComplete: null       // () => {}
     };
   }
 
@@ -42,10 +42,10 @@ class Stepper {
    * @param {Object} options - 옵션
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('Stepper: Container not found');
       return;
@@ -55,7 +55,7 @@ class Stepper {
     this._completedSteps = new Set();
     this._eventHandlers = [];
     this._timers = []; // setTimeout 추적
-    
+
     this.init();
     Stepper.instances.set(this.container, this);
   }
@@ -75,25 +75,25 @@ class Stepper {
    */
   _render() {
     const { steps, orientation, size, variant, connector } = this.options;
-    
+
     this.container.className = `stepper stepper--${orientation} stepper--${size} stepper--${variant}`;
     if (connector !== 'none') {
       this.container.classList.add(`stepper--connector-${connector}`);
     }
-    
+
     this.container.setAttribute('role', 'navigation');
     this.container.setAttribute('aria-label', 'Progress steps');
-    
+
     // 단계 목록
     const stepsHtml = steps.map((step, index) => this._renderStep(step, index)).join('');
-    
+
     this.container.innerHTML = `
       <div class="stepper__steps" role="tablist">
         ${stepsHtml}
       </div>
-      ${this._hasContent() ? `<div class="stepper__content"></div>` : ''}
+      ${this._hasContent() ? '<div class="stepper__content"></div>' : ''}
     `;
-    
+
     this.stepsContainer = this.container.querySelector('.stepper__steps');
     this.contentContainer = this.container.querySelector('.stepper__content');
   }
@@ -103,13 +103,13 @@ class Stepper {
    * @private
    */
   _renderStep(step, index) {
-    const { showStepNumber, clickable, connector, orientation, steps } = this.options;
+    const { showStepNumber, clickable, connector, steps } = this.options;
     const isLast = index === steps.length - 1;
-    
-    const iconContent = step.icon 
+
+    const iconContent = step.icon
       ? `<i class="material-icons-outlined">${step.icon}</i>`
       : (showStepNumber ? index + 1 : '');
-    
+
     return `
       <div class="stepper__step" 
            data-step="${index}" 
@@ -123,7 +123,7 @@ class Stepper {
             <i class="material-icons-outlined">check</i>
           </span>
         </div>
-        ${!isLast && connector !== 'none' ? `<div class="stepper__connector"></div>` : ''}
+        ${!isLast && connector !== 'none' ? '<div class="stepper__connector"></div>' : ''}
         <div class="stepper__label">
           <span class="stepper__title">${step.title || `Step ${index + 1}`}</span>
           ${step.subtitle ? `<span class="stepper__subtitle">${step.subtitle}</span>` : ''}
@@ -150,7 +150,7 @@ class Stepper {
     const handleClick = (e) => {
       const stepEl = e.target.closest('.stepper__step');
       if (!stepEl) return;
-      
+
       const stepIndex = parseInt(stepEl.dataset.step, 10);
       this.goTo(stepIndex);
     };
@@ -198,7 +198,7 @@ class Stepper {
 
     this.stepsContainer.addEventListener('click', handleClick);
     this.stepsContainer.addEventListener('keydown', handleKeydown);
-    
+
     this._eventHandlers.push(
       { element: this.stepsContainer, type: 'click', handler: handleClick },
       { element: this.stepsContainer, type: 'keydown', handler: handleKeydown }
@@ -211,10 +211,10 @@ class Stepper {
    * @returns {boolean} 성공 여부
    */
   goTo(stepIndex) {
-    const { steps, linear, onChange, onComplete, animated } = this.options;
-    
+    const { steps, linear, onChange, onComplete } = this.options;
+
     if (stepIndex < 0 || stepIndex >= steps.length) return false;
-    
+
     // 순차 모드에서는 이전 단계가 완료되어야 함
     if (linear && stepIndex > 0) {
       for (let i = 0; i < stepIndex; i++) {
@@ -226,19 +226,19 @@ class Stepper {
 
     const prevStep = this.options.currentStep;
     this.options.currentStep = stepIndex;
-    
+
     this._updateSteps();
     this._updateContent();
-    
+
     if (onChange && prevStep !== stepIndex) {
       onChange(stepIndex, prevStep);
     }
-    
+
     // 마지막 단계 완료 시
     if (stepIndex === steps.length - 1 && this._completedSteps.has(stepIndex)) {
       if (onComplete) onComplete();
     }
-    
+
     return true;
   }
 
@@ -266,7 +266,7 @@ class Stepper {
   complete(stepIndex) {
     this._completedSteps.add(stepIndex);
     this._updateSteps();
-    
+
     // 모든 단계 완료 확인
     if (this._completedSteps.size === this.options.steps.length) {
       if (this.options.onComplete) {
@@ -299,11 +299,11 @@ class Stepper {
   _updateSteps() {
     const stepEls = this.stepsContainer.querySelectorAll('.stepper__step');
     const currentStep = this.options.currentStep;
-    
+
     stepEls.forEach((stepEl, index) => {
       stepEl.classList.remove('is-active', 'is-completed', 'is-disabled');
       stepEl.setAttribute('aria-selected', 'false');
-      
+
       if (index === currentStep) {
         stepEl.classList.add('is-active');
         stepEl.setAttribute('aria-selected', 'true');
@@ -322,15 +322,15 @@ class Stepper {
    */
   _updateContent() {
     if (!this.contentContainer) return;
-    
+
     const step = this.options.steps[this.options.currentStep];
     if (!step || !step.content) {
       this.contentContainer.innerHTML = '';
       return;
     }
 
-    const content = typeof step.content === 'function' 
-      ? step.content(this.options.currentStep) 
+    const content = typeof step.content === 'function'
+      ? step.content(this.options.currentStep)
       : step.content;
 
     if (this.options.animated) {
@@ -381,15 +381,15 @@ class Stepper {
    */
   removeStep(index) {
     if (index < 0 || index >= this.options.steps.length) return;
-    
+
     this.options.steps.splice(index, 1);
     this._completedSteps.delete(index);
-    
+
     // 현재 단계 조정
     if (this.options.currentStep >= this.options.steps.length) {
       this.options.currentStep = Math.max(0, this.options.steps.length - 1);
     }
-    
+
     this._render();
     this._bindEvents();
     this.goTo(this.options.currentStep);
@@ -426,22 +426,22 @@ class Stepper {
     // 타이머 정리
     this._timers.forEach(id => clearTimeout(id));
     this._timers = [];
-    
+
     // 이벤트 리스너 제거
     this._eventHandlers.forEach(({ element, type, handler }) => {
       element.removeEventListener(type, handler);
     });
     this._eventHandlers = [];
-    
+
     // 인스턴스 제거
     Stepper.instances.delete(this.container);
-    
+
     // DOM 정리
     if (this.container) {
       this.container.innerHTML = '';
       this.container.className = '';
     }
-    
+
     // 참조 해제
     this.container = null;
     this.stepsContainer = null;
@@ -475,7 +475,7 @@ class VerticalStepper {
       editable: true,         // 이전 단계 수정 가능
       animated: true,
       onChange: null,
-      onComplete: null,
+      onComplete: null
     };
   }
 
@@ -484,10 +484,10 @@ class VerticalStepper {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('VerticalStepper: Container not found');
       return;
@@ -497,7 +497,7 @@ class VerticalStepper {
     this._completedSteps = new Set();
     this._expandedSteps = new Set([this.options.currentStep]);
     this._eventHandlers = [];
-    
+
     this.init();
     VerticalStepper.instances.set(this.container, this);
   }
@@ -509,10 +509,10 @@ class VerticalStepper {
 
   _render() {
     const { steps } = this.options;
-    
+
     this.container.className = 'vertical-stepper';
     this.container.setAttribute('role', 'navigation');
-    
+
     this.container.innerHTML = steps.map((step, index) => `
       <div class="vertical-stepper__item ${index === this.options.currentStep ? 'is-active' : ''} ${this._completedSteps.has(index) ? 'is-completed' : ''}" 
            data-step="${index}">
@@ -537,11 +537,11 @@ class VerticalStepper {
             ${step.content || ''}
           </div>
           <div class="vertical-stepper__actions">
-            ${index > 0 ? `<button type="button" class="btn btn--outline-secondary" data-action="prev">이전</button>` : ''}
-            ${index < steps.length - 1 
-              ? `<button type="button" class="btn btn--primary" data-action="next">다음</button>`
-              : `<button type="button" class="btn btn--primary" data-action="complete">완료</button>`
-            }
+            ${index > 0 ? '<button type="button" class="btn btn--outline-secondary" data-action="prev">이전</button>' : ''}
+            ${index < steps.length - 1
+    ? '<button type="button" class="btn btn--primary" data-action="next">다음</button>'
+    : '<button type="button" class="btn btn--primary" data-action="complete">완료</button>'
+}
           </div>
         </div>
       </div>
@@ -571,7 +571,7 @@ class VerticalStepper {
       if (header && this.options.expandable) {
         const item = header.closest('.vertical-stepper__item');
         const stepIndex = parseInt(item.dataset.step, 10);
-        
+
         if (this._completedSteps.has(stepIndex) || stepIndex === this.options.currentStep) {
           this._toggleExpand(stepIndex);
         }
@@ -590,7 +590,7 @@ class VerticalStepper {
 
     this.container.addEventListener('click', handleClick);
     this.container.addEventListener('keydown', handleKeydown);
-    
+
     this._eventHandlers.push(
       { element: this.container, type: 'click', handler: handleClick },
       { element: this.container, type: 'keydown', handler: handleKeydown }
@@ -623,19 +623,19 @@ class VerticalStepper {
 
   goTo(stepIndex) {
     if (stepIndex < 0 || stepIndex >= this.options.steps.length) return false;
-    
+
     const prevStep = this.options.currentStep;
     this.options.currentStep = stepIndex;
-    
+
     // 현재 단계는 항상 펼침
     this._expandedSteps.add(stepIndex);
-    
+
     this._updateUI();
-    
+
     if (this.options.onChange && prevStep !== stepIndex) {
       this.options.onChange(stepIndex, prevStep);
     }
-    
+
     return true;
   }
 
@@ -663,26 +663,26 @@ class VerticalStepper {
 
   _updateUI() {
     const items = this.container.querySelectorAll('.vertical-stepper__item');
-    
+
     items.forEach((item, index) => {
       item.classList.remove('is-active', 'is-completed');
-      
+
       if (index === this.options.currentStep) {
         item.classList.add('is-active');
       }
       if (this._completedSteps.has(index)) {
         item.classList.add('is-completed');
       }
-      
+
       const content = item.querySelector('.vertical-stepper__content');
       if (content) {
         content.hidden = !this._expandedSteps.has(index);
       }
-      
+
       // 편집 버튼 표시
       const header = item.querySelector('.vertical-stepper__header');
       let editBtn = header.querySelector('.vertical-stepper__edit');
-      
+
       if (this._completedSteps.has(index) && this.options.editable) {
         if (!editBtn) {
           editBtn = document.createElement('button');
@@ -714,14 +714,14 @@ class VerticalStepper {
       element.removeEventListener(type, handler);
     });
     this._eventHandlers = [];
-    
+
     VerticalStepper.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
       this.container.className = '';
     }
-    
+
     this.container = null;
     this._completedSteps = null;
     this._expandedSteps = null;

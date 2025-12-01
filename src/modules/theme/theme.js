@@ -7,7 +7,7 @@
  * 테마 관리 모듈
  * @class
  * @description 라이트/다크 테마 전환, 커스텀 테마 적용, 시스템 설정 감지 등을 관리합니다.
- * 
+ *
  * @example
  * const theme = new Theme({
  *   defaultTheme: 'light',
@@ -47,13 +47,13 @@ export class Theme {
    */
   constructor(options = {}) {
     this.options = { ...Theme.defaults(), ...options };
-    
+
     this.currentTheme = null;
     this.systemTheme = null;
     this.mediaQuery = null;
     this.boundHandlers = {};
     this._transitionTimer = null;
-    
+
     if (this.options.autoInit) {
       this.init();
     }
@@ -66,13 +66,13 @@ export class Theme {
   init() {
     // 시스템 다크 모드 감지
     this._setupMediaQuery();
-    
+
     // 저장된 테마 로드 또는 기본 테마 적용
     const savedTheme = this._loadTheme();
     const theme = savedTheme || this.options.defaultTheme;
-    
+
     this.setTheme(theme, false); // 초기 로드는 애니메이션 없이
-    
+
     return this;
   }
 
@@ -81,7 +81,7 @@ export class Theme {
    * @param {string} theme - 테마 이름 ('light', 'dark', 'system', 또는 커스텀)
    * @param {boolean} [animate=true] - 전환 애니메이션 적용 여부
    * @returns {Theme} this
-   * 
+   *
    * @example
    * theme.setTheme('dark');
    * theme.setTheme('light', false); // 애니메이션 없이
@@ -91,39 +91,39 @@ export class Theme {
     if (animate && this.options.transition) {
       this._enableTransition();
     }
-    
+
     // 이전 테마 기록
     const oldTheme = this.currentTheme;
     this.currentTheme = theme;
-    
+
     // 실제 적용할 테마 결정
     const actualTheme = this._resolveTheme(theme);
-    
+
     // HTML에 테마 적용
     this._applyTheme(actualTheme);
-    
+
     // 저장
     this._saveTheme(theme);
-    
+
     // 콜백 실행
     if (this.options.onChange && typeof this.options.onChange === 'function') {
       this.options.onChange(theme, actualTheme, oldTheme);
     }
-    
+
     // 커스텀 이벤트 발생
     this._dispatchEvent('themechange', {
       theme,
       actualTheme,
       oldTheme
     });
-    
+
     return this;
   }
 
   /**
    * 현재 테마 가져오기
    * @returns {string} 현재 테마
-   * 
+   *
    * @example
    * const current = theme.getTheme(); // 'dark'
    */
@@ -134,7 +134,7 @@ export class Theme {
   /**
    * 실제 적용된 테마 가져오기
    * @returns {string} 실제 테마 ('light' 또는 'dark')
-   * 
+   *
    * @example
    * theme.setTheme('system');
    * const actual = theme.getActualTheme(); // 'dark' (시스템이 다크 모드인 경우)
@@ -146,7 +146,7 @@ export class Theme {
   /**
    * 테마 토글
    * @returns {Theme} this
-   * 
+   *
    * @example
    * theme.toggleTheme(); // light ↔ dark
    */
@@ -159,7 +159,7 @@ export class Theme {
   /**
    * 시스템 테마 감지
    * @returns {string} 시스템 테마 ('light' 또는 'dark')
-   * 
+   *
    * @example
    * const system = theme.getSystemTheme(); // 'dark'
    */
@@ -175,7 +175,7 @@ export class Theme {
    * @param {string} name - 테마 이름
    * @param {Object} colors - 색상 맵
    * @returns {Theme} this
-   * 
+   *
    * @example
    * theme.registerCustomTheme('ocean', {
    *   primary: '#0077be',
@@ -193,36 +193,36 @@ export class Theme {
    * 커스텀 테마 적용
    * @param {string} name - 테마 이름
    * @returns {Theme} this
-   * 
+   *
    * @example
    * theme.applyCustomTheme('ocean');
    */
   applyCustomTheme(name) {
     const colors = this.options.customThemes[name];
-    
+
     if (!colors) {
       console.warn(`Theme: Custom theme "${name}" not found`);
       return this;
     }
-    
+
     const root = document.documentElement;
-    
+
     // CSS 변수 적용
     Object.keys(colors).forEach(key => {
       const cssVar = `--${key}-color`;
       root.style.setProperty(cssVar, colors[key]);
     });
-    
+
     // data-theme 속성 설정
     root.setAttribute('data-theme', name);
-    
+
     return this;
   }
 
   /**
    * 테마 리셋 (기본 테마로)
    * @returns {Theme} this
-   * 
+   *
    * @example
    * theme.reset();
    */
@@ -233,7 +233,7 @@ export class Theme {
   /**
    * 정리 (메모리 누수 방지)
    * @returns {void}
-   * 
+   *
    * @example
    * theme.destroy();
    */
@@ -243,12 +243,12 @@ export class Theme {
       clearTimeout(this._transitionTimer);
       this._transitionTimer = null;
     }
-    
+
     // 미디어 쿼리 리스너 제거
     if (this.mediaQuery && this.boundHandlers.mediaQueryChange) {
       this.mediaQuery.removeEventListener('change', this.boundHandlers.mediaQueryChange);
     }
-    
+
     // 참조 제거
     this.mediaQuery = null;
     this.boundHandlers = {};
@@ -266,25 +266,25 @@ export class Theme {
    */
   _setupMediaQuery() {
     if (!window.matchMedia) return;
-    
+
     this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     this.systemTheme = this.mediaQuery.matches ? 'dark' : 'light';
-    
+
     // 시스템 테마 변경 감지
     this.boundHandlers.mediaQueryChange = (e) => {
       this.systemTheme = e.matches ? 'dark' : 'light';
-      
+
       // 현재 'system' 모드인 경우에만 자동 전환
       if (this.currentTheme === 'system') {
         this._applyTheme(this.systemTheme);
-        
+
         // 이벤트 발생
         this._dispatchEvent('systemthemechange', {
           theme: this.systemTheme
         });
       }
     };
-    
+
     this.mediaQuery.addEventListener('change', this.boundHandlers.mediaQueryChange);
   }
 
@@ -298,12 +298,12 @@ export class Theme {
     if (theme === 'system') {
       return this.getSystemTheme();
     }
-    
+
     // 커스텀 테마인 경우 그대로 반환
     if (this.options.customThemes[theme]) {
       return theme;
     }
-    
+
     // light 또는 dark
     return theme;
   }
@@ -315,13 +315,13 @@ export class Theme {
    */
   _applyTheme(theme) {
     const root = document.documentElement;
-    
+
     // 커스텀 테마인 경우
     if (this.options.customThemes[theme]) {
       this.applyCustomTheme(theme);
       return;
     }
-    
+
     // 기본 테마 (light/dark)
     if (theme === 'light' || theme === 'dark') {
       root.setAttribute('data-theme', theme);
@@ -337,7 +337,7 @@ export class Theme {
   _enableTransition() {
     const root = document.documentElement;
     root.classList.add('theme-transition');
-    
+
     this._transitionTimer = setTimeout(() => {
       root.classList.remove('theme-transition');
     }, this.options.transitionDuration);
@@ -382,7 +382,7 @@ export class Theme {
       bubbles: true,
       cancelable: true
     });
-    
+
     document.dispatchEvent(event);
   }
 }

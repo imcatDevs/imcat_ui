@@ -8,7 +8,7 @@
  * @class
  * @description 로딩 스피너를 표시하고 숨기는 기능을 제공합니다.
  * 다양한 스타일(spinner, progress)을 지원합니다.
- * 
+ *
  * @example
  * const loading = new LoadingIndicator();
  * loading.show('로딩 중...');
@@ -34,7 +34,7 @@ export class LoadingIndicator {
   /**
    * 로딩 표시
    * @param {string} [message=''] - 로딩 메시지
-   * 
+   *
    * @example
    * loading.show('데이터 로딩 중...');
    */
@@ -58,7 +58,7 @@ export class LoadingIndicator {
 
   /**
    * 로딩 숨김
-   * 
+   *
    * @example
    * loading.hide();
    */
@@ -81,7 +81,7 @@ export class LoadingIndicator {
   /**
    * 진행률 설정 (프로그레스 바)
    * @param {number} percent - 진행률 (0-100)
-   * 
+   *
    * @example
    * loading.progress(50); // 50%
    */
@@ -101,7 +101,7 @@ export class LoadingIndicator {
    * @param {string} [options.color] - 색상
    * @param {string} [options.position] - 위치 ('center', 'top')
    * @param {number} [options.delay] - 지연 시간 (ms)
-   * 
+   *
    * @example
    * loading.setConfig({
    *   style: 'bar',
@@ -330,7 +330,7 @@ export class LoadingIndicator {
   /**
    * 로딩 인디케이터 정리 (메모리 누수 방지)
    * 모든 타이머와 DOM 요소를 정리합니다.
-   * 
+   *
    * @example
    * // 애플리케이션 종료 시
    * LoadingIndicator.destroy();
@@ -345,13 +345,13 @@ export class LoadingIndicator {
       clearTimeout(this.hideTimer);
       this.hideTimer = null;
     }
-    
+
     // DOM 요소 제거
     if (this.element) {
       this.element.remove();
       this.element = null;
     }
-    
+
     // 상태 초기화
     this.isShowing = false;
   }

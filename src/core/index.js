@@ -24,7 +24,7 @@ import { AnimationUtil } from './animation.js';
  * @class
  * @description IMCAT UI 프레임워크의 핵심 클래스입니다.
  * 모든 코어 모듈을 통합하고 전역 IMCAT 객체를 생성합니다.
- * 
+ *
  * @example
  * const element = IMCAT('#app');
  * element.addClass('active').text('Hello');
@@ -40,17 +40,17 @@ class IMCATCore {
     this.loader = new ModuleLoader();
     this.router = new ViewRouter();
     this.loadingIndicator = LoadingIndicator;
-    
+
     // 이벤트 리스너 추적 (메모리 관리용)
     this._clickHandler = null;
     this._domReadyHandler = null;
-    
+
     // Router에 Loading 통합 (URL 변경 없이 내부 렌더링만)
-    this.router.init({ 
+    this.router.init({
       loading: this.loadingIndicator,
       useHistory: false
     });
-    
+
     // catui-href 자동 바인딩 (DOM ready 후)
     this._bindSPALinks();
   }
@@ -65,28 +65,28 @@ class IMCATCore {
     const bindLinks = () => {
       // 기본 컨테이너 자동 감지
       this._detectRouterContainer();
-      
+
       // 클릭 핸들러 생성 (나중에 제거할 수 있도록 저장)
       this._clickHandler = (e) => {
         // catui-href를 가진 요소 찾기
         const link = e.target.closest('[catui-href]');
-        
+
         if (link) {
           // 이벤트 기본 동작 방지 (중복 네비게이션 방지)
           e.preventDefault();
           e.stopPropagation();
-          
+
           const path = link.getAttribute('catui-href');
           const target = link.getAttribute('catui-target');
-          
+
           if (path) {
             // 링크별 타겟이 있으면 임시로 변경
             const originalContainer = this.router.container;
-            
+
             if (target) {
               this.router.setContainer(`#${target}`);
             }
-            
+
             // 네비게이션 실행
             this.router.navigate(path).then(() => {
               // 원래 컨테이너로 복원 (타겟이 지정된 경우만)
@@ -97,7 +97,7 @@ class IMCATCore {
           }
         }
       };
-      
+
       // capture 단계에서 이벤트 캡처 (더 일찍 처리)
       document.addEventListener('click', this._clickHandler, true);
     };
@@ -110,7 +110,7 @@ class IMCATCore {
       bindLinks();
     }
   }
-  
+
   /**
    * Router 컨테이너 자동 감지
    * catui-target 속성 또는 기본 선택자 사용
@@ -126,7 +126,7 @@ class IMCATCore {
         return;
       }
     }
-    
+
     // 2. 일반적인 선택자들 시도 (우선순위 순)
     const defaultSelectors = ['#app-content', '#content', '#app', 'main'];
     for (const selector of defaultSelectors) {
@@ -135,7 +135,7 @@ class IMCATCore {
         return;
       }
     }
-    
+
     // 3. 기본값
     this.router.setContainer('#content');
   }
@@ -404,7 +404,7 @@ class IMCATCore {
   /**
    * 프레임워크 정리 (메모리 누수 방지)
    * SPA 재시작 또는 테스트 환경에서 사용
-   * 
+   *
    * @example
    * // 애플리케이션 종료 시
    * IMCAT.destroy();
@@ -456,9 +456,9 @@ function IMCATFunction(selector) {
 const proto = Object.getPrototypeOf(IMCAT);
 Object.getOwnPropertyNames(proto).forEach(key => {
   if (key === 'constructor') return;
-  
+
   const descriptor = Object.getOwnPropertyDescriptor(proto, key);
-  
+
   if (descriptor.get) {
     // getter인 경우
     Object.defineProperty(IMCATFunction, key, {
@@ -474,7 +474,7 @@ Object.getOwnPropertyNames(proto).forEach(key => {
 
 // 인스턴스 프로퍼티 복사
 Object.keys(IMCAT).forEach(key => {
-  if (!IMCATFunction.hasOwnProperty(key)) {
+  if (!Object.prototype.hasOwnProperty.call(IMCATFunction, key)) {
     Object.defineProperty(IMCATFunction, key, {
       get() {
         return IMCAT[key];

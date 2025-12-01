@@ -27,7 +27,7 @@ class OnlineStatus {
       size: 'md',               // 'sm' | 'md' | 'lg'
       position: 'bottom-right', // 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
       pulse: true,              // 온라인 시 펄스 애니메이션
-      onChange: null,           // (status) => {}
+      onChange: null           // (status) => {}
     };
   }
 
@@ -36,10 +36,10 @@ class OnlineStatus {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('OnlineStatus: Container not found');
       return;
@@ -48,7 +48,7 @@ class OnlineStatus {
     this.options = { ...OnlineStatus.defaults(), ...options };
     this._status = this.options.status;
     this.indicator = null;
-    
+
     this.init();
     OnlineStatus.instances.set(this.container, this);
   }
@@ -59,11 +59,11 @@ class OnlineStatus {
 
   _render() {
     const { size, position, showLabel, pulse } = this.options;
-    
+
     this.container.classList.add('online-status-wrapper');
     this.container.style.position = 'relative';
     this.container.style.display = 'inline-block';
-    
+
     this.indicator = document.createElement('span');
     this.indicator.className = `online-status online-status--${size} online-status--${position}`;
     if (pulse && this._status === 'online') {
@@ -71,11 +71,11 @@ class OnlineStatus {
     }
     this.indicator.setAttribute('data-status', this._status);
     this.indicator.setAttribute('aria-label', this._getStatusLabel());
-    
+
     if (showLabel) {
       this.indicator.innerHTML = `<span class="online-status__label">${this._getStatusLabel()}</span>`;
     }
-    
+
     this.container.appendChild(this.indicator);
   }
 
@@ -97,10 +97,10 @@ class OnlineStatus {
   setStatus(status) {
     const prevStatus = this._status;
     this._status = status;
-    
+
     this.indicator.setAttribute('data-status', status);
     this.indicator.setAttribute('aria-label', this._getStatusLabel());
-    
+
     // 펄스 애니메이션
     if (this.options.pulse) {
       if (status === 'online') {
@@ -109,13 +109,13 @@ class OnlineStatus {
         this.indicator.classList.remove('online-status--pulse');
       }
     }
-    
+
     // 라벨 업데이트
     if (this.options.showLabel) {
       const label = this.indicator.querySelector('.online-status__label');
       if (label) label.textContent = this._getStatusLabel();
     }
-    
+
     if (this.options.onChange && prevStatus !== status) {
       this.options.onChange(status);
     }
@@ -133,10 +133,10 @@ class OnlineStatus {
     if (this.indicator) {
       this.indicator.remove();
     }
-    
+
     this.container.classList.remove('online-status-wrapper');
     OnlineStatus.instances.delete(this.container);
-    
+
     this.container = null;
     this.indicator = null;
   }
@@ -164,7 +164,7 @@ class TypingIndicator {
       users: [],                // 타이핑 중인 사용자 배열
       maxDisplay: 3,            // 최대 표시할 사용자 수
       showNames: true,
-      hideAfter: 0,             // 자동 숨김 (ms), 0이면 비활성
+      hideAfter: 0             // 자동 숨김 (ms), 0이면 비활성
     };
   }
 
@@ -173,10 +173,10 @@ class TypingIndicator {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('TypingIndicator: Container not found');
       return;
@@ -185,7 +185,7 @@ class TypingIndicator {
     this.options = { ...TypingIndicator.defaults(), ...options };
     this._users = [...this.options.users];
     this._hideTimer = null;
-    
+
     this.init();
     TypingIndicator.instances.set(this.container, this);
   }
@@ -198,7 +198,7 @@ class TypingIndicator {
     this.container.className = 'typing-indicator';
     this.container.setAttribute('role', 'status');
     this.container.setAttribute('aria-live', 'polite');
-    
+
     this._updateDisplay();
   }
 
@@ -207,13 +207,13 @@ class TypingIndicator {
       this.container.style.display = 'none';
       return;
     }
-    
+
     this.container.style.display = 'flex';
-    
+
     const { maxDisplay, showNames } = this.options;
     const displayUsers = this._users.slice(0, maxDisplay);
     const remainingCount = this._users.length - maxDisplay;
-    
+
     let text = '';
     if (showNames) {
       if (displayUsers.length === 1) {
@@ -226,7 +226,7 @@ class TypingIndicator {
     } else {
       text = '입력 중';
     }
-    
+
     this.container.innerHTML = `
       <span class="typing-indicator__dots">
         <span class="typing-indicator__dot"></span>
@@ -306,13 +306,13 @@ class TypingIndicator {
     if (this._hideTimer) {
       clearTimeout(this._hideTimer);
     }
-    
+
     TypingIndicator.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
   }
 }
@@ -340,7 +340,7 @@ class ActivityStatus {
       updateInterval: 60000,    // 업데이트 간격 (ms)
       format: 'relative',       // 'relative' | 'absolute'
       locale: 'ko-KR',
-      prefix: '마지막 활동: ',
+      prefix: '마지막 활동: '
     };
   }
 
@@ -349,21 +349,21 @@ class ActivityStatus {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('ActivityStatus: Container not found');
       return;
     }
 
     this.options = { ...ActivityStatus.defaults(), ...options };
-    this._lastActivity = this.options.lastActivity 
-      ? new Date(this.options.lastActivity) 
+    this._lastActivity = this.options.lastActivity
+      ? new Date(this.options.lastActivity)
       : null;
     this._intervalId = null;
-    
+
     this.init();
     ActivityStatus.instances.set(this.container, this);
   }
@@ -383,16 +383,16 @@ class ActivityStatus {
       this.container.textContent = '';
       return;
     }
-    
+
     const { format, prefix, locale } = this.options;
     let text = '';
-    
+
     if (format === 'relative') {
       text = this._getRelativeTime();
     } else {
       text = this._lastActivity.toLocaleString(locale);
     }
-    
+
     this.container.textContent = prefix + text;
   }
 
@@ -403,12 +403,12 @@ class ActivityStatus {
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
-    
+
     if (seconds < 60) return '방금 전';
     if (minutes < 60) return `${minutes}분 전`;
     if (hours < 24) return `${hours}시간 전`;
     if (days < 7) return `${days}일 전`;
-    
+
     return this._lastActivity.toLocaleDateString(this.options.locale);
   }
 
@@ -441,7 +441,7 @@ class ActivityStatus {
     if (this._intervalId) {
       clearInterval(this._intervalId);
     }
-    
+
     ActivityStatus.instances.delete(this.container);
     this.container = null;
   }
@@ -473,7 +473,7 @@ class LiveCounter {
       decimals: 0,              // 소수점 자릿수
       duration: 1000,           // 애니메이션 시간 (ms)
       easing: 'easeOutExpo',
-      onChange: null,           // (value) => {}
+      onChange: null           // (value) => {}
     };
   }
 
@@ -482,10 +482,10 @@ class LiveCounter {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('LiveCounter: Container not found');
       return;
@@ -495,7 +495,7 @@ class LiveCounter {
     this._value = this.options.value;
     this._displayValue = this.options.value;
     this._animationFrame = null;
-    
+
     this.init();
     LiveCounter.instances.set(this.container, this);
   }
@@ -528,9 +528,8 @@ class LiveCounter {
    * @param {boolean} [withAnimation=true]
    */
   setValue(value, withAnimation = true) {
-    const oldValue = this._value;
     this._value = value;
-    
+
     if (!withAnimation) {
       this._displayValue = value;
       this._updateDisplay();
@@ -539,21 +538,21 @@ class LiveCounter {
       }
       return;
     }
-    
+
     // 애니메이션
     const { duration } = this.options;
     const start = performance.now();
     const startValue = this._displayValue;
     const diff = value - startValue;
-    
+
     const animateStep = (currentTime) => {
       const elapsed = currentTime - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = this._ease(progress);
-      
+
       this._displayValue = startValue + diff * eased;
       this._updateDisplay();
-      
+
       if (progress < 1) {
         this._animationFrame = requestAnimationFrame(animateStep);
       } else {
@@ -564,7 +563,7 @@ class LiveCounter {
         }
       }
     };
-    
+
     if (this._animationFrame) {
       cancelAnimationFrame(this._animationFrame);
     }
@@ -604,7 +603,7 @@ class LiveCounter {
     if (this._animationFrame) {
       cancelAnimationFrame(this._animationFrame);
     }
-    
+
     LiveCounter.instances.delete(this.container);
     this.container = null;
   }
@@ -635,7 +634,7 @@ class ConnectionStatus {
       autoHideDelay: 3000,      // 자동 숨김 지연 (ms)
       onlineMessage: '인터넷에 연결되었습니다',
       offlineMessage: '인터넷 연결이 끊겼습니다',
-      onStatusChange: null,     // (isOnline) => {}
+      onStatusChange: null     // (isOnline) => {}
     };
   }
 
@@ -646,14 +645,14 @@ class ConnectionStatus {
     if (ConnectionStatus.instance) {
       return ConnectionStatus.instance;
     }
-    
+
     this.options = { ...ConnectionStatus.defaults(), ...options };
     this._isOnline = navigator.onLine;
     this._banner = null;
     this._hideTimer = null;
     this._onOnline = null;
     this._onOffline = null;
-    
+
     this.init();
     ConnectionStatus.instance = this;
   }
@@ -661,7 +660,7 @@ class ConnectionStatus {
   init() {
     this._createBanner();
     this._bindEvents();
-    
+
     // 초기 오프라인 상태 표시
     if (!this._isOnline) {
       this._showOffline();
@@ -679,27 +678,27 @@ class ConnectionStatus {
   _bindEvents() {
     this._onOnline = () => {
       this._isOnline = true;
-      
+
       if (this.options.showOnline) {
         this._showOnline();
       } else {
         this._hide();
       }
-      
+
       if (this.options.onStatusChange) {
         this.options.onStatusChange(true);
       }
     };
-    
+
     this._onOffline = () => {
       this._isOnline = false;
       this._showOffline();
-      
+
       if (this.options.onStatusChange) {
         this.options.onStatusChange(false);
       }
     };
-    
+
     window.addEventListener('online', this._onOnline);
     window.addEventListener('offline', this._onOffline);
   }
@@ -711,7 +710,7 @@ class ConnectionStatus {
       <span>${this.options.onlineMessage}</span>
     `;
     this._banner.style.display = 'flex';
-    
+
     if (this.options.autoHide) {
       this._hideTimer = setTimeout(() => {
         this._hide();
@@ -723,7 +722,7 @@ class ConnectionStatus {
     if (this._hideTimer) {
       clearTimeout(this._hideTimer);
     }
-    
+
     this._banner.className = `connection-status connection-status--${this.options.position} connection-status--offline is-visible`;
     this._banner.innerHTML = `
       <i class="material-icons-outlined">wifi_off</i>
@@ -760,7 +759,7 @@ class ConnectionStatus {
     if (this._banner) {
       this._banner.remove();
     }
-    
+
     ConnectionStatus.instance = null;
     this._banner = null;
   }

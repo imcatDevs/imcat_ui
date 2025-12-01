@@ -61,8 +61,8 @@ class DataTable {
   }
 
   _render() {
-    const { columns, paginate, pageSize, emptyMessage, showInfo, toolbar } = this.options;
-    
+    const { columns, paginate, pageSize, showInfo, toolbar } = this.options;
+
     // 페이지네이션 계산
     const totalPages = Math.ceil(this.filteredData.length / pageSize);
     const start = (this.currentPage - 1) * pageSize;
@@ -246,7 +246,7 @@ class DataTable {
         this._triggerSelectCallback();
       }
     };
-    
+
     this.container.addEventListener('click', this._onClick);
     this.container.addEventListener('change', this._onChange);
   }
@@ -369,11 +369,11 @@ class DataTable {
     // 이벤트 리스너 제거
     if (this._onClick) this.container.removeEventListener('click', this._onClick);
     if (this._onChange) this.container.removeEventListener('change', this._onChange);
-    
+
     // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('data-table-wrapper');
-    
+
     // 참조 해제
     this.container = null;
     this.data = [];
@@ -413,7 +413,7 @@ class Chart {
   }
 
   _render() {
-    const { type, data, colors, height, showLegend } = this.options;
+    const { type, data, showLegend } = this.options;
 
     if (type === 'bar' || type === 'line') {
       this._renderBarLine();
@@ -443,7 +443,7 @@ class Chart {
           const barHeight = (value / maxValue) * chartHeight;
           const color = dataset.color || colors[j % colors.length];
           const left = i * (groupWidth + barWidth) + j * barWidth + barWidth / 2;
-          
+
           barsHtml += `
             <div class="chart__bar ${animate ? 'animate' : ''}" 
                  style="left: ${left}%; width: ${barWidth}%; height: ${barHeight}px; background: ${color};"
@@ -468,7 +468,7 @@ class Chart {
                       fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke"/>
           </svg>
         `;
-        
+
         // 점 표시
         dataset.data.forEach((value, i) => {
           const x = (i / (labels.length - 1)) * 100;
@@ -482,7 +482,7 @@ class Chart {
 
     // X축 라벨
     const labelsHtml = labels.map((label, i) => {
-      const left = type === 'bar' 
+      const left = type === 'bar'
         ? i * (groupWidth + barWidth) + groupWidth / 2 + barWidth / 4
         : (i / (labels.length - 1)) * 100;
       return `<span class="chart__label" style="left: ${left}%;">${label}</span>`;
@@ -505,7 +505,7 @@ class Chart {
     const { labels, datasets } = data;
     const values = datasets[0]?.data || [];
     const total = values.reduce((a, b) => a + b, 0);
-    
+
     let currentAngle = 0;
     const segments = values.map((value, i) => {
       const percentage = (value / total) * 100;
@@ -527,11 +527,11 @@ class Chart {
     const radius = center - 10;
     const innerRadius = type === 'doughnut' ? radius * 0.6 : 0;
 
-    const pathsHtml = segments.map((seg, i) => {
+    const pathsHtml = segments.map((seg, _i) => {
       const startRad = (seg.startAngle - 90) * Math.PI / 180;
       const endRad = (seg.startAngle + seg.angle - 90) * Math.PI / 180;
       const largeArc = seg.angle > 180 ? 1 : 0;
-      
+
       const x1 = center + radius * Math.cos(startRad);
       const y1 = center + radius * Math.sin(startRad);
       const x2 = center + radius * Math.cos(endRad);
@@ -569,7 +569,7 @@ class Chart {
   _renderLegend() {
     const { colors, data } = this.options;
     const { labels, datasets } = data;
-    
+
     const items = this.options.type === 'pie' || this.options.type === 'doughnut'
       ? labels.map((label, i) => ({ label, color: colors[i % colors.length] }))
       : datasets.map((d, i) => ({ label: d.label || `Dataset ${i + 1}`, color: d.color || colors[i % colors.length] }));
@@ -629,7 +629,7 @@ class Masonry {
 
   _render() {
     const { items, render, columnWidth, gap } = this.options;
-    
+
     this.container.style.cssText = `
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(${columnWidth}px, 1fr));
@@ -758,7 +758,7 @@ class Kanban {
       }
     };
 
-    this._onDragend = (e) => {
+    this._onDragend = (_e) => {
       if (this.draggedCard) {
         this.draggedCard.classList.remove('dragging');
         this.draggedCard = null;
@@ -842,7 +842,7 @@ class Kanban {
     if (column) {
       column.cards = column.cards || [];
       column.cards.push(card);
-      
+
       const cardsContainer = this.container.querySelector(`.kanban__cards[data-column-id="${columnId}"]`);
       if (cardsContainer) {
         cardsContainer.insertAdjacentHTML('beforeend', this._renderCard(card));
@@ -867,11 +867,11 @@ class Kanban {
     if (this._onDragleave) this.container.removeEventListener('dragleave', this._onDragleave);
     if (this._onDrop) this.container.removeEventListener('drop', this._onDrop);
     if (this._onClick) this.container.removeEventListener('click', this._onClick);
-    
+
     // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('kanban');
-    
+
     // 참조 해제
     this.container = null;
     this.draggedCard = null;
@@ -911,7 +911,7 @@ class Calendar {
   _render() {
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
-    
+
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const startDay = firstDay.getDay();
@@ -922,7 +922,7 @@ class Calendar {
 
     // 날짜 셀 생성
     const cells = [];
-    
+
     // 이전 달 날짜
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = startDay - 1; i >= 0; i--) {
@@ -958,12 +958,12 @@ class Calendar {
       </div>
       <div class="calendar__grid">
         ${cells.map(cell => {
-          const dateStr = this._formatDate(cell.date);
-          const events = this.options.events.filter(e => this._formatDate(new Date(e.date)) === dateStr);
-          const isToday = cell.date.getTime() === today.getTime();
-          const dayOfWeek = cell.date.getDay();
-          
-          return `
+    const dateStr = this._formatDate(cell.date);
+    const events = this.options.events.filter(e => this._formatDate(new Date(e.date)) === dateStr);
+    const isToday = cell.date.getTime() === today.getTime();
+    const dayOfWeek = cell.date.getDay();
+
+    return `
             <div class="calendar__cell ${cell.isOtherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''} ${dayOfWeek === 0 ? 'sunday' : ''} ${dayOfWeek === 6 ? 'saturday' : ''}" 
                  data-date="${dateStr}">
               <span class="calendar__day">${cell.day}</span>
@@ -977,7 +977,7 @@ class Calendar {
               ` : ''}
             </div>
           `;
-        }).join('')}
+  }).join('')}
       </div>
     `;
   }
@@ -1016,7 +1016,7 @@ class Calendar {
         this.options.onEventClick(event.dataset.eventId);
       }
     };
-    
+
     this.container.addEventListener('click', this._onClick);
   }
 
@@ -1043,11 +1043,11 @@ class Calendar {
   destroy() {
     // 이벤트 리스너 제거
     if (this._onClick) this.container.removeEventListener('click', this._onClick);
-    
+
     // DOM 정리
     this.container.innerHTML = '';
     this.container.classList.remove('calendar');
-    
+
     // 참조 해제
     this.container = null;
   }

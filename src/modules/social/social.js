@@ -29,7 +29,7 @@ class ChatUI {
       showAvatar: true,
       groupMessages: true,
       onSend: null,          // (message) => {}
-      onTyping: null,        // () => {}
+      onTyping: null        // () => {}
     };
   }
 
@@ -38,10 +38,10 @@ class ChatUI {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('ChatUI: Container not found');
       return;
@@ -50,7 +50,7 @@ class ChatUI {
     this.options = { ...ChatUI.defaults(), ...options };
     this._messages = [...this.options.messages];
     this._typingUsers = [];
-    
+
     this.init();
     ChatUI.instances.set(this.container, this);
   }
@@ -63,7 +63,7 @@ class ChatUI {
 
   _render() {
     this.container.className = 'chat-ui';
-    
+
     this.container.innerHTML = `
       <div class="chat-ui__messages"></div>
       <div class="chat-ui__typing"></div>
@@ -82,12 +82,12 @@ class ChatUI {
         </button>
       </div>
     `;
-    
+
     this.messagesContainer = this.container.querySelector('.chat-ui__messages');
     this.typingContainer = this.container.querySelector('.chat-ui__typing');
     this.input = this.container.querySelector('.chat-ui__input');
     this.sendBtn = this.container.querySelector('.chat-ui__btn--send');
-    
+
     this._renderMessages();
   }
 
@@ -95,30 +95,30 @@ class ChatUI {
     let html = '';
     let lastUserId = null;
     let lastDate = null;
-    
-    this._messages.forEach((msg, index) => {
+
+    this._messages.forEach((msg, _index) => {
       const isOwn = msg.userId === this.options.currentUser.id;
       const isSameUser = msg.userId === lastUserId;
       const msgDate = new Date(msg.timestamp).toDateString();
       const isNewDate = msgDate !== lastDate;
-      
+
       // 날짜 구분선
       if (isNewDate) {
         html += `<div class="chat-ui__date-divider">${this._formatDate(msg.timestamp)}</div>`;
         lastDate = msgDate;
       }
-      
+
       // 그룹화된 메시지인지 확인
       const isGrouped = this.options.groupMessages && isSameUser && !isNewDate;
-      
+
       html += `
         <div class="chat-ui__message ${isOwn ? 'chat-ui__message--own' : ''} ${isGrouped ? 'chat-ui__message--grouped' : ''}">
           ${!isOwn && this.options.showAvatar && !isGrouped ? `
             <div class="chat-ui__avatar">
-              ${msg.avatar 
-                ? `<img src="${msg.avatar}" alt="${msg.userName}">`
-                : `<span>${msg.userName?.charAt(0) || '?'}</span>`
-              }
+              ${msg.avatar
+    ? `<img src="${msg.avatar}" alt="${msg.userName}">`
+    : `<span>${msg.userName?.charAt(0) || '?'}</span>`
+}
             </div>
           ` : ''}
           
@@ -131,17 +131,17 @@ class ChatUI {
           </div>
         </div>
       `;
-      
+
       lastUserId = msg.userId;
     });
-    
+
     this.messagesContainer.innerHTML = html;
   }
 
   _bindEvents() {
     // 전송 버튼
     this.sendBtn.addEventListener('click', () => this._sendMessage());
-    
+
     // Enter 키로 전송
     this.input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -149,19 +149,19 @@ class ChatUI {
         this._sendMessage();
       }
     });
-    
+
     // 입력 시 타이핑 이벤트
     let typingTimer;
     this.input.addEventListener('input', () => {
       // 자동 높이 조절
       this.input.style.height = 'auto';
       this.input.style.height = Math.min(this.input.scrollHeight, 120) + 'px';
-      
+
       // 타이핑 이벤트
       if (this.options.onTyping) {
         this.options.onTyping();
       }
-      
+
       clearTimeout(typingTimer);
       typingTimer = setTimeout(() => {
         // 타이핑 종료
@@ -172,20 +172,20 @@ class ChatUI {
   _sendMessage() {
     const text = this.input.value.trim();
     if (!text) return;
-    
+
     const message = {
       id: Date.now().toString(),
       userId: this.options.currentUser.id,
       userName: this.options.currentUser.name,
       avatar: this.options.currentUser.avatar,
       text,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString()
     };
-    
+
     this.addMessage(message);
     this.input.value = '';
     this.input.style.height = 'auto';
-    
+
     if (this.options.onSend) {
       this.options.onSend(message);
     }
@@ -201,15 +201,15 @@ class ChatUI {
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
-    
+
     if (date.toDateString() === today.toDateString()) {
       return '오늘';
     } else if (date.toDateString() === yesterday.toDateString()) {
       return '어제';
     }
-    
-    return date.toLocaleDateString('ko-KR', { 
-      year: 'numeric', month: 'long', day: 'numeric' 
+
+    return date.toLocaleDateString('ko-KR', {
+      year: 'numeric', month: 'long', day: 'numeric'
     });
   }
 
@@ -300,7 +300,7 @@ class Comments {
       onSubmit: null,         // (comment) => {}
       onEdit: null,           // (id, newText) => {}
       onDelete: null,         // (id) => {}
-      onLike: null,           // (id) => {}
+      onLike: null           // (id) => {}
     };
   }
 
@@ -309,10 +309,10 @@ class Comments {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('Comments: Container not found');
       return;
@@ -320,7 +320,7 @@ class Comments {
 
     this.options = { ...Comments.defaults(), ...options };
     this._comments = [...this.options.comments];
-    
+
     this.init();
     Comments.instances.set(this.container, this);
   }
@@ -332,9 +332,9 @@ class Comments {
 
   _render() {
     this.container.className = 'comments';
-    
+
     const commentsHtml = this._renderComments(this._comments, 0);
-    
+
     this.container.innerHTML = `
       <div class="comments__header">
         <h3 class="comments__title">댓글 <span class="comments__count">${this._countComments()}</span></h3>
@@ -343,10 +343,10 @@ class Comments {
       ${this.options.currentUser ? `
         <div class="comments__form comments__form--main">
           <div class="comments__avatar">
-            ${this.options.currentUser.avatar 
-              ? `<img src="${this.options.currentUser.avatar}" alt="${this.options.currentUser.name}">`
-              : `<span>${this.options.currentUser.name?.charAt(0) || '?'}</span>`
-            }
+            ${this.options.currentUser.avatar
+    ? `<img src="${this.options.currentUser.avatar}" alt="${this.options.currentUser.name}">`
+    : `<span>${this.options.currentUser.name?.charAt(0) || '?'}</span>`
+}
           </div>
           <div class="comments__input-area">
             <textarea class="comments__input" placeholder="${this.options.placeholder}"></textarea>
@@ -370,18 +370,18 @@ class Comments {
     const canReply = this.options.allowReplies && depth < this.options.maxDepth;
     const canEdit = this.options.allowEdit && isOwn;
     const canDelete = this.options.allowDelete && isOwn;
-    
-    const repliesHtml = comment.replies?.length > 0 
-      ? `<div class="comments__replies">${this._renderComments(comment.replies, depth + 1)}</div>` 
+
+    const repliesHtml = comment.replies?.length > 0
+      ? `<div class="comments__replies">${this._renderComments(comment.replies, depth + 1)}</div>`
       : '';
-    
+
     return `
       <div class="comments__item" data-id="${comment.id}" data-depth="${depth}">
         <div class="comments__avatar">
-          ${comment.avatar 
-            ? `<img src="${comment.avatar}" alt="${comment.userName}">`
-            : `<span>${comment.userName?.charAt(0) || '?'}</span>`
-          }
+          ${comment.avatar
+    ? `<img src="${comment.avatar}" alt="${comment.userName}">`
+    : `<span>${comment.userName?.charAt(0) || '?'}</span>`
+}
         </div>
         
         <div class="comments__content">
@@ -439,16 +439,16 @@ class Comments {
         input.value = '';
       });
     }
-    
+
     // 댓글 액션
     this.container.addEventListener('click', (e) => {
       const btn = e.target.closest('.comments__action');
       if (!btn) return;
-      
+
       const item = btn.closest('.comments__item');
       const id = item.dataset.id;
       const action = btn.dataset.action;
-      
+
       switch (action) {
         case 'like':
           this._handleLike(id);
@@ -468,7 +468,7 @@ class Comments {
 
   _submitComment(text, parentId = null) {
     if (!text || !this.options.currentUser) return;
-    
+
     const comment = {
       id: Date.now().toString(),
       userId: this.options.currentUser.id,
@@ -478,18 +478,18 @@ class Comments {
       createdAt: new Date().toISOString(),
       likes: 0,
       liked: false,
-      replies: [],
+      replies: []
     };
-    
+
     if (parentId) {
       this._addReply(this._comments, parentId, comment);
     } else {
       this._comments.unshift(comment);
     }
-    
+
     this._render();
     this._bindEvents();
-    
+
     if (this.options.onSubmit) {
       this.options.onSubmit({ ...comment, parentId });
     }
@@ -512,13 +512,13 @@ class Comments {
   _showReplyForm(item) {
     const replyForm = item.querySelector('.comments__reply-form');
     const isVisible = replyForm.style.display !== 'none';
-    
+
     if (isVisible) {
       replyForm.style.display = 'none';
       replyForm.innerHTML = '';
       return;
     }
-    
+
     replyForm.style.display = 'block';
     replyForm.innerHTML = `
       <div class="comments__form">
@@ -529,15 +529,15 @@ class Comments {
         </div>
       </div>
     `;
-    
+
     const input = replyForm.querySelector('.comments__input--reply');
     input.focus();
-    
+
     replyForm.querySelector('.comments__cancel').addEventListener('click', () => {
       replyForm.style.display = 'none';
       replyForm.innerHTML = '';
     });
-    
+
     replyForm.querySelector('.comments__reply-submit').addEventListener('click', () => {
       const text = input.value.trim();
       if (text) {
@@ -550,7 +550,7 @@ class Comments {
     this._toggleLike(this._comments, id);
     this._render();
     this._bindEvents();
-    
+
     if (this.options.onLike) {
       this.options.onLike(id);
     }
@@ -573,11 +573,11 @@ class Comments {
   _handleEdit(id) {
     const newText = prompt('댓글 수정:');
     if (newText === null) return;
-    
+
     this._editComment(this._comments, id, newText);
     this._render();
     this._bindEvents();
-    
+
     if (this.options.onEdit) {
       this.options.onEdit(id, newText);
     }
@@ -599,23 +599,23 @@ class Comments {
 
   _handleDelete(id) {
     if (!confirm('댓글을 삭제하시겠습니까?')) return;
-    
+
     this._deleteComment(this._comments, id);
     this._render();
     this._bindEvents();
-    
+
     if (this.options.onDelete) {
       this.options.onDelete(id);
     }
   }
 
-  _deleteComment(comments, id, parent = null) {
+  _deleteComment(comments, id, _parent = null) {
     const index = comments.findIndex(c => c.id === id);
     if (index !== -1) {
       comments.splice(index, 1);
       return true;
     }
-    
+
     for (const comment of comments) {
       if (comment.replies?.length > 0) {
         if (this._deleteComment(comment.replies, id, comment)) return true;
@@ -625,11 +625,7 @@ class Comments {
   }
 
   _countComments() {
-    const count = (comments) => {
-      return comments.reduce((sum, c) => {
-        return sum + 1 + (c.replies ? count(c.replies) : 0);
-      }, 0);
-    };
+    const count = (comments) => comments.reduce((sum, c) => sum + 1 + (c.replies ? count(c.replies) : 0), 0);
     return count(this._comments);
   }
 
@@ -637,16 +633,16 @@ class Comments {
     const date = new Date(timestamp);
     const now = new Date();
     const diff = now - date;
-    
+
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
-    
+
     if (minutes < 1) return '방금 전';
     if (minutes < 60) return `${minutes}분 전`;
     if (hours < 24) return `${hours}시간 전`;
     if (days < 7) return `${days}일 전`;
-    
+
     return date.toLocaleDateString('ko-KR');
   }
 
@@ -703,7 +699,7 @@ class ShareButtons {
       layout: 'horizontal',  // 'horizontal' | 'vertical'
       size: 'md',            // 'sm' | 'md' | 'lg'
       showLabels: false,
-      onShare: null,         // (platform) => {}
+      onShare: null         // (platform) => {}
     };
   }
 
@@ -718,7 +714,7 @@ class ShareButtons {
     email: { icon: 'email', label: 'Email', color: '#EA4335' },
     whatsapp: { icon: 'W', label: 'WhatsApp', color: '#25D366' },
     telegram: { icon: 'T', label: 'Telegram', color: '#0088cc' },
-    kakaotalk: { icon: 'K', label: 'KakaoTalk', color: '#FEE500' },
+    kakaotalk: { icon: 'K', label: 'KakaoTalk', color: '#FEE500' }
   };
 
   /**
@@ -726,17 +722,17 @@ class ShareButtons {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('ShareButtons: Container not found');
       return;
     }
 
     this.options = { ...ShareButtons.defaults(), ...options };
-    
+
     // URL 기본값
     if (!this.options.url) {
       this.options.url = window.location.href;
@@ -744,7 +740,7 @@ class ShareButtons {
     if (!this.options.title) {
       this.options.title = document.title;
     }
-    
+
     this.init();
     ShareButtons.instances.set(this.container, this);
   }
@@ -756,25 +752,25 @@ class ShareButtons {
 
   _render() {
     const { platforms, layout, size, showLabels } = this.options;
-    
+
     this.container.className = `share-buttons share-buttons--${layout} share-buttons--${size}`;
-    
+
     this.container.innerHTML = platforms.map(platform => {
       const p = ShareButtons.platforms[platform];
       if (!p) return '';
-      
+
       const isIconMaterial = p.icon.length > 2;
-      
+
       return `
         <button class="share-buttons__btn share-buttons__btn--${platform}" 
                 data-platform="${platform}"
                 style="--share-color: ${p.color}"
                 type="button"
                 aria-label="${p.label}">
-          ${isIconMaterial 
-            ? `<i class="material-icons-outlined">${p.icon}</i>`
-            : `<span class="share-buttons__icon-text">${p.icon}</span>`
-          }
+          ${isIconMaterial
+    ? `<i class="material-icons-outlined">${p.icon}</i>`
+    : `<span class="share-buttons__icon-text">${p.icon}</span>`
+}
           ${showLabels ? `<span class="share-buttons__label">${p.label}</span>` : ''}
         </button>
       `;
@@ -785,7 +781,7 @@ class ShareButtons {
     this.container.addEventListener('click', (e) => {
       const btn = e.target.closest('.share-buttons__btn');
       if (!btn) return;
-      
+
       const platform = btn.dataset.platform;
       this._share(platform);
     });
@@ -796,50 +792,50 @@ class ShareButtons {
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(title);
     const encodedDesc = encodeURIComponent(description);
-    
+
     let shareUrl = '';
-    
+
     switch (platform) {
       case 'copy':
         await this._copyToClipboard(url);
         return;
-        
+
       case 'twitter':
         shareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
         break;
-        
+
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
         break;
-        
+
       case 'linkedin':
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
         break;
-        
+
       case 'email':
         shareUrl = `mailto:?subject=${encodedTitle}&body=${encodedDesc}%0A%0A${encodedUrl}`;
         window.location.href = shareUrl;
         if (this.options.onShare) this.options.onShare(platform);
         return;
-        
+
       case 'whatsapp':
         shareUrl = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
         break;
-        
+
       case 'telegram':
         shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
         break;
-        
+
       case 'kakaotalk':
         // KakaoTalk SDK 필요
         alert('KakaoTalk 공유는 Kakao SDK가 필요합니다.');
         return;
     }
-    
+
     if (shareUrl) {
       window.open(shareUrl, '_blank', 'width=600,height=400');
     }
-    
+
     if (this.options.onShare) {
       this.options.onShare(platform);
     }
@@ -848,20 +844,20 @@ class ShareButtons {
   async _copyToClipboard(text) {
     try {
       await navigator.clipboard.writeText(text);
-      
+
       // 복사 완료 피드백
       const copyBtn = this.container.querySelector('.share-buttons__btn--copy');
       if (copyBtn) {
         copyBtn.classList.add('is-copied');
         const icon = copyBtn.querySelector('.material-icons-outlined');
         if (icon) icon.textContent = 'check';
-        
+
         setTimeout(() => {
           copyBtn.classList.remove('is-copied');
           if (icon) icon.textContent = 'content_copy';
         }, 2000);
       }
-      
+
       if (this.options.onShare) {
         this.options.onShare('copy');
       }
@@ -911,9 +907,9 @@ class Reactions {
         { emoji: '😂', label: '웃겨요', count: 0, active: false },
         { emoji: '😮', label: '놀랐어요', count: 0, active: false },
         { emoji: '😢', label: '슬퍼요', count: 0, active: false },
-        { emoji: '😡', label: '화나요', count: 0, active: false },
+        { emoji: '😡', label: '화나요', count: 0, active: false }
       ],
-      onReact: null,         // (emoji, active) => {}
+      onReact: null         // (emoji, active) => {}
     };
   }
 
@@ -922,10 +918,10 @@ class Reactions {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('Reactions: Container not found');
       return;
@@ -933,7 +929,7 @@ class Reactions {
 
     this.options = { ...Reactions.defaults(), ...options };
     this._reactions = [...this.options.reactions];
-    
+
     this.init();
     Reactions.instances.set(this.container, this);
   }
@@ -945,7 +941,7 @@ class Reactions {
 
   _render() {
     this.container.className = 'reactions';
-    
+
     this.container.innerHTML = this._reactions.map(r => `
       <button class="reactions__btn ${r.active ? 'is-active' : ''}" 
               data-emoji="${r.emoji}"
@@ -961,7 +957,7 @@ class Reactions {
     this.container.addEventListener('click', (e) => {
       const btn = e.target.closest('.reactions__btn');
       if (!btn) return;
-      
+
       const emoji = btn.dataset.emoji;
       this._toggleReaction(emoji);
     });
@@ -970,13 +966,13 @@ class Reactions {
   _toggleReaction(emoji) {
     const reaction = this._reactions.find(r => r.emoji === emoji);
     if (!reaction) return;
-    
+
     reaction.active = !reaction.active;
     reaction.count = Math.max(0, reaction.count + (reaction.active ? 1 : -1));
-    
+
     this._render();
     this._bindEvents();
-    
+
     if (this.options.onReact) {
       this.options.onReact(emoji, reaction.active);
     }

@@ -8,7 +8,7 @@
  * @class
  * @description URL 과 쿠리 스트링을 파싱하고 조작하는 유틸리티 클래스입니다.
  * URLSearchParams를 래핑하여 편리한 API를 제공합니다.
- * 
+ *
  * @example
  * const params = URLUtil.parse('?id=1&name=John');
  * const query = URLUtil.stringify({ id: 1, name: 'John' });
@@ -18,11 +18,11 @@ export class URLUtil {
    * 쿼리 스트링 파싱
    * @param {string} [queryString] - 쿼리 스트링 (없으면 현재 URL 사용)
    * @returns {Object} 파싱된 객체
-   * 
+   *
    * @example
    * const params = URLUtil.parseQuery('?page=1&sort=name');
    * // { page: '1', sort: 'name' }
-   * 
+   *
    * @example
    * const params = URLUtil.parseQuery(); // 현재 URL의 쿼리 파싱
    */
@@ -43,7 +43,7 @@ export class URLUtil {
       if (key) {
         const decodedKey = decodeURIComponent(key);
         const decodedValue = value ? decodeURIComponent(value) : '';
-        
+
         // 배열 처리 (key[])
         if (decodedKey.endsWith('[]')) {
           const arrayKey = decodedKey.slice(0, -2);
@@ -65,11 +65,11 @@ export class URLUtil {
    * @param {Object} params - 파라미터 객체
    * @param {boolean} [includeQuestion=true] - ? 포함 여부
    * @returns {string} 쿼리 스트링
-   * 
+   *
    * @example
    * const query = URLUtil.buildQuery({ page: 2, sort: 'name' });
    * // '?page=2&sort=name'
-   * 
+   *
    * @example
    * const query = URLUtil.buildQuery({ tags: ['js', 'css'] });
    * // '?tags[]=js&tags[]=css'
@@ -107,7 +107,7 @@ export class URLUtil {
    * @param {string} url - 기본 URL
    * @param {Object} params - 파라미터 객체
    * @returns {string} 결합된 URL
-   * 
+   *
    * @example
    * const url = URLUtil.buildURL('/api/users', { page: 1, limit: 10 });
    * // '/api/users?page=1&limit=10'
@@ -118,7 +118,7 @@ export class URLUtil {
     }
 
     const query = this.buildQuery(params, false);
-    
+
     if (!query) return url;
 
     // 이미 쿼리 스트링이 있는 경우
@@ -133,12 +133,12 @@ export class URLUtil {
    * 현재 URL에 파라미터 추가/업데이트 (히스토리 없이)
    * @param {Object} params - 추가할 파라미터
    * @param {boolean} [replace=false] - replace 모드 (기존 파라미터 유지 여부)
-   * 
+   *
    * @example
    * // 현재 URL: /page?foo=bar
    * URLUtil.updateQuery({ page: 2 });
    * // 결과: /page?foo=bar&page=2
-   * 
+   *
    * @example
    * URLUtil.updateQuery({ page: 2 }, true); // replace 모드
    * // 결과: /page?page=2
@@ -146,10 +146,10 @@ export class URLUtil {
   static updateQuery(params, replace = false) {
     const currentParams = replace ? {} : this.parseQuery();
     const newParams = { ...currentParams, ...params };
-    
+
     const query = this.buildQuery(newParams);
     const newURL = window.location.pathname + query;
-    
+
     window.history.replaceState({}, '', newURL);
   }
 
@@ -158,7 +158,7 @@ export class URLUtil {
    * @param {string} key - 파라미터 키
    * @param {*} [defaultValue] - 기본값
    * @returns {*} 파라미터 값
-   * 
+   *
    * @example
    * // 현재 URL: /page?id=123&name=John
    * const id = URLUtil.getParam('id'); // '123'
@@ -172,12 +172,12 @@ export class URLUtil {
   /**
    * 특정 쿼리 파라미터 제거
    * @param {string|string[]} keys - 제거할 키 (배열 가능)
-   * 
+   *
    * @example
    * // 현재 URL: /page?id=123&name=John&age=30
    * URLUtil.removeParam('age');
    * // 결과: /page?id=123&name=John
-   * 
+   *
    * @example
    * URLUtil.removeParam(['id', 'age']);
    * // 결과: /page?name=John
@@ -185,20 +185,20 @@ export class URLUtil {
   static removeParam(keys) {
     const params = this.parseQuery();
     const keysToRemove = Array.isArray(keys) ? keys : [keys];
-    
+
     keysToRemove.forEach(key => {
       delete params[key];
     });
 
     const query = this.buildQuery(params);
     const newURL = window.location.pathname + query;
-    
+
     window.history.replaceState({}, '', newURL);
   }
 
   /**
    * 모든 쿼리 파라미터 제거
-   * 
+   *
    * @example
    * // 현재 URL: /page?id=123&name=John
    * URLUtil.clearQuery();
@@ -212,7 +212,7 @@ export class URLUtil {
    * URL 파싱 (전체)
    * @param {string} [url] - 파싱할 URL (없으면 현재 URL)
    * @returns {Object} 파싱된 URL 정보
-   * 
+   *
    * @example
    * const info = URLUtil.parse('https://example.com:8080/path?id=1#section');
    * // {

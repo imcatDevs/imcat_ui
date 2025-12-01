@@ -38,7 +38,7 @@ class Tabs {
   constructor(container, options = {}) {
     this.options = Utils.extend({}, Tabs.defaults(), options);
     this.id = Utils.randomId('tabs');
-    
+
     // 컨테이너 찾기
     if (typeof container === 'string') {
       this.container = document.querySelector(container);
@@ -86,15 +86,15 @@ class Tabs {
 
     // ARIA 속성 설정
     this.tabList.setAttribute('aria-orientation', this.options.orientation);
-    
+
     this.tabs.forEach((tab, index) => {
       const tabId = tab.id || `${this.id}-tab-${index}`;
       const panelId = this.panels[index]?.id || `${this.id}-panel-${index}`;
-      
+
       tab.id = tabId;
       tab.setAttribute('aria-controls', panelId);
       tab.setAttribute('tabindex', index === this.activeIndex ? '0' : '-1');
-      
+
       if (this.panels[index]) {
         this.panels[index].id = panelId;
         this.panels[index].setAttribute('aria-labelledby', tabId);
@@ -118,7 +118,7 @@ class Tabs {
   _handleTabClick(e) {
     const tab = e.currentTarget;
     const index = this.tabs.indexOf(tab);
-    
+
     if (index !== -1 && index !== this.activeIndex) {
       this.select(index);
     }
@@ -142,7 +142,7 @@ class Tabs {
           nextIndex = currentIndex > 0 ? currentIndex - 1 : this.tabs.length - 1;
         }
         break;
-      
+
       case 'ArrowRight':
       case 'ArrowDown':
         e.preventDefault();
@@ -150,17 +150,17 @@ class Tabs {
           nextIndex = currentIndex < this.tabs.length - 1 ? currentIndex + 1 : 0;
         }
         break;
-      
+
       case 'Home':
         e.preventDefault();
         nextIndex = 0;
         break;
-      
+
       case 'End':
         e.preventDefault();
         nextIndex = this.tabs.length - 1;
         break;
-      
+
       default:
         return;
     }
@@ -203,7 +203,7 @@ class Tabs {
     if (this.options.animation) {
       this.panels[index].style.opacity = '0';
       this.panels[index].style.transform = 'translateY(10px)';
-      
+
       requestAnimationFrame(() => {
         this.panels[index].style.transition = `opacity ${this.options.animationDuration}ms ease, transform ${this.options.animationDuration}ms ease`;
         this.panels[index].style.opacity = '1';
@@ -284,7 +284,7 @@ class Accordion {
   constructor(container, options = {}) {
     this.options = Utils.extend({}, Accordion.defaults(), options);
     this.id = Utils.randomId('accordion');
-    
+
     // 컨테이너 찾기
     if (typeof container === 'string') {
       this.container = document.querySelector(container);
@@ -313,7 +313,7 @@ class Accordion {
   _init() {
     // 아코디언 아이템 찾기
     const itemElements = Array.from(this.container.querySelectorAll('.accordion__item'));
-    
+
     if (itemElements.length === 0) {
       console.error('Accordion: .accordion__item을 찾을 수 없습니다.');
       return;
@@ -323,7 +323,7 @@ class Accordion {
     itemElements.forEach((itemEl, index) => {
       const header = itemEl.querySelector('.accordion__header');
       const content = itemEl.querySelector('.accordion__content');
-      
+
       if (!header || !content) {
         console.warn(`Accordion: 아이템 ${index}의 헤더 또는 콘텐츠를 찾을 수 없습니다.`);
         return;
@@ -332,7 +332,7 @@ class Accordion {
       // ID 설정
       const headerId = header.id || `${this.id}-header-${index}`;
       const contentId = content.id || `${this.id}-content-${index}`;
-      
+
       header.id = headerId;
       content.id = contentId;
 
@@ -340,7 +340,7 @@ class Accordion {
       header.setAttribute('role', 'button');
       header.setAttribute('aria-controls', contentId);
       header.setAttribute('aria-expanded', 'false');
-      
+
       content.setAttribute('role', 'region');
       content.setAttribute('aria-labelledby', headerId);
       content.style.display = 'none';
@@ -370,7 +370,7 @@ class Accordion {
   _handleHeaderClick(e) {
     const header = e.currentTarget;
     const index = this.items.findIndex(item => item.header === header);
-    
+
     if (index !== -1) {
       this.toggle(index);
     }
@@ -387,7 +387,7 @@ class Accordion {
     }
 
     const item = this.items[index];
-    
+
     if (item.isExpanded) {
       this.collapse(index);
     } else {
@@ -407,7 +407,7 @@ class Accordion {
     }
 
     const item = this.items[index];
-    
+
     if (item.isExpanded) return;
 
     // multiple이 false면 다른 패널 닫기
@@ -423,18 +423,18 @@ class Accordion {
     item.isExpanded = true;
     item.header.setAttribute('aria-expanded', 'true');
     item.element.classList.add('accordion__item--expanded');
-    
+
     if (this.options.animation) {
       // 애니메이션과 함께 열기
       item.content.style.display = 'block';
       const height = item.content.scrollHeight;
       item.content.style.height = '0';
       item.content.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         item.content.style.transition = `height ${this.options.animationDuration}ms ease`;
         item.content.style.height = height + 'px';
-        
+
         setTimeout(() => {
           item.content.style.height = 'auto';
           item.content.style.overflow = 'visible';
@@ -465,24 +465,24 @@ class Accordion {
     }
 
     const item = this.items[index];
-    
+
     if (!item.isExpanded) return;
 
     // 패널 닫기
     item.isExpanded = false;
     item.header.setAttribute('aria-expanded', 'false');
     item.element.classList.remove('accordion__item--expanded');
-    
+
     if (this.options.animation) {
       // 애니메이션과 함께 닫기
       const height = item.content.scrollHeight;
       item.content.style.height = height + 'px';
       item.content.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         item.content.style.transition = `height ${this.options.animationDuration}ms ease`;
         item.content.style.height = '0';
-        
+
         setTimeout(() => {
           item.content.style.display = 'none';
           item.content.style.height = 'auto';
@@ -569,7 +569,7 @@ class Collapse {
   constructor(container, options = {}) {
     this.options = Utils.extend({}, Collapse.defaults(), options);
     this.id = Utils.randomId('collapse');
-    
+
     // 컨테이너 찾기
     if (typeof container === 'string') {
       this.container = document.querySelector(container);
@@ -596,7 +596,7 @@ class Collapse {
     // ARIA 속성 설정
     this.container.setAttribute('role', 'region');
     this.container.setAttribute('aria-expanded', this.isExpanded.toString());
-    
+
     // 초기 상태 설정
     if (!this.isExpanded) {
       this.container.style.display = 'none';
@@ -622,17 +622,17 @@ class Collapse {
 
     this.isExpanded = true;
     this.container.setAttribute('aria-expanded', 'true');
-    
+
     if (this.options.animation) {
       this.container.style.display = 'block';
       const height = this.container.scrollHeight;
       this.container.style.height = '0';
       this.container.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         this.container.style.transition = `height ${this.options.animationDuration}ms ease`;
         this.container.style.height = height + 'px';
-        
+
         setTimeout(() => {
           this.container.style.height = 'auto';
           this.container.style.overflow = 'visible';
@@ -659,16 +659,16 @@ class Collapse {
 
     this.isExpanded = false;
     this.container.setAttribute('aria-expanded', 'false');
-    
+
     if (this.options.animation) {
       const height = this.container.scrollHeight;
       this.container.style.height = height + 'px';
       this.container.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         this.container.style.transition = `height ${this.options.animationDuration}ms ease`;
         this.container.style.height = '0';
-        
+
         setTimeout(() => {
           this.container.style.display = 'none';
           this.container.style.height = 'auto';
@@ -733,7 +733,7 @@ class MegaMenu {
   constructor(container, options = {}) {
     this.options = Utils.extend({}, MegaMenu.defaults(), options);
     this.id = Utils.randomId('megamenu');
-    
+
     // 컨테이너 찾기
     if (typeof container === 'string') {
       this.container = document.querySelector(container);
@@ -769,7 +769,7 @@ class MegaMenu {
   _init() {
     // 메가 메뉴 아이템 찾기
     const itemElements = Array.from(this.container.querySelectorAll('.megamenu__item'));
-    
+
     if (itemElements.length === 0) {
       console.error('MegaMenu: .megamenu__item을 찾을 수 없습니다.');
       return;
@@ -779,7 +779,7 @@ class MegaMenu {
     itemElements.forEach((itemEl, index) => {
       const trigger = itemEl.querySelector('.megamenu__trigger');
       const panel = itemEl.querySelector('.megamenu__panel');
-      
+
       if (!trigger || !panel) {
         console.warn(`MegaMenu: 아이템 ${index}의 트리거 또는 패널을 찾을 수 없습니다.`);
         return;
@@ -788,12 +788,12 @@ class MegaMenu {
       // ARIA 속성 설정
       const triggerId = trigger.id || `${this.id}-trigger-${index}`;
       const panelId = panel.id || `${this.id}-panel-${index}`;
-      
+
       trigger.id = triggerId;
       trigger.setAttribute('aria-haspopup', 'true');
       trigger.setAttribute('aria-expanded', 'false');
       trigger.setAttribute('aria-controls', panelId);
-      
+
       panel.id = panelId;
       panel.setAttribute('aria-labelledby', triggerId);
       panel.style.display = 'none';
@@ -830,10 +830,10 @@ class MegaMenu {
   _handleTriggerClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const trigger = e.currentTarget;
     const index = this.items.findIndex(item => item.trigger === trigger);
-    
+
     if (index !== -1) {
       this.toggle(index);
     }
@@ -847,10 +847,10 @@ class MegaMenu {
     if (this.hoverTimer) {
       clearTimeout(this.hoverTimer);
     }
-    
+
     const trigger = e.currentTarget;
     const index = this.items.findIndex(item => item.trigger === trigger);
-    
+
     this.hoverTimer = setTimeout(() => {
       if (index !== -1) {
         this.open(index);
@@ -867,7 +867,7 @@ class MegaMenu {
       clearTimeout(this.hoverTimer);
       this.hoverTimer = null;
     }
-    
+
     this.hoverTimer = setTimeout(() => {
       this.closeAll();
     }, 300);
@@ -899,10 +899,10 @@ class MegaMenu {
    * @private
    */
   _handleOutsideClick(e) {
-    const isInside = this.items.some(item => 
+    const isInside = this.items.some(item =>
       item.element.contains(e.target)
     );
-    
+
     if (!isInside) {
       this.closeAll();
     }
@@ -919,7 +919,7 @@ class MegaMenu {
     }
 
     const item = this.items[index];
-    
+
     if (item.isOpen) {
       this.close(index);
     } else {
@@ -938,7 +938,7 @@ class MegaMenu {
     }
 
     const item = this.items[index];
-    
+
     if (item.isOpen) return;
 
     // 다른 메뉴 닫기
@@ -948,12 +948,12 @@ class MegaMenu {
     item.isOpen = true;
     item.trigger.setAttribute('aria-expanded', 'true');
     item.element.classList.add('megamenu__item--active');
-    
+
     if (this.options.animation) {
       item.panel.style.display = 'block';
       item.panel.style.opacity = '0';
       item.panel.style.transform = 'translateY(-10px)';
-      
+
       requestAnimationFrame(() => {
         item.panel.style.transition = `opacity ${this.options.animationDuration}ms ease, transform ${this.options.animationDuration}ms ease`;
         item.panel.style.opacity = '1';
@@ -985,18 +985,18 @@ class MegaMenu {
     }
 
     const item = this.items[index];
-    
+
     if (!item.isOpen) return;
 
     // 메뉴 닫기
     item.isOpen = false;
     item.trigger.setAttribute('aria-expanded', 'false');
     item.element.classList.remove('megamenu__item--active');
-    
+
     if (this.options.animation) {
       item.panel.style.opacity = '0';
       item.panel.style.transform = 'translateY(-10px)';
-      
+
       setTimeout(() => {
         item.panel.style.display = 'none';
       }, this.options.animationDuration);
@@ -1101,7 +1101,7 @@ class TreeView {
   constructor(container, options = {}) {
     this.options = Utils.extend({}, TreeView.defaults(), options);
     this.id = Utils.randomId('treeview');
-    
+
     // 컨테이너 찾기
     if (typeof container === 'string') {
       this.container = document.querySelector(container);
@@ -1141,12 +1141,12 @@ class TreeView {
    */
   _initNodes(parentElement, level = 0) {
     const nodeElements = Array.from(parentElement.querySelectorAll(':scope > .treeview__item'));
-    
+
     nodeElements.forEach((nodeEl) => {
       const toggle = nodeEl.querySelector('.treeview__toggle');
       const label = nodeEl.querySelector('.treeview__label');
       const children = nodeEl.querySelector('.treeview__children');
-      
+
       if (!label) return;
 
       const nodeData = {
@@ -1186,10 +1186,10 @@ class TreeView {
    */
   _handleToggleClick(e) {
     e.stopPropagation();
-    
+
     const toggle = e.currentTarget;
     const nodeData = this.nodes.find(n => n.toggle === toggle);
-    
+
     if (nodeData) {
       this.toggleNode(nodeData);
     }
@@ -1202,7 +1202,7 @@ class TreeView {
   _handleNodeClick(e) {
     const label = e.currentTarget;
     const nodeData = this.nodes.find(n => n.label === label);
-    
+
     if (nodeData) {
       this.selectNode(nodeData);
     }
@@ -1231,7 +1231,7 @@ class TreeView {
 
     nodeData.isExpanded = true;
     nodeData.element.classList.add('treeview__item--expanded');
-    
+
     if (nodeData.toggle) {
       nodeData.toggle.setAttribute('aria-expanded', 'true');
       const icon = nodeData.toggle.querySelector('i');
@@ -1245,11 +1245,11 @@ class TreeView {
       const height = nodeData.children.scrollHeight;
       nodeData.children.style.height = '0';
       nodeData.children.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         nodeData.children.style.transition = `height ${this.options.animationDuration}ms ease`;
         nodeData.children.style.height = height + 'px';
-        
+
         const timerId = setTimeout(() => {
           if (!this.container) return; // destroy 후 안전 체크
           nodeData.children.style.height = 'auto';
@@ -1279,7 +1279,7 @@ class TreeView {
 
     nodeData.isExpanded = false;
     nodeData.element.classList.remove('treeview__item--expanded');
-    
+
     if (nodeData.toggle) {
       nodeData.toggle.setAttribute('aria-expanded', 'false');
       const icon = nodeData.toggle.querySelector('i');
@@ -1292,11 +1292,11 @@ class TreeView {
       const height = nodeData.children.scrollHeight;
       nodeData.children.style.height = height + 'px';
       nodeData.children.style.overflow = 'hidden';
-      
+
       requestAnimationFrame(() => {
         nodeData.children.style.transition = `height ${this.options.animationDuration}ms ease`;
         nodeData.children.style.height = '0';
-        
+
         const timerId = setTimeout(() => {
           if (!this.container) return; // destroy 후 안전 체크
           nodeData.children.style.display = 'none';
@@ -1334,7 +1334,7 @@ class TreeView {
 
     // 선택 토글
     nodeData.isSelected = !nodeData.isSelected;
-    
+
     if (nodeData.isSelected) {
       nodeData.label.classList.add('treeview__label--selected');
       nodeData.label.setAttribute('aria-selected', 'true');

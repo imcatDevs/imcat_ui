@@ -10,7 +10,7 @@ import { Security } from './security.js';
  * @class
  * @description SPA(Single Page Application) 라우팅을 처리하는 클래스입니다.
  * History API를 사용하여 페이지 전환을 관리하고, views/ 폴더 하위 경로를 지원합니다.
- * 
+ *
  * @example
  * const router = new ViewRouter();
  * router.navigate('views/home.html');
@@ -33,7 +33,7 @@ export class ViewRouter {
     this.currentViewInstances = [];
     this.loading = null;
     this._popstateHandler = null;
-    
+
     // History API 사용 여부 (기본값: true)
     this.useHistory = true;
   }
@@ -49,7 +49,7 @@ export class ViewRouter {
     if (options.loading) {
       this.loading = options.loading;
     }
-    
+
     // History API 사용 여부 설정
     if ('useHistory' in options) {
       this.useHistory = options.useHistory;
@@ -80,7 +80,7 @@ export class ViewRouter {
    * @param {string} path - 페이지 경로
    * @param {boolean} [replace=false] - 히스토리 교체 여부
    * @returns {Promise<void>}
-   * 
+   *
    * @example
    * router.navigate('views/home.html');
    * router.navigate('views/login.html', true); // 히스토리 교체
@@ -132,13 +132,13 @@ export class ViewRouter {
       // 뷰 파일 렌더링
       // views/ 폴더 및 하위 폴더의 뷰 파일은 개발자가 작성한 신뢰할 수 있는 파일이므로
       // sanitize를 건너뛰고 스크립트와 스타일을 그대로 허용합니다.
-      // 
+      //
       // 보안 정책:
       // - Security.validatePath()로 views/ 외부 경로 차단
       // - 경로 순회 공격(..), 절대 경로 차단
       // - 사용자 입력은 뷰 내부에서 IMCAT.escape()로 처리
       // - views/admin/dashboard.html 같은 하위 폴더도 지원
-      
+
       // 컨테이너에 렌더링
       const container = document.querySelector(this.container);
       if (container) {
@@ -176,7 +176,7 @@ export class ViewRouter {
    */
   _executeScripts(container) {
     const scripts = container.querySelectorAll('script');
-    
+
     scripts.forEach((oldScript) => {
       const newScript = document.createElement('script');
 
@@ -196,7 +196,7 @@ export class ViewRouter {
   /**
    * URL 파라미터 조회
    * @returns {Object} 파라미터 객체
-   * 
+   *
    * @example
    * // URL: #views/product.html?id=123&color=red
    * const params = router.params();
@@ -222,7 +222,7 @@ export class ViewRouter {
 
   /**
    * 뒤로 가기
-   * 
+   *
    * @example
    * router.back();
    */
@@ -232,7 +232,7 @@ export class ViewRouter {
 
   /**
    * 앞으로 가기
-   * 
+   *
    * @example
    * router.forward();
    */
@@ -243,7 +243,7 @@ export class ViewRouter {
   /**
    * 현재 경로
    * @returns {string} 현재 경로
-   * 
+   *
    * @example
    * const path = router.current(); // 'views/home.html'
    */
@@ -254,7 +254,7 @@ export class ViewRouter {
   /**
    * 컨테이너 설정
    * @param {string} selector - CSS 선택자
-   * 
+   *
    * @example
    * router.setContainer('#main-content');
    */
@@ -266,7 +266,7 @@ export class ViewRouter {
    * 인스턴스 등록 (메모리 누수 방지)
    * @param {Object} instance - destroy() 메서드를 가진 인스턴스
    * @returns {Object} 등록된 인스턴스
-   * 
+   *
    * @example
    * const modal = new Modal();
    * router.registerInstance(modal);
@@ -305,7 +305,7 @@ export class ViewRouter {
    * beforeLoad 훅 등록
    * @param {Function} handler - 핸들러 (path, from) => {}
    * @returns {Function} 구독 취소 함수
-   * 
+   *
    * @example
    * const unsubscribe = router.beforeLoad((path, from) => {
    *   console.log(`${from} → ${path}`);
@@ -320,7 +320,7 @@ export class ViewRouter {
    * afterLoad 훅 등록
    * @param {Function} handler - 핸들러 (path) => {}
    * @returns {Function} 구독 취소 함수
-   * 
+   *
    * @example
    * router.afterLoad((path) => {
    *   console.log('로드 완료:', path);
@@ -335,7 +335,7 @@ export class ViewRouter {
    * onError 훅 등록
    * @param {Function} handler - 핸들러 (error) => {}
    * @returns {Function} 구독 취소 함수
-   * 
+   *
    * @example
    * router.onError((error) => {
    *   console.error('로드 실패:', error);

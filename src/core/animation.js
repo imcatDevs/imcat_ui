@@ -8,11 +8,11 @@
  * @class
  * @description Web Animations API 기반의 다양한 애니메이션 효과를 제공합니다.
  * GPU 가속을 활용하여 부드러운 60fps 애니메이션을 구현합니다.
- * 
+ *
  * @example
  * // Fade In 애니메이션
  * await AnimationUtil.animate('#box').fadeIn(300);
- * 
+ *
  * @example
  * // Bounce In 애니메이션
  * await AnimationUtil.animate('.card').bounceIn(600);
@@ -22,7 +22,7 @@ export class AnimationUtil {
    * 애니메이션 생성
    * @param {string|HTMLElement} element - 대상 요소
    * @returns {Animator} 애니메이터 인스턴스
-   * 
+   *
    * @example
    * await AnimationUtil.animate('#box').fadeIn(300);
    * await AnimationUtil.animate('#box').slideDown(400);
@@ -48,12 +48,8 @@ export class AnimationUtil {
     easeInQuint: t => t * t * t * t * t,
     easeOutQuint: t => 1 + (--t) * t * t * t * t,
     easeInOutQuint: t => t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t,
-    easeInElastic: t => {
-      return t === 0 ? 0 : t === 1 ? 1 : -Math.pow(2, 10 * t - 10) * Math.sin((t * 10 - 10.75) * ((2 * Math.PI) / 3));
-    },
-    easeOutElastic: t => {
-      return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1;
-    },
+    easeInElastic: t => t === 0 ? 0 : t === 1 ? 1 : -Math.pow(2, 10 * t - 10) * Math.sin((t * 10 - 10.75) * ((2 * Math.PI) / 3)),
+    easeOutElastic: t => t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1,
     easeInBounce: t => 1 - AnimationUtil.easings.easeOutBounce(1 - t),
     easeOutBounce: t => {
       const n1 = 7.5625;
@@ -82,10 +78,10 @@ class Animator {
    * Animator 생성자
    * @constructor
    * @param {string|HTMLElement} element - 애니메이션을 적용할 대상 요소 (CSS 선택자 또는 DOM 요소)
-   * 
+   *
    * @example
    * const animator = new Animator('#myElement');
-   * 
+   *
    * @example
    * const animator = new Animator(document.getElementById('myElement'));
    */
@@ -109,19 +105,19 @@ class Animator {
       }
 
       const easingFn = typeof easing === 'function' ? easing : AnimationUtil.easings[easing] || AnimationUtil.easings.linear;
-      
+
       // 시작 스타일 적용 (다음 프레임에서)
       requestAnimationFrame(() => {
         Object.keys(from).forEach(key => {
           this.element.style[key] = from[key];
         });
-        
+
         // 리플로우 강제 (브라우저가 from 스타일을 확실히 적용하도록)
         void this.element.offsetHeight;
-        
+
         // 애니메이션 시작
         const startTime = performance.now();
-        
+
         const animate = (currentTime) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
@@ -131,7 +127,7 @@ class Animator {
           Object.keys(to).forEach(key => {
             const fromValue = this._parseValue(from[key]);
             const toValue = this._parseValue(to[key]);
-            
+
             if (fromValue.unit && toValue.unit) {
               const currentValue = fromValue.value + (toValue.value - fromValue.value) * easedProgress;
               this.element.style[key] = `${currentValue}${toValue.unit}`;
@@ -158,7 +154,7 @@ class Animator {
    */
   _parseValue(value) {
     if (typeof value !== 'string') return { value, unit: '' };
-    
+
     const match = value.match(/^([-+]?[\d.]+)([a-z%]*)$/i);
     if (match) {
       return {
@@ -174,20 +170,20 @@ class Animator {
    */
   fadeIn(duration = 300, easing = 'ease-out') {
     if (!this.element) return Promise.resolve();
-    
+
     this.element.style.display = 'block';
-    
+
     const keyframes = [
       { opacity: '0' },
       { opacity: '1' }
     ];
-    
+
     const animation = this.element.animate(keyframes, {
       duration,
       easing,
       fill: 'forwards'
     });
-    
+
     return animation.finished.then(() => {
       this.element.style.opacity = '1';
     });
@@ -212,14 +208,13 @@ class Animator {
    */
   slideDown(duration = 400, easing = 'easeOutCubic') {
     if (!this.element) return Promise.resolve();
-    
+
     const element = this.element;
-    const originalDisplay = element.style.display;
     element.style.display = 'block';
     const height = element.scrollHeight;
     element.style.height = '0';
     element.style.overflow = 'hidden';
-    
+
     return this.custom(
       { height: '0px' },
       { height: `${height}px` },
@@ -236,12 +231,12 @@ class Animator {
    */
   slideUp(duration = 400, easing = 'easeInCubic') {
     if (!this.element) return Promise.resolve();
-    
+
     const element = this.element;
     const height = element.scrollHeight;
     element.style.height = `${height}px`;
     element.style.overflow = 'hidden';
-    
+
     return this.custom(
       { height: `${height}px` },
       { height: '0px' },
@@ -259,7 +254,7 @@ class Animator {
    */
   slideLeft(duration = 400, easing = 'easeInOut') {
     if (!this.element) return Promise.resolve();
-    
+
     const width = this.element.offsetWidth;
     return this.custom(
       { transform: 'translateX(0)', opacity: '1' },
@@ -276,7 +271,7 @@ class Animator {
    */
   slideRight(duration = 400, easing = 'easeInOut') {
     if (!this.element) return Promise.resolve();
-    
+
     const width = this.element.offsetWidth;
     return this.custom(
       { transform: 'translateX(0)', opacity: '1' },
@@ -293,20 +288,20 @@ class Animator {
    */
   scaleIn(duration = 300, easing = 'ease-out') {
     if (!this.element) return Promise.resolve();
-    
+
     this.element.style.display = 'block';
-    
+
     const keyframes = [
       { transform: 'scale(0)', opacity: '0' },
       { transform: 'scale(1)', opacity: '1' }
     ];
-    
+
     const animation = this.element.animate(keyframes, {
       duration,
       easing,
       fill: 'forwards'
     });
-    
+
     return animation.finished.then(() => {
       this.element.style.transform = 'scale(1)';
       this.element.style.opacity = '1';
@@ -332,20 +327,20 @@ class Animator {
    */
   bounceIn(duration = 600, easing = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)') {
     if (!this.element) return Promise.resolve();
-    
+
     this.element.style.display = 'block';
-    
+
     const keyframes = [
       { transform: 'translateY(-100px)', opacity: '0' },
       { transform: 'translateY(0)', opacity: '1' }
     ];
-    
+
     const animation = this.element.animate(keyframes, {
       duration,
       easing,
       fill: 'forwards'
     });
-    
+
     return animation.finished.then(() => {
       this.element.style.transform = 'translateY(0)';
       this.element.style.opacity = '1';
@@ -423,7 +418,7 @@ class Animator {
    */
   shake(duration = 500) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'translateX(0)' },
       { transform: 'translateX(-10px)' },
@@ -433,7 +428,7 @@ class Animator {
       { transform: 'translateX(-10px)' },
       { transform: 'translateX(0)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -445,7 +440,7 @@ class Animator {
    */
   pulse(duration = 500) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'scale(1)' },
       { transform: 'scale(1.05)' },
@@ -453,7 +448,7 @@ class Animator {
       { transform: 'scale(1.05)' },
       { transform: 'scale(1)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -465,7 +460,7 @@ class Animator {
    */
   flash(duration = 500) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { opacity: '1' },
       { opacity: '0' },
@@ -473,7 +468,7 @@ class Animator {
       { opacity: '0' },
       { opacity: '1' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -485,7 +480,7 @@ class Animator {
    */
   swing(duration = 800) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'rotate(0deg)' },
       { transform: 'rotate(15deg)' },
@@ -494,7 +489,7 @@ class Animator {
       { transform: 'rotate(-5deg)' },
       { transform: 'rotate(0deg)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -506,7 +501,7 @@ class Animator {
    */
   wobble(duration = 800) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'translateX(0%) rotate(0deg)' },
       { transform: 'translateX(-25%) rotate(-5deg)' },
@@ -516,7 +511,7 @@ class Animator {
       { transform: 'translateX(-5%) rotate(-1deg)' },
       { transform: 'translateX(0%) rotate(0deg)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -528,7 +523,7 @@ class Animator {
    */
   tada(duration = 800) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'scale(1) rotate(0deg)' },
       { transform: 'scale(0.9) rotate(-3deg)' },
@@ -541,7 +536,7 @@ class Animator {
       { transform: 'scale(1.1) rotate(-3deg)' },
       { transform: 'scale(1) rotate(0deg)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'
@@ -553,7 +548,7 @@ class Animator {
    */
   heartBeat(duration = 1000) {
     if (!this.element) return Promise.resolve();
-    
+
     const keyframes = [
       { transform: 'scale(1)' },
       { transform: 'scale(1.3)' },
@@ -561,7 +556,7 @@ class Animator {
       { transform: 'scale(1.3)' },
       { transform: 'scale(1)' }
     ];
-    
+
     return this.element.animate(keyframes, {
       duration,
       easing: 'ease-in-out'

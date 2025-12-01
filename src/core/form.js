@@ -3,14 +3,12 @@
  * @module core/form
  */
 
-import { Security } from './security.js';
-
 /**
  * 폼 검증 유틸리티
  * @class
  * @description 폼 입력 값의 검증을 수행하는 클래스입니다.
  * 다양한 검증 규칙(required, email, min, max 등)을 제공합니다.
- * 
+ *
  * @example
  * const validator = new FormValidator('#myForm', {
  *   rules: { email: ['required', 'email'] }
@@ -23,7 +21,7 @@ export class FormValidator {
    * @param {Object} rules - 검증 규칙
    * @param {Object} [options={}] - 옵션
    * @returns {FormValidator} 검증기 인스턴스
-   * 
+   *
    * @example
    * const validator = FormValidator.create('#login-form', {
    *   email: { required: true, email: true },
@@ -46,11 +44,11 @@ export class FormValidator {
       showErrorMessages: true,
       ...options
     };
-    
+
     this.errors = {};
     this.touched = {};
     this._eventHandlers = [];
-    
+
     this._init();
   }
 
@@ -60,25 +58,25 @@ export class FormValidator {
    */
   _init() {
     if (!this.form) return;
-    
+
     // 각 필드에 이벤트 리스너 추가
     Object.keys(this.rules).forEach(fieldName => {
       const field = this.form.elements[fieldName];
       if (!field) return;
-      
+
       if (this.options.validateOnBlur) {
         const blurHandler = () => this._validateField(fieldName);
         field.addEventListener('blur', blurHandler);
         this._eventHandlers.push({ element: field, event: 'blur', handler: blurHandler });
       }
-      
+
       if (this.options.validateOnInput) {
         const inputHandler = () => this._validateField(fieldName);
         field.addEventListener('input', inputHandler);
         this._eventHandlers.push({ element: field, event: 'input', handler: inputHandler });
       }
     });
-    
+
     // 폼 제출 이벤트
     const submitHandler = (e) => {
       if (!this.validate()) {
@@ -97,17 +95,17 @@ export class FormValidator {
   _validateField(fieldName) {
     const field = this.form.elements[fieldName];
     if (!field) return true;
-    
+
     const rules = this.rules[fieldName];
     const value = field.value;
-    
+
     this.touched[fieldName] = true;
-    
+
     // 모든 규칙 검사
     for (const [ruleName, ruleValue] of Object.entries(rules)) {
       const validator = this.validators[ruleName];
       if (!validator) continue;
-      
+
       const result = validator.validate(value, ruleValue, this.form);
       if (!result.valid) {
         this.errors[fieldName] = result.message;
@@ -115,7 +113,7 @@ export class FormValidator {
         return false;
       }
     }
-    
+
     // 모든 규칙 통과
     delete this.errors[fieldName];
     this._updateFieldUI(field, true);
@@ -128,13 +126,13 @@ export class FormValidator {
    */
   validate() {
     let isValid = true;
-    
+
     Object.keys(this.rules).forEach(fieldName => {
       if (!this._validateField(fieldName)) {
         isValid = false;
       }
     });
-    
+
     return isValid;
   }
 
@@ -146,11 +144,11 @@ export class FormValidator {
     // 클래스 업데이트
     field.classList.remove(this.options.errorClass, this.options.successClass);
     field.classList.add(isValid ? this.options.successClass : this.options.errorClass);
-    
+
     // 에러 메시지 표시
     if (this.options.showErrorMessages) {
       let errorEl = field.parentElement.querySelector(`.${this.options.errorMessageClass}`);
-      
+
       if (!isValid && errorMessage) {
         if (!errorEl) {
           errorEl = document.createElement('div');
@@ -196,10 +194,10 @@ export class FormValidator {
   reset() {
     this.errors = {};
     this.touched = {};
-    
+
     if (this.form) {
       this.form.reset();
-      
+
       // UI 초기화
       Object.keys(this.rules).forEach(fieldName => {
         const field = this.form.elements[fieldName];
@@ -234,7 +232,7 @@ export class FormValidator {
         message: '필수 입력 항목입니다.'
       })
     },
-    
+
     email: {
       validate: (value) => {
         if (!value) return { valid: true };
@@ -245,21 +243,21 @@ export class FormValidator {
         };
       }
     },
-    
+
     minLength: {
       validate: (value, min) => ({
         valid: !value || value.length >= min,
         message: `최소 ${min}자 이상 입력해주세요.`
       })
     },
-    
+
     maxLength: {
       validate: (value, max) => ({
         valid: !value || value.length <= max,
         message: `최대 ${max}자까지 입력 가능합니다.`
       })
     },
-    
+
     min: {
       validate: (value, min) => {
         if (!value) return { valid: true };
@@ -270,7 +268,7 @@ export class FormValidator {
         };
       }
     },
-    
+
     max: {
       validate: (value, max) => {
         if (!value) return { valid: true };
@@ -281,7 +279,7 @@ export class FormValidator {
         };
       }
     },
-    
+
     pattern: {
       validate: (value, pattern) => {
         if (!value) return { valid: true };
@@ -292,7 +290,7 @@ export class FormValidator {
         };
       }
     },
-    
+
     number: {
       validate: (value) => {
         if (!value || value.trim() === '') return { valid: true };
@@ -302,7 +300,7 @@ export class FormValidator {
         };
       }
     },
-    
+
     url: {
       validate: (value) => {
         if (!value) return { valid: true };
@@ -317,7 +315,7 @@ export class FormValidator {
         }
       }
     },
-    
+
     match: {
       validate: (value, targetFieldName, form) => {
         if (!value) return { valid: true };
@@ -328,7 +326,7 @@ export class FormValidator {
         };
       }
     },
-    
+
     custom: {
       validate: (value, fn) => {
         const result = fn(value);
@@ -342,7 +340,7 @@ export class FormValidator {
       }
     }
   };
-  
+
   /**
    * 커스텀 검증 규칙 추가
    * @param {string} name - 규칙 이름

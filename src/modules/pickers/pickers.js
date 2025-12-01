@@ -72,7 +72,7 @@ class DatePicker {
     if (this.viewMode === 'years') {
       return this._renderYears(year);
     }
-    
+
     if (this.viewMode === 'months') {
       return this._renderMonths(year, monthNames);
     }
@@ -96,7 +96,7 @@ class DatePicker {
     const startYear = Math.floor(currentYear / 10) * 10 - 1;
     const endYear = startYear + 11;
     let html = '';
-    
+
     for (let y = startYear; y <= endYear; y++) {
       const isSelected = y === currentYear;
       const isOutRange = y === startYear || y === endYear;
@@ -119,7 +119,7 @@ class DatePicker {
   _renderMonths(year, monthNames) {
     const currentMonth = this.currentMonth.getMonth();
     let html = '';
-    
+
     monthNames.forEach((name, idx) => {
       const isSelected = idx === currentMonth;
       let cls = 'datepicker__month-item';
@@ -142,7 +142,7 @@ class DatePicker {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const today = new Date(); today.setHours(0,0,0,0);
     let html = '';
-    
+
     for (let i = 0; i < firstDay; i++) html += '<span class="datepicker__day datepicker__day--empty"></span>';
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
@@ -174,9 +174,9 @@ class DatePicker {
       e.stopPropagation();
       const t = e.target.closest('[data-action],[data-date],[data-year],[data-month]');
       if (!t) return;
-      
+
       const action = t.dataset.action;
-      
+
       if (action === 'prev') { this.currentMonth.setMonth(this.currentMonth.getMonth()-1); this._update(); }
       else if (action === 'next') { this.currentMonth.setMonth(this.currentMonth.getMonth()+1); this._update(); }
       else if (action === 'today') { this.viewMode = 'days'; this.setValue(this._formatDate(new Date())); this.close(); }
@@ -191,7 +191,7 @@ class DatePicker {
       else if (t.dataset.date) { this.setValue(t.dataset.date); this.close(); }
     };
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
-    
+
     this.element.addEventListener('click', this._onElementClick);
     this.icon.addEventListener('click', this._onIconClick);
     this.picker.addEventListener('click', this._onPickerClick);
@@ -256,7 +256,7 @@ class TimePicker {
     this._onIconClick = () => this.open();
     this._onPickerClick = (e) => { const o = e.target.closest('.timepicker__option'); if (o) { this.setValue(o.dataset.time); this.close(); } };
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
-    
+
     this.element.addEventListener('click', this._onElementClick);
     this.icon.addEventListener('click', this._onIconClick);
     this.picker.addEventListener('click', this._onPickerClick);
@@ -274,11 +274,11 @@ class TimePicker {
     if (this._onPickerClick) this.picker.removeEventListener('click', this._onPickerClick);
     document.removeEventListener('click', this._outside);
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
-    
+
     // 참조 해제
     this.element = null;
     this.wrapper = null;
@@ -334,7 +334,7 @@ class ColorPicker {
     this._onPickerClick = (e) => { const p = e.target.closest('.colorpicker__preset'); if (p) this.setValue(p.dataset.color); };
     this._onNativeInput = (e) => this.setValue(e.target.value);
     this._outside = (e) => { if (!this.wrapper.contains(e.target) && this.isOpen) this.close(); };
-    
+
     this.preview.addEventListener('click', this._onPreviewClick);
     this.picker.addEventListener('click', this._onPickerClick);
     this.nativeInput.addEventListener('input', this._onNativeInput);
@@ -355,11 +355,11 @@ class ColorPicker {
     if (this._onNativeInput) this.nativeInput.removeEventListener('input', this._onNativeInput);
     document.removeEventListener('click', this._outside);
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
-    
+
     // 참조 해제
     this.element = null;
     this.wrapper = null;
@@ -401,13 +401,13 @@ class Countdown {
   _init() {
     this.element.classList.add('countdown');
     const { labels, showLabels, showDays, showHours, showMinutes, showSeconds, separator } = this.options;
-    
+
     const parts = [];
     if (showDays) parts.push(`<div class="countdown__item"><span class="countdown__value" data-unit="days">00</span>${showLabels ? `<span class="countdown__label">${labels.days}</span>` : ''}</div>`);
     if (showHours) parts.push(`<div class="countdown__item"><span class="countdown__value" data-unit="hours">00</span>${showLabels ? `<span class="countdown__label">${labels.hours}</span>` : ''}</div>`);
     if (showMinutes) parts.push(`<div class="countdown__item"><span class="countdown__value" data-unit="minutes">00</span>${showLabels ? `<span class="countdown__label">${labels.minutes}</span>` : ''}</div>`);
     if (showSeconds) parts.push(`<div class="countdown__item"><span class="countdown__value" data-unit="seconds">00</span>${showLabels ? `<span class="countdown__label">${labels.seconds}</span>` : ''}</div>`);
-    
+
     this.element.innerHTML = parts.join(`<span class="countdown__sep">${separator}</span>`);
     this.start();
   }
@@ -427,7 +427,7 @@ class Countdown {
   _update() {
     const t = this._calc();
     const { showDays, showHours, showMinutes, showSeconds } = this.options;
-    
+
     if (showDays) {
       const el = this.element.querySelector('[data-unit="days"]');
       if (el) el.textContent = String(t.days).padStart(2,'0');
@@ -446,7 +446,7 @@ class Countdown {
       const el = this.element.querySelector('[data-unit="seconds"]');
       if (el) el.textContent = String(t.seconds).padStart(2,'0');
     }
-    
+
     this.options.onTick?.(t);
     if (t.total <= 0) { this.stop(); this.element.classList.add('countdown--complete'); this.options.onComplete?.(); }
   }
@@ -494,7 +494,7 @@ class DDay {
   _render() {
     const diff = this._calc();
     let text, cls = 'dday__count';
-    
+
     if (diff === 0) { text = 'D-Day'; cls += ' dday__count--today'; }
     else if (diff > 0) { text = `D-${diff}`; cls += ' dday__count--future'; }
     else { text = this.options.showPastDays ? `D+${Math.abs(diff)}` : 'D-Day 지남'; cls += ' dday__count--past'; }

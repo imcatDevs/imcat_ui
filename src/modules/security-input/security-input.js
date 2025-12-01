@@ -32,10 +32,10 @@ class OTPInput {
   }
 
   constructor(container, options = {}) {
-    this.container = typeof container === 'string' 
-      ? document.querySelector(container) 
+    this.container = typeof container === 'string'
+      ? document.querySelector(container)
       : container;
-    
+
     if (!this.container) {
       console.error('OTPInput: Container not found');
       return;
@@ -48,7 +48,7 @@ class OTPInput {
     this.options = { ...OTPInput.defaults(), ...options };
     this.inputs = [];
     this.value = '';
-    
+
     this._onInput = null;
     this._onKeyDown = null;
     this._onPaste = null;
@@ -62,7 +62,7 @@ class OTPInput {
   init() {
     this._render();
     this._bindEvents();
-    
+
     if (this.options.autoFocus && !this.options.disabled) {
       setTimeout(() => this.inputs[0]?.focus(), 0);
     }
@@ -70,18 +70,18 @@ class OTPInput {
 
   _render() {
     const { length, type, separator, separatorPosition, placeholder, disabled, error, errorMessage, mask } = this.options;
-    
+
     this.container.classList.add('otp-input');
     if (error) this.container.classList.add('otp-input--error');
     if (disabled) this.container.classList.add('otp-input--disabled');
-    
+
     let html = '<div class="otp-input__fields">';
-    
+
     for (let i = 0; i < length; i++) {
       if (separator && i === separatorPosition) {
         html += '<span class="otp-input__separator">-</span>';
       }
-      
+
       const inputType = mask ? 'password' : (type === 'number' ? 'tel' : type);
       html += `
         <input 
@@ -96,13 +96,13 @@ class OTPInput {
         >
       `;
     }
-    
+
     html += '</div>';
-    
+
     if (errorMessage) {
       html += `<div class="otp-input__error">${errorMessage}</div>`;
     }
-    
+
     this.container.innerHTML = html;
     this.inputs = Array.from(this.container.querySelectorAll('.otp-input__field'));
   }
@@ -112,20 +112,20 @@ class OTPInput {
       const input = e.target;
       const index = parseInt(input.dataset.index);
       const value = input.value;
-      
+
       // 숫자만 허용 (number 타입일 때)
       if (this.options.type === 'number' && !/^\d*$/.test(value)) {
         input.value = '';
         return;
       }
-      
+
       // 값이 있으면 다음 입력으로 이동
       if (value && index < this.options.length - 1) {
         this.inputs[index + 1].focus();
       }
-      
+
       this._updateValue();
-      
+
       // 완료 체크
       if (this.value.length === this.options.length && this.options.autoSubmit) {
         if (this.options.onComplete) {
@@ -137,7 +137,7 @@ class OTPInput {
     this._onKeyDown = (e) => {
       const input = e.target;
       const index = parseInt(input.dataset.index);
-      
+
       switch (e.key) {
         case 'Backspace':
           if (!input.value && index > 0) {
@@ -164,22 +164,22 @@ class OTPInput {
       e.preventDefault();
       const pastedData = e.clipboardData.getData('text').trim();
       const chars = pastedData.split('').slice(0, this.options.length);
-      
+
       chars.forEach((char, i) => {
         if (this.inputs[i]) {
           if (this.options.type === 'number' && !/^\d$/.test(char)) return;
           this.inputs[i].value = char;
         }
       });
-      
+
       // 마지막 입력으로 포커스
       const lastIndex = Math.min(chars.length, this.options.length) - 1;
       if (lastIndex >= 0) {
         this.inputs[lastIndex].focus();
       }
-      
+
       this._updateValue();
-      
+
       if (this.value.length === this.options.length && this.options.autoSubmit) {
         if (this.options.onComplete) {
           this.options.onComplete(this.value);
@@ -276,14 +276,14 @@ class OTPInput {
       if (this._onFocus) input.removeEventListener('focus', this._onFocus);
       if (this._onBlur) input.removeEventListener('blur', this._onBlur);
     });
-    
+
     OTPInput.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
       this.container.className = '';
     }
-    
+
     this.container = null;
     this.inputs = null;
   }
@@ -316,10 +316,10 @@ class PinInput {
   }
 
   constructor(container, options = {}) {
-    this.container = typeof container === 'string' 
-      ? document.querySelector(container) 
+    this.container = typeof container === 'string'
+      ? document.querySelector(container)
       : container;
-    
+
     if (!this.container) {
       console.error('PinInput: Container not found');
       return;
@@ -333,7 +333,7 @@ class PinInput {
     this.inputs = [];
     this.value = '';
     this.isVisible = false;
-    
+
     this._handlers = {};
 
     this.init();
@@ -343,7 +343,7 @@ class PinInput {
   init() {
     this._render();
     this._bindEvents();
-    
+
     if (this.options.autoFocus && !this.options.disabled) {
       setTimeout(() => this.inputs[0]?.focus(), 0);
     }
@@ -351,16 +351,16 @@ class PinInput {
 
   _render() {
     const { length, mask, showToggle, disabled, error, errorMessage, keypad } = this.options;
-    
+
     this.container.classList.add('pin-input');
     if (error) this.container.classList.add('pin-input--error');
     if (disabled) this.container.classList.add('pin-input--disabled');
-    
+
     let html = `
       <div class="pin-input__wrapper">
         <div class="pin-input__fields">
     `;
-    
+
     for (let i = 0; i < length; i++) {
       html += `
         <div class="pin-input__field-wrapper">
@@ -378,9 +378,9 @@ class PinInput {
         </div>
       `;
     }
-    
+
     html += '</div>';
-    
+
     if (showToggle) {
       html += `
         <button type="button" class="pin-input__toggle" aria-label="Toggle visibility">
@@ -388,24 +388,24 @@ class PinInput {
         </button>
       `;
     }
-    
+
     html += '</div>';
-    
+
     if (errorMessage) {
       html += `<div class="pin-input__error">${errorMessage}</div>`;
     }
-    
+
     if (keypad) {
       html += this._renderKeypad();
     }
-    
+
     this.container.innerHTML = html;
     this.inputs = Array.from(this.container.querySelectorAll('.pin-input__field'));
   }
 
   _renderKeypad() {
     let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', 'backspace'];
-    
+
     if (this.options.shuffleKeypad) {
       // 0-9 셔플
       const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -415,9 +415,9 @@ class PinInput {
       }
       numbers = [...digits.slice(0, 9), '', digits[9], 'backspace'];
     }
-    
+
     let html = '<div class="pin-input__keypad">';
-    
+
     numbers.forEach(num => {
       if (num === '') {
         html += '<button type="button" class="pin-input__key pin-input__key--empty" disabled></button>';
@@ -431,7 +431,7 @@ class PinInput {
         html += `<button type="button" class="pin-input__key" data-key="${num}">${num}</button>`;
       }
     });
-    
+
     html += '</div>';
     return html;
   }
@@ -440,19 +440,19 @@ class PinInput {
     this._handlers.onInput = (e) => {
       const input = e.target;
       const index = parseInt(input.dataset.index);
-      let value = input.value;
-      
+      const value = input.value;
+
       // 숫자만 허용
       if (this.options.numeric && !/^\d*$/.test(value)) {
         input.value = '';
         return;
       }
-      
+
       // 다음 입력으로 이동
       if (value && index < this.options.length - 1) {
         this.inputs[index + 1].focus();
       }
-      
+
       this._updateValue();
       this._checkComplete();
     };
@@ -460,7 +460,7 @@ class PinInput {
     this._handlers.onKeyDown = (e) => {
       const input = e.target;
       const index = parseInt(input.dataset.index);
-      
+
       if (e.key === 'Backspace' && !input.value && index > 0) {
         this.inputs[index - 1].focus();
         this.inputs[index - 1].value = '';
@@ -476,12 +476,12 @@ class PinInput {
       this.isVisible = !this.isVisible;
       const type = this.isVisible ? 'tel' : 'password';
       this.inputs.forEach(input => input.type = type);
-      
+
       const toggle = this.container.querySelector('.pin-input__toggle i');
       if (toggle) {
         toggle.textContent = this.isVisible ? 'visibility_off' : 'visibility';
       }
-      
+
       // 점 표시 토글
       this.container.querySelectorAll('.pin-input__dot').forEach(dot => {
         dot.classList.toggle('pin-input__dot--hidden', this.isVisible);
@@ -491,7 +491,7 @@ class PinInput {
     this._handlers.onKeypadClick = (e) => {
       const key = e.target.closest('.pin-input__key')?.dataset.key;
       if (!key) return;
-      
+
       if (key === 'backspace') {
         // 마지막 입력된 값 삭제
         for (let i = this.options.length - 1; i >= 0; i--) {
@@ -513,7 +513,7 @@ class PinInput {
           }
         }
       }
-      
+
       this._updateValue();
       this._checkComplete();
     };
@@ -619,7 +619,7 @@ class PinInput {
       input.removeEventListener('keydown', this._handlers.onKeyDown);
       input.removeEventListener('focus', this._handlers.onFocus);
     });
-    
+
     const toggle = this.container.querySelector('.pin-input__toggle');
     if (toggle) {
       toggle.removeEventListener('click', this._handlers.onToggle);
@@ -629,14 +629,14 @@ class PinInput {
     if (keypad) {
       keypad.removeEventListener('click', this._handlers.onKeypadClick);
     }
-    
+
     PinInput.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
       this.container.className = '';
     }
-    
+
     this.container = null;
     this.inputs = null;
     this._handlers = null;

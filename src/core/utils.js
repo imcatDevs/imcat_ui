@@ -7,7 +7,7 @@
  * @class
  * @description 다양한 유틸리티 함수를 제공하는 클래스입니다.
  * 타입 체크, 객체 조작, 디바운스/스로틀 등의 기능을 포함합니다.
- * 
+ *
  * @example
  * Utils.isString('hello'); // true
  * Utils.debounce(fn, 300);
@@ -99,7 +99,7 @@ export class Utils {
    * @param {Object} target - 대상 객체
    * @param {...Object} sources - 소스 객체들
    * @returns {Object} 병합된 객체
-   * 
+   *
    * @example
    * Utils.extend({}, { a: 1 }, { b: 2 }); // { a: 1, b: 2 }
    */
@@ -122,10 +122,10 @@ export class Utils {
    * 깊은 복사
    * @param {*} obj - 복사할 객체
    * @returns {*} 복사된 객체
-   * 
+   *
    * @example
    * const copy = Utils.clone({ a: { b: 1 } });
-   * 
+   *
    * @note
    * - 일반 객체 및 배열만 지원
    * - Date, RegExp, Map, Set, Function 등 특수 객체는 참조로 복사됨
@@ -149,7 +149,7 @@ export class Utils {
    * 배열 중복 제거
    * @param {Array} array - 배열
    * @returns {Array} 중복이 제거된 배열
-   * 
+   *
    * @example
    * Utils.unique([1, 2, 2, 3]); // [1, 2, 3]
    */
@@ -161,7 +161,7 @@ export class Utils {
    * 배열 평탄화
    * @param {Array} array - 배열
    * @returns {Array} 평탄화된 배열
-   * 
+   *
    * @example
    * Utils.flatten([1, [2, [3, 4]]]); // [1, 2, 3, 4]
    */
@@ -175,7 +175,7 @@ export class Utils {
    * @param {Function} func - 디바운스할 함수
    * @param {number} wait - 대기 시간 (ms)
    * @returns {Function} 디바운스된 함수
-   * 
+   *
    * @example
    * const debouncedSearch = Utils.debounce(search, 300);
    */
@@ -197,7 +197,7 @@ export class Utils {
    * @param {Function} func - 스로틀할 함수
    * @param {number} limit - 제한 시간 (ms)
    * @returns {Function} 스로틀된 함수
-   * 
+   *
    * @example
    * const throttledScroll = Utils.throttle(onScroll, 100);
    */
@@ -217,7 +217,7 @@ export class Utils {
    * 랜덤 ID 생성
    * @param {string} prefix - 접두사 (기본: 'id')
    * @returns {string} 랜덤 ID
-   * 
+   *
    * @example
    * Utils.randomId('user'); // 'user-abc123xyz'
    */
@@ -230,7 +230,7 @@ export class Utils {
    * @param {number} min - 최소값
    * @param {number} max - 최대값
    * @returns {number} 랜덤 정수
-   * 
+   *
    * @example
    * Utils.randomInt(1, 100); // 1~100 사이의 랜덤 정수
    */
@@ -243,7 +243,7 @@ export class Utils {
    * @param {Array} array - 배열
    * @param {number} size - 청크 크기
    * @returns {Array[]} 청크 배열
-   * 
+   *
    * @example
    * Utils.chunk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
    */
@@ -261,7 +261,7 @@ export class Utils {
    * @param {number} end - 종료값
    * @param {number} step - 증가값 (기본: 1)
    * @returns {Array} 범위 배열
-   * 
+   *
    * @example
    * Utils.range(1, 5); // [1, 2, 3, 4, 5]
    * Utils.range(0, 10, 2); // [0, 2, 4, 6, 8, 10]
@@ -280,7 +280,7 @@ export class Utils {
    * @param {number} maxLength - 최대 길이
    * @param {string} suffix - 접미사 (기본: '...')
    * @returns {string} 잘린 문자열
-   * 
+   *
    * @example
    * Utils.truncate('Hello World', 8); // 'Hello...'
    */
@@ -293,7 +293,7 @@ export class Utils {
    * 카멜케이스 변환
    * @param {string} str - 문자열
    * @returns {string} 카멜케이스 문자열
-   * 
+   *
    * @example
    * Utils.camelCase('hello-world'); // 'helloWorld'
    * Utils.camelCase('hello_world'); // 'helloWorld'
@@ -306,7 +306,7 @@ export class Utils {
    * 케밥케이스 변환
    * @param {string} str - 문자열
    * @returns {string} 케밥케이스 문자열
-   * 
+   *
    * @example
    * Utils.kebabCase('helloWorld'); // 'hello-world'
    */
@@ -318,7 +318,7 @@ export class Utils {
    * 첫 글자 대문자
    * @param {string} str - 문자열
    * @returns {string} 첫 글자가 대문자인 문자열
-   * 
+   *
    * @example
    * Utils.capitalize('hello'); // 'Hello'
    */
@@ -331,7 +331,7 @@ export class Utils {
    * 지연 실행 (Promise)
    * @param {number} ms - 지연 시간 (ms)
    * @returns {Promise<void>}
-   * 
+   *
    * @example
    * await Utils.sleep(1000); // 1초 대기
    */
@@ -344,7 +344,7 @@ export class Utils {
    * @param {Object} obj - 객체
    * @param {string[]} keys - 선택할 키 배열
    * @returns {Object} 선택된 키만 포함하는 객체
-   * 
+   *
    * @example
    * Utils.pick({ a: 1, b: 2, c: 3 }, ['a', 'c']); // { a: 1, c: 3 }
    */
@@ -363,7 +363,7 @@ export class Utils {
    * @param {Object} obj - 객체
    * @param {string[]} keys - 제거할 키 배열
    * @returns {Object} 키가 제거된 객체
-   * 
+   *
    * @example
    * Utils.omit({ a: 1, b: 2, c: 3 }, ['b']); // { a: 1, c: 3 }
    */

@@ -8,7 +8,7 @@
  * @class
  * @description JavaScript 모듈과 CSS를 동적으로 로드하는 클래스입니다.
  * 중복 로드를 방지하고 모듈을 캐싱합니다.
- * 
+ *
  * @example
  * const loader = new ModuleLoader();
  * await loader.load('/modules/chart.js', '/modules/chart.css');
@@ -23,14 +23,14 @@ export class ModuleLoader {
   constructor(options = {}) {
     this.modules = new Map();
     this.loadedCSS = new Set();
-    
+
     // dist 폴더 경로 설정 (옵션 또는 자동 감지)
     this.distPath = options.distPath || this._detectDistPath();
-    
+
     // 모듈 base path (distPath 기준)
     this.basePath = `${this.distPath}/modules`;
   }
-  
+
   /**
    * dist 폴더 경로 자동 감지
    * @private
@@ -39,7 +39,7 @@ export class ModuleLoader {
   _detectDistPath() {
     // 현재 스크립트 위치에서 dist 찾기
     const scripts = document.getElementsByTagName('script');
-    for (let script of scripts) {
+    for (const script of scripts) {
       const src = script.src;
       if (src && src.includes('imcat-ui')) {
         // imcat-ui.js 또는 imcat-ui.min.js의 경로에서 dist 추출
@@ -49,7 +49,7 @@ export class ModuleLoader {
         }
       }
     }
-    
+
     // 기본값: 현재 위치 기준 상대 경로
     return './dist';
   }
@@ -58,11 +58,11 @@ export class ModuleLoader {
    * 모듈 로드
    * @param {...string} moduleNames - 모듈 이름들
    * @returns {Promise<*>} 단일 또는 배열로 모듈 반환
-   * 
+   *
    * @example
    * // 단일 모듈
    * const Modal = await loader.use('modal');
-   * 
+   *
    * // 여러 모듈
    * const [Modal, Dropdown] = await loader.use('modal', 'dropdown');
    */
@@ -83,7 +83,7 @@ export class ModuleLoader {
    * 모듈 사전 로드 (캐싱)
    * @param {...string} moduleNames - 모듈 이름들
    * @returns {Promise<void>}
-   * 
+   *
    * @example
    * await loader.preload('modal', 'dropdown', 'tooltip');
    */
@@ -157,7 +157,7 @@ export class ModuleLoader {
    * CSS 파일 로드
    * @param {string} url - CSS 파일 URL
    * @returns {Promise<void>}
-   * 
+   *
    * @example
    * await loader.loadCSS('./styles/custom.css');
    */
@@ -190,7 +190,7 @@ export class ModuleLoader {
    * 로드된 모듈 가져오기
    * @param {string} moduleName - 모듈 이름
    * @returns {*|null} 모듈 또는 null
-   * 
+   *
    * @example
    * const Modal = loader.getModule('modal');
    */
@@ -202,7 +202,7 @@ export class ModuleLoader {
    * 모듈 로드 여부 확인
    * @param {string} moduleName - 모듈 이름
    * @returns {boolean}
-   * 
+   *
    * @example
    * if (loader.hasModule('modal')) {
    *   console.log('Modal already loaded');
@@ -215,7 +215,7 @@ export class ModuleLoader {
   /**
    * 기본 경로 설정
    * @param {string} path - 모듈 기본 경로
-   * 
+   *
    * @example
    * loader.setBasePath('./custom/modules');
    */
@@ -226,7 +226,7 @@ export class ModuleLoader {
   /**
    * 모듈 캐시 초기화
    * @param {string} [moduleName] - 특정 모듈만 초기화 (선택)
-   * 
+   *
    * @example
    * loader.clearCache(); // 전체 초기화
    * loader.clearCache('modal'); // 특정 모듈만
@@ -268,7 +268,7 @@ export class ModuleLoader {
   /**
    * 모듈 로더 정리 (메모리 누수 방지)
    * 모듈 캐시를 정리합니다. CSS는 DOM에 유지됩니다.
-   * 
+   *
    * @example
    * // 애플리케이션 종료 시
    * loader.destroy();
@@ -276,7 +276,7 @@ export class ModuleLoader {
   destroy() {
     // 모듈 캐시 정리
     this.modules.clear();
-    
+
     // CSS는 DOM에 남겨둠 (제거 시 스타일 깨짐)
     // 필요시 별도로 CSS 정리 가능
     // this.loadedCSS.clear();

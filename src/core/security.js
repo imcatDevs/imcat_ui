@@ -8,7 +8,7 @@
  * @class
  * @description XSS 공격 방지, HTML 새니타이징, 경로 검증 등의 보안 기능을 제공합니다.
  * 모든 사용자 입력은 자동으로 이스케이프됩니다.
- * 
+ *
  * @example
  * const safe = Security.escape('<script>alert("XSS")</script>');
  * const clean = Security.sanitize(userHtml);
@@ -18,7 +18,7 @@ export class Security {
    * HTML 이스케이프
    * @param {string} str - 이스케이프할 문자열
    * @returns {string} 이스케이프된 문자열
-   * 
+   *
    * @example
    * Security.escape('<script>alert("XSS")</script>');
    * // '&lt;script&gt;alert("XSS")&lt;/script&gt;'
@@ -42,7 +42,7 @@ export class Security {
    * HTML 새니타이징 (위험한 요소 및 속성 제거)
    * @param {string} html - 새니타이징할 HTML
    * @returns {string} 새니타이징된 HTML
-   * 
+   *
    * @example
    * Security.sanitize('<script>alert()</script><p>안전</p>');
    * // '<p>안전</p>'
@@ -114,11 +114,11 @@ export class Security {
    * 경로 검증 (경로 순회 공격 방지)
    * @param {string} path - 검증할 경로
    * @returns {boolean} 안전한 경로 여부
-   * 
+   *
    * @description
    * views/ 폴더 및 그 하위 폴더의 뷰 파일만 허용합니다.
    * 경로 순회 공격(..), 절대 경로, null byte 등을 차단합니다.
-   * 
+   *
    * @example
    * Security.validatePath('views/home.html'); // true
    * Security.validatePath('views/products.html?id=1'); // true
@@ -132,8 +132,8 @@ export class Security {
     if (typeof path !== 'string' || !path) return false;
 
     // 쿼리 스트링 분리
-    const [pathOnly, queryString] = path.split('?');
-    
+    const [pathOnly] = path.split('?');
+
     // ../ 포함 차단 (상위 디렉토리 접근)
     if (pathOnly.includes('../') || pathOnly.includes('..\\')) {
       return false;
@@ -184,7 +184,7 @@ export class Security {
    * 안전한 파일명 검증
    * @param {string} filename - 검증할 파일명
    * @returns {boolean} 안전한 파일명 여부
-   * 
+   *
    * @example
    * Security.isSafeFilename('document.pdf'); // true
    * Security.isSafeFilename('../../../etc/passwd'); // false
@@ -225,7 +225,7 @@ export class Security {
    * URL 안전성 검증
    * @param {string} url - 검증할 URL
    * @returns {boolean} 안전한 URL 여부
-   * 
+   *
    * @example
    * Security.isSafeUrl('https://example.com'); // true
    * Security.isSafeUrl('javascript:alert(1)'); // false
@@ -262,7 +262,7 @@ export class Security {
    * CSS 값 새니타이징 (CSS 인젝션 방지)
    * @param {string} value - CSS 값
    * @returns {string} 새니타이징된 CSS 값
-   * 
+   *
    * @example
    * Security.sanitizeCSS('red'); // 'red'
    * Security.sanitizeCSS('red; background: url(javascript:...)'); // 'red'
@@ -291,7 +291,7 @@ export class Security {
    * 파라미터 새니타이징 (SQL 인젝션, XSS 방지)
    * @param {*} value - 새니타이징할 값
    * @returns {*} 새니타이징된 값
-   * 
+   *
    * @example
    * Security.sanitizeParam("'; DROP TABLE users--"); // " DROP TABLE users--"
    */

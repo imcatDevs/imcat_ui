@@ -31,7 +31,7 @@ class SplitPane {
       collapsible: false,      // 접기 가능 여부
       onDragStart: null,       // () => {}
       onDrag: null,            // (sizes) => {}
-      onDragEnd: null,         // (sizes) => {}
+      onDragEnd: null         // (sizes) => {}
     };
   }
 
@@ -40,10 +40,10 @@ class SplitPane {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('SplitPane: Container not found');
       return;
@@ -56,7 +56,7 @@ class SplitPane {
     this._startSizes = [];
     this._gutter = null;
     this._panes = [];
-    
+
     // 이벤트 핸들러
     this._onMouseDown = null;
     this._onMouseMove = null;
@@ -64,7 +64,7 @@ class SplitPane {
     this._onTouchStart = null;
     this._onTouchMove = null;
     this._onTouchEnd = null;
-    
+
     this.init();
     SplitPane.instances.set(this.container, this);
   }
@@ -77,36 +77,36 @@ class SplitPane {
 
   _render() {
     const { direction, gutterSize } = this.options;
-    
+
     this.container.classList.add('split-pane', `split-pane--${direction}`);
-    
+
     // 기존 자식 요소를 panes로
     this._panes = Array.from(this.container.children).filter(
       child => !child.classList.contains('split-pane__gutter')
     );
-    
+
     if (this._panes.length < 2) {
       console.error('SplitPane: At least 2 panes required');
       return;
     }
-    
+
     // 첫 번째 pane 클래스 추가
     this._panes[0].classList.add('split-pane__panel', 'split-pane__panel--first');
     this._panes[1].classList.add('split-pane__panel', 'split-pane__panel--second');
-    
+
     // 구분선 생성
     this._gutter = document.createElement('div');
     this._gutter.className = 'split-pane__gutter';
     this._gutter.setAttribute('role', 'separator');
     this._gutter.setAttribute('aria-orientation', direction);
     this._gutter.setAttribute('tabindex', '0');
-    
+
     if (direction === 'horizontal') {
       this._gutter.style.width = `${gutterSize}px`;
     } else {
       this._gutter.style.height = `${gutterSize}px`;
     }
-    
+
     // 구분선을 첫 번째와 두 번째 패널 사이에 삽입
     this._panes[0].after(this._gutter);
   }
@@ -116,25 +116,25 @@ class SplitPane {
     this._onMouseDown = (e) => this._startDrag(e);
     this._onMouseMove = (e) => this._onDrag(e);
     this._onMouseUp = () => this._endDrag();
-    
+
     this._gutter.addEventListener('mousedown', this._onMouseDown);
     document.addEventListener('mousemove', this._onMouseMove);
     document.addEventListener('mouseup', this._onMouseUp);
-    
+
     // 터치 이벤트
     this._onTouchStart = (e) => this._startDrag(e.touches[0]);
     this._onTouchMove = (e) => this._onDrag(e.touches[0]);
     this._onTouchEnd = () => this._endDrag();
-    
+
     this._gutter.addEventListener('touchstart', this._onTouchStart, { passive: true });
     document.addEventListener('touchmove', this._onTouchMove, { passive: true });
     document.addEventListener('touchend', this._onTouchEnd);
-    
+
     // 키보드 이벤트
     this._gutter.addEventListener('keydown', (e) => {
       const step = 5;
       const { direction } = this.options;
-      
+
       if (direction === 'horizontal') {
         if (e.key === 'ArrowLeft') {
           this._sizes[0] = Math.max(this._sizes[0] - step, 0);
@@ -163,11 +163,11 @@ class SplitPane {
     this._dragging = true;
     this._startPos = this.options.direction === 'horizontal' ? e.clientX : e.clientY;
     this._startSizes = [...this._sizes];
-    
+
     this.container.classList.add('is-dragging');
     document.body.style.cursor = this.options.direction === 'horizontal' ? 'col-resize' : 'row-resize';
     document.body.style.userSelect = 'none';
-    
+
     if (this.options.onDragStart) {
       this.options.onDragStart();
     }
@@ -175,37 +175,37 @@ class SplitPane {
 
   _onDrag(e) {
     if (!this._dragging) return;
-    
+
     const { direction, gutterSize, minSizes, maxSizes } = this.options;
     const currentPos = direction === 'horizontal' ? e.clientX : e.clientY;
     const containerRect = this.container.getBoundingClientRect();
-    const containerSize = direction === 'horizontal' 
-      ? containerRect.width - gutterSize 
+    const containerSize = direction === 'horizontal'
+      ? containerRect.width - gutterSize
       : containerRect.height - gutterSize;
-    
+
     const delta = currentPos - this._startPos;
     const deltaPercent = (delta / containerSize) * 100;
-    
+
     let newSize0 = this._startSizes[0] + deltaPercent;
     let newSize1 = this._startSizes[1] - deltaPercent;
-    
+
     // 최소/최대 크기 제한
     const minPercent0 = (minSizes[0] / containerSize) * 100;
     const minPercent1 = (minSizes[1] / containerSize) * 100;
     const maxPercent0 = Math.min((maxSizes[0] / containerSize) * 100, 100 - minPercent1);
-    const maxPercent1 = Math.min((maxSizes[1] / containerSize) * 100, 100 - minPercent0);
-    
+    // maxPercent1은 newSize1 계산에 직접 사용되지 않음 (100 - newSize0으로 계산)
+
     newSize0 = Math.max(minPercent0, Math.min(maxPercent0, newSize0));
     newSize1 = 100 - newSize0;
-    
+
     if (newSize1 < minPercent1) {
       newSize1 = minPercent1;
       newSize0 = 100 - newSize1;
     }
-    
+
     this._sizes = [newSize0, newSize1];
     this._updateSizes();
-    
+
     if (this.options.onDrag) {
       this.options.onDrag([...this._sizes]);
     }
@@ -213,12 +213,12 @@ class SplitPane {
 
   _endDrag() {
     if (!this._dragging) return;
-    
+
     this._dragging = false;
     this.container.classList.remove('is-dragging');
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
-    
+
     if (this.options.onDragEnd) {
       this.options.onDragEnd([...this._sizes]);
     }
@@ -227,7 +227,7 @@ class SplitPane {
   _updateSizes() {
     const { direction, gutterSize } = this.options;
     const prop = direction === 'horizontal' ? 'width' : 'height';
-    
+
     this._panes[0].style[prop] = `calc(${this._sizes[0]}% - ${gutterSize / 2}px)`;
     this._panes[1].style[prop] = `calc(${this._sizes[1]}% - ${gutterSize / 2}px)`;
   }
@@ -258,7 +258,7 @@ class SplitPane {
    */
   collapseFirst() {
     if (!this.options.collapsible) return;
-    
+
     if (this._sizes[0] > 0) {
       this._prevSizes = [...this._sizes];
       this._sizes = [0, 100];
@@ -273,7 +273,7 @@ class SplitPane {
    */
   collapseSecond() {
     if (!this.options.collapsible) return;
-    
+
     if (this._sizes[1] > 0) {
       this._prevSizes = [...this._sizes];
       this._sizes = [100, 0];
@@ -302,13 +302,13 @@ class SplitPane {
     if (this._onTouchEnd) {
       document.removeEventListener('touchend', this._onTouchEnd);
     }
-    
+
     if (this._gutter) {
       this._gutter.remove();
     }
-    
+
     this.container.classList.remove('split-pane', 'split-pane--horizontal', 'split-pane--vertical');
-    
+
     SplitPane.instances.delete(this.container);
     this.container = null;
     this._gutter = null;
@@ -341,7 +341,7 @@ class QRCode {
       colorLight: 'ffffff',     // hex without #
       correctLevel: 'M',        // 'L' | 'M' | 'Q' | 'H'
       margin: 4,                // 여백 (모듈 단위)
-      format: 'png',            // 'png' | 'svg'
+      format: 'png'            // 'png' | 'svg'
     };
   }
 
@@ -350,10 +350,10 @@ class QRCode {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('QRCode: Container not found');
       return;
@@ -362,7 +362,7 @@ class QRCode {
     this.options = { ...QRCode.defaults(), ...options };
     this.image = null;
     this._imageUrl = '';
-    
+
     this.init();
     QRCode.instances.set(this.container, this);
   }
@@ -373,17 +373,17 @@ class QRCode {
 
   _render() {
     const { text, size, colorDark, colorLight, correctLevel, margin, format } = this.options;
-    
+
     if (!text) {
       this.container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-tertiary);">텍스트를 입력하세요</div>';
       return;
     }
-    
+
     // QR Server API 사용 (무료, 제한 없음)
     const darkColor = colorDark.replace('#', '');
     const lightColor = colorLight.replace('#', '');
-    
-    this._imageUrl = `https://api.qrserver.com/v1/create-qr-code/?` +
+
+    this._imageUrl = 'https://api.qrserver.com/v1/create-qr-code/?' +
       `data=${encodeURIComponent(text)}` +
       `&size=${size}x${size}` +
       `&color=${darkColor}` +
@@ -391,7 +391,7 @@ class QRCode {
       `&ecc=${correctLevel}` +
       `&margin=${margin}` +
       `&format=${format}`;
-    
+
     // 이미지 생성
     this.image = document.createElement('img');
     this.image.src = this._imageUrl;
@@ -399,15 +399,15 @@ class QRCode {
     this.image.className = 'qr-code';
     this.image.style.cssText = 'max-width: 100%; height: auto; border-radius: 4px;';
     this.image.crossOrigin = 'anonymous';
-    
+
     // 로딩 표시
     this.container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%;"><div class="spinner"></div></div>';
-    
+
     this.image.onload = () => {
       this.container.innerHTML = '';
       this.container.appendChild(this.image);
     };
-    
+
     this.image.onerror = () => {
       this.container.innerHTML = '<div style="color: var(--danger-color); text-align: center;">QR 코드 생성 실패</div>';
     };
@@ -456,7 +456,7 @@ class QRCode {
    */
   async toDataURL() {
     if (!this.image) return '';
-    
+
     return new Promise((resolve) => {
       const canvas = document.createElement('canvas');
       canvas.width = this.options.size;
@@ -474,7 +474,7 @@ class QRCode {
   async download(filename = 'qrcode.png') {
     const dataUrl = await this.toDataURL();
     if (!dataUrl) return;
-    
+
     const link = document.createElement('a');
     link.download = filename;
     link.href = dataUrl;
@@ -483,11 +483,11 @@ class QRCode {
 
   destroy() {
     QRCode.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this.image = null;
   }
@@ -514,7 +514,7 @@ const CopyToClipboard = {
         await navigator.clipboard.writeText(text);
         return true;
       }
-      
+
       // Fallback
       const textarea = document.createElement('textarea');
       textarea.value = text;
@@ -522,29 +522,29 @@ const CopyToClipboard = {
       textarea.style.left = '-9999px';
       document.body.appendChild(textarea);
       textarea.select();
-      
+
       const success = document.execCommand('copy');
       document.body.removeChild(textarea);
-      
+
       return success;
     } catch (error) {
       console.error('Copy failed:', error);
       return false;
     }
   },
-  
+
   /**
    * 요소의 텍스트 복사
    * @param {string|HTMLElement} selector
    * @returns {Promise<boolean>}
    */
   async copyFrom(selector) {
-    const element = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    const element = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!element) return false;
-    
+
     const text = element.value || element.textContent || '';
     return this.copy(text);
   }
@@ -575,7 +575,7 @@ class CodeBlock {
       copyButton: true,
       copyText: '복사',
       copiedText: '복사됨!',
-      copiedDuration: 2000,
+      copiedDuration: 2000
     };
   }
 
@@ -584,10 +584,10 @@ class CodeBlock {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('CodeBlock: Container not found');
       return;
@@ -596,7 +596,7 @@ class CodeBlock {
     this.options = { ...CodeBlock.defaults(), ...options };
     this._copyTimer = null;
     this._onCopy = null;
-    
+
     this.init();
     CodeBlock.instances.set(this.container, this);
   }
@@ -608,19 +608,19 @@ class CodeBlock {
 
   _render() {
     const { code, language, showLineNumbers, copyButton, copyText } = this.options;
-    
+
     this.container.className = 'code-block';
-    
+
     let codeContent = code;
     if (showLineNumbers) {
       const lines = code.split('\n');
-      codeContent = lines.map((line, i) => 
+      codeContent = lines.map((line, i) =>
         `<span class="code-block__line-number">${i + 1}</span>${this._escapeHtml(line)}`
       ).join('\n');
     } else {
       codeContent = this._escapeHtml(code);
     }
-    
+
     this.container.innerHTML = `
       <div class="code-block__header">
         <span class="code-block__language">${language}</span>
@@ -633,7 +633,7 @@ class CodeBlock {
       </div>
       <pre class="code-block__pre"><code class="code-block__code">${codeContent}</code></pre>
     `;
-    
+
     this._copyBtn = this.container.querySelector('.code-block__copy');
   }
 
@@ -647,15 +647,15 @@ class CodeBlock {
     if (this._copyBtn) {
       this._onCopy = async () => {
         const success = await CopyToClipboard.copy(this.options.code);
-        
+
         if (success) {
           const span = this._copyBtn.querySelector('span');
           const icon = this._copyBtn.querySelector('i');
-          
+
           span.textContent = this.options.copiedText;
           icon.textContent = 'check';
           this._copyBtn.classList.add('is-copied');
-          
+
           if (this._copyTimer) clearTimeout(this._copyTimer);
           this._copyTimer = setTimeout(() => {
             span.textContent = this.options.copyText;
@@ -664,7 +664,7 @@ class CodeBlock {
           }, this.options.copiedDuration);
         }
       };
-      
+
       this._copyBtn.addEventListener('click', this._onCopy);
     }
   }
@@ -683,17 +683,17 @@ class CodeBlock {
     if (this._copyTimer) {
       clearTimeout(this._copyTimer);
     }
-    
+
     if (this._onCopy && this._copyBtn) {
       this._copyBtn.removeEventListener('click', this._onCopy);
     }
-    
+
     CodeBlock.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this._copyBtn = null;
   }
@@ -726,7 +726,7 @@ class SimpleColorPicker {
       ],
       value: '#3b82f6',
       showInput: true,
-      onChange: null,
+      onChange: null
     };
   }
 
@@ -735,10 +735,10 @@ class SimpleColorPicker {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('SimpleColorPicker: Container not found');
       return;
@@ -748,7 +748,7 @@ class SimpleColorPicker {
     this._value = this.options.value;
     this._onSwatchClick = null;
     this._onInputChange = null;
-    
+
     this.init();
     SimpleColorPicker.instances.set(this.container, this);
   }
@@ -760,9 +760,9 @@ class SimpleColorPicker {
 
   _render() {
     const { colors, showInput } = this.options;
-    
+
     this.container.className = 'simple-color-picker';
-    
+
     const swatches = colors.map(color => `
       <button 
         type="button" 
@@ -772,7 +772,7 @@ class SimpleColorPicker {
         aria-label="${color}"
       ></button>
     `).join('');
-    
+
     this.container.innerHTML = `
       <div class="simple-color-picker__swatches">${swatches}</div>
       ${showInput ? `
@@ -791,7 +791,7 @@ class SimpleColorPicker {
         </div>
       ` : ''}
     `;
-    
+
     this._swatches = this.container.querySelectorAll('.simple-color-picker__swatch');
     this._nativeInput = this.container.querySelector('.simple-color-picker__native');
     this._textInput = this.container.querySelector('.simple-color-picker__input');
@@ -802,19 +802,19 @@ class SimpleColorPicker {
     this._onSwatchClick = (e) => {
       const swatch = e.target.closest('.simple-color-picker__swatch');
       if (!swatch) return;
-      
+
       this._setValue(swatch.dataset.color);
     };
-    
+
     this.container.addEventListener('click', this._onSwatchClick);
-    
+
     // 입력 변경
     if (this._nativeInput) {
       this._nativeInput.addEventListener('input', (e) => {
         this._setValue(e.target.value);
       });
     }
-    
+
     if (this._textInput) {
       this._textInput.addEventListener('change', (e) => {
         const value = e.target.value;
@@ -827,16 +827,16 @@ class SimpleColorPicker {
 
   _setValue(color) {
     this._value = color;
-    
+
     // 스와치 업데이트
     this._swatches.forEach(swatch => {
       swatch.classList.toggle('is-active', swatch.dataset.color === color);
     });
-    
+
     // 입력 업데이트
     if (this._nativeInput) this._nativeInput.value = color;
     if (this._textInput) this._textInput.value = color;
-    
+
     if (this.options.onChange) {
       this.options.onChange(color);
     }
@@ -862,13 +862,13 @@ class SimpleColorPicker {
     if (this._onSwatchClick) {
       this.container.removeEventListener('click', this._onSwatchClick);
     }
-    
+
     SimpleColorPicker.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
   }
 }

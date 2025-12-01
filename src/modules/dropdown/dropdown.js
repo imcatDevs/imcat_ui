@@ -47,7 +47,7 @@ class Dropdown {
     this.options = Utils.extend({}, Dropdown.defaults(), options);
     this.id = Utils.randomId('dropdown');
     this.isOpen = false;
-    
+
     // 트리거 요소 찾기
     if (typeof trigger === 'string') {
       this.trigger = document.querySelector(trigger);
@@ -85,13 +85,13 @@ class Dropdown {
   _init() {
     // 트리거에 이벤트 리스너 추가
     this.trigger.addEventListener('click', this._handleTriggerClick);
-    
+
     // hover 옵션이 활성화되면 hover 이벤트 추가
     if (this.options.openOnHover) {
       this.trigger.addEventListener('mouseenter', this._handleTriggerMouseEnter);
       this.trigger.addEventListener('mouseleave', this._handleTriggerMouseLeave);
     }
-    
+
     // 트리거에 속성 추가
     this.trigger.setAttribute('aria-haspopup', 'true');
     this.trigger.setAttribute('aria-expanded', 'false');
@@ -168,7 +168,7 @@ class Dropdown {
           menuItem.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             if (typeof item.action === 'function') {
               item.action(item, index);
             }
@@ -209,7 +209,7 @@ class Dropdown {
     if (this.hoverTimer) {
       clearTimeout(this.hoverTimer);
     }
-    
+
     // 지연 후 열기
     this.hoverTimer = setTimeout(() => {
       if (!this.isOpen) {
@@ -228,7 +228,7 @@ class Dropdown {
       clearTimeout(this.hoverTimer);
       this.hoverTimer = null;
     }
-    
+
     // 메뉴가 열려있으면 타이머 후 닫기
     if (this.isOpen) {
       this.hoverTimer = setTimeout(() => {
@@ -420,7 +420,7 @@ class Dropdown {
 
     this.isOpen = true;
     this.menu.style.display = 'block';
-    
+
     // 위치 계산
     this._positionMenu();
 
@@ -444,7 +444,7 @@ class Dropdown {
       document.addEventListener('click', this._handleOutsideClick);
       document.addEventListener('keydown', this._handleKeydown);
       window.addEventListener('resize', this._handleResize);
-      
+
       // hover 옵션이 활성화되면 메뉴에도 hover 이벤트 추가
       if (this.options.openOnHover) {
         this.menu.addEventListener('mouseenter', this._handleMenuMouseEnter);
@@ -492,7 +492,7 @@ class Dropdown {
     if (this.options.animation) {
       this.menu.classList.remove('dropdown--open');
       this.menu.classList.add('dropdown--closing');
-      
+
       setTimeout(() => {
         this.menu.style.display = 'none';
         this.menu.classList.remove('dropdown--closing');
@@ -506,13 +506,13 @@ class Dropdown {
     document.removeEventListener('click', this._handleOutsideClick);
     document.removeEventListener('keydown', this._handleKeydown);
     window.removeEventListener('resize', this._handleResize);
-    
+
     // hover 이벤트 리스너 제거
     if (this.options.openOnHover) {
       this.menu.removeEventListener('mouseenter', this._handleMenuMouseEnter);
       this.menu.removeEventListener('mouseleave', this._handleMenuMouseLeave);
     }
-    
+
     // hover 타이머 클리어
     if (this.hoverTimer) {
       clearTimeout(this.hoverTimer);
@@ -562,7 +562,7 @@ class Dropdown {
 
     // 이벤트 리스너 제거
     this.trigger.removeEventListener('click', this._handleTriggerClick);
-    
+
     // hover 이벤트 리스너 제거
     if (this.options.openOnHover) {
       this.trigger.removeEventListener('mouseenter', this._handleTriggerMouseEnter);
@@ -572,11 +572,11 @@ class Dropdown {
         this.menu.removeEventListener('mouseleave', this._handleMenuMouseLeave);
       }
     }
-    
+
     document.removeEventListener('click', this._handleOutsideClick);
     document.removeEventListener('keydown', this._handleKeydown);
     window.removeEventListener('resize', this._handleResize);
-    
+
     // hover 타이머 클리어
     if (this.hoverTimer) {
       clearTimeout(this.hoverTimer);

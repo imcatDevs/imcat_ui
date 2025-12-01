@@ -35,7 +35,7 @@ class VideoPlayer {
       onPause: null,
       onEnded: null,
       onTimeUpdate: null,
-      onError: null,
+      onError: null
     };
   }
 
@@ -44,10 +44,10 @@ class VideoPlayer {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('VideoPlayer: Container not found');
       return;
@@ -60,10 +60,10 @@ class VideoPlayer {
     this._isMuted = this.options.muted;
     this._isFullscreen = false;
     this._hideControlsTimer = null;
-    
+
     // 이벤트 핸들러
     this._handlers = {};
-    
+
     this.init();
     VideoPlayer.instances.set(this.container, this);
   }
@@ -75,9 +75,9 @@ class VideoPlayer {
 
   _render() {
     const { src, poster, autoplay, muted, loop, controls, customControls } = this.options;
-    
+
     this.container.className = 'video-player';
-    
+
     this.container.innerHTML = `
       <div class="video-player__wrapper">
         <video 
@@ -106,12 +106,12 @@ class VideoPlayer {
         </div>
       </div>
     `;
-    
+
     this.video = this.container.querySelector('.video-player__video');
     this.controls = this.container.querySelector('.video-player__controls');
     this.overlay = this.container.querySelector('.video-player__overlay');
     this.loading = this.container.querySelector('.video-player__loading');
-    
+
     // 초기 볼륨 설정
     this.video.volume = this.options.volume;
   }
@@ -178,7 +178,7 @@ class VideoPlayer {
       if (this.options.onPlay) this.options.onPlay();
     };
     this.video.addEventListener('play', this._handlers.play);
-    
+
     this._handlers.pause = () => {
       this._isPlaying = false;
       this._updatePlayButton();
@@ -186,7 +186,7 @@ class VideoPlayer {
       if (this.options.onPause) this.options.onPause();
     };
     this.video.addEventListener('pause', this._handlers.pause);
-    
+
     this._handlers.ended = () => {
       this._isPlaying = false;
       this._updatePlayButton();
@@ -194,75 +194,75 @@ class VideoPlayer {
       if (this.options.onEnded) this.options.onEnded();
     };
     this.video.addEventListener('ended', this._handlers.ended);
-    
+
     this._handlers.timeupdate = () => {
       this._updateProgress();
       this._updateTime();
       if (this.options.onTimeUpdate) this.options.onTimeUpdate(this.video.currentTime);
     };
     this.video.addEventListener('timeupdate', this._handlers.timeupdate);
-    
+
     this._handlers.loadedmetadata = () => {
       this._updateTime();
     };
     this.video.addEventListener('loadedmetadata', this._handlers.loadedmetadata);
-    
+
     this._handlers.waiting = () => {
       this.loading.classList.add('is-visible');
     };
     this.video.addEventListener('waiting', this._handlers.waiting);
-    
+
     this._handlers.canplay = () => {
       this.loading.classList.remove('is-visible');
     };
     this.video.addEventListener('canplay', this._handlers.canplay);
-    
+
     this._handlers.error = () => {
       if (this.options.onError) this.options.onError();
     };
     this.video.addEventListener('error', this._handlers.error);
-    
+
     // 컨트롤 이벤트
     if (this.controls) {
       // 재생 버튼
       const playBtn = this.controls.querySelector('.video-player__btn--play');
       playBtn.addEventListener('click', () => this.togglePlay());
-      
+
       // 오버레이 재생 버튼
       const bigPlayBtn = this.overlay.querySelector('.video-player__big-play');
       bigPlayBtn.addEventListener('click', () => this.play());
-      
+
       // 볼륨
       const volumeBtn = this.controls.querySelector('.video-player__btn--volume');
       volumeBtn.addEventListener('click', () => this.toggleMute());
-      
+
       const volumeInput = this.controls.querySelector('.video-player__volume-input');
       volumeInput.addEventListener('input', (e) => this.setVolume(e.target.value));
-      
+
       // 진행 바
       const progressBar = this.controls.querySelector('.video-player__progress-bar');
       progressBar.addEventListener('click', (e) => this._seekTo(e));
-      
+
       // 속도
       const speedBtn = this.controls.querySelector('.video-player__btn--speed');
       speedBtn.addEventListener('click', () => this._cycleSpeed());
-      
+
       // PIP
       const pipBtn = this.controls.querySelector('.video-player__btn--pip');
       pipBtn.addEventListener('click', () => this.togglePIP());
-      
+
       // 전체 화면
       const fullscreenBtn = this.controls.querySelector('.video-player__btn--fullscreen');
       fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
     }
-    
+
     // 비디오 클릭으로 재생/일시정지
     this.video.addEventListener('click', () => this.togglePlay());
-    
+
     // 키보드 단축키
     this._handlers.keydown = (e) => {
       if (!this.container.contains(document.activeElement)) return;
-      
+
       switch (e.key) {
         case ' ':
         case 'k':
@@ -296,13 +296,13 @@ class VideoPlayer {
       }
     };
     document.addEventListener('keydown', this._handlers.keydown);
-    
+
     // 컨트롤 자동 숨김
     this._handlers.mousemove = () => {
       this._showControls();
     };
     this.container.addEventListener('mousemove', this._handlers.mousemove);
-    
+
     this._handlers.mouseleave = () => {
       if (this._isPlaying) {
         this._hideControls();
@@ -331,7 +331,7 @@ class VideoPlayer {
   _updateTime() {
     const current = this.controls?.querySelector('.video-player__current');
     const duration = this.controls?.querySelector('.video-player__duration');
-    
+
     if (current) current.textContent = this._formatTime(this.video.currentTime);
     if (duration) duration.textContent = this._formatTime(this.video.duration || 0);
   }
@@ -407,7 +407,7 @@ class VideoPlayer {
   _updateVolumeUI() {
     const volumeBtn = this.controls?.querySelector('.video-player__btn--volume i');
     const volumeInput = this.controls?.querySelector('.video-player__volume-input');
-    
+
     if (volumeBtn) {
       if (this._isMuted || this.video.volume === 0) {
         volumeBtn.textContent = 'volume_off';
@@ -417,7 +417,7 @@ class VideoPlayer {
         volumeBtn.textContent = 'volume_up';
       }
     }
-    
+
     if (volumeInput) {
       volumeInput.value = this._isMuted ? 0 : this.video.volume;
     }
@@ -449,7 +449,7 @@ class VideoPlayer {
       document.exitFullscreen();
       this._isFullscreen = false;
     }
-    
+
     const btn = this.controls?.querySelector('.video-player__btn--fullscreen i');
     if (btn) {
       btn.textContent = this._isFullscreen ? 'fullscreen_exit' : 'fullscreen';
@@ -476,17 +476,17 @@ class VideoPlayer {
         document.removeEventListener('keydown', handler);
       }
     });
-    
+
     if (this._hideControlsTimer) {
       clearTimeout(this._hideControlsTimer);
     }
-    
+
     VideoPlayer.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this.video = null;
     this.controls = null;
@@ -521,7 +521,7 @@ class AudioPlayer {
       volume: 1,
       onPlay: null,
       onPause: null,
-      onEnded: null,
+      onEnded: null
     };
   }
 
@@ -530,10 +530,10 @@ class AudioPlayer {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('AudioPlayer: Container not found');
       return;
@@ -542,7 +542,7 @@ class AudioPlayer {
     this.options = { ...AudioPlayer.defaults(), ...options };
     this.audio = null;
     this._isPlaying = false;
-    
+
     this.init();
     AudioPlayer.instances.set(this.container, this);
   }
@@ -554,9 +554,9 @@ class AudioPlayer {
 
   _render() {
     const { src, title, artist, cover, autoplay, loop } = this.options;
-    
+
     this.container.className = 'audio-player';
-    
+
     this.container.innerHTML = `
       <audio 
         src="${src}"
@@ -566,10 +566,10 @@ class AudioPlayer {
       ></audio>
       
       <div class="audio-player__cover">
-        ${cover 
-          ? `<img src="${cover}" alt="${title}">`
-          : `<i class="material-icons-outlined">music_note</i>`
-        }
+        ${cover
+    ? `<img src="${cover}" alt="${title}">`
+    : '<i class="material-icons-outlined">music_note</i>'
+}
       </div>
       
       <div class="audio-player__info">
@@ -606,7 +606,7 @@ class AudioPlayer {
         </div>
       </div>
     `;
-    
+
     this.audio = this.container.querySelector('audio');
     this.audio.volume = this.options.volume;
   }
@@ -615,13 +615,13 @@ class AudioPlayer {
     // 재생 버튼
     const playBtn = this.container.querySelector('.audio-player__btn--play');
     playBtn.addEventListener('click', () => this.togglePlay());
-    
+
     // 볼륨
     const volumeSlider = this.container.querySelector('.audio-player__volume-slider');
     volumeSlider.addEventListener('input', (e) => {
       this.audio.volume = e.target.value;
     });
-    
+
     // 진행 바
     const progressBar = this.container.querySelector('.audio-player__progress-bar');
     progressBar.addEventListener('click', (e) => {
@@ -629,30 +629,30 @@ class AudioPlayer {
       const percent = (e.clientX - rect.left) / rect.width;
       this.audio.currentTime = percent * this.audio.duration;
     });
-    
+
     // 오디오 이벤트
     this.audio.addEventListener('play', () => {
       this._isPlaying = true;
       this._updatePlayButton();
       if (this.options.onPlay) this.options.onPlay();
     });
-    
+
     this.audio.addEventListener('pause', () => {
       this._isPlaying = false;
       this._updatePlayButton();
       if (this.options.onPause) this.options.onPause();
     });
-    
+
     this.audio.addEventListener('ended', () => {
       this._isPlaying = false;
       this._updatePlayButton();
       if (this.options.onEnded) this.options.onEnded();
     });
-    
+
     this.audio.addEventListener('timeupdate', () => {
       this._updateProgress();
     });
-    
+
     this.audio.addEventListener('loadedmetadata', () => {
       this._updateDuration();
     });
@@ -666,12 +666,12 @@ class AudioPlayer {
   _updateProgress() {
     const fill = this.container.querySelector('.audio-player__progress-fill');
     const current = this.container.querySelector('.audio-player__current');
-    
+
     if (this.audio.duration) {
       const percent = (this.audio.currentTime / this.audio.duration) * 100;
       fill.style.width = `${percent}%`;
     }
-    
+
     current.textContent = this._formatTime(this.audio.currentTime);
   }
 
@@ -689,17 +689,17 @@ class AudioPlayer {
   play() { this.audio.play(); }
   pause() { this.audio.pause(); }
   togglePlay() { this._isPlaying ? this.pause() : this.play(); }
-  
+
   setTrack(src, title = '', artist = '', cover = '') {
     this.audio.src = src;
     this.container.querySelector('.audio-player__title').textContent = title || '알 수 없는 제목';
     this.container.querySelector('.audio-player__artist').textContent = artist || '알 수 없는 아티스트';
-    
+
     const coverEl = this.container.querySelector('.audio-player__cover');
     if (cover) {
       coverEl.innerHTML = `<img src="${cover}" alt="${title}">`;
     } else {
-      coverEl.innerHTML = `<i class="material-icons-outlined">music_note</i>`;
+      coverEl.innerHTML = '<i class="material-icons-outlined">music_note</i>';
     }
   }
 
@@ -738,7 +738,7 @@ class ImageViewer {
       downloadable: true,
       minZoom: 0.5,
       maxZoom: 3,
-      zoomStep: 0.25,
+      zoomStep: 0.25
     };
   }
 
@@ -747,10 +747,10 @@ class ImageViewer {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('ImageViewer: Container not found');
       return;
@@ -759,7 +759,7 @@ class ImageViewer {
     this.options = { ...ImageViewer.defaults(), ...options };
     this._zoom = 1;
     this._rotation = 0;
-    
+
     this.init();
     ImageViewer.instances.set(this.container, this);
   }
@@ -771,9 +771,9 @@ class ImageViewer {
 
   _render() {
     const { src, alt, zoomable, rotatable, downloadable } = this.options;
-    
+
     this.container.className = 'image-viewer';
-    
+
     this.container.innerHTML = `
       <div class="image-viewer__wrapper">
         <img src="${src}" alt="${alt}" class="image-viewer__image" draggable="false">
@@ -810,7 +810,7 @@ class ImageViewer {
         ` : ''}
       </div>
     `;
-    
+
     this.image = this.container.querySelector('.image-viewer__image');
     this.zoomLevel = this.container.querySelector('.image-viewer__zoom-level');
   }
@@ -820,7 +820,7 @@ class ImageViewer {
     this.container.addEventListener('click', (e) => {
       const btn = e.target.closest('.image-viewer__btn');
       if (!btn) return;
-      
+
       const action = btn.dataset.action;
       switch (action) {
         case 'zoom-in':
@@ -843,7 +843,7 @@ class ImageViewer {
           break;
       }
     });
-    
+
     // 마우스 휠 줌
     this.container.querySelector('.image-viewer__wrapper').addEventListener('wheel', (e) => {
       if (!this.options.zoomable) return;

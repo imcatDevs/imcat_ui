@@ -27,7 +27,7 @@ class VirtualScroll {
       items: [],                // 데이터 배열
       renderItem: null,         // (item, index) => html
       containerHeight: 400,     // 컨테이너 높이
-      onScroll: null,           // (scrollTop, visibleRange) => {}
+      onScroll: null           // (scrollTop, visibleRange) => {}
     };
   }
 
@@ -36,10 +36,10 @@ class VirtualScroll {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('VirtualScroll: Container not found');
       return;
@@ -49,7 +49,7 @@ class VirtualScroll {
     this._scrollTop = 0;
     this._visibleRange = { start: 0, end: 0 };
     this._onScroll = null;
-    
+
     this.init();
     VirtualScroll.instances.set(this.container, this);
   }
@@ -63,18 +63,18 @@ class VirtualScroll {
   _render() {
     const { containerHeight, items, itemHeight } = this.options;
     const totalHeight = items.length * itemHeight;
-    
+
     this.container.className = 'virtual-scroll';
     this.container.style.height = `${containerHeight}px`;
     this.container.style.overflow = 'auto';
     this.container.style.position = 'relative';
-    
+
     this.container.innerHTML = `
       <div class="virtual-scroll__spacer" style="height: ${totalHeight}px; position: relative;">
         <div class="virtual-scroll__content"></div>
       </div>
     `;
-    
+
     this.spacer = this.container.querySelector('.virtual-scroll__spacer');
     this.content = this.container.querySelector('.virtual-scroll__content');
   }
@@ -83,38 +83,38 @@ class VirtualScroll {
     this._onScroll = () => {
       this._scrollTop = this.container.scrollTop;
       this._updateVisibleItems();
-      
+
       if (this.options.onScroll) {
         this.options.onScroll(this._scrollTop, this._visibleRange);
       }
     };
-    
+
     this.container.addEventListener('scroll', this._onScroll, { passive: true });
   }
 
   _updateVisibleItems() {
     const { itemHeight, bufferSize, items, containerHeight, renderItem } = this.options;
-    
+
     if (!renderItem) return;
-    
+
     const scrollTop = this._scrollTop;
     const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - bufferSize);
     const endIndex = Math.min(
       items.length,
       Math.ceil((scrollTop + containerHeight) / itemHeight) + bufferSize
     );
-    
+
     this._visibleRange = { start: startIndex, end: endIndex };
-    
+
     // 콘텐츠 위치 조정
     this.content.style.position = 'absolute';
     this.content.style.top = `${startIndex * itemHeight}px`;
     this.content.style.left = '0';
     this.content.style.right = '0';
-    
+
     // 보이는 아이템만 렌더링
     const visibleItems = items.slice(startIndex, endIndex);
-    this.content.innerHTML = visibleItems.map((item, idx) => 
+    this.content.innerHTML = visibleItems.map((item, idx) =>
       `<div class="virtual-scroll__item" style="height: ${itemHeight}px;" data-index="${startIndex + idx}">
         ${renderItem(item, startIndex + idx)}
       </div>`
@@ -164,13 +164,13 @@ class VirtualScroll {
     if (this._onScroll) {
       this.container.removeEventListener('scroll', this._onScroll);
     }
-    
+
     VirtualScroll.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this.spacer = null;
     this.content = null;
@@ -201,7 +201,7 @@ class Scrollspy {
       offset: 100,              // 활성화 오프셋 (px)
       activeClass: 'is-active', // 활성 클래스
       smoothScroll: true,       // 부드러운 스크롤
-      onChange: null,           // (activeId, prevId) => {}
+      onChange: null           // (activeId, prevId) => {}
     };
   }
 
@@ -210,27 +210,27 @@ class Scrollspy {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.scrollContainer = typeof selector === 'string' 
+    this.scrollContainer = typeof selector === 'string'
       ? (selector === 'window' ? window : document.querySelector(selector))
       : selector;
-    
+
     if (!this.scrollContainer) {
       console.error('Scrollspy: Container not found');
       return;
     }
 
     this.options = { ...Scrollspy.defaults(), ...options };
-    this.navContainer = this.options.target 
-      ? document.querySelector(this.options.target) 
+    this.navContainer = this.options.target
+      ? document.querySelector(this.options.target)
       : null;
-    
+
     this._sections = [];
     this._activeId = null;
     this._onScroll = null;
     this._onNavClick = null;
-    
+
     this.init();
-    
+
     const key = this.scrollContainer === window ? document.body : this.scrollContainer;
     Scrollspy.instances.set(key, this);
   }
@@ -243,7 +243,7 @@ class Scrollspy {
 
   _collectSections() {
     const { sections } = this.options;
-    
+
     if (sections && sections.length > 0) {
       // 명시적으로 지정된 섹션
       this._sections = sections.map(sel => {
@@ -266,72 +266,72 @@ class Scrollspy {
     this._onScroll = () => {
       requestAnimationFrame(() => this._update());
     };
-    
+
     this.scrollContainer.addEventListener('scroll', this._onScroll, { passive: true });
-    
+
     // 네비게이션 클릭 이벤트
     if (this.navContainer && this.options.smoothScroll) {
       this._onNavClick = (e) => {
         const link = e.target.closest('a[href^="#"]');
         if (!link) return;
-        
+
         const id = link.getAttribute('href').slice(1);
         const section = this._sections.find(s => s.id === id);
-        
+
         if (section) {
           e.preventDefault();
           this.scrollTo(id);
         }
       };
-      
+
       this.navContainer.addEventListener('click', this._onNavClick);
     }
   }
 
   _update() {
     const { offset, activeClass, onChange } = this.options;
-    
-    const scrollTop = this.scrollContainer === window 
-      ? window.scrollY 
+
+    const scrollTop = this.scrollContainer === window
+      ? window.scrollY
       : this.scrollContainer.scrollTop;
-    
+
     let activeSection = null;
-    
+
     // 현재 위치에서 가장 가까운 섹션 찾기
     for (const section of this._sections) {
       const rect = section.element.getBoundingClientRect();
-      const top = this.scrollContainer === window 
-        ? rect.top + scrollTop 
+      const top = this.scrollContainer === window
+        ? rect.top + scrollTop
         : rect.top + this.scrollContainer.scrollTop - this.scrollContainer.getBoundingClientRect().top;
-      
+
       if (top <= scrollTop + offset) {
         activeSection = section;
       }
     }
-    
+
     // 맨 아래 스크롤 시 마지막 섹션 활성화
     const isAtBottom = this.scrollContainer === window
       ? window.innerHeight + scrollTop >= document.documentElement.scrollHeight - 10
       : this.scrollContainer.scrollTop + this.scrollContainer.clientHeight >= this.scrollContainer.scrollHeight - 10;
-    
+
     if (isAtBottom && this._sections.length > 0) {
       activeSection = this._sections[this._sections.length - 1];
     }
-    
+
     const newActiveId = activeSection ? activeSection.id : null;
-    
+
     if (newActiveId !== this._activeId) {
       const prevId = this._activeId;
       this._activeId = newActiveId;
-      
+
       // 네비게이션 업데이트
       if (this.navContainer) {
-        this.navContainer.querySelectorAll(`a[href^="#"]`).forEach(link => {
+        this.navContainer.querySelectorAll('a[href^="#"]').forEach(link => {
           link.classList.remove(activeClass);
           const parent = link.parentElement;
           if (parent) parent.classList.remove(activeClass);
         });
-        
+
         if (newActiveId) {
           const activeLink = this.navContainer.querySelector(`a[href="#${newActiveId}"]`);
           if (activeLink) {
@@ -341,7 +341,7 @@ class Scrollspy {
           }
         }
       }
-      
+
       if (onChange) {
         onChange(newActiveId, prevId);
       }
@@ -355,10 +355,10 @@ class Scrollspy {
   scrollTo(id) {
     const section = this._sections.find(s => s.id === id);
     if (!section) return;
-    
+
     const { offset } = this.options;
     const rect = section.element.getBoundingClientRect();
-    
+
     if (this.scrollContainer === window) {
       const top = rect.top + window.scrollY - offset + 1;
       window.scrollTo({ top, behavior: 'smooth' });
@@ -389,14 +389,14 @@ class Scrollspy {
     if (this._onScroll) {
       this.scrollContainer.removeEventListener('scroll', this._onScroll);
     }
-    
+
     if (this._onNavClick && this.navContainer) {
       this.navContainer.removeEventListener('click', this._onNavClick);
     }
-    
+
     const key = this.scrollContainer === window ? document.body : this.scrollContainer;
     Scrollspy.instances.delete(key);
-    
+
     this.scrollContainer = null;
     this.navContainer = null;
     this._sections = null;
@@ -429,7 +429,7 @@ class InfiniteScroll {
       loadingHTML: '<div class="infinite-scroll__loading"><div class="spinner"></div></div>',
       endHTML: '<div class="infinite-scroll__end">모든 항목을 불러왔습니다.</div>',
       errorHTML: '<div class="infinite-scroll__error">오류가 발생했습니다. <button class="infinite-scroll__retry">다시 시도</button></div>',
-      onLoad: null,             // (items, totalLoaded) => {}
+      onLoad: null             // (items, totalLoaded) => {}
     };
   }
 
@@ -438,10 +438,10 @@ class InfiniteScroll {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('InfiniteScroll: Container not found');
       return;
@@ -454,7 +454,7 @@ class InfiniteScroll {
     this._onScroll = null;
     this._sentinel = null;
     this._observer = null;
-    
+
     this.init();
     InfiniteScroll.instances.set(this.container, this);
   }
@@ -466,27 +466,27 @@ class InfiniteScroll {
 
   _render() {
     this.container.classList.add('infinite-scroll');
-    
+
     // 콘텐츠 컨테이너
     if (!this.container.querySelector('.infinite-scroll__items')) {
       const items = document.createElement('div');
       items.className = 'infinite-scroll__items';
-      
+
       // 기존 내용을 items로 이동
       while (this.container.firstChild) {
         items.appendChild(this.container.firstChild);
       }
-      
+
       this.container.appendChild(items);
     }
-    
+
     this.itemsContainer = this.container.querySelector('.infinite-scroll__items');
-    
+
     // 센티널 (로드 트리거 요소)
     this._sentinel = document.createElement('div');
     this._sentinel.className = 'infinite-scroll__sentinel';
     this.container.appendChild(this._sentinel);
-    
+
     // 상태 표시 영역
     this._statusEl = document.createElement('div');
     this._statusEl.className = 'infinite-scroll__status';
@@ -495,7 +495,7 @@ class InfiniteScroll {
 
   _setupObserver() {
     const { threshold } = this.options;
-    
+
     this._observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !this._loading && this._hasMore) {
@@ -508,21 +508,21 @@ class InfiniteScroll {
         threshold: 0
       }
     );
-    
+
     this._observer.observe(this._sentinel);
   }
 
   async _loadMore() {
     const { loadMore, renderItem, loadingHTML, endHTML, errorHTML, onLoad } = this.options;
-    
+
     if (!loadMore || this._loading || !this._hasMore) return;
-    
+
     this._loading = true;
     this._statusEl.innerHTML = loadingHTML;
-    
+
     try {
       const items = await loadMore();
-      
+
       if (!items || items.length === 0) {
         this._hasMore = false;
         this._statusEl.innerHTML = endHTML;
@@ -538,10 +538,10 @@ class InfiniteScroll {
           });
           this.itemsContainer.appendChild(fragment);
         }
-        
+
         this._totalLoaded += items.length;
         this._statusEl.innerHTML = '';
-        
+
         if (onLoad) {
           onLoad(items, this._totalLoaded);
         }
@@ -549,7 +549,7 @@ class InfiniteScroll {
     } catch (error) {
       console.error('InfiniteScroll load error:', error);
       this._statusEl.innerHTML = errorHTML;
-      
+
       // 재시도 버튼
       const retryBtn = this._statusEl.querySelector('.infinite-scroll__retry');
       if (retryBtn) {
@@ -599,7 +599,7 @@ class InfiniteScroll {
   appendItems(items) {
     const { renderItem } = this.options;
     if (!renderItem) return;
-    
+
     const fragment = document.createDocumentFragment();
     items.forEach((item, idx) => {
       const div = document.createElement('div');
@@ -615,13 +615,13 @@ class InfiniteScroll {
     if (this._observer) {
       this._observer.disconnect();
     }
-    
+
     InfiniteScroll.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.classList.remove('infinite-scroll');
     }
-    
+
     this.container = null;
     this.itemsContainer = null;
     this._sentinel = null;
@@ -647,37 +647,37 @@ const SmoothScroll = {
   to(target, options = {}) {
     const el = typeof target === 'string' ? document.querySelector(target) : target;
     if (!el) return;
-    
+
     const { offset = 0, duration = 500, easing = 'easeInOutCubic' } = options;
     const start = window.scrollY;
     const targetTop = el.getBoundingClientRect().top + start - offset;
     const distance = targetTop - start;
     let startTime = null;
-    
+
     const easings = {
       linear: t => t,
       easeInOutCubic: t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
       easeOutQuad: t => 1 - (1 - t) * (1 - t),
       easeInOutQuad: t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
     };
-    
+
     const easingFn = easings[easing] || easings.easeInOutCubic;
-    
+
     function animate(currentTime) {
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       window.scrollTo(0, start + distance * easingFn(progress));
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     }
-    
+
     requestAnimationFrame(animate);
   },
-  
+
   /**
    * 맨 위로 스크롤
    * @param {Object} options
@@ -686,27 +686,27 @@ const SmoothScroll = {
     const { duration = 500, easing = 'easeInOutCubic' } = options;
     const start = window.scrollY;
     let startTime = null;
-    
+
     const easings = {
       linear: t => t,
       easeInOutCubic: t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
     };
-    
+
     function animate(currentTime) {
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       window.scrollTo(0, start * (1 - easings[easing](progress)));
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     }
-    
+
     requestAnimationFrame(animate);
   },
-  
+
   /**
    * 맨 아래로 스크롤
    * @param {Object} options
@@ -714,7 +714,7 @@ const SmoothScroll = {
   toBottom(options = {}) {
     const { duration = 500 } = options;
     const targetTop = document.documentElement.scrollHeight - window.innerHeight;
-    
+
     window.scrollTo({
       top: targetTop,
       behavior: duration > 0 ? 'smooth' : 'auto'
@@ -745,7 +745,7 @@ class BackToTop {
       position: 'bottom-right', // 'bottom-right' | 'bottom-left'
       icon: 'arrow_upward',
       title: '맨 위로',
-      smooth: true,
+      smooth: true
     };
   }
 
@@ -756,12 +756,12 @@ class BackToTop {
     if (BackToTop.instance) {
       return BackToTop.instance;
     }
-    
+
     this.options = { ...BackToTop.defaults(), ...options };
     this.button = null;
     this._onScroll = null;
     this._onClick = null;
-    
+
     this.init();
     BackToTop.instance = this;
   }
@@ -774,13 +774,13 @@ class BackToTop {
 
   _render() {
     const { position, icon, title } = this.options;
-    
+
     this.button = document.createElement('button');
     this.button.className = `back-to-top back-to-top--${position}`;
     this.button.setAttribute('aria-label', title);
     this.button.setAttribute('title', title);
     this.button.innerHTML = `<i class="material-icons-outlined">${icon}</i>`;
-    
+
     document.body.appendChild(this.button);
   }
 
@@ -788,7 +788,7 @@ class BackToTop {
     this._onScroll = () => {
       requestAnimationFrame(() => this._update());
     };
-    
+
     this._onClick = () => {
       if (this.options.smooth) {
         SmoothScroll.toTop();
@@ -796,7 +796,7 @@ class BackToTop {
         window.scrollTo(0, 0);
       }
     };
-    
+
     window.addEventListener('scroll', this._onScroll, { passive: true });
     this.button.addEventListener('click', this._onClick);
   }
@@ -824,15 +824,15 @@ class BackToTop {
     if (this._onScroll) {
       window.removeEventListener('scroll', this._onScroll);
     }
-    
+
     if (this._onClick && this.button) {
       this.button.removeEventListener('click', this._onClick);
     }
-    
+
     if (this.button) {
       this.button.remove();
     }
-    
+
     BackToTop.instance = null;
     this.button = null;
   }

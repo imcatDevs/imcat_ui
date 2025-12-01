@@ -8,7 +8,7 @@
  * @class
  * @description localStorage/sessionStorage를 편리하게 사용할 수 있는 래퍼 클래스입니다.
  * 자동 직렬화/역직렬화, TTL(만료 시간) 지원을 제공합니다.
- * 
+ *
  * @example
  * Storage.set('user', { name: 'John' });
  * const user = Storage.get('user');
@@ -22,7 +22,7 @@ export class Storage {
    * @param {number} [options.expires] - 만료 시간 (초)
    * @param {string} [options.storage='local'] - 'local' 또는 'session'
    * @returns {boolean} 성공 여부
-   * 
+   *
    * @example
    * Storage.set('user', { id: 1, name: 'John' });
    * Storage.set('token', 'abc123', { expires: 3600 }); // 1시간 후 만료
@@ -36,7 +36,7 @@ export class Storage {
 
     try {
       const storage = options.storage === 'session' ? sessionStorage : localStorage;
-      
+
       const data = {
         value,
         timestamp: Date.now()
@@ -61,7 +61,7 @@ export class Storage {
    * @param {*} [defaultValue] - 기본값 (없거나 만료된 경우 반환)
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {*} 저장된 값 또는 기본값
-   * 
+   *
    * @example
    * const user = Storage.get('user');
    * const count = Storage.get('count', 0); // 없으면 0 반환
@@ -99,7 +99,7 @@ export class Storage {
    * @param {string} key - 키
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {boolean} 존재 여부
-   * 
+   *
    * @example
    * if (Storage.has('token')) {
    *   // 토큰이 있음
@@ -137,7 +137,7 @@ export class Storage {
    * @param {string} key - 키
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {boolean} 성공 여부
-   * 
+   *
    * @example
    * Storage.remove('token');
    */
@@ -160,7 +160,7 @@ export class Storage {
    * 모든 값 제거
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {boolean} 성공 여부
-   * 
+   *
    * @example
    * Storage.clear(); // localStorage 전체 삭제
    * Storage.clear('session'); // sessionStorage 전체 삭제
@@ -180,7 +180,7 @@ export class Storage {
    * 모든 키 목록 가져오기
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {string[]} 키 배열
-   * 
+   *
    * @example
    * const keys = Storage.keys(); // ['user', 'token', ...]
    */
@@ -198,7 +198,7 @@ export class Storage {
    * 스토리지 크기 확인 (대략적)
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {number} 사용 중인 바이트 수 (근사값)
-   * 
+   *
    * @example
    * const size = Storage.size(); // 1024 (bytes)
    */
@@ -226,7 +226,7 @@ export class Storage {
    * 만료된 항목 제거
    * @param {string} [storage='local'] - 'local' 또는 'session'
    * @returns {number} 제거된 항목 수
-   * 
+   *
    * @example
    * const removed = Storage.cleanExpired(); // 만료된 항목 삭제
    */

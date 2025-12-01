@@ -40,7 +40,7 @@ class WordCloud {
       backgroundColor: null,        // 배경색 (null = 투명)
       tooltip: true,
       onClick: null,                // (wordData, event) => {}
-      onWordPlaced: null,           // (wordData) => {}
+      onWordPlaced: null           // (wordData) => {}
     };
   }
 
@@ -49,10 +49,10 @@ class WordCloud {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('WordCloud: Container not found');
       return;
@@ -67,20 +67,20 @@ class WordCloud {
     this._tooltip = null;
     this._onClick = null;
     this._onMouseMove = null;
-    
+
     this.init();
     WordCloud.instances.set(this.container, this);
   }
 
   init() {
     const { maskIcon } = this.options;
-    
+
     if (maskIcon) {
       this._createMask(maskIcon, () => this._render());
     } else {
       this._render();
     }
-    
+
     this._bindEvents();
   }
 
@@ -91,31 +91,31 @@ class WordCloud {
    */
   _createMask(iconName, callback) {
     const size = this.options.maskSize;
-    
+
     // 하트 아이콘
     if (iconName === 'favorite' || iconName === 'heart') {
       this._createHeartMask(size, callback);
       return;
     }
-    
+
     // 원형
     if (iconName === 'circle') {
       this._createCircleMask(size, callback);
       return;
     }
-    
+
     // 클라우드 모양
     if (iconName === 'cloud') {
       this._createCloudMask(size, callback);
       return;
     }
-    
+
     // 별 모양
     if (iconName === 'star') {
       this._createStarMask(size, callback);
       return;
     }
-    
+
     // Material Icons
     this._createIconMask(iconName, size, callback);
   }
@@ -128,14 +128,14 @@ class WordCloud {
     const ctx = canvas.getContext('2d');
     canvas.width = size;
     canvas.height = size;
-    
+
     ctx.fillStyle = '#000';
     ctx.beginPath();
-    
+
     const cx = size / 2;
     const cy = size / 2.2;
     const s = size / 100;
-    
+
     ctx.moveTo(cx, cy + 30 * s);
     ctx.bezierCurveTo(cx, cy + 20 * s, cx - 25 * s, cy - 10 * s, cx - 25 * s, cy - 20 * s);
     ctx.bezierCurveTo(cx - 25 * s, cy - 35 * s, cx - 10 * s, cy - 40 * s, cx, cy - 30 * s);
@@ -143,7 +143,7 @@ class WordCloud {
     ctx.bezierCurveTo(cx + 25 * s, cy - 10 * s, cx, cy + 20 * s, cx, cy + 30 * s);
     ctx.closePath();
     ctx.fill();
-    
+
     this._extractMaskPixels(ctx, size, size, callback);
   }
 
@@ -155,12 +155,12 @@ class WordCloud {
     const ctx = canvas.getContext('2d');
     canvas.width = size;
     canvas.height = size;
-    
+
     ctx.fillStyle = '#000';
     ctx.beginPath();
     ctx.arc(size / 2, size / 2, size / 2 - 10, 0, Math.PI * 2);
     ctx.fill();
-    
+
     this._extractMaskPixels(ctx, size, size, callback);
   }
 
@@ -172,14 +172,14 @@ class WordCloud {
     const ctx = canvas.getContext('2d');
     canvas.width = size;
     canvas.height = size;
-    
+
     ctx.fillStyle = '#000';
     ctx.beginPath();
-    
+
     const cx = size / 2;
     const cy = size / 2;
     const s = size / 200;
-    
+
     // 구름 모양 그리기
     ctx.arc(cx - 40 * s, cy + 10 * s, 35 * s, 0, Math.PI * 2);
     ctx.arc(cx, cy - 20 * s, 50 * s, 0, Math.PI * 2);
@@ -187,7 +187,7 @@ class WordCloud {
     ctx.arc(cx + 20 * s, cy + 20 * s, 35 * s, 0, Math.PI * 2);
     ctx.arc(cx - 20 * s, cy + 25 * s, 30 * s, 0, Math.PI * 2);
     ctx.fill();
-    
+
     this._extractMaskPixels(ctx, size, size, callback);
   }
 
@@ -199,16 +199,16 @@ class WordCloud {
     const ctx = canvas.getContext('2d');
     canvas.width = size;
     canvas.height = size;
-    
+
     ctx.fillStyle = '#000';
     ctx.beginPath();
-    
+
     const cx = size / 2;
     const cy = size / 2;
     const outerR = size / 2 - 20;
     const innerR = outerR * 0.4;
     const points = 5;
-    
+
     for (let i = 0; i < points * 2; i++) {
       const r = i % 2 === 0 ? outerR : innerR;
       const angle = (i * Math.PI / points) - Math.PI / 2;
@@ -219,7 +219,7 @@ class WordCloud {
     }
     ctx.closePath();
     ctx.fill();
-    
+
     this._extractMaskPixels(ctx, size, size, callback);
   }
 
@@ -232,16 +232,16 @@ class WordCloud {
       const ctx = canvas.getContext('2d');
       canvas.width = size;
       canvas.height = size;
-      
+
       ctx.font = `${size * 0.8}px "Material Icons"`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#000';
       ctx.fillText(iconName, size / 2, size / 2);
-      
+
       this._extractMaskPixels(ctx, size, size, callback);
     };
-    
+
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => setTimeout(render, 50));
     } else {
@@ -255,7 +255,7 @@ class WordCloud {
   _extractMaskPixels(ctx, width, height, callback) {
     const imageData = ctx.getImageData(0, 0, width, height);
     const pixels = [];
-    
+
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
@@ -264,7 +264,7 @@ class WordCloud {
         }
       }
     }
-    
+
     this.maskData = { width, height, pixels };
     callback();
   }
@@ -273,26 +273,26 @@ class WordCloud {
 
   _render() {
     const { words, width, height, backgroundColor } = this.options;
-    
+
     // 컨테이너 설정
     this.container.innerHTML = '';
     this.container.classList.add('wordcloud');
-    
+
     const containerWidth = width || this.container.clientWidth || 800;
     const containerHeight = height;
-    
+
     this.container.style.cssText = `
       position: relative;
       width: ${containerWidth}px;
       height: ${containerHeight}px;
       overflow: hidden;
     `;
-    
+
     if (!words || words.length === 0) {
       this.container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-tertiary);">단어 데이터가 없습니다</div>';
       return;
     }
-    
+
     // Canvas 생성
     this.canvas = document.createElement('canvas');
     this.canvas.width = containerWidth;
@@ -301,20 +301,20 @@ class WordCloud {
     this.canvas.style.cssText = 'display:block;width:100%;height:100%;';
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d');
-    
+
     // 배경
     if (backgroundColor) {
       this.ctx.fillStyle = backgroundColor;
       this.ctx.fillRect(0, 0, containerWidth, containerHeight);
     }
-    
+
     // 마스크가 있으면 마스크 렌더링
     if (this.maskData) {
       this._renderWithMask(containerWidth, containerHeight);
     } else {
       this._renderNormal(containerWidth, containerHeight);
     }
-    
+
     // 툴팁 생성
     if (this.options.tooltip) {
       this._createTooltip();
@@ -326,12 +326,12 @@ class WordCloud {
    */
   _renderNormal(width, height) {
     const { words, gridSize } = this.options;
-    
+
     // 그리드 초기화
     const ngx = Math.ceil(width / gridSize);
     const ngy = Math.ceil(height / gridSize);
     this.grid = this._createGrid(ngx, ngy, true);
-    
+
     this._placeWords(words, width, height, ngx, ngy);
   }
 
@@ -341,32 +341,32 @@ class WordCloud {
   _renderWithMask(containerWidth, containerHeight) {
     const { words, gridSize } = this.options;
     const { width: maskW, height: maskH, pixels } = this.maskData;
-    
+
     // 마스크를 컨테이너에 맞게 스케일
     const scaleX = containerWidth / maskW;
     const scaleY = containerHeight / maskH;
     const scale = Math.min(scaleX, scaleY) * 0.9;
-    
+
     const offsetX = (containerWidth - maskW * scale) / 2;
     const offsetY = (containerHeight - maskH * scale) / 2;
-    
+
     // 그리드 초기화 (모두 false = 배치 불가)
     const ngx = Math.ceil(containerWidth / gridSize);
     const ngy = Math.ceil(containerHeight / gridSize);
     this.grid = this._createGrid(ngx, ngy, false);
-    
+
     // 마스크 영역만 true로 설정
     for (const p of pixels) {
       const sx = Math.floor(p.x * scale + offsetX);
       const sy = Math.floor(p.y * scale + offsetY);
       const gx = Math.floor(sx / gridSize);
       const gy = Math.floor(sy / gridSize);
-      
+
       if (gx >= 0 && gx < ngx && gy >= 0 && gy < ngy) {
         this.grid[gx][gy] = true;
       }
     }
-    
+
     this._placeWords(words, containerWidth, containerHeight, ngx, ngy);
   }
 
@@ -390,24 +390,24 @@ class WordCloud {
   _placeWords(words, width, height, ngx, ngy) {
     const opts = this.options;
     const g = opts.gridSize;
-    
+
     // 가중치 범위
     const weights = words.map(w => w.weight);
     const minW = Math.min(...weights);
     const maxW = Math.max(...weights);
-    
+
     // 정렬 (큰 것부터)
     const sorted = [...words].sort((a, b) => b.weight - a.weight);
-    
+
     // 중심
     const center = [ngx / 2, ngy / 2];
     const maxRadius = Math.max(ngx, ngy);
-    
+
     // 반지름별 포인트 캐시
     const pointsCache = [];
     const getPoints = (r) => {
       if (pointsCache[r]) return pointsCache[r];
-      
+
       const pts = [];
       if (r === 0) {
         pts.push([center[0], center[1]]);
@@ -424,9 +424,9 @@ class WordCloud {
       pointsCache[r] = pts;
       return pts;
     };
-    
+
     this.placedWords = [];
-    
+
     for (const word of sorted) {
       const initialSize = this._calcFontSize(word.weight, minW, maxW);
       this._tryPlaceWord(word, initialSize, g, ngx, ngy, maxRadius, getPoints);
@@ -449,36 +449,36 @@ class WordCloud {
    */
   _tryPlaceWord(word, fontSize, g, ngx, ngy, maxRadius, getPoints) {
     const opts = this.options;
-    
+
     // 회전 각도
     let rotation = 0;
     if (opts.rotate && opts.rotateAngles.length > 0) {
       rotation = opts.rotateAngles[Math.floor(Math.random() * opts.rotateAngles.length)];
     }
-    
+
     // 텍스트 정보 추출
     const info = this._getTextInfo(word.text, fontSize, rotation);
     if (!info) return false;
-    
+
     // 중심에서 바깥으로 확장하며 배치
     for (let r = maxRadius; r >= 0; r--) {
       const points = getPoints(maxRadius - r);
-      
+
       for (const pt of points) {
         const gx = Math.floor(pt[0] - info.gw / 2);
         const gy = Math.floor(pt[1] - info.gh / 2);
-        
+
         if (this._canFit(gx, gy, info.occupied, ngx, ngy)) {
           // 그리드에 표시
           this._markGrid(gx, gy, info.occupied);
-          
+
           // Canvas에 그리기
           const drawX = (gx + info.gw / 2) * g;
           const drawY = (gy + info.gh / 2) * g;
           const color = word.color || this._getRandomColor();
-          
+
           this._drawWord(word.text, drawX, drawY, fontSize, color, rotation);
-          
+
           // 배치 정보 저장
           this.placedWords.push({
             text: word.text,
@@ -493,19 +493,19 @@ class WordCloud {
             color,
             rotation
           });
-          
+
           if (opts.onWordPlaced) opts.onWordPlaced(word);
           return true;
         }
       }
     }
-    
+
     // shrinkToFit: 크기 줄여서 재시도
     if (opts.shrinkToFit && fontSize > opts.minFontSize) {
       const nextSize = Math.max(Math.floor(fontSize * 0.7), opts.minFontSize);
       return this._tryPlaceWord(word, nextSize, g, ngx, ngy, maxRadius, getPoints);
     }
-    
+
     return false;
   }
 
@@ -514,25 +514,25 @@ class WordCloud {
    */
   _getTextInfo(text, fontSize, rotation) {
     const { fontFamily, fontWeight, gridSize: g } = this.options;
-    
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
+
     ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
     const metrics = ctx.measureText(text);
     const textW = metrics.width;
     const textH = fontSize * 1.2;
-    
+
     // 회전 고려한 크기
     const rad = rotation * Math.PI / 180;
     const cos = Math.abs(Math.cos(rad));
     const sin = Math.abs(Math.sin(rad));
     const width = Math.ceil(textW * cos + textH * sin) + 10;
     const height = Math.ceil(textW * sin + textH * cos) + 10;
-    
+
     canvas.width = width;
     canvas.height = height;
-    
+
     ctx.translate(width / 2, height / 2);
     ctx.rotate(rad);
     ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
@@ -540,17 +540,17 @@ class WordCloud {
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
     ctx.fillText(text, 0, 0);
-    
+
     // 픽셀 데이터 추출
     const imageData = ctx.getImageData(0, 0, width, height).data;
     const gw = Math.ceil(width / g);
     const gh = Math.ceil(height / g);
     const occupied = [];
-    
+
     for (let gx = 0; gx < gw; gx++) {
       for (let gy = 0; gy < gh; gy++) {
         let hasPixel = false;
-        
+
         for (let x = 0; x < g && !hasPixel; x++) {
           for (let y = 0; y < g && !hasPixel; y++) {
             const px = gx * g + x;
@@ -561,13 +561,13 @@ class WordCloud {
             }
           }
         }
-        
+
         if (hasPixel) {
           occupied.push([gx, gy]);
         }
       }
     }
-    
+
     return { occupied, gw, gh, width, height };
   }
 
@@ -578,7 +578,7 @@ class WordCloud {
     for (const [ox, oy] of occupied) {
       const px = gx + ox;
       const py = gy + oy;
-      
+
       if (px < 0 || py < 0 || px >= ngx || py >= ngy) return false;
       if (!this.grid[px][py]) return false;
     }
@@ -600,7 +600,7 @@ class WordCloud {
   _drawWord(text, x, y, fontSize, color, rotation) {
     const { fontFamily, fontWeight } = this.options;
     const ctx = this.ctx;
-    
+
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotation * Math.PI / 180);
@@ -644,20 +644,20 @@ class WordCloud {
 
   _bindEvents() {
     if (!this.canvas) return;
-    
+
     this._onClick = (e) => {
       const word = this._getWordAt(e);
       if (word && this.options.onClick) {
         this.options.onClick(word, e);
       }
     };
-    
+
     this._onMouseMove = (e) => {
       const word = this._getWordAt(e);
-      
+
       if (word) {
         this.canvas.style.cursor = 'pointer';
-        
+
         if (this._tooltip) {
           this._tooltip.innerHTML = `<strong>${word.text}</strong><span style="color:var(--text-secondary);margin-left:8px;">가중치: ${word.weight}</span>`;
           this._tooltip.style.opacity = '1';
@@ -669,7 +669,7 @@ class WordCloud {
         if (this._tooltip) this._tooltip.style.opacity = '0';
       }
     };
-    
+
     this.canvas.addEventListener('click', this._onClick);
     this.canvas.addEventListener('mousemove', this._onMouseMove);
   }
@@ -681,7 +681,7 @@ class WordCloud {
     const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     for (const word of this.placedWords) {
       if (x >= word.x && x <= word.x + word.width &&
           y >= word.y && y <= word.y + word.height) {
@@ -721,7 +721,7 @@ class WordCloud {
   download(filename = 'wordcloud.png') {
     const dataUrl = this.toDataURL();
     if (!dataUrl) return;
-    
+
     const link = document.createElement('a');
     link.download = filename;
     link.href = dataUrl;
@@ -738,14 +738,14 @@ class WordCloud {
     if (this._tooltip && this._tooltip.parentNode) {
       this._tooltip.parentNode.removeChild(this._tooltip);
     }
-    
+
     WordCloud.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
       this.container.classList.remove('wordcloud');
     }
-    
+
     this.container = null;
     this.canvas = null;
     this.ctx = null;
@@ -783,15 +783,15 @@ class TagCloud {
       animate: true,
       onClick: null,
       onRemove: null,
-      onSelect: null,
+      onSelect: null
     };
   }
 
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('TagCloud: Container not found');
       return;
@@ -801,7 +801,7 @@ class TagCloud {
     this._tags = [];
     this._selectedTags = new Set();
     this._onClick = null;
-    
+
     this.init();
     TagCloud.instances.set(this.container, this);
   }
@@ -814,13 +814,13 @@ class TagCloud {
 
   _processTags() {
     const { tags, colors, sortBy } = this.options;
-    
+
     this._tags = tags.map((tag, i) => ({
       ...tag,
       color: tag.color || colors[i % colors.length],
       count: tag.count || 0
     }));
-    
+
     if (sortBy) {
       this._tags.sort((a, b) => {
         if (sortBy === 'text') return a.text.localeCompare(b.text);
@@ -832,17 +832,17 @@ class TagCloud {
 
   _render() {
     const { variant, size, sizeByCount, showCount, removable, selectable, maxVisible, animate } = this.options;
-    
+
     this.container.className = `tagcloud tagcloud--${variant} tagcloud--${size}`;
-    
+
     let visible = this._tags;
     let hidden = 0;
-    
+
     if (maxVisible && this._tags.length > maxVisible) {
       visible = this._tags.slice(0, maxVisible);
       hidden = this._tags.length - maxVisible;
     }
-    
+
     let minC = 0, maxC = 1, range = 1;
     if (sizeByCount && this._tags.length) {
       const counts = this._tags.map(t => t.count);
@@ -850,14 +850,14 @@ class TagCloud {
       maxC = Math.max(...counts);
       range = maxC - minC || 1;
     }
-    
+
     const html = visible.map((tag, i) => {
       const selected = this._selectedTags.has(tag.text);
       let scale = 1;
       if (sizeByCount) {
         scale = 0.85 + ((tag.count - minC) / range) * 0.3;
       }
-      
+
       return `
         <span class="tagcloud__tag ${selected ? 'is-selected' : ''}" 
               data-index="${i}" data-text="${tag.text}"
@@ -865,13 +865,13 @@ class TagCloud {
               ${selectable ? 'tabindex="0"' : ''}>
           <span class="tagcloud__text">${tag.text}</span>
           ${showCount && tag.count ? `<span class="tagcloud__count">${this._formatCount(tag.count)}</span>` : ''}
-          ${removable ? `<button class="tagcloud__remove" type="button"><i class="material-icons-outlined">close</i></button>` : ''}
+          ${removable ? '<button class="tagcloud__remove" type="button"><i class="material-icons-outlined">close</i></button>' : ''}
         </span>
       `;
     }).join('');
-    
+
     const more = hidden > 0 ? `<span class="tagcloud__more" data-hidden="${hidden}">+${hidden} more</span>` : '';
-    
+
     this.container.innerHTML = `<div class="tagcloud__list ${animate ? 'tagcloud--animate' : ''}">${html}${more}</div>`;
   }
 
@@ -910,7 +910,7 @@ class TagCloud {
   _bindEvents() {
     // 기존 리스너 제거 (재호출 시 중복 방지)
     this._unbindEvents();
-    
+
     this._onClick = (e) => {
       const rm = e.target.closest('.tagcloud__remove');
       if (rm) {
@@ -920,7 +920,7 @@ class TagCloud {
         if (this.options.onRemove) this.options.onRemove(this._tags.find(t => t.text === text), e);
         return;
       }
-      
+
       const more = e.target.closest('.tagcloud__more');
       if (more) {
         this.options.maxVisible = null;
@@ -928,27 +928,27 @@ class TagCloud {
         this._bindEvents();
         return;
       }
-      
+
       const tag = e.target.closest('.tagcloud__tag');
       if (!tag) return;
-      
+
       const t = this._tags[parseInt(tag.dataset.index)];
-      
+
       if (t.href) {
         window.location.href = t.href;
         return;
       }
-      
+
       if (this.options.selectable) this._toggle(t.text, tag);
       if (this.options.onClick) this.options.onClick(t, e);
     };
-    
+
     this.container.addEventListener('click', this._onClick);
   }
 
   _toggle(text, el) {
     const { multiSelect, onSelect } = this.options;
-    
+
     if (this._selectedTags.has(text)) {
       this._selectedTags.delete(text);
       el.classList.remove('is-selected');
@@ -960,7 +960,7 @@ class TagCloud {
       this._selectedTags.add(text);
       el.classList.add('is-selected');
     }
-    
+
     if (onSelect) onSelect(this._tags.filter(t => this._selectedTags.has(t.text)));
   }
 

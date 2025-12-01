@@ -23,13 +23,13 @@ class RichTextEditor {
   static defaults() {
     return {
       placeholder: '내용을 입력하세요...',
-      toolbar: ['bold', 'italic', 'underline', '|', 'heading', 'quote', '|', 
-                'ul', 'ol', '|', 'link', 'image', '|', 'code', 'hr', '|', 'undo', 'redo'],
+      toolbar: ['bold', 'italic', 'underline', '|', 'heading', 'quote', '|',
+        'ul', 'ol', '|', 'link', 'image', '|', 'code', 'hr', '|', 'undo', 'redo'],
       minHeight: 200,
       maxHeight: 600,
       onChange: null,
       onFocus: null,
-      onBlur: null,
+      onBlur: null
     };
   }
 
@@ -53,7 +53,7 @@ class RichTextEditor {
     redo: { icon: 'redo', title: '다시 실행', command: 'redo' },
     alignLeft: { icon: 'format_align_left', title: '왼쪽 정렬', command: 'justifyLeft' },
     alignCenter: { icon: 'format_align_center', title: '가운데 정렬', command: 'justifyCenter' },
-    alignRight: { icon: 'format_align_right', title: '오른쪽 정렬', command: 'justifyRight' },
+    alignRight: { icon: 'format_align_right', title: '오른쪽 정렬', command: 'justifyRight' }
   };
 
   /**
@@ -61,10 +61,10 @@ class RichTextEditor {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('RichTextEditor: Container not found');
       return;
@@ -76,7 +76,7 @@ class RichTextEditor {
     this._onInput = null;
     this._onFocus = null;
     this._onBlur = null;
-    
+
     this.init();
     RichTextEditor.instances.set(this.container, this);
   }
@@ -88,12 +88,12 @@ class RichTextEditor {
 
   _render() {
     this.container.className = 'rich-text-editor';
-    
+
     // 툴바 생성
     this.toolbar = document.createElement('div');
     this.toolbar.className = 'rich-text-editor__toolbar';
     this.toolbar.innerHTML = this._renderToolbar();
-    
+
     // 에디터 영역 생성
     this.editor = document.createElement('div');
     this.editor.className = 'rich-text-editor__content';
@@ -101,7 +101,7 @@ class RichTextEditor {
     this.editor.setAttribute('data-placeholder', this.options.placeholder);
     this.editor.style.minHeight = `${this.options.minHeight}px`;
     this.editor.style.maxHeight = `${this.options.maxHeight}px`;
-    
+
     this.container.appendChild(this.toolbar);
     this.container.appendChild(this.editor);
   }
@@ -111,10 +111,10 @@ class RichTextEditor {
       if (item === '|') {
         return '<span class="rich-text-editor__separator"></span>';
       }
-      
+
       const btn = RichTextEditor.toolbarButtons[item];
       if (!btn) return '';
-      
+
       return `
         <button type="button" class="rich-text-editor__btn" data-command="${btn.command}" 
                 data-value="${btn.value || ''}" title="${btn.title}">
@@ -129,14 +129,14 @@ class RichTextEditor {
     this.toolbar.addEventListener('click', (e) => {
       const btn = e.target.closest('.rich-text-editor__btn');
       if (!btn) return;
-      
+
       e.preventDefault();
       const command = btn.dataset.command;
       const value = btn.dataset.value;
-      
+
       this._execCommand(command, value);
     });
-    
+
     // 에디터 이벤트
     this._onInput = () => {
       if (this.options.onChange) {
@@ -144,7 +144,7 @@ class RichTextEditor {
       }
     };
     this.editor.addEventListener('input', this._onInput);
-    
+
     this._onFocus = () => {
       this.container.classList.add('is-focused');
       if (this.options.onFocus) {
@@ -152,7 +152,7 @@ class RichTextEditor {
       }
     };
     this.editor.addEventListener('focus', this._onFocus);
-    
+
     this._onBlur = () => {
       this.container.classList.remove('is-focused');
       if (this.options.onBlur) {
@@ -160,7 +160,7 @@ class RichTextEditor {
       }
     };
     this.editor.addEventListener('blur', this._onBlur);
-    
+
     // 키보드 단축키
     this.editor.addEventListener('keydown', (e) => {
       if (e.ctrlKey || e.metaKey) {
@@ -187,15 +187,15 @@ class RichTextEditor {
       value = prompt('링크 URL을 입력하세요:', 'https://');
       if (!value) return;
     }
-    
+
     if (command === 'insertImage') {
       value = prompt('이미지 URL을 입력하세요:', 'https://');
       if (!value) return;
     }
-    
+
     document.execCommand(command, false, value);
     this.editor.focus();
-    
+
     if (this.options.onChange) {
       this.options.onChange(this.getHTML());
     }
@@ -249,13 +249,13 @@ class RichTextEditor {
     if (this._onBlur) {
       this.editor.removeEventListener('blur', this._onBlur);
     }
-    
+
     RichTextEditor.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this.toolbar = null;
     this.editor = null;
@@ -285,11 +285,11 @@ class MarkdownEditor {
       placeholder: '마크다운을 입력하세요...',
       preview: true,            // 프리뷰 표시 여부
       splitView: true,          // 분할 뷰 (false면 탭)
-      toolbar: ['bold', 'italic', 'strikethrough', '|', 
-                'h1', 'h2', 'h3', '|', 'ul', 'ol', 'task', '|',
-                'link', 'image', 'code', 'codeblock', '|', 'quote', 'hr', 'table'],
+      toolbar: ['bold', 'italic', 'strikethrough', '|',
+        'h1', 'h2', 'h3', '|', 'ul', 'ol', 'task', '|',
+        'link', 'image', 'code', 'codeblock', '|', 'quote', 'hr', 'table'],
       minHeight: 300,
-      onChange: null,
+      onChange: null
     };
   }
 
@@ -312,7 +312,7 @@ class MarkdownEditor {
     codeblock: { icon: 'integration_instructions', title: '코드 블록', prefix: '```\n', suffix: '\n```' },
     quote: { icon: 'format_quote', title: '인용구', prefix: '> ', suffix: '' },
     hr: { icon: 'horizontal_rule', title: '구분선', insert: '\n---\n' },
-    table: { icon: 'table_chart', title: '테이블', insert: '\n| 제목 1 | 제목 2 |\n|--------|--------|\n| 내용 1 | 내용 2 |\n' },
+    table: { icon: 'table_chart', title: '테이블', insert: '\n| 제목 1 | 제목 2 |\n|--------|--------|\n| 내용 1 | 내용 2 |\n' }
   };
 
   /**
@@ -320,10 +320,10 @@ class MarkdownEditor {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.container = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.container = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.container) {
       console.error('MarkdownEditor: Container not found');
       return;
@@ -335,7 +335,7 @@ class MarkdownEditor {
     this.preview = null;
     this._activeTab = 'edit';
     this._onInput = null;
-    
+
     this.init();
     MarkdownEditor.instances.set(this.container, this);
   }
@@ -343,7 +343,7 @@ class MarkdownEditor {
   init() {
     this._render();
     this._bindEvents();
-    
+
     if (this.options.value) {
       this.setValue(this.options.value);
     }
@@ -351,14 +351,14 @@ class MarkdownEditor {
 
   _render() {
     const { splitView, preview, minHeight } = this.options;
-    
+
     this.container.className = `markdown-editor ${splitView ? 'markdown-editor--split' : 'markdown-editor--tabs'}`;
-    
+
     // 툴바
     this.toolbar = document.createElement('div');
     this.toolbar.className = 'markdown-editor__toolbar';
     this.toolbar.innerHTML = this._renderToolbar();
-    
+
     // 탭 (split view 아닐 때)
     let tabs = '';
     if (!splitView && preview) {
@@ -369,23 +369,23 @@ class MarkdownEditor {
         </div>
       `;
     }
-    
+
     // 에디터 영역
     const editorArea = document.createElement('div');
     editorArea.className = 'markdown-editor__body';
     editorArea.style.minHeight = `${minHeight}px`;
-    
+
     // Textarea
     this.textarea = document.createElement('textarea');
     this.textarea.className = 'markdown-editor__input';
     this.textarea.placeholder = this.options.placeholder;
-    
+
     // Preview
     if (preview) {
       this.preview = document.createElement('div');
       this.preview.className = 'markdown-editor__preview markdown-content';
     }
-    
+
     editorArea.innerHTML = splitView ? `
       <div class="markdown-editor__pane markdown-editor__pane--edit"></div>
       ${preview ? '<div class="markdown-editor__pane markdown-editor__pane--preview"></div>' : ''}
@@ -393,20 +393,20 @@ class MarkdownEditor {
       <div class="markdown-editor__pane markdown-editor__pane--edit"></div>
       ${preview ? '<div class="markdown-editor__pane markdown-editor__pane--preview" style="display:none;"></div>' : ''}
     `;
-    
+
     this.container.innerHTML = '';
     this.container.appendChild(this.toolbar);
-    
+
     if (tabs) {
       this.container.insertAdjacentHTML('beforeend', tabs);
     }
-    
+
     this.container.appendChild(editorArea);
-    
+
     // Append textarea and preview
     const editPane = editorArea.querySelector('.markdown-editor__pane--edit');
     editPane.appendChild(this.textarea);
-    
+
     if (this.preview) {
       const previewPane = editorArea.querySelector('.markdown-editor__pane--preview');
       previewPane.appendChild(this.preview);
@@ -418,10 +418,10 @@ class MarkdownEditor {
       if (item === '|') {
         return '<span class="markdown-editor__separator"></span>';
       }
-      
+
       const btn = MarkdownEditor.toolbarButtons[item];
       if (!btn) return '';
-      
+
       return `
         <button type="button" class="markdown-editor__btn" data-action="${item}" title="${btn.title}">
           <i class="material-icons-outlined">${btn.icon}</i>
@@ -435,12 +435,12 @@ class MarkdownEditor {
     this.toolbar.addEventListener('click', (e) => {
       const btn = e.target.closest('.markdown-editor__btn');
       if (!btn) return;
-      
+
       e.preventDefault();
       const action = btn.dataset.action;
       this._handleToolbarAction(action);
     });
-    
+
     // 입력 이벤트
     this._onInput = () => {
       this._updatePreview();
@@ -449,18 +449,18 @@ class MarkdownEditor {
       }
     };
     this.textarea.addEventListener('input', this._onInput);
-    
+
     // 탭 전환
     const tabs = this.container.querySelector('.markdown-editor__tabs');
     if (tabs) {
       tabs.addEventListener('click', (e) => {
         const tab = e.target.closest('.markdown-editor__tab');
         if (!tab) return;
-        
+
         this._switchTab(tab.dataset.tab);
       });
     }
-    
+
     // 키보드 단축키
     this.textarea.addEventListener('keydown', (e) => {
       if (e.ctrlKey || e.metaKey) {
@@ -475,14 +475,14 @@ class MarkdownEditor {
             break;
         }
       }
-      
+
       // Tab 키로 들여쓰기
       if (e.key === 'Tab') {
         e.preventDefault();
         const start = this.textarea.selectionStart;
         const end = this.textarea.selectionEnd;
         const value = this.textarea.value;
-        
+
         this.textarea.value = value.substring(0, start) + '  ' + value.substring(end);
         this.textarea.selectionStart = this.textarea.selectionEnd = start + 2;
         this._updatePreview();
@@ -493,15 +493,15 @@ class MarkdownEditor {
   _handleToolbarAction(action) {
     const btn = MarkdownEditor.toolbarButtons[action];
     if (!btn) return;
-    
+
     const start = this.textarea.selectionStart;
     const end = this.textarea.selectionEnd;
     const value = this.textarea.value;
     const selection = value.substring(start, end);
-    
+
     let newText;
     let cursorPos;
-    
+
     if (btn.insert) {
       // 삽입형 (테이블, 구분선 등)
       newText = value.substring(0, start) + btn.insert + value.substring(end);
@@ -510,16 +510,16 @@ class MarkdownEditor {
       // 래핑형
       const prefix = btn.prefix || '';
       const suffix = btn.suffix || '';
-      
+
       newText = value.substring(0, start) + prefix + selection + suffix + value.substring(end);
       cursorPos = selection ? start + prefix.length + selection.length + suffix.length : start + prefix.length;
     }
-    
+
     this.textarea.value = newText;
     this.textarea.selectionStart = this.textarea.selectionEnd = cursorPos;
     this.textarea.focus();
     this._updatePreview();
-    
+
     if (this.options.onChange) {
       this.options.onChange(this.getValue());
     }
@@ -527,13 +527,13 @@ class MarkdownEditor {
 
   _switchTab(tab) {
     this._activeTab = tab;
-    
+
     const tabs = this.container.querySelectorAll('.markdown-editor__tab');
     tabs.forEach(t => t.classList.toggle('is-active', t.dataset.tab === tab));
-    
+
     const editPane = this.container.querySelector('.markdown-editor__pane--edit');
     const previewPane = this.container.querySelector('.markdown-editor__pane--preview');
-    
+
     if (tab === 'edit') {
       editPane.style.display = '';
       if (previewPane) previewPane.style.display = 'none';
@@ -546,7 +546,7 @@ class MarkdownEditor {
 
   _updatePreview() {
     if (!this.preview) return;
-    
+
     const markdown = this.textarea.value;
     this.preview.innerHTML = this._parseMarkdown(markdown);
   }
@@ -557,57 +557,57 @@ class MarkdownEditor {
    */
   _parseMarkdown(text) {
     if (!text) return '';
-    
+
     let html = text;
-    
+
     // Escape HTML
     html = html.replace(/&/g, '&amp;')
-               .replace(/</g, '&lt;')
-               .replace(/>/g, '&gt;');
-    
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
     // Code blocks (triple backticks)
     html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
-    
+
     // Inline code
     html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-    
+
     // Headers
     html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
     html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-    
+
     // Bold
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    
+
     // Italic
     html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
-    
+
     // Strikethrough
     html = html.replace(/~~([^~]+)~~/g, '<del>$1</del>');
-    
+
     // Blockquotes
     html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
-    
+
     // Horizontal rules
     html = html.replace(/^---$/gim, '<hr>');
-    
+
     // Links
     html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    
+
     // Images
     html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
-    
+
     // Task lists
     html = html.replace(/^- \[x\] (.*$)/gim, '<div class="task-item"><input type="checkbox" checked disabled> $1</div>');
     html = html.replace(/^- \[ \] (.*$)/gim, '<div class="task-item"><input type="checkbox" disabled> $1</div>');
-    
+
     // Unordered lists
     html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
     html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
-    
+
     // Ordered lists
     html = html.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
-    
+
     // Paragraphs
     html = html.replace(/\n\n/g, '</p><p>');
     html = '<p>' + html + '</p>';
@@ -621,10 +621,10 @@ class MarkdownEditor {
     html = html.replace(/<p>(<blockquote>)/g, '$1');
     html = html.replace(/(<\/blockquote>)<\/p>/g, '$1');
     html = html.replace(/<p>(<hr>)<\/p>/g, '$1');
-    
+
     // Line breaks
     html = html.replace(/\n/g, '<br>');
-    
+
     return html;
   }
 
@@ -672,13 +672,13 @@ class MarkdownEditor {
     if (this._onInput) {
       this.textarea.removeEventListener('input', this._onInput);
     }
-    
+
     MarkdownEditor.instances.delete(this.container);
-    
+
     if (this.container) {
       this.container.innerHTML = '';
     }
-    
+
     this.container = null;
     this.toolbar = null;
     this.textarea = null;
@@ -707,7 +707,7 @@ class TextareaAutosize {
     return {
       minRows: 2,
       maxRows: 10,
-      onChange: null,
+      onChange: null
     };
   }
 
@@ -716,10 +716,10 @@ class TextareaAutosize {
    * @param {Object} options
    */
   constructor(selector, options = {}) {
-    this.textarea = typeof selector === 'string' 
-      ? document.querySelector(selector) 
+    this.textarea = typeof selector === 'string'
+      ? document.querySelector(selector)
       : selector;
-    
+
     if (!this.textarea || this.textarea.tagName !== 'TEXTAREA') {
       console.error('TextareaAutosize: Textarea not found');
       return;
@@ -728,7 +728,7 @@ class TextareaAutosize {
     this.options = { ...TextareaAutosize.defaults(), ...options };
     this._onInput = null;
     this._lineHeight = 0;
-    
+
     this.init();
     TextareaAutosize.instances.set(this.textarea, this);
   }
@@ -742,11 +742,11 @@ class TextareaAutosize {
   _calculateLineHeight() {
     const computed = window.getComputedStyle(this.textarea);
     this._lineHeight = parseFloat(computed.lineHeight) || parseFloat(computed.fontSize) * 1.2;
-    
+
     const { minRows, maxRows } = this.options;
     const paddingY = parseFloat(computed.paddingTop) + parseFloat(computed.paddingBottom);
     const borderY = parseFloat(computed.borderTopWidth) + parseFloat(computed.borderBottomWidth);
-    
+
     this.textarea.style.minHeight = `${minRows * this._lineHeight + paddingY + borderY}px`;
     if (maxRows) {
       this.textarea.style.maxHeight = `${maxRows * this._lineHeight + paddingY + borderY}px`;
@@ -761,7 +761,7 @@ class TextareaAutosize {
         this.options.onChange(this.textarea.value);
       }
     };
-    
+
     this.textarea.addEventListener('input', this._onInput);
   }
 
@@ -781,12 +781,12 @@ class TextareaAutosize {
     if (this._onInput) {
       this.textarea.removeEventListener('input', this._onInput);
     }
-    
+
     this.textarea.style.minHeight = '';
     this.textarea.style.maxHeight = '';
     this.textarea.style.height = '';
     this.textarea.style.overflow = '';
-    
+
     TextareaAutosize.instances.delete(this.textarea);
     this.textarea = null;
   }

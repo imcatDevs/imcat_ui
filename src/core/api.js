@@ -8,11 +8,11 @@
  * @class
  * @description HTTP 요청을 위한 fetch API 래퍼 클래스입니다.
  * 표준화된 응답 형식, 인터셉터, 에러 처리 등을 제공합니다.
- * 
+ *
  * @example
  * // GET 요청
  * const response = await APIUtil.get('/api/users');
- * 
+ *
  * @example
  * // POST 요청
  * const response = await APIUtil.post('/api/users', { name: 'John' });
@@ -35,7 +35,7 @@ export class APIUtil {
        * @param {Function} onFulfilled - 성공 핸들러
        * @param {Function} [onRejected] - 실패 핸들러
        * @returns {number} 인터셉터 ID
-       * 
+       *
        * @example
        * const id = APIUtil.interceptors.request.use(
        *   (config) => {
@@ -76,7 +76,7 @@ export class APIUtil {
        * @param {Function} onFulfilled - 성공 핸들러
        * @param {Function} [onRejected] - 실패 핸들러
        * @returns {number} 인터셉터 ID
-       * 
+       *
        * @example
        * APIUtil.interceptors.response.use(
        *   (response) => response,
@@ -125,7 +125,7 @@ export class APIUtil {
    * @param {string} [message='Success'] - 메시지
    * @param {number} [statusCode=200] - HTTP 상태 코드
    * @returns {Object} 표준 응답 객체
-   * 
+   *
    * @example
    * const response = APIUtil.success({ id: 1, name: 'John' }, 'User created', 201);
    */
@@ -146,7 +146,7 @@ export class APIUtil {
    * @param {number} [statusCode=400] - HTTP 상태 코드
    * @param {Object} [error=null] - 에러 상세
    * @returns {Object} 표준 에러 객체
-   * 
+   *
    * @example
    * const response = APIUtil.error('User not found', 404);
    */
@@ -173,7 +173,7 @@ export class APIUtil {
    * @param {number} pagination.limit - 페이지당 아이템 수
    * @param {number} pagination.total - 전체 아이템 수
    * @returns {Object} 페이지네이션 응답
-   * 
+   *
    * @example
    * const response = APIUtil.paginated(items, {
    *   page: 1,
@@ -203,7 +203,7 @@ export class APIUtil {
    * @param {string} url - 요청 URL
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.request('/api/users', {
    *   method: 'POST',
@@ -244,7 +244,7 @@ export class APIUtil {
       delete config.url; // fetch에 전달하지 않음
 
       const response = await fetch(finalUrl, config);
-      
+
       // JSON 파싱 (실패 시 텍스트로 처리)
       let data;
       const contentType = response.headers.get('content-type');
@@ -318,7 +318,7 @@ export class APIUtil {
    * @param {string} url - 요청 URL
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.get('/api/users');
    * if (response.success) {
@@ -338,7 +338,7 @@ export class APIUtil {
    * @param {Object} body - 요청 바디
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.post('/api/users', {
    *   name: 'John',
@@ -359,7 +359,7 @@ export class APIUtil {
    * @param {Object} body - 요청 바디
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.put('/api/users/123', {
    *   name: 'Jane'
@@ -379,7 +379,7 @@ export class APIUtil {
    * @param {Object} body - 요청 바디
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.patch('/api/users/123', {
    *   age: 31
@@ -398,7 +398,7 @@ export class APIUtil {
    * @param {string} url - 요청 URL
    * @param {Object} [options={}] - fetch 옵션
    * @returns {Promise<Object>} API 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.delete('/api/users/123');
    */
@@ -413,7 +413,7 @@ export class APIUtil {
    * 여러 요청을 병렬로 실행
    * @param {...Promise} requests - 요청 프로미스들
    * @returns {Promise<Array>} 모든 응답 배열
-   * 
+   *
    * @example
    * const [users, posts, comments] = await APIUtil.all(
    *   APIUtil.get('/api/users'),
@@ -429,7 +429,7 @@ export class APIUtil {
    * 여러 요청 중 가장 빠른 것만 반환
    * @param {...Promise} requests - 요청 프로미스들
    * @returns {Promise<Object>} 가장 빠른 응답
-   * 
+   *
    * @example
    * const response = await APIUtil.race(
    *   APIUtil.get('/api/server1/data'),

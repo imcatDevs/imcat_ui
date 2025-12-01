@@ -63,7 +63,7 @@ class Autocomplete {
     this._onFocus = () => { if (this.results.length) this._open(); };
     this._onKeydown = (e) => this._handleKeydown(e);
     this._outside = (e) => { if (!this.wrapper.contains(e.target)) this._close(); };
-    
+
     this.element.addEventListener('input', this._onInput);
     this.element.addEventListener('focus', this._onFocus);
     this.element.addEventListener('keydown', this._onKeydown);
@@ -72,7 +72,7 @@ class Autocomplete {
 
   _handleInput() {
     const query = this.element.value.trim();
-    
+
     if (query.length < this.options.minLength) {
       this._close();
       return;
@@ -84,7 +84,7 @@ class Autocomplete {
 
   async _search(query) {
     let results;
-    
+
     if (typeof this.options.source === 'function') {
       this.wrapper.classList.add('is-loading');
       try {
@@ -115,11 +115,11 @@ class Autocomplete {
     const html = this.results.map((item, index) => {
       const text = typeof item === 'string' ? item : item.label || item.text || '';
       const highlighted = this.options.highlight ? this._highlight(text, query) : text;
-      
+
       if (this.options.renderItem) {
         return `<div class="autocomplete__item" data-index="${index}">${this.options.renderItem(item, highlighted)}</div>`;
       }
-      
+
       return `<div class="autocomplete__item" data-index="${index}">${highlighted}</div>`;
     }).join('');
 
@@ -209,18 +209,18 @@ class Autocomplete {
 
   destroy() {
     clearTimeout(this.debounceTimer);
-    
+
     // 이벤트 리스너 제거
     if (this._onInput) this.element.removeEventListener('input', this._onInput);
     if (this._onFocus) this.element.removeEventListener('focus', this._onFocus);
     if (this._onKeydown) this.element.removeEventListener('keydown', this._onKeydown);
     document.removeEventListener('click', this._outside);
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
-    
+
     // 참조 해제
     this.element = null;
     this.wrapper = null;
@@ -288,14 +288,14 @@ class MultiSelect {
     }).join('');
 
     const inputHtml = `<input type="text" class="multiselect__input" placeholder="${this.selectedValues.length ? '' : this.options.placeholder}">`;
-    
+
     this.tagsContainer.innerHTML = tagsHtml + inputHtml;
     this.searchInput = this.tagsContainer.querySelector('.multiselect__input');
   }
 
   _renderDropdown(filter = '') {
     const lowerFilter = filter.toLowerCase();
-    const availableOptions = this.options.options.filter(opt => 
+    const availableOptions = this.options.options.filter(opt =>
       !this.selectedValues.includes(opt.value) &&
       (!filter || opt.label.toLowerCase().includes(lowerFilter))
     );
@@ -304,10 +304,10 @@ class MultiSelect {
       if (this.options.allowCreate && filter) {
         this.dropdown.innerHTML = `<div class="multiselect__option multiselect__option--create" data-value="${filter}">+ "${filter}" 추가</div>`;
       } else {
-        this.dropdown.innerHTML = `<div class="multiselect__no-options">선택 가능한 옵션이 없습니다</div>`;
+        this.dropdown.innerHTML = '<div class="multiselect__no-options">선택 가능한 옵션이 없습니다</div>';
       }
     } else {
-      this.dropdown.innerHTML = availableOptions.map(opt => 
+      this.dropdown.innerHTML = availableOptions.map(opt =>
         `<div class="multiselect__option" data-value="${opt.value}">${opt.label}</div>`
       ).join('');
     }
@@ -339,7 +339,7 @@ class MultiSelect {
       if (e.key === 'Escape') this._close();
     };
     this._outside = (e) => { if (!this.wrapper.contains(e.target)) this._close(); };
-    
+
     this.tagsContainer.addEventListener('click', this._onTagsClick);
     this.searchInput.addEventListener('input', this._onSearchInput);
     this.searchInput.addEventListener('keydown', this._onSearchKeydown);
@@ -348,7 +348,7 @@ class MultiSelect {
 
   _addValue(value) {
     if (this.options.maxItems && this.selectedValues.length >= this.options.maxItems) return;
-    
+
     // allowCreate인 경우 새 옵션 추가
     if (!this.options.options.find(o => o.value === value)) {
       this.options.options.push({ value, label: value });
@@ -407,12 +407,12 @@ class MultiSelect {
     if (this._onSearchKeydown && this.searchInput) this.searchInput.removeEventListener('keydown', this._onSearchKeydown);
     document.removeEventListener('click', this._outside);
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.style.display = '';
     this.wrapper.parentNode.insertBefore(this.element, this.wrapper);
     this.wrapper.remove();
-    
+
     // 참조 해제
     this.element = null;
     this.wrapper = null;
@@ -470,7 +470,7 @@ class RangeSlider {
 
   _createSlider() {
     this.element.classList.add('range-slider');
-    
+
     let html = `
       <div class="range-slider__track">
         <div class="range-slider__fill"></div>
@@ -504,7 +504,7 @@ class RangeSlider {
     }
 
     this.element.innerHTML = html;
-    
+
     this.track = this.element.querySelector('.range-slider__track');
     this.fill = this.element.querySelector('.range-slider__fill');
     this.handles = this.element.querySelectorAll('.range-slider__handle');
@@ -533,7 +533,7 @@ class RangeSlider {
     this.isDragging = true;
     this.activeHandle = handle.dataset.handle;
     this.element.classList.add('is-dragging');
-    
+
     document.addEventListener('mousemove', this._onMove);
     document.addEventListener('mouseup', this._onEnd);
     document.addEventListener('touchmove', this._onMove, { passive: false });
@@ -543,12 +543,12 @@ class RangeSlider {
   _drag(e) {
     if (!this.isDragging) return;
     e.preventDefault();
-    
+
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const rect = this.track.getBoundingClientRect();
     let percent = (clientX - rect.left) / rect.width;
     percent = Math.max(0, Math.min(1, percent));
-    
+
     const newValue = this._percentToValue(percent);
     this._setValue(this.activeHandle, newValue);
   }
@@ -558,25 +558,25 @@ class RangeSlider {
     this.isDragging = false;
     this.activeHandle = null;
     this.element.classList.remove('is-dragging');
-    
+
     document.removeEventListener('mousemove', this._onMove);
     document.removeEventListener('mouseup', this._onEnd);
     document.removeEventListener('touchmove', this._onMove);
     document.removeEventListener('touchend', this._onEnd);
-    
+
     this.options.onDragEnd?.(this.getValue());
     this.events.emit('dragend', this.getValue());
   }
 
   _handleTrackClick(e) {
     if (this.isDragging) return;
-    
+
     const rect = this.track.getBoundingClientRect();
     let percent = (e.clientX - rect.left) / rect.width;
     percent = Math.max(0, Math.min(1, percent));
-    
+
     const newValue = this._percentToValue(percent);
-    
+
     if (this.options.range) {
       // 가까운 핸들 선택
       const distMin = Math.abs(newValue - this.value[0]);
@@ -611,29 +611,29 @@ class RangeSlider {
     if (this.options.range) {
       const minPercent = this._valueToPercent(this.value[0]);
       const maxPercent = this._valueToPercent(this.value[1]);
-      
+
       this.fill.style.left = `${minPercent}%`;
       this.fill.style.width = `${maxPercent - minPercent}%`;
-      
+
       const minHandle = this.element.querySelector('[data-handle="min"]');
       const maxHandle = this.element.querySelector('[data-handle="max"]');
-      
+
       minHandle.style.left = `${minPercent}%`;
       maxHandle.style.left = `${maxPercent}%`;
-      
+
       if (this.options.showTooltip) {
         minHandle.querySelector('.range-slider__tooltip').textContent = this.options.formatValue(this.value[0]);
         maxHandle.querySelector('.range-slider__tooltip').textContent = this.options.formatValue(this.value[1]);
       }
     } else {
       const percent = this._valueToPercent(this.value);
-      
+
       this.fill.style.left = '0';
       this.fill.style.width = `${percent}%`;
-      
+
       const handle = this.element.querySelector('[data-handle="single"]');
       handle.style.left = `${percent}%`;
-      
+
       if (this.options.showTooltip) {
         handle.querySelector('.range-slider__tooltip').textContent = this.options.formatValue(this.value);
       }
@@ -667,7 +667,7 @@ class RangeSlider {
     document.removeEventListener('mouseup', this._onEnd);
     document.removeEventListener('touchmove', this._onMove);
     document.removeEventListener('touchend', this._onEnd);
-    
+
     // 핸들 이벤트 리스너 제거
     if (this._handleEvents) {
       this._handleEvents.forEach(({ handle, onMouseDown, onTouchStart }) => {
@@ -676,18 +676,18 @@ class RangeSlider {
       });
       this._handleEvents = [];
     }
-    
+
     // 트랙 이벤트 리스너 제거
     if (this._onTrackClick && this.track) {
       this.track.removeEventListener('click', this._onTrackClick);
     }
-    
+
     if (this.events) this.events.clear();
-    
+
     // DOM 정리
     this.element.innerHTML = '';
     this.element.classList.remove('range-slider');
-    
+
     // 참조 해제
     this.element = null;
     this.track = null;

@@ -45,7 +45,7 @@ class OverlayBase {
     this.element = null;
     this.backdropElement = null;
     this.eventBus = new EventBus();
-    
+
     // 이벤트 핸들러 바인딩 (메모리 누수 방지)
     this._handleEscKey = this._handleEscKey.bind(this);
     this._handleBackdropClick = this._handleBackdropClick.bind(this);
@@ -88,7 +88,7 @@ class OverlayBase {
         // 애니메이션 에러 무시
       }
     }
-    
+
     if (backdrop) {
       backdrop.removeEventListener('click', this._handleBackdropClick);
       backdrop.remove();
@@ -315,7 +315,7 @@ class OverlayBase {
  * @class
  * @extends OverlayBase
  * @description 모달 다이얼로그 컴포넌트
- * 
+ *
  * @example
  * const modal = new Modal({
  *   title: '확인',
@@ -532,15 +532,15 @@ class Modal extends OverlayBase {
         title: options.title || '확인',
         content: options.content || '계속하시겠습니까?',
         buttons: [
-          { 
-            text: options.cancelText || '취소', 
+          {
+            text: options.cancelText || '취소',
             action: () => {
               modal.hide();
               resolve(false);
             }
           },
-          { 
-            text: options.confirmText || '확인', 
+          {
+            text: options.confirmText || '확인',
             type: 'primary',
             action: () => {
               modal.hide();
@@ -566,8 +566,8 @@ class Modal extends OverlayBase {
         title: options.title || '알림',
         content: options.content || '',
         buttons: [
-          { 
-            text: options.confirmText || '확인', 
+          {
+            text: options.confirmText || '확인',
             type: 'primary',
             action: () => {
               modal.hide();
@@ -587,7 +587,7 @@ class Modal extends OverlayBase {
  * @class
  * @extends OverlayBase
  * @description 사이드 패널 컴포넌트
- * 
+ *
  * @example
  * const drawer = new Drawer({
  *   position: 'right',
@@ -724,7 +724,7 @@ class Drawer extends OverlayBase {
     await super.show();
 
     this.element.style.display = 'flex';
-    
+
     // transform을 0으로 설정하여 보이게 함
     this.element.style.transform = 'translateX(0) translateY(0)';
   }
@@ -770,7 +770,7 @@ class Offcanvas extends Drawer {
  * @class
  * @extends OverlayBase
  * @description 이미지 갤러리/라이트박스 컴포넌트
- * 
+ *
  * @example
  * const lightbox = new Lightbox({
  *   images: [

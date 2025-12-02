@@ -1,6 +1,8 @@
 # IMCAT UI CSS 클래스 레퍼런스
 
-> 모든 구현된 SCSS 클래스에 대한 종합 문서
+> 실제 구현된 SCSS 클래스에 대한 종합 문서
+>
+> ⚠️ **네이밍 규칙**: 컴포넌트별로 BEM(`--`) 또는 Bootstrap(`-`) 스타일을 사용합니다.
 
 ## 📋 목차
 
@@ -50,74 +52,28 @@
 
 | 클래스 | 설명 |
 |--------|------|
-| `.wrapper` | 메인 래퍼 |
-| `.content-page` | 콘텐츠 페이지 |
-| `.content` | 메인 콘텐츠 영역 |
+| `.app-header` | 상단 헤더 (sticky) |
+| `.app-logo` | 로고 영역 |
+| `.header-actions` | 헤더 우측 액션 영역 |
+| `.app-main` | 메인 그리드 레이아웃 |
+| `.sidebar-left` | 좌측 사이드바 |
+| `.sidebar-right` | 우측 사이드바 |
+| `.sidebar-title` | 사이드바 섹션 제목 |
+| `.content-area` | 메인 콘텐츠 영역 |
+| `.app-footer` | 푸터 영역 |
+| `.footer-links` | 푸터 링크 컨테이너 |
+| `.footer-link` | 푸터 링크 |
 
-### Containers
+### Navigation
 
-- **파일**: `_containers.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.container` | 반응형 고정 너비 컨테이너 |
-| `.container-fluid` | 전체 너비 컨테이너 |
-| `.container-sm` | Small 컨테이너 (≥576px) |
-| `.container-md` | Medium 컨테이너 (≥768px) |
-| `.container-lg` | Large 컨테이너 (≥992px) |
-| `.container-xl` | Extra Large 컨테이너 (≥1200px) |
-| `.container-xxl` | XXL 컨테이너 (≥1400px) |
-
-### Sidebar
-
-- **파일**: `_sidebar.scss`
+- **파일**: `_navigation.scss`
 
 | 클래스 | 설명 |
 |--------|------|
-| `.sidenav-menu` | 사이드바 메뉴 컨테이너 |
-| `.sidenav-menu.show` | 모바일에서 사이드바 표시 |
-| `.logo` | 로고 컨테이너 |
-| `.logo-lg` | 큰 로고 |
-| `.logo-sm` | 작은 로고 |
-| `.logo-text` | 로고 텍스트 |
-| `.side-nav` | 사이드 네비게이션 |
-| `.side-nav-title` | 네비게이션 섹션 제목 |
-| `.side-nav-item` | 네비게이션 아이템 |
-| `.side-nav-link` | 네비게이션 링크 |
-| `.side-nav-link.active` | 활성 링크 |
-| `.menu-icon` | 메뉴 아이콘 |
-| `.menu-text` | 메뉴 텍스트 |
-| `.button-on-hover` | 호버 시 표시 버튼 |
-| `.button-close-offcanvas` | 오프캔버스 닫기 버튼 |
-
-### Topbar
-
-- **파일**: `_topbar.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.app-topbar` | 상단 네비게이션 바 |
-| `.topbar-menu` | 상단바 메뉴 컨테이너 |
-| `.logo-topbar` | 상단바 로고 (모바일) |
-| `.sidenav-toggle-button` | 사이드바 토글 버튼 |
-| `.page-title` | 페이지 제목 |
-| `.topbar-left` | 상단바 좌측 영역 |
-| `.topbar-right` | 상단바 우측 영역 |
-| `.topbar-item` | 상단바 아이템 |
-| `.topbar-link` | 상단바 링크 |
-| `.topbar-icon` | 상단바 아이콘 |
-
-### Footer
-
-- **파일**: `_footer.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.footer` | 푸터 컨테이너 |
-| `.footer--fixed` | 고정 푸터 |
-| `.footer__content` | 푸터 콘텐츠 |
-| `.footer__links` | 푸터 링크 목록 |
-| `.footer__copyright` | 저작권 텍스트 |
+| `.nav-menu` | 네비게이션 메뉴 컨테이너 |
+| `.nav-item` | 네비게이션 아이템 |
+| `.nav-link` | 네비게이션 링크 |
+| `.nav-link.active` | 활성 링크 |
 
 ---
 
@@ -126,61 +82,96 @@
 ### Alerts
 
 - **파일**: `_alerts.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
 
 | 클래스 | 설명 |
 |--------|------|
 | `.alert` | 기본 알림 |
-| `.alert--primary` | Primary 알림 |
-| `.alert--secondary` | Secondary 알림 |
-| `.alert--success` | 성공 알림 |
-| `.alert--danger` | 위험/에러 알림 |
-| `.alert--warning` | 경고 알림 |
-| `.alert--info` | 정보 알림 |
-| `.alert--light` | 밝은 알림 |
-| `.alert--dark` | 어두운 알림 |
-| `.alert__title` | 알림 제목 |
-| `.alert__icon` | 알림 아이콘 |
-| `.alert__close` | 닫기 버튼 |
-| `.alert--dismissible` | 닫기 가능한 알림 |
-| `.alert--outline` | 아웃라인 스타일 |
-| `.alert--soft` | 소프트 스타일 |
+| `.alert-primary` | Primary 알림 |
+| `.alert-secondary` | Secondary 알림 |
+| `.alert-success` | 성공 알림 |
+| `.alert-danger` | 위험/에러 알림 |
+| `.alert-warning` | 경고 알림 |
+| `.alert-info` | 정보 알림 |
+| `.alert-light` | 밝은 알림 |
+| `.alert-dark` | 어두운 알림 |
+| `.alert-heading` | 알림 제목 |
+| `.alert-link` | 알림 내 링크 |
+| `.alert-icon` | 아이콘 포함 알림 |
+| `.alert-icon-symbol` | 아이콘 영역 |
+| `.alert-icon-content` | 콘텐츠 영역 |
+| `.alert-dismissible` | 닫기 가능한 알림 |
+| `.btn-close` | 닫기 버튼 |
 
 ### Avatars
 
 - **파일**: `_avatars.scss`
+- **네이밍**: Bootstrap 스타일 (`-`) + BEM 혼합
+
+#### 기본 및 크기
 
 | 클래스 | 설명 |
 |--------|------|
-| `.avatar` | 기본 아바타 |
-| `.avatar--xs` | 초소형 (24px) |
-| `.avatar--sm` | 소형 (32px) |
-| `.avatar--md` | 중형 (48px) |
-| `.avatar--lg` | 대형 (64px) |
-| `.avatar--xl` | 초대형 (96px) |
-| `.avatar--rounded` | 둥근 모서리 |
-| `.avatar--circle` | 원형 |
-| `.avatar--square` | 사각형 |
-| `.avatar__img` | 아바타 이미지 |
-| `.avatar__text` | 아바타 텍스트 (이니셜) |
-| `.avatar__status` | 상태 표시 |
-| `.avatar-group` | 아바타 그룹 |
+| `.avatar` | 기본 아바타 (48px) |
+| `.avatar-xs` | 초소형 (24px) |
+| `.avatar-sm` | 소형 (32px) |
+| `.avatar-md` | 중형 (48px) |
+| `.avatar-lg` | 대형 (64px) |
+| `.avatar-xl` | 초대형 (96px) |
+| `.avatar__title` | 아바타 텍스트 (이니셜 표시용) |
+
+#### 스타일
+
+| 클래스 | 설명 |
+|--------|------|
+| `.rounded` | 둥근 모서리 |
+| `.rounded-circle` | 원형 |
+| `.img-thumbnail` | 썸네일 스타일 (테두리) |
+
+#### 그룹 및 상태 배지
+
+| 클래스 | 설명 |
+|--------|------|
+| `.avatar-group` | 아바타 그룹 (겹침 효과) |
+| `.avatar--with-badge` | 상태 배지 포함 아바타 |
+| `.avatar__badge` | 상태 배지 |
+| `.avatar__badge--online` | 온라인 (초록) |
+| `.avatar__badge--offline` | 오프라인 (회색) |
+| `.avatar__badge--away` | 자리비움 (주황) |
+| `.avatar__badge--busy` | 바쁨 (빨강) |
 
 ### Avatar Badge
 
 - **파일**: `_avatar-badge.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.avatar-badge` | 아바타 배지 컨테이너 |
-| `.avatar-badge__badge` | 배지 요소 |
-| `.avatar-badge--online` | 온라인 상태 |
-| `.avatar-badge--offline` | 오프라인 상태 |
-| `.avatar-badge--busy` | 바쁨 상태 |
-| `.avatar-badge--away` | 자리비움 상태 |
+| `.avatar-badge` | 배지 포함 아바타 컨테이너 |
+| `.avatar-badge__avatar` | 아바타 이미지 |
+| `.avatar-badge__badge` | 숫자 배지 |
+| `.avatar-badge__status` | 상태 표시기 |
+| `.avatar-badge__badge--top-right` | 배지 우상단 |
+| `.avatar-badge__badge--top-left` | 배지 좌상단 |
+| `.avatar-badge__badge--bottom-right` | 배지 우하단 |
+| `.avatar-badge__badge--bottom-left` | 배지 좌하단 |
+| `.avatar-badge__status--online` | 온라인 |
+| `.avatar-badge__status--offline` | 오프라인 |
+| `.avatar-badge__status--busy` | 바쁨 |
+| `.avatar-badge__status--away` | 자리비움 |
+| `.avatar-badge__status--idle` | 대기 |
+| `.avatar-badge__status--pulse` | 펄스 애니메이션 |
+| `.avatar-badge--sm` | 소형 (2rem) |
+| `.avatar-badge--lg` | 대형 (4rem) |
+| `.avatar-badge--xl` | 초대형 (5rem) |
+| `.avatar-badge--rounded` | 둥근 모서리 |
+| `.avatar-badge--square` | 사각형 |
+| `.avatar-badge-group` | 아바타 그룹 |
 
 ### Badges
 
 - **파일**: `_badges.scss`
+- **네이밍**: BEM 스타일 (`--`)
 
 | 클래스 | 설명 |
 |--------|------|
@@ -193,11 +184,15 @@
 | `.badge--info` | 정보 배지 |
 | `.badge--light` | 밝은 배지 |
 | `.badge--dark` | 어두운 배지 |
-| `.badge--pill` | 알약 형태 |
+| `.badge--pill` | 알약 형태 (rounded) |
 | `.badge--outline` | 아웃라인 스타일 |
 | `.badge--soft` | 소프트 스타일 |
 | `.badge--sm` | 소형 |
 | `.badge--lg` | 대형 |
+| `.badge--icon` | 아이콘 포함 |
+| `.badge--dot` | 점 형태 (indicator) |
+| `.badge--positioned` | 절대 위치 (top-right) |
+| `.badge-container` | 배지 컨테이너 (relative) |
 
 ### Blockquotes
 
@@ -215,39 +210,65 @@
 ### Breadcrumb
 
 - **파일**: `_breadcrumb.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
 
 | 클래스 | 설명 |
 |--------|------|
 | `.breadcrumb` | 기본 경로 표시 |
 | `.breadcrumb-item` | 경로 아이템 |
+| `.breadcrumb-item a` | 경로 링크 |
 | `.breadcrumb-item.active` | 현재 페이지 |
+| `.page-title-box` | 페이지 제목 박스 (breadcrumb 포함) |
+| `.page-title` | 페이지 제목 |
 
 ### Buttons
 
 - **파일**: `_buttons.scss`
+- **네이밍**: BEM 기본 (`--`), Bootstrap alias (`-`) 모두 지원
+
+#### BEM 스타일 (기본)
 
 | 클래스 | 설명 |
 |--------|------|
 | `.btn` | 기본 버튼 |
-| `.btn-primary` | Primary 버튼 |
-| `.btn-secondary` | Secondary 버튼 |
-| `.btn-success` | 성공 버튼 |
-| `.btn-danger` | 위험 버튼 |
-| `.btn-warning` | 경고 버튼 |
-| `.btn-info` | 정보 버튼 |
-| `.btn-light` | 밝은 버튼 |
-| `.btn-dark` | 어두운 버튼 |
-| `.btn-link` | 링크 스타일 버튼 |
-| `.btn-outline-*` | 아웃라인 버튼 |
-| `.btn-soft-*` | 소프트 버튼 |
-| `.btn-sm` | 소형 버튼 |
-| `.btn-lg` | 대형 버튼 |
-| `.btn-block` | 전체 너비 버튼 |
-| `.btn-icon` | 아이콘 전용 버튼 |
-| `.btn-rounded` | 둥근 버튼 |
-| `.btn-pill` | 알약형 버튼 |
-| `.btn-loading` | 로딩 상태 |
-| `.btn:disabled` | 비활성화 |
+| `.btn--primary` | Primary 버튼 |
+| `.btn--secondary` | Secondary 버튼 |
+| `.btn--success` | 성공 버튼 |
+| `.btn--danger` | 위험 버튼 |
+| `.btn--warning` | 경고 버튼 |
+| `.btn--info` | 정보 버튼 |
+| `.btn--light` | 밝은 버튼 |
+| `.btn--dark` | 어두운 버튼 |
+| `.btn--outline-primary` | Primary 아웃라인 |
+| `.btn--outline-*` | 아웃라인 버튼 |
+| `.btn--ghost` | 투명 버튼 |
+| `.btn--sm` | 소형 버튼 |
+| `.btn--lg` | 대형 버튼 |
+| `.btn--block` | 전체 너비 버튼 |
+| `.btn--icon` | 아이콘 전용 버튼 |
+| `.btn--link` | 링크 스타일 버튼 |
+| `.btn--loading` | 로딩 상태 |
+| `.btn--disabled` | 비활성화 |
+
+#### Bootstrap Alias (호환성)
+
+| 클래스 | 매핑 |
+|--------|------|
+| `.btn-primary` | `.btn--primary` |
+| `.btn-secondary` | `.btn--secondary` |
+| `.btn-success` | `.btn--success` |
+| `.btn-danger` | `.btn--danger` |
+| `.btn-warning` | `.btn--warning` |
+| `.btn-info` | `.btn--info` |
+| `.btn-light` | `.btn--light` |
+| `.btn-dark` | `.btn--dark` |
+| `.btn-outline-*` | `.btn--outline-*` |
+| `.btn-soft-*` | 소프트 버튼 (배경 투명) |
+| `.btn-sm` | `.btn--sm` |
+| `.btn-lg` | `.btn--lg` |
+| `.btn-block` | `.btn--block` |
+| `.btn-icon` | `.btn--icon` |
+| `.btn-loading` | `.btn--loading` |
 
 ### Button Group
 
@@ -277,6 +298,7 @@
 ### Cards
 
 - **파일**: `_cards.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
 
 | 클래스 | 설명 |
 |--------|------|
@@ -287,33 +309,47 @@
 | `.card__title` | 카드 제목 |
 | `.card__subtitle` | 카드 부제목 |
 | `.card__text` | 카드 텍스트 |
+| `.card__link` | 카드 링크 |
 | `.card__img` | 카드 이미지 |
 | `.card__img-top` | 상단 이미지 |
 | `.card__img-bottom` | 하단 이미지 |
-| `.card--hover` | 호버 효과 |
-| `.card--bordered` | 테두리 카드 |
-| `.card--shadow` | 그림자 카드 |
-| `.card-group` | 카드 그룹 |
+| `.card__img-overlay` | 이미지 오버레이 |
+| `.card__list-group` | 카드 내 목록 그룹 |
+| `.card__list-item` | 카드 내 목록 아이템 |
+| `.card--primary` | Primary 카드 |
+| `.card--secondary` | Secondary 카드 |
+| `.card--success` | 성공 카드 |
+| `.card--danger` | 위험 카드 |
+| `.card--warning` | 경고 카드 |
+| `.card--info` | 정보 카드 |
+| `.card--outline` | 아웃라인 카드 |
+| `.card--horizontal` | 가로 카드 |
+| `.card-group` | 카드 그룹 (flex) |
+| `.card-deck` | 카드 덱 (반응형) |
+| `.card-columns` | 카드 컬럼 (masonry) |
 
 ### Chips
 
 - **파일**: `_chips.scss`
+- **네이밍**: BEM 스타일 (`--`)
 
 | 클래스 | 설명 |
 |--------|------|
 | `.chip` | 기본 칩 |
+| `.chip--avatar` | 아바타 포함 칩 |
+| `.chip__avatar` | 칩 내 아바타 이미지 |
+| `.chip__icon` | 칩 내 아이콘 |
+| `.chip--closeable` | 닫기 버튼 포함 칩 |
+| `.chip__close` | 닫기 버튼 |
+| `.chip--sm` | 소형 (22px) |
+| `.chip--lg` | 대형 (36px) |
 | `.chip--primary` | Primary 칩 |
+| `.chip--secondary` | Secondary 칩 |
 | `.chip--success` | 성공 칩 |
 | `.chip--danger` | 위험 칩 |
 | `.chip--warning` | 경고 칩 |
 | `.chip--info` | 정보 칩 |
-| `.chip--sm` | 소형 칩 |
-| `.chip--lg` | 대형 칩 |
-| `.chip__avatar` | 칩 아바타 |
-| `.chip__icon` | 칩 아이콘 |
-| `.chip__close` | 칩 닫기 버튼 |
-| `.chip--clickable` | 클릭 가능한 칩 |
-| `.chip--outline` | 아웃라인 칩 |
+| `.chip--outlined` | 아웃라인 칩 |
 
 ### Code Blocks
 
@@ -343,14 +379,26 @@
 ### Dividers
 
 - **파일**: `_dividers.scss`
+- **네이밍**: 클래스 분리형 + BEM 혼합
 
 | 클래스 | 설명 |
 |--------|------|
 | `.divider` | 기본 구분선 |
-| `.divider--dashed` | 점선 구분선 |
-| `.divider--dotted` | 점 구분선 |
-| `.divider--text` | 텍스트 포함 구분선 |
-| `.divider--vertical` | 세로 구분선 |
+| `.divider--sm` | 작은 마진 |
+| `.divider--lg` | 큰 마진 |
+| `.divider--xl` | 매우 큰 마진 |
+| `.divider--dashed` | 점선 |
+| `.divider--dotted` | 점 |
+| `.divider--thick` | 두꺼운 (2px) |
+| `.divider--primary` | Primary 색상 |
+| `.divider--success` | 성공 색상 |
+| `.divider--danger` | 위험 색상 |
+| `.divider--warning` | 경고 색상 |
+| `.divider-text` | 텍스트 포함 구분선 |
+| `.divider-icon` | 아이콘 포함 구분선 |
+| `.divider-vertical` | 세로 구분선 |
+| `.divider-vertical--sm` | 소형 세로 (16px) |
+| `.divider-vertical--lg` | 대형 세로 (32px) |
 
 ### Embeds
 
@@ -500,18 +548,26 @@
 ### Lists
 
 - **파일**: `_lists.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.list` | 기본 목록 |
-| `.list--unstyled` | 스타일 없는 목록 |
-| `.list--inline` | 인라인 목록 |
 | `.list-group` | 목록 그룹 |
 | `.list-group-item` | 목록 아이템 |
-| `.list-group-item--active` | 활성 아이템 |
-| `.list-group-item--disabled` | 비활성 아이템 |
-| `.list-group--flush` | 테두리 없는 그룹 |
-| `.list-group--numbered` | 번호 목록 |
+| `.list-group-item.active` | 활성 아이템 |
+| `.list-group-item.disabled` | 비활성 아이템 |
+| `.list-group-flush` | 테두리 없는 그룹 |
+| `.list-group-horizontal` | 가로 그룹 |
+| `.list-group-numbered` | 번호 목록 |
+| `.list-group-item-action` | 액션 아이템 |
+| `.list-group-item-primary` | Primary 색상 아이템 |
+| `.list-group-item-secondary` | Secondary 색상 아이템 |
+| `.list-group-item-success` | 성공 색상 아이템 |
+| `.list-group-item-danger` | 위험 색상 아이템 |
+| `.list-group-item-warning` | 경고 색상 아이템 |
+| `.list-group-item-info` | 정보 색상 아이템 |
+| `.list-group-item-icon` | 아이콘 포함 아이템 |
+| `.list-group-item-badge` | 배지 포함 아이템 |
 
 ### Loading
 
@@ -561,6 +617,7 @@
 ### Navbar
 
 - **파일**: `_navbar.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
 
 | 클래스 | 설명 |
 |--------|------|
@@ -569,12 +626,18 @@
 | `.navbar__nav` | 네비게이션 메뉴 |
 | `.navbar__item` | 네비게이션 아이템 |
 | `.navbar__link` | 네비게이션 링크 |
-| `.navbar__toggler` | 모바일 토글 버튼 |
+| `.navbar__link--active` | 활성 링크 |
+| `.navbar__actions` | 액션 영역 |
+| `.navbar__toggle` | 모바일 토글 버튼 |
+| `.navbar__nav--open` | 모바일 메뉴 열림 |
 | `.navbar--fixed-top` | 상단 고정 |
 | `.navbar--fixed-bottom` | 하단 고정 |
 | `.navbar--sticky` | 스티키 |
+| `.navbar--sm` | 소형 |
+| `.navbar--lg` | 대형 |
 | `.navbar--dark` | 어두운 네비게이션 |
 | `.navbar--light` | 밝은 네비게이션 |
+| `.navbar--primary` | Primary 배경 |
 
 ### Page Title
 
@@ -589,6 +652,7 @@
 ### Pagination
 
 - **파일**: `_pagination.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
 
 | 클래스 | 설명 |
 |--------|------|
@@ -597,169 +661,242 @@
 | `.page-link` | 페이지 링크 |
 | `.page-item.active` | 활성 페이지 |
 | `.page-item.disabled` | 비활성 페이지 |
-| `.pagination--sm` | 소형 페이지네이션 |
-| `.pagination--lg` | 대형 페이지네이션 |
-| `.pagination--rounded` | 둥근 페이지네이션 |
+| `.pagination-sm` | 소형 페이지네이션 |
+| `.pagination-lg` | 대형 페이지네이션 |
+| `.pagination-rounded` | 원형 페이지네이션 |
+| `.pagination-center` | 중앙 정렬 |
+| `.pagination-end` | 우측 정렬 |
+| `.pagination-simple` | Prev/Next만 표시 |
+| `.page-info` | 페이지 정보 표시 |
+
+### Tables
+
+- **파일**: `_tables.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
+
+| 클래스 | 설명 |
+|--------|------|
+| `.table` | 기본 테이블 |
+| `.table-striped` | 줄무니 테이블 |
+| `.table-bordered` | 테두리 테이블 |
+| `.table-borderless` | 테두리 없는 테이블 |
+| `.table-hover` | 호버 테이블 |
+| `.table-sm` | 작은 테이블 |
+| `.table-compact` | 컯팩트 테이블 |
+| `.table-responsive` | 반응형 래퍼 |
+| `.table-primary` | Primary 배경색 행 |
+| `.table-success` | 성공 배경색 행 |
+| `.table-danger` | 위험 배경색 행 |
+| `.table-warning` | 경고 배경색 행 |
+| `.table-info` | 정보 배경색 행 |
+| `.table-light` | 밝은 배경색 행 |
+| `.table-dark` | 어두운 배경색 행 |
+| `.table-actions` | 액션 버튼 컨테이너 |
 
 ### Progress
 
 - **파일**: `_progress.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
 
 | 클래스 | 설명 |
 |--------|------|
 | `.progress` | 진행률 바 컨테이너 |
 | `.progress-bar` | 진행률 바 |
-| `.progress--sm` | 소형 진행률 |
-| `.progress--lg` | 대형 진행률 |
-| `.progress-bar--striped` | 줄무늬 진행률 |
-| `.progress-bar--animated` | 애니메이션 진행률 |
-| `.progress--primary` | Primary 진행률 |
-| `.progress--success` | 성공 진행률 |
-| `.progress--danger` | 위험 진행률 |
-| `.progress--warning` | 경고 진행률 |
-| `.progress--info` | 정보 진행률 |
+| `.progress-sm` | 소형 (0.5rem) |
+| `.progress-md` | 중형 (1rem) |
+| `.progress-lg` | 대형 (1.5rem) |
+| `.progress-xl` | 초대형 (2rem) |
+| `.progress-bar-striped` | 줄무니 진행률 |
+| `.progress-bar-animated` | 애니메이션 진행률 |
+| `.progress-bar-primary` | Primary 진행률 |
+| `.progress-bar-secondary` | Secondary 진행률 |
+| `.progress-bar-success` | 성공 진행률 |
+| `.progress-bar-danger` | 위험 진행률 |
+| `.progress-bar-warning` | 경고 진행률 |
+| `.progress-bar-info` | 정보 진행률 |
+| `.progress-bar-dark` | 어두운 진행률 |
+| `.progress-vertical` | 세로 진행률 바 |
+| `.progress-circle` | 원형 진행률 (CSS only) |
+| `.progress-circle-sm` | 소형 원형 (60px) |
+| `.progress-circle-lg` | 대형 원형 (120px) |
+| `.progress-circle-text` | 원형 내부 텍스트 |
+| `.progress-label-left` | 레이블 좌측 정렬 |
+| `.progress-multiple` | 다중 진행률 바 |
 
 ### Rating
 
 - **파일**: `_rating.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.rating` | 평점 컴포넌트 |
-| `.rating__star` | 평점 별 |
+| `.rating` | 별점 컨테이너 |
+| `.rating__star` | 별 아이템 |
 | `.rating__star--filled` | 채워진 별 |
-| `.rating__star--half` | 반쪽 별 |
-| `.rating--sm` | 소형 평점 |
-| `.rating--lg` | 대형 평점 |
+| `.rating__star--empty` | 빈 별 |
+| `.rating__star--half` | 반 별 |
+| `.rating--primary` | Primary 색상 |
+| `.rating--success` | 성공 색상 |
+| `.rating--danger` | 위험 색상 |
+| `.rating--sm` | 소형 |
+| `.rating--lg` | 대형 |
 | `.rating--readonly` | 읽기 전용 |
-
-### Ratios
-
-- **파일**: `_ratios.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.ratio` | 비율 컨테이너 |
-| `.ratio--1x1` | 1:1 비율 |
-| `.ratio--4x3` | 4:3 비율 |
-| `.ratio--16x9` | 16:9 비율 |
-| `.ratio--21x9` | 21:9 비율 |
 
 ### Ribbons
 
 - **파일**: `_ribbons.scss`
+- **네이밍**: BEM 스타일 (`--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.ribbon` | 리본 |
-| `.ribbon--primary` | Primary 리본 |
-| `.ribbon--success` | 성공 리본 |
-| `.ribbon--danger` | 위험 리본 |
-| `.ribbon--top-left` | 좌상단 리본 |
-| `.ribbon--top-right` | 우상단 리본 |
-| `.ribbon--corner` | 코너 리본 |
+| `.ribbon` | 기본 리본 |
+| `.ribbon--top-left` | 좌상단 위치 |
+| `.ribbon--top-right` | 우상단 위치 |
+| `.ribbon--corner-top-left` | 좌상단 코너 (대각선) |
+| `.ribbon--corner-top-right` | 우상단 코너 (대각선) |
+| `.ribbon--primary` | Primary 색상 |
+| `.ribbon--secondary` | Secondary 색상 |
+| `.ribbon--success` | 성공 색상 |
+| `.ribbon--danger` | 위험 색상 |
+| `.ribbon--warning` | 경고 색상 |
+| `.ribbon--info` | 정보 색상 |
 
 ### Skeleton
 
 - **파일**: `_skeleton.scss`
+- **네이밍**: 클래스 분리형
 
 | 클래스 | 설명 |
 |--------|------|
-| `.skeleton` | 스켈레톤 로딩 |
-| `.skeleton--text` | 텍스트 스켈레톤 |
-| `.skeleton--circle` | 원형 스켈레톤 |
-| `.skeleton--rect` | 사각형 스켈레톤 |
-| `.skeleton--avatar` | 아바타 스켈레톤 |
-| `.skeleton--card` | 카드 스켈레톤 |
-
-### Spinners
-
-- **파일**: `_spinners.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.spinner` | 기본 스피너 |
-| `.spinner--border` | 테두리 스피너 |
-| `.spinner--grow` | 성장 스피너 |
-| `.spinner--sm` | 소형 스피너 |
-| `.spinner--lg` | 대형 스피너 |
-| `.spinner--primary` | Primary 스피너 |
-| `.spinner--secondary` | Secondary 스피너 |
-
-### Stats Cards
-
-- **파일**: `_stats-cards.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.stats-card` | 통계 카드 |
-| `.stats-card__icon` | 통계 아이콘 |
-| `.stats-card__value` | 통계 값 |
-| `.stats-card__label` | 통계 라벨 |
-| `.stats-card__trend` | 추세 표시 |
-| `.stats-card--primary` | Primary 통계 |
-| `.stats-card--success` | 성공 통계 |
-
-### Status Dots
-
-- **파일**: `_status-dots.scss`
-
-| 클래스 | 설명 |
-|--------|------|
-| `.status-dot` | 상태 점 |
-| `.status-dot--online` | 온라인 |
-| `.status-dot--offline` | 오프라인 |
-| `.status-dot--busy` | 바쁨 |
-| `.status-dot--away` | 자리비움 |
-| `.status-dot--sm` | 소형 |
-| `.status-dot--lg` | 대형 |
-| `.status-dot--animated` | 애니메이션 |
+| `.skeleton` | 기본 스켈레톤 (애니메이션) |
+| `.skeleton-text` | 텍스트 스켈레톤 (14px) |
+| `.skeleton-title` | 제목 스켈레톤 (24px) |
+| `.skeleton-circle` | 원형 스켈레톤 (48px) |
+| `.skeleton-rectangle` | 직사각형 스켈레톤 |
+| `.skeleton-square` | 정사각형 스켈레톤 (120px) |
+| `.skeleton--sm` | 소형 |
+| `.skeleton--lg` | 대형 |
 
 ### Steps
 
 - **파일**: `_steps.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.steps` | 단계 컴포넌트 |
-| `.step` | 단계 아이템 |
-| `.step__number` | 단계 번호 |
-| `.step__title` | 단계 제목 |
-| `.step__description` | 단계 설명 |
-| `.step--active` | 현재 단계 |
-| `.step--completed` | 완료된 단계 |
-| `.steps--vertical` | 세로 단계 |
+| `.steps` | 스텝 컨테이너 |
+| `.steps__item` | 스텝 아이템 |
+| `.steps__step` | 스텝 내용 |
+| `.steps__number` | 스텝 번호 |
+| `.steps__label` | 스텝 라벨 |
+| `.steps__line` | 스텝 연결선 |
+| `.steps__item--active` | 현재 스텝 |
+| `.steps__item--completed` | 완료된 스텝 |
+| `.steps--vertical` | 세로 스텝 |
+| `.steps--sm` | 소형 스텝 |
 
-### Tables
+### FAB (Floating Action Button)
 
-- **파일**: `_tables.scss`
+- **파일**: `_fab.scss`
+- **네이밍**: BEM 스타일 (`--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.table` | 기본 테이블 |
-| `.table--striped` | 줄무늬 테이블 |
-| `.table--bordered` | 테두리 테이블 |
-| `.table--hover` | 호버 테이블 |
-| `.table--sm` | 작은 테이블 |
-| `.table--responsive` | 반응형 테이블 |
-| `.table-responsive` | 반응형 래퍼 |
+| `.fab` | 기본 FAB |
+| `.fab--bottom-right` | 우하단 위치 |
+| `.fab--bottom-left` | 좌하단 위치 |
+| `.fab--top-right` | 우상단 위치 |
+| `.fab--top-left` | 좌상단 위치 |
+| `.fab--sm` | 소형 (2.5rem) |
+| `.fab--lg` | 대형 (4.5rem) |
+| `.fab--primary` | Primary 색상 |
+| `.fab--secondary` | Secondary 색상 |
+| `.fab--success` | 성공 색상 |
+| `.fab--danger` | 위험 색상 |
+| `.fab--extended` | 확장형 (텍스트 포함) |
 
 ### Tags
 
 - **파일**: `_tags.scss`
+- **네이밍**: BEM 스타일 (`--`)
 
 | 클래스 | 설명 |
 |--------|------|
-| `.tag` | 태그 |
+| `.tag` | 기본 태그 |
 | `.tag--primary` | Primary 태그 |
+| `.tag--secondary` | Secondary 태그 |
 | `.tag--success` | 성공 태그 |
 | `.tag--danger` | 위험 태그 |
 | `.tag--warning` | 경고 태그 |
 | `.tag--info` | 정보 태그 |
+| `.tag--outlined` | 아웃라인 태그 |
 | `.tag--sm` | 소형 태그 |
 | `.tag--lg` | 대형 태그 |
-| `.tag__close` | 태그 닫기 |
 | `.tag--rounded` | 둥근 태그 |
+| `.tag__close` | 태그 닫기 버튼 |
+| `.tag-group` | 태그 그룹 |
+
+### Status Dots
+
+- **파일**: `_status-dots.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
+
+| 클래스 | 설명 |
+|--------|------|
+| `.status-dot` | 상태 점 컨테이너 |
+| `.status-dot__indicator` | 상태 점 |
+| `.status-dot--online` | 온라인 (초록) |
+| `.status-dot--offline` | 오프라인 (회색) |
+| `.status-dot--busy` | 바쁨 (빨강) |
+| `.status-dot--away` | 자리비움 (주황) |
+| `.status-dot--idle` | 대기 (파랑) |
+| `.status-dot--pulse` | 펄스 애니메이션 |
+
+### Stats Cards
+
+- **파일**: `_stats-cards.scss`
+- **네이밍**: BEM 스타일 (`__`, `--`)
+
+| 클래스 | 설명 |
+|--------|------|
+| `.stats-card` | 통계 카드 컨테이너 |
+| `.stats-card__header` | 카드 헤더 |
+| `.stats-card__icon` | 아이콘 영역 |
+| `.stats-card__trend` | 트렌드 표시 |
+| `.stats-card__trend--up` | 상승 트렌드 (초록) |
+| `.stats-card__trend--down` | 하락 트렌드 (빨강) |
+| `.stats-card__value` | 통계 값 |
+| `.stats-card__label` | 라벨 |
+| `.stats-card__footer` | 푸터 |
+| `.stats-card--primary` | Primary 아이콘 배경 |
+| `.stats-card--success` | Success 아이콘 배경 |
+| `.stats-card--danger` | Danger 아이콘 배경 |
+
+### Spinners
+
+- **파일**: `_spinners.scss`
+- **네이밍**: Bootstrap 스타일 (`-`)
+
+| 클래스 | 설명 |
+|--------|------|
+| `.spinner-border` | 둘레 스피너 |
+| `.spinner-grow` | 크기 증가 스피너 |
+| `.spinner-border-sm` | 소형 둘레 스피너 |
+| `.spinner-grow-sm` | 소형 크기 증가 스피너 |
+| `.spinner-border-lg` | 대형 둘레 스피너 |
+| `.spinner-grow-lg` | 대형 크기 증가 스피너 |
+| `.spinner-primary` | Primary 색상 |
+| `.spinner-secondary` | Secondary 색상 |
+| `.spinner-success` | 성공 색상 |
+| `.spinner-danger` | 위험 색상 |
+| `.spinner-warning` | 경고 색상 |
+| `.spinner-info` | 정보 색상 |
+| `.spinner-light` | 밝은 색상 |
+| `.spinner-dark` | 어두운 색상 |
+| `.spinner-dots` | 점 스피너 |
+| `.spinner-pulse` | 펄스 스피너 |
+| `.spinner-bars` | 바 스피너 |
+| `.spinner-overlay` | 오버레이 스피너 |
 
 ### Text Utilities
 
@@ -768,8 +905,8 @@
 | 클래스 | 설명 |
 |--------|------|
 | `.text-truncate` | 텍스트 말줄임 |
-| `.text-wrap` | 텍스트 줄바꿈 |
-| `.text-nowrap` | 줄바꿈 금지 |
+| `.text-wrap` | 텍스트 줄바꾼 |
+| `.text-nowrap` | 줄바꾼 금지 |
 | `.text-break` | 단어 분리 |
 
 ### Timeline

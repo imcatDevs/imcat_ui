@@ -75,7 +75,9 @@ const moduleConfigs = [
   // Image Gallery
   'imagelist',
   // Security & Project Management
-  'security-input', 'gantt'
+  'security-input', 'gantt',
+  // Navigation
+  'pagination'
 ].map(createModuleConfig);
 
 // 코어 + 모듈 빌드

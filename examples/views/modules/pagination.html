@@ -1,0 +1,762 @@
+<!-- Breadcrumb -->
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#modules">Modules</a></li>
+      <li class="breadcrumb-item active">Pagination</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Pagination</h1>
+  <p class="page-description">동적 페이지네이션 모듈 - JSON 데이터와 함께 사용 가능한 페이지네이션</p>
+</div>
+
+<!-- 기본 Pagination -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">기본 Pagination</h2>
+        <p class="card__description">Pagination 클래스로 동적 페이지네이션 생성</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_basic" class="mb-4"></div>
+        <div id="demo_basic_info" class="text-muted"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 다양한 스타일 -->
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">크기 옵션</h2>
+        <p class="card__description">size: 'sm', 'default', 'lg'</p>
+      </div>
+      <div class="card__body">
+        <h6 class="mb-2">Small</h6>
+        <div id="demo_size_sm" class="mb-4"></div>
+        
+        <h6 class="mb-2">Default</h6>
+        <div id="demo_size_default" class="mb-4"></div>
+        
+        <h6 class="mb-2">Large</h6>
+        <div id="demo_size_lg"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">원형 스타일</h2>
+        <p class="card__description">rounded: true</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_rounded" class="mb-4"></div>
+        
+        <h6 class="mb-2 mt-4">아이콘 없이 (텍스트)</h6>
+        <div id="demo_text_only"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 정렬 옵션 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">정렬 옵션</h2>
+        <p class="card__description">align: 'start', 'center', 'end'</p>
+      </div>
+      <div class="card__body">
+        <h6 class="mb-2">Start (기본)</h6>
+        <div id="demo_align_start" class="mb-4 p-3" style="background: var(--bg-secondary); border-radius: 8px;"></div>
+        
+        <h6 class="mb-2">Center</h6>
+        <div id="demo_align_center" class="mb-4 p-3" style="background: var(--bg-secondary); border-radius: 8px;"></div>
+        
+        <h6 class="mb-2">End</h6>
+        <div id="demo_align_end" class="p-3" style="background: var(--bg-secondary); border-radius: 8px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 정보 표시 -->
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">정보 표시</h2>
+        <p class="card__description">showInfo: true로 현재 페이지 정보 표시</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_with_info"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">간단 모드</h2>
+        <p class="card__description">처음/마지막 버튼 없이 간단하게</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_simple"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DataPaginator - JSON 데이터 연동 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">DataPaginator - 사용자 목록</h2>
+        <p class="card__description">JSON 데이터와 연동하여 페이지네이션 처리</p>
+      </div>
+      <div class="card__body">
+        <!-- 검색 및 필터 -->
+        <div class="d-flex gap-3 mb-4 flex-wrap">
+          <input type="text" id="search_users" class="form-control" placeholder="이름 또는 이메일 검색..." style="max-width: 300px;">
+          <select id="filter_role" class="form-select" style="max-width: 150px;">
+            <option value="">전체 역할</option>
+            <option value="관리자">관리자</option>
+            <option value="편집자">편집자</option>
+            <option value="뷰어">뷰어</option>
+          </select>
+          <select id="filter_status" class="form-select" style="max-width: 150px;">
+            <option value="">전체 상태</option>
+            <option value="활성">활성</option>
+            <option value="비활성">비활성</option>
+          </select>
+        </div>
+        
+        <div id="demo_users_paginator"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DataPaginator - 상품 목록 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">DataPaginator - 상품 카드</h2>
+        <p class="card__description">카드 형태로 상품 데이터 표시</p>
+      </div>
+      <div class="card__body">
+        <div class="d-flex gap-3 mb-4 flex-wrap">
+          <select id="filter_category" class="form-select" style="max-width: 200px;">
+            <option value="">전체 카테고리</option>
+            <option value="전자기기">전자기기</option>
+            <option value="악세서리">악세서리</option>
+            <option value="오디오">오디오</option>
+            <option value="저장장치">저장장치</option>
+            <option value="웨어러블">웨어러블</option>
+            <option value="게이밍">게이밍</option>
+          </select>
+          <select id="sort_products" class="form-select" style="max-width: 200px;">
+            <option value="">정렬</option>
+            <option value="price_asc">가격 낮은순</option>
+            <option value="price_desc">가격 높은순</option>
+            <option value="rating_desc">평점 높은순</option>
+            <option value="name_asc">이름순</option>
+          </select>
+        </div>
+        
+        <div id="demo_products_paginator"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DataPaginator - 게시글 목록 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">DataPaginator - 게시글 목록</h2>
+        <p class="card__description">게시글 형태 데이터 페이지네이션</p>
+      </div>
+      <div class="card__body">
+        <div class="d-flex gap-3 mb-4 flex-wrap">
+          <input type="text" id="search_articles" class="form-control" placeholder="제목 또는 작성자 검색..." style="max-width: 300px;">
+          <select id="filter_article_category" class="form-select" style="max-width: 150px;">
+            <option value="">전체 카테고리</option>
+            <option value="기술">기술</option>
+            <option value="프레임워크">프레임워크</option>
+            <option value="언어">언어</option>
+            <option value="CSS">CSS</option>
+            <option value="DevOps">DevOps</option>
+            <option value="도구">도구</option>
+            <option value="UX">UX</option>
+            <option value="보안">보안</option>
+            <option value="클라우드">클라우드</option>
+          </select>
+          <select id="items_per_page" class="form-select" style="max-width: 120px;">
+            <option value="5">5개씩</option>
+            <option value="10" selected>10개씩</option>
+            <option value="20">20개씩</option>
+          </select>
+        </div>
+        
+        <div id="demo_articles_paginator"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 주문 테이블 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">DataPaginator - 주문 테이블</h2>
+        <p class="card__description">테이블 형태로 주문 데이터 표시</p>
+      </div>
+      <div class="card__body">
+        <div id="demo_orders_paginator"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- API 사용법 -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">API 사용법</h2>
+      </div>
+      <div class="card__body">
+        <h5 class="mb-3">Pagination 클래스</h5>
+        <pre class="bg-dark text-light p-3 rounded"><code>const Pagination = await IMCAT.use('pagination');
+
+// 기본 사용
+const pagination = new Pagination.Pagination('#container', {
+  totalItems: 100,
+  itemsPerPage: 10,
+  currentPage: 1,
+  maxVisiblePages: 5,
+  showFirstLast: true,
+  showPrevNext: true,
+  showEllipsis: true,
+  showInfo: true,
+  size: 'default',    // 'sm', 'default', 'lg'
+  rounded: false,
+  align: 'center',    // 'start', 'center', 'end'
+  icons: true,
+  onChange: (pageData, prevPage) => {
+    console.log('페이지 변경:', pageData);
+  }
+});
+
+// 메서드
+pagination.goToPage(5);           // 특정 페이지로 이동
+pagination.setTotalItems(200);    // 총 아이템 수 변경
+pagination.setItemsPerPage(20);   // 페이지당 아이템 수 변경
+pagination.getPageData();         // 현재 페이지 데이터 가져오기
+pagination.refresh();             // 새로고침
+pagination.destroy();             // 정리</code></pre>
+
+        <h5 class="mb-3 mt-4">DataPaginator 클래스</h5>
+        <pre class="bg-dark text-light p-3 rounded"><code>// JSON 데이터와 함께 사용
+const response = await fetch('data/paginationdata.json');
+const data = await response.json();
+
+const paginator = new Pagination.DataPaginator({
+  container: '#container',
+  data: data.users,
+  itemsPerPage: 5,
+  renderItem: (item, index) => {
+    return `&lt;div class="item"&gt;${item.name}&lt;/div&gt;`;
+  },
+  onPageChange: (pageData, prevPage, items) => {
+    console.log('현재 페이지 아이템:', items);
+  },
+  paginationOptions: {
+    align: 'center',
+    showInfo: true
+  }
+});
+
+// 메서드
+paginator.setData(newData);       // 데이터 변경
+paginator.filter(item => item.status === '활성');  // 필터링
+paginator.search('검색어', ['name', 'email']);     // 검색
+paginator.sort((a, b) => a.price - b.price);       // 정렬
+paginator.resetFilter();          // 필터 초기화
+paginator.getCurrentPageData();   // 현재 페이지 데이터
+paginator.goToPage(3);            // 페이지 이동
+paginator.destroy();              // 정리</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  const PaginationModule = await IMCAT.use('pagination');
+  const { Pagination, DataPaginator } = PaginationModule;
+  
+  // JSON 데이터 로드
+  let paginationData = null;
+  try {
+    const response = await fetch('data/paginationdata.json');
+    paginationData = await response.json();
+  } catch (error) {
+    console.error('데이터 로드 실패:', error);
+  }
+  
+  // ============================================
+  // 기본 Pagination
+  // ============================================
+  
+  const basicPagination = new Pagination('#demo_basic', {
+    totalItems: 150,
+    itemsPerPage: 10,
+    currentPage: 1,
+    showInfo: true,
+    align: 'start',
+    onChange: (pageData) => {
+      document.getElementById('demo_basic_info').textContent = 
+        `현재 페이지: ${pageData.currentPage} / ${pageData.totalPages} (${pageData.startNumber}-${pageData.endNumber} of ${pageData.totalItems})`;
+    }
+  });
+  IMCAT.view.registerInstance(basicPagination);
+  
+  // 초기 정보 표시
+  const initialData = basicPagination.getPageData();
+  document.getElementById('demo_basic_info').textContent = 
+    `현재 페이지: ${initialData.currentPage} / ${initialData.totalPages} (${initialData.startNumber}-${initialData.endNumber} of ${initialData.totalItems})`;
+  
+  // ============================================
+  // 크기 옵션
+  // ============================================
+  
+  const paginationSm = new Pagination('#demo_size_sm', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    size: 'sm'
+  });
+  IMCAT.view.registerInstance(paginationSm);
+  
+  const paginationDefault = new Pagination('#demo_size_default', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    size: 'default'
+  });
+  IMCAT.view.registerInstance(paginationDefault);
+  
+  const paginationLg = new Pagination('#demo_size_lg', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    size: 'lg'
+  });
+  IMCAT.view.registerInstance(paginationLg);
+  
+  // ============================================
+  // 원형 스타일
+  // ============================================
+  
+  const paginationRounded = new Pagination('#demo_rounded', {
+    totalItems: 100,
+    itemsPerPage: 10,
+    rounded: true
+  });
+  IMCAT.view.registerInstance(paginationRounded);
+  
+  const paginationTextOnly = new Pagination('#demo_text_only', {
+    totalItems: 100,
+    itemsPerPage: 10,
+    icons: false,
+    labels: {
+      firstText: '처음',
+      prevText: '이전',
+      nextText: '다음',
+      lastText: '마지막'
+    }
+  });
+  IMCAT.view.registerInstance(paginationTextOnly);
+  
+  // ============================================
+  // 정렬 옵션
+  // ============================================
+  
+  const paginationStart = new Pagination('#demo_align_start', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    align: 'start',
+    showFirstLast: false
+  });
+  IMCAT.view.registerInstance(paginationStart);
+  
+  const paginationCenter = new Pagination('#demo_align_center', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    align: 'center',
+    showFirstLast: false
+  });
+  IMCAT.view.registerInstance(paginationCenter);
+  
+  const paginationEnd = new Pagination('#demo_align_end', {
+    totalItems: 50,
+    itemsPerPage: 10,
+    align: 'end',
+    showFirstLast: false
+  });
+  IMCAT.view.registerInstance(paginationEnd);
+  
+  // ============================================
+  // 정보 표시
+  // ============================================
+  
+  const paginationWithInfo = new Pagination('#demo_with_info', {
+    totalItems: 237,
+    itemsPerPage: 10,
+    showInfo: true,
+    align: 'center',
+    infoTemplate: '{{currentPage}} / {{totalPages}} 페이지 (총 {{total}}개)'
+  });
+  IMCAT.view.registerInstance(paginationWithInfo);
+  
+  // ============================================
+  // 간단 모드
+  // ============================================
+  
+  const paginationSimple = new Pagination('#demo_simple', {
+    totalItems: 100,
+    itemsPerPage: 10,
+    showFirstLast: false,
+    maxVisiblePages: 3,
+    showInfo: true,
+    align: 'center'
+  });
+  IMCAT.view.registerInstance(paginationSimple);
+  
+  // ============================================
+  // DataPaginator - 사용자 목록
+  // ============================================
+  
+  if (paginationData && paginationData.users) {
+    const usersPaginator = new DataPaginator({
+      container: '#demo_users_paginator',
+      data: paginationData.users,
+      itemsPerPage: 5,
+      renderItem: (user, index) => {
+        const statusColor = user.status === '활성' ? '#10b981' : '#6b7280';
+        const roleColors = {
+          '관리자': '#ef4444',
+          '편집자': '#3b82f6',
+          '뷰어': '#8b5cf6'
+        };
+        return `
+          <div style="display: flex; align-items: center; padding: 1rem; border-bottom: 1px solid var(--border-color); gap: 1rem;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+              ${user.name.charAt(0)}
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 500; color: var(--text-primary);">${user.name}</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">${user.email}</div>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: ${roleColors[user.role]}20; color: ${roleColors[user.role]}; font-weight: 500;">
+                ${user.role}
+              </span>
+              <span style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: ${statusColor};">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: ${statusColor};"></span>
+                ${user.status}
+              </span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-tertiary);">${user.joinDate}</div>
+          </div>
+        `;
+      },
+      paginationOptions: {
+        align: 'center',
+        showInfo: true,
+        infoTemplate: '{{start}}-{{end}} / {{total}}명'
+      }
+    });
+    IMCAT.view.registerInstance(usersPaginator);
+    
+    // 검색
+    document.getElementById('search_users').addEventListener('input', IMCAT.debounce((e) => {
+      const query = e.target.value;
+      const role = document.getElementById('filter_role').value;
+      const status = document.getElementById('filter_status').value;
+      
+      usersPaginator.filter(user => {
+        const matchQuery = !query || 
+          user.name.toLowerCase().includes(query.toLowerCase()) || 
+          user.email.toLowerCase().includes(query.toLowerCase());
+        const matchRole = !role || user.role === role;
+        const matchStatus = !status || user.status === status;
+        return matchQuery && matchRole && matchStatus;
+      });
+    }, 300));
+    
+    // 역할 필터
+    document.getElementById('filter_role').addEventListener('change', (e) => {
+      const query = document.getElementById('search_users').value;
+      const role = e.target.value;
+      const status = document.getElementById('filter_status').value;
+      
+      usersPaginator.filter(user => {
+        const matchQuery = !query || 
+          user.name.toLowerCase().includes(query.toLowerCase()) || 
+          user.email.toLowerCase().includes(query.toLowerCase());
+        const matchRole = !role || user.role === role;
+        const matchStatus = !status || user.status === status;
+        return matchQuery && matchRole && matchStatus;
+      });
+    });
+    
+    // 상태 필터
+    document.getElementById('filter_status').addEventListener('change', (e) => {
+      const query = document.getElementById('search_users').value;
+      const role = document.getElementById('filter_role').value;
+      const status = e.target.value;
+      
+      usersPaginator.filter(user => {
+        const matchQuery = !query || 
+          user.name.toLowerCase().includes(query.toLowerCase()) || 
+          user.email.toLowerCase().includes(query.toLowerCase());
+        const matchRole = !role || user.role === role;
+        const matchStatus = !status || user.status === status;
+        return matchQuery && matchRole && matchStatus;
+      });
+    });
+  }
+  
+  // ============================================
+  // DataPaginator - 상품 카드
+  // ============================================
+  
+  if (paginationData && paginationData.products) {
+    const productsPaginator = new DataPaginator({
+      container: '#demo_products_paginator',
+      data: paginationData.products,
+      itemsPerPage: 6,
+      renderItem: (product, index, pageData) => {
+        const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+        return `
+          <div style="display: inline-block; width: calc(33.333% - 1rem); min-width: 280px; margin: 0.5rem; vertical-align: top;">
+            <div style="border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; background: var(--bg-primary); transition: box-shadow 0.2s, transform 0.2s;" 
+                 onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)';"
+                 onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+              <div style="height: 120px; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                <i class="material-icons-outlined" style="font-size: 48px; color: var(--text-tertiary);">inventory_2</i>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--primary-color); font-weight: 500; margin-bottom: 0.25rem;">${product.category}</div>
+              <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">${product.name}</div>
+              <div style="color: #f59e0b; font-size: 0.875rem; margin-bottom: 0.5rem;">${stars} <span style="color: var(--text-secondary);">(${product.rating})</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">₩${product.price.toLocaleString()}</div>
+                <div style="font-size: 0.75rem; color: ${product.stock > 50 ? '#10b981' : product.stock > 20 ? '#f59e0b' : '#ef4444'};">
+                  재고: ${product.stock}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+      paginationOptions: {
+        align: 'center',
+        showInfo: true,
+        rounded: true
+      }
+    });
+    IMCAT.view.registerInstance(productsPaginator);
+    
+    // 카테고리 필터
+    document.getElementById('filter_category').addEventListener('change', (e) => {
+      const category = e.target.value;
+      if (category) {
+        productsPaginator.filter(product => product.category === category);
+      } else {
+        productsPaginator.resetFilter();
+      }
+    });
+    
+    // 정렬
+    document.getElementById('sort_products').addEventListener('change', (e) => {
+      const sortValue = e.target.value;
+      if (!sortValue) return;
+      
+      switch (sortValue) {
+        case 'price_asc':
+          productsPaginator.sort((a, b) => a.price - b.price);
+          break;
+        case 'price_desc':
+          productsPaginator.sort((a, b) => b.price - a.price);
+          break;
+        case 'rating_desc':
+          productsPaginator.sort((a, b) => b.rating - a.rating);
+          break;
+        case 'name_asc':
+          productsPaginator.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+      }
+    });
+  }
+  
+  // ============================================
+  // DataPaginator - 게시글 목록
+  // ============================================
+  
+  if (paginationData && paginationData.articles) {
+    const articlesPaginator = new DataPaginator({
+      container: '#demo_articles_paginator',
+      data: paginationData.articles,
+      itemsPerPage: 10,
+      renderItem: (article, index) => {
+        const categoryColors = {
+          '기술': '#3b82f6',
+          '프레임워크': '#8b5cf6',
+          '언어': '#10b981',
+          'CSS': '#ec4899',
+          'DevOps': '#f59e0b',
+          '도구': '#6b7280',
+          'UX': '#06b6d4',
+          '보안': '#ef4444',
+          '클라우드': '#0ea5e9'
+        };
+        const color = categoryColors[article.category] || '#6b7280';
+        return `
+          <div style="padding: 1rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 1rem; align-items: center; cursor: pointer; transition: background 0.2s;"
+               onmouseover="this.style.background='var(--bg-secondary)'"
+               onmouseout="this.style.background='transparent'">
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                <span style="padding: 0.125rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: ${color}20; color: ${color}; font-weight: 500;">
+                  ${article.category}
+                </span>
+              </div>
+              <div style="font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${article.title}
+              </div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                ${article.author} · ${article.date}
+              </div>
+            </div>
+            <div style="text-align: right; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 0.25rem; color: var(--text-tertiary); font-size: 0.875rem;">
+                <i class="material-icons-outlined" style="font-size: 1rem;">visibility</i>
+                ${article.views.toLocaleString()}
+              </div>
+            </div>
+          </div>
+        `;
+      },
+      paginationOptions: {
+        align: 'center',
+        showInfo: true,
+        size: 'sm'
+      }
+    });
+    IMCAT.view.registerInstance(articlesPaginator);
+    
+    // 검색
+    document.getElementById('search_articles').addEventListener('input', IMCAT.debounce((e) => {
+      const query = e.target.value;
+      const category = document.getElementById('filter_article_category').value;
+      
+      articlesPaginator.filter(article => {
+        const matchQuery = !query || 
+          article.title.toLowerCase().includes(query.toLowerCase()) || 
+          article.author.toLowerCase().includes(query.toLowerCase());
+        const matchCategory = !category || article.category === category;
+        return matchQuery && matchCategory;
+      });
+    }, 300));
+    
+    // 카테고리 필터
+    document.getElementById('filter_article_category').addEventListener('change', (e) => {
+      const query = document.getElementById('search_articles').value;
+      const category = e.target.value;
+      
+      articlesPaginator.filter(article => {
+        const matchQuery = !query || 
+          article.title.toLowerCase().includes(query.toLowerCase()) || 
+          article.author.toLowerCase().includes(query.toLowerCase());
+        const matchCategory = !category || article.category === category;
+        return matchQuery && matchCategory;
+      });
+    });
+    
+    // 페이지당 아이템 수 변경
+    document.getElementById('items_per_page').addEventListener('change', (e) => {
+      const perPage = parseInt(e.target.value, 10);
+      articlesPaginator.pagination.setItemsPerPage(perPage);
+      articlesPaginator._renderCurrentPage();
+    });
+  }
+  
+  // ============================================
+  // DataPaginator - 주문 테이블
+  // ============================================
+  
+  if (paginationData && paginationData.orders) {
+    // 테이블 헤더 추가
+    const ordersContainer = document.getElementById('demo_orders_paginator');
+    const tableHeader = document.createElement('div');
+    tableHeader.innerHTML = `
+      <div style="display: flex; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 8px 8px 0 0; font-weight: 600; font-size: 0.875rem; color: var(--text-secondary);">
+        <div style="width: 100px;">주문번호</div>
+        <div style="flex: 1;">고객명</div>
+        <div style="flex: 2;">상품</div>
+        <div style="width: 120px; text-align: right;">금액</div>
+        <div style="width: 100px; text-align: center;">상태</div>
+        <div style="width: 100px; text-align: right;">주문일</div>
+      </div>
+    `;
+    ordersContainer.appendChild(tableHeader);
+    
+    const tableBody = document.createElement('div');
+    tableBody.id = 'orders_table_body';
+    ordersContainer.appendChild(tableBody);
+    
+    const ordersPaginator = new DataPaginator({
+      container: '#orders_table_body',
+      data: paginationData.orders,
+      itemsPerPage: 5,
+      renderItem: (order, index) => {
+        const statusColors = {
+          '배송완료': { bg: '#10b98120', color: '#10b981' },
+          '배송중': { bg: '#3b82f620', color: '#3b82f6' },
+          '주문확인': { bg: '#f59e0b20', color: '#f59e0b' },
+          '취소': { bg: '#ef444420', color: '#ef4444' }
+        };
+        const status = statusColors[order.status] || { bg: '#6b728020', color: '#6b7280' };
+        return `
+          <div style="display: flex; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); align-items: center; font-size: 0.875rem;">
+            <div style="width: 100px; color: var(--text-secondary);">${order.id}</div>
+            <div style="flex: 1; font-weight: 500;">${order.customer}</div>
+            <div style="flex: 2; color: var(--text-secondary);">${order.product}</div>
+            <div style="width: 120px; text-align: right; font-weight: 500;">₩${order.amount.toLocaleString()}</div>
+            <div style="width: 100px; text-align: center;">
+              <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: ${status.bg}; color: ${status.color};">
+                ${order.status}
+              </span>
+            </div>
+            <div style="width: 100px; text-align: right; color: var(--text-tertiary);">${order.date}</div>
+          </div>
+        `;
+      },
+      paginationOptions: {
+        align: 'end',
+        showInfo: true,
+        infoTemplate: '{{start}}-{{end}} / {{total}}건'
+      }
+    });
+    IMCAT.view.registerInstance(ordersPaginator);
+  }
+</script>

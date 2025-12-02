@@ -1,0 +1,257 @@
+/**
+ * Pagination Module Styles
+ * @description 동적 페이지네이션 모듈 추가 스타일
+ */
+
+// ============================================
+// Pagination Wrapper
+// ============================================
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &--center {
+    justify-content: center;
+  }
+
+  &--end {
+    justify-content: flex-end;
+  }
+}
+
+// ============================================
+// Pagination Info
+// ============================================
+
+.pagination-info {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+// ============================================
+// Data Paginator
+// ============================================
+
+.data-paginator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__content {
+    min-height: 100px;
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 0.5rem;
+    border: 1px dashed var(--border-color);
+  }
+
+  &__item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// ============================================
+// Enhanced Pagination Styles
+// ============================================
+
+// Pill Style
+.pagination-pill {
+  .page-link {
+    border-radius: 50rem;
+    margin: 0 0.125rem;
+  }
+}
+
+// Minimal Style (no borders)
+.pagination-minimal {
+  gap: 0.5rem;
+
+  .page-link {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+  }
+
+  .page-item.active .page-link {
+    background: var(--primary-color);
+    color: #fff;
+  }
+
+  .page-item.disabled .page-link {
+    background: transparent;
+    color: var(--text-tertiary);
+  }
+}
+
+// Outline Primary Style
+.pagination-outline-primary {
+  .page-item.active .page-link {
+    background: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+  }
+}
+
+// Gradient Style
+.pagination-gradient {
+  .page-item.active .page-link {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color, #764ba2) 100%);
+    border-color: transparent;
+    color: #fff;
+  }
+}
+
+// Shadow Style
+.pagination-shadow {
+  .page-link {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 0.25rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-1px);
+    }
+  }
+
+  .page-item.active .page-link {
+    box-shadow: 0 4px 12px rgba(114, 124, 245, 0.4);
+  }
+}
+
+// ============================================
+// Responsive Pagination
+// ============================================
+
+@media (max-width: 576px) {
+  .pagination-wrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pagination-info {
+    order: 2;
+    text-align: center;
+  }
+
+  .pagination {
+    order: 1;
+  }
+
+  // 모바일에서는 페이지 번호 일부 숨김
+  .pagination-responsive {
+    .page-item:not(:first-child):not(:last-child):not(.active) {
+      display: none;
+    }
+
+    .page-item.active {
+      .page-link {
+        min-width: 80px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// ============================================
+// Animation
+// ============================================
+
+.pagination-animated {
+  .page-link {
+    transition: all 0.2s ease;
+  }
+
+  .page-item.active .page-link {
+    animation: pagination-pop 0.2s ease;
+  }
+}
+
+@keyframes pagination-pop {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// ============================================
+// Dark Theme
+// ============================================
+
+[data-theme="dark"] {
+  .pagination-info {
+    color: var(--dark-text-secondary);
+  }
+
+  .data-paginator__empty {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-secondary);
+  }
+
+  .data-paginator__item {
+    border-color: var(--dark-border-color);
+  }
+
+  .pagination-minimal {
+    .page-link {
+      color: var(--dark-text-secondary);
+
+      &:hover {
+        background: var(--dark-bg-secondary);
+        color: var(--dark-text-primary);
+      }
+    }
+
+    .page-item.disabled .page-link {
+      color: var(--dark-text-tertiary);
+    }
+  }
+
+  .pagination-shadow {
+    .page-link {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      background: var(--dark-bg-primary);
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}

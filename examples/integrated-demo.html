@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMCAT UI - 종합 예제</title>
+  <link rel="stylesheet" href="../dist/imcat-ui.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: var(--bg-secondary);
+    }
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .demo-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      color: white;
+    }
+    .demo-header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2rem;
+    }
+    .demo-header p {
+      margin: 0;
+      opacity: 0.9;
+    }
+    .demo-section {
+      margin-bottom: 1.5rem;
+    }
+    .demo-section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .demo-section-title i {
+      color: var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <!-- 헤더 -->
+    <div class="demo-header">
+      <h1>🚀 IMCAT UI 종합 예제</h1>
+      <p>Theme, Overlays, Feedback, Template 모듈을 함께 사용하는 실전 예제</p>
+    </div>
+
+    <!-- 테마 & 앱바 -->
+    <div class="card demo-section">
+      <div class="card__body d-flex justify-content-between align-items-center">
+        <div>
+          <strong>앱 설정</strong>
+          <span class="text-muted ms-2" id="current_theme_text">시스템 테마</span>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary btn-sm" id="btn_theme_light">
+            <i class="material-icons-outlined">light_mode</i>
+          </button>
+          <button class="btn btn-outline-primary btn-sm" id="btn_theme_dark">
+            <i class="material-icons-outlined">dark_mode</i>
+          </button>
+          <button class="btn btn-outline-primary btn-sm" id="btn_theme_system">
+            <i class="material-icons-outlined">settings_brightness</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- 왼쪽: 사용자 카드 -->
+      <div class="col-lg-4">
+        <!-- 사용자 프로필 (템플릿 렌더링) -->
+        <div class="card demo-section">
+          <div class="card__body" id="user_profile_container">
+            <!-- Template 모듈로 렌더링됨 -->
+          </div>
+        </div>
+
+        <!-- 알림 목록 (템플릿 렌더링) -->
+        <div class="card demo-section">
+          <div class="card__header">
+            <h5 class="card__title mb-0 d-flex align-items-center gap-2">
+              <i class="material-icons-outlined">notifications</i>
+              최근 알림
+            </h5>
+          </div>
+          <div class="card__body p-0" id="notifications_container">
+            <!-- Template 모듈로 렌더링됨 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 오른쪽: 기능 데모 -->
+      <div class="col-lg-8">
+        <!-- Overlay 데모 -->
+        <div class="card demo-section">
+          <div class="card__header">
+            <div class="demo-section-title">
+              <i class="material-icons-outlined">web_asset</i>
+              Overlays 모듈
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-primary" id="btn_modal_alert">
+                <i class="material-icons-outlined me-1">info</i>
+                Alert 모달
+              </button>
+              <button class="btn btn-success" id="btn_modal_confirm">
+                <i class="material-icons-outlined me-1">help</i>
+                Confirm 모달
+              </button>
+              <button class="btn btn-warning" id="btn_modal_form">
+                <i class="material-icons-outlined me-1">edit</i>
+                폼 모달
+              </button>
+              <button class="btn btn-info" id="btn_drawer">
+                <i class="material-icons-outlined me-1">menu_open</i>
+                Drawer
+              </button>
+              <button class="btn btn-secondary" id="btn_offcanvas">
+                <i class="material-icons-outlined me-1">layers</i>
+                Offcanvas
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback 데모 -->
+        <div class="card demo-section">
+          <div class="card__header">
+            <div class="demo-section-title">
+              <i class="material-icons-outlined">campaign</i>
+              Feedback 모듈
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-success btn-sm" id="btn_toast_success">
+                <i class="material-icons-outlined me-1">check_circle</i>
+                성공
+              </button>
+              <button class="btn btn-danger btn-sm" id="btn_toast_error">
+                <i class="material-icons-outlined me-1">error</i>
+                에러
+              </button>
+              <button class="btn btn-warning btn-sm" id="btn_toast_warning">
+                <i class="material-icons-outlined me-1">warning</i>
+                경고
+              </button>
+              <button class="btn btn-info btn-sm" id="btn_toast_info">
+                <i class="material-icons-outlined me-1">info</i>
+                정보
+              </button>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-outline-primary btn-sm" id="btn_confirm_dialog">
+                <i class="material-icons-outlined me-1">help_outline</i>
+                확인 다이얼로그
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" id="btn_loading">
+                <i class="material-icons-outlined me-1">hourglass_empty</i>
+                로딩 (2초)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 데모 -->
+        <div class="card demo-section">
+          <div class="card__header">
+            <div class="demo-section-title">
+              <i class="material-icons-outlined">code</i>
+              Template 모듈
+            </div>
+          </div>
+          <div class="card__body">
+            <p class="text-muted mb-3">데이터를 변경하고 템플릿 렌더링 결과를 확인하세요.</p>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">사용자 이름</label>
+                <input type="text" class="form-control" id="input_username" value="John Doe">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">역할</label>
+                <select class="form-select" id="input_role">
+                  <option value="일반 사용자">일반 사용자</option>
+                  <option value="프리미엄 회원" selected>프리미엄 회원</option>
+                  <option value="관리자">관리자</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="btn_update_template">
+              <i class="material-icons-outlined me-1">refresh</i>
+              템플릿 업데이트
+            </button>
+          </div>
+        </div>
+
+        <!-- 상품 목록 (템플릿 렌더링) -->
+        <div class="card demo-section">
+          <div class="card__header d-flex justify-content-between align-items-center">
+            <div class="demo-section-title mb-0">
+              <i class="material-icons-outlined">shopping_bag</i>
+              상품 목록
+            </div>
+            <button class="btn btn-sm btn-outline-primary" id="btn_add_product">
+              <i class="material-icons-outlined">add</i>
+              상품 추가
+            </button>
+          </div>
+          <div class="card__body" id="products_container">
+            <!-- Template 모듈로 렌더링됨 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 코드 예제 -->
+    <div class="card demo-section">
+      <div class="card__header">
+        <div class="demo-section-title">
+          <i class="material-icons-outlined">terminal</i>
+          코드 예제
+        </div>
+      </div>
+      <div class="card__body">
+        <pre class="bg-dark text-light p-3 rounded" style="overflow-x: auto;"><code>// 여러 모듈 동시 로드
+const [ThemeModule, Overlays, Feedback] = await Promise.all([
+  IMCAT.use('theme'),
+  IMCAT.use('overlays'),
+  IMCAT.use('feedback')
+]);
+
+// 테마 초기화
+const theme = new ThemeModule.Theme({ transition: 'circle-center' });
+
+// 템플릿 렌더링 (코어 내장)
+const html = IMCAT.template.render(`
+  &lt;div class="user-card"&gt;
+    &lt;h3&gt;{{name}}&lt;/h3&gt;
+    &lt;p&gt;{{email}}&lt;/p&gt;
+  &lt;/div&gt;
+`, { name: 'John', email: 'john@example.com' });
+
+// 반복 렌더링
+const listHtml = IMCAT.template.each(items, `
+  &lt;li&gt;{{name}} - {{price}}원&lt;/li&gt;
+`);
+
+// 조건부 렌더링
+const badge = IMCAT.template.if(isPremium, '&lt;span class="badge"&gt;PRO&lt;/span&gt;');
+
+// 모달 표시
+const modal = new Overlays.Modal({
+  title: '알림',
+  content: html,
+  buttons: [{ text: '확인', variant: 'primary' }]
+});
+
+// 토스트 알림 (static method)
+Feedback.Toast.success('저장 완료!');
+Feedback.Toast.error('오류 발생!');
+Feedback.Toast.warning('경고!');
+Feedback.Toast.info('정보');</code></pre>
+      </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="text-center text-muted py-4">
+      <p class="mb-0">IMCAT UI Framework © 2024</p>
+    </div>
+  </div>
+
+  <!-- IMCAT UI Core -->
+  <script src="../dist/imcat-ui.min.js"></script>
+  
+  <script>
+    IMCAT.ready(async () => {
+      // ============================================
+      // 모듈 로드
+      // ============================================
+      const [ThemeModule, Overlays, Feedback] = await Promise.all([
+        IMCAT.use('theme'),
+        IMCAT.use('overlays'),
+        IMCAT.use('feedback')
+      ]);
+
+      // ============================================
+      // 데이터
+      // ============================================
+      const userData = {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        role: '프리미엄 회원',
+        avatar: 'JD',
+        joinDate: '2024년 1월',
+        posts: 42,
+        followers: 128
+      };
+
+      const notifications = [
+        { id: 1, icon: 'email', color: '#3b82f6', title: '새 메시지', desc: '홍길동님이 메시지를 보냈습니다.', time: '5분 전' },
+        { id: 2, icon: 'favorite', color: '#ef4444', title: '좋아요', desc: '게시물에 좋아요가 달렸습니다.', time: '1시간 전' },
+        { id: 3, icon: 'person_add', color: '#10b981', title: '새 팔로워', desc: '김철수님이 팔로우했습니다.', time: '3시간 전' }
+      ];
+
+      let products = [
+        { id: 1, name: '프리미엄 플랜', price: 9900, badge: '인기' },
+        { id: 2, name: '프로 플랜', price: 19900, badge: 'PRO' },
+        { id: 3, name: '엔터프라이즈', price: 49900, badge: '' }
+      ];
+
+      // ============================================
+      // 템플릿 정의
+      // ============================================
+      const userProfileTemplate = `
+        <div class="text-center">
+          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 2rem; color: white; font-weight: 600;">{{avatar}}</span>
+          </div>
+          <h5 class="mb-1">{{name}}</h5>
+          <p class="text-muted mb-2">{{email}}</p>
+          <span class="badge bg-primary">{{role}}</span>
+          <div class="d-flex justify-content-around mt-3 pt-3" style="border-top: 1px solid var(--border-color);">
+            <div class="text-center">
+              <div class="fw-bold">{{posts}}</div>
+              <small class="text-muted">게시물</small>
+            </div>
+            <div class="text-center">
+              <div class="fw-bold">{{followers}}</div>
+              <small class="text-muted">팔로워</small>
+            </div>
+            <div class="text-center">
+              <div class="fw-bold">{{joinDate}}</div>
+              <small class="text-muted">가입</small>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const notificationItemTemplate = `
+        <div style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 0.75rem; align-items: flex-start;">
+          <div style="width: 36px; height: 36px; background: {{color}}15; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="material-icons-outlined" style="font-size: 18px; color: {{color}};">{{icon}}</i>
+          </div>
+          <div style="flex: 1;">
+            <div class="fw-medium">{{title}}</div>
+            <div class="text-muted small">{{desc}}</div>
+          </div>
+          <small class="text-muted">{{time}}</small>
+        </div>
+      `;
+
+      const productItemTemplate = `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 0.5rem;">
+          <div>
+            <span class="fw-medium">{{name}}</span>
+            {{badge}}
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <strong>{{price}}원</strong>
+            <button class="btn btn-sm btn-outline-primary btn-purchase" data-id="{{id}}" data-name="{{name}}">구매</button>
+          </div>
+        </div>
+      `;
+
+      // ============================================
+      // 렌더링 함수
+      // ============================================
+      function renderUserProfile() {
+        document.getElementById('user_profile_container').innerHTML = 
+          IMCAT.template.render(userProfileTemplate, userData);
+      }
+
+      function renderNotifications() {
+        document.getElementById('notifications_container').innerHTML = 
+          IMCAT.template.each(notifications, notificationItemTemplate);
+      }
+
+      function renderProducts() {
+        const html = products.map(p => {
+          const badge = p.badge ? `<span class="badge bg-${p.badge === 'PRO' ? 'warning' : 'success'} ms-2">${p.badge}</span>` : '';
+          return IMCAT.template.render(productItemTemplate, { ...p, badge, price: p.price.toLocaleString() });
+        }).join('');
+        document.getElementById('products_container').innerHTML = html;
+
+        // 구매 버튼 이벤트
+        document.querySelectorAll('.btn-purchase').forEach(btn => {
+          btn.onclick = () => {
+            const name = btn.dataset.name;
+            Feedback.Toast.success(`${name} 구매가 완료되었습니다!`);
+          };
+        });
+      }
+
+      // 초기 렌더링
+      renderUserProfile();
+      renderNotifications();
+      renderProducts();
+
+      // ============================================
+      // 테마
+      // ============================================
+      const theme = new ThemeModule.Theme({
+        defaultTheme: 'system',
+        transition: 'circle-center',
+        transitionDuration: 600
+      });
+
+      function updateThemeUI(resolved) {
+        const texts = { light: '라이트 모드', dark: '다크 모드', system: '시스템 테마' };
+        document.getElementById('current_theme_text').textContent = texts[theme.get()] || texts.system;
+      }
+
+      theme.onChange(updateThemeUI);
+      updateThemeUI(theme.getResolved());
+
+      document.getElementById('btn_theme_light').onclick = () => theme.set('light');
+      document.getElementById('btn_theme_dark').onclick = () => theme.set('dark');
+      document.getElementById('btn_theme_system').onclick = () => theme.set('system');
+
+      // ============================================
+      // Overlays
+      // ============================================
+      document.getElementById('btn_modal_alert').onclick = () => {
+        const modal = new Overlays.Modal({
+          title: '알림',
+          content: '<p>이것은 간단한 알림 모달입니다.</p>',
+          buttons: [{ text: '확인', variant: 'primary', action: () => { modal.hide(); modal.destroy(); } }]
+        });
+        modal.show();
+      };
+
+      document.getElementById('btn_modal_confirm').onclick = async () => {
+        const result = await Overlays.Modal.confirm({
+          title: '확인',
+          content: '이 작업을 진행하시겠습니까?',
+          confirmText: '진행',
+          cancelText: '취소'
+        });
+        result ? Feedback.Toast.success('작업이 진행됩니다.') : Feedback.Toast.info('작업이 취소되었습니다.');
+      };
+
+      document.getElementById('btn_modal_form').onclick = () => {
+        const modal = new Overlays.Modal({
+          title: '정보 수정',
+          size: 'md',
+          content: `
+            <div class="mb-3">
+              <label class="form-label">제목</label>
+              <input type="text" class="form-control" id="modal_title" placeholder="제목 입력">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">내용</label>
+              <textarea class="form-control" id="modal_content" rows="3" placeholder="내용 입력"></textarea>
+            </div>
+          `,
+          buttons: [
+            { text: '취소', variant: 'secondary', action: () => { modal.hide(); modal.destroy(); } },
+            { text: '저장', variant: 'primary', action: () => {
+              const title = document.getElementById('modal_title').value;
+              modal.hide();
+              modal.destroy();
+              Feedback.Toast.success(title ? `"${title}" 저장됨!` : '저장되었습니다!');
+            }}
+          ]
+        });
+        modal.show();
+      };
+
+      document.getElementById('btn_drawer').onclick = () => {
+        const drawer = new Overlays.Drawer({
+          title: '메뉴',
+          position: 'left',
+          width: '300px',
+          content: `
+            <nav style="padding: 0.5rem 0;">
+              ${['홈', '프로필', '설정', '도움말', '로그아웃'].map((item, i) => `
+                <a href="#" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; color: var(--text-primary); text-decoration: none; border-radius: 8px; margin: 0.25rem 0.5rem;" 
+                   onmouseover="this.style.background='var(--bg-tertiary)'" 
+                   onmouseout="this.style.background='transparent'"
+                   onclick="event.preventDefault();">
+                  <i class="material-icons-outlined">${['home', 'person', 'settings', 'help', 'logout'][i]}</i>
+                  ${item}
+                </a>
+              `).join('')}
+            </nav>
+          `
+        });
+        drawer.show();
+      };
+
+      document.getElementById('btn_offcanvas').onclick = () => {
+        const offcanvas = new Overlays.Offcanvas({
+          title: '상세 정보',
+          position: 'right',
+          width: '400px',
+          content: `
+            <div style="padding: 1rem;">
+              <h5>IMCAT UI Framework</h5>
+              <p class="text-muted">경량화된 프론트엔드 UI 프레임워크입니다.</p>
+              <hr>
+              <h6>주요 특징</h6>
+              <ul class="text-muted">
+                <li>제로 빌드 가능</li>
+                <li>동적 모듈 로딩</li>
+                <li>SPA 라우팅</li>
+                <li>테마 시스템</li>
+              </ul>
+            </div>
+          `
+        });
+        offcanvas.show();
+      };
+
+      // ============================================
+      // Feedback
+      // ============================================
+      document.getElementById('btn_toast_success').onclick = () => Feedback.Toast.success('성공적으로 완료!');
+      document.getElementById('btn_toast_error').onclick = () => Feedback.Toast.error('오류가 발생했습니다.');
+      document.getElementById('btn_toast_warning').onclick = () => Feedback.Toast.warning('주의가 필요합니다.');
+      document.getElementById('btn_toast_info').onclick = () => Feedback.Toast.info('참고 정보입니다.');
+
+      document.getElementById('btn_confirm_dialog').onclick = async () => {
+        const result = await Overlays.Modal.confirm({
+          title: '삭제 확인',
+          content: '정말 삭제하시겠습니까?',
+          confirmText: '삭제',
+          cancelText: '취소'
+        });
+        result ? Feedback.Toast.success('삭제되었습니다.') : Feedback.Toast.info('취소되었습니다.');
+      };
+
+      document.getElementById('btn_loading').onclick = async () => {
+        IMCAT.loading.show('처리 중...');
+        await new Promise(r => setTimeout(r, 2000));
+        IMCAT.loading.hide();
+        Feedback.Toast.success('완료!');
+      };
+
+      // ============================================
+      // Template 업데이트
+      // ============================================
+      document.getElementById('btn_update_template').onclick = () => {
+        userData.name = document.getElementById('input_username').value || 'Unknown';
+        userData.role = document.getElementById('input_role').value;
+        userData.avatar = userData.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        renderUserProfile();
+        Feedback.Toast.success('프로필이 업데이트되었습니다!');
+      };
+
+      // ============================================
+      // 상품 추가
+      // ============================================
+      document.getElementById('btn_add_product').onclick = () => {
+        const modal = new Overlays.Modal({
+          title: '상품 추가',
+          content: `
+            <div class="mb-3">
+              <label class="form-label">상품명</label>
+              <input type="text" class="form-control" id="new_product_name" placeholder="상품명">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">가격</label>
+              <input type="number" class="form-control" id="new_product_price" placeholder="가격">
+            </div>
+          `,
+          buttons: [
+            { text: '취소', variant: 'secondary', action: () => { modal.hide(); modal.destroy(); } },
+            { text: '추가', variant: 'primary', action: () => {
+              const name = document.getElementById('new_product_name').value;
+              const price = parseInt(document.getElementById('new_product_price').value) || 0;
+              if (name && price > 0) {
+                products.push({ id: Date.now(), name, price, badge: 'NEW' });
+                renderProducts();
+                Feedback.Toast.success('상품이 추가되었습니다!');
+              }
+              modal.hide();
+              modal.destroy();
+            }}
+          ]
+        });
+        modal.show();
+      };
+    });
+  </script>
+</body>
+</html>

@@ -257,6 +257,21 @@
       "title": "Dynamic Modules",
       "items": [
         {
+          "id": "integrated-demo",
+          "text": "종합 예제",
+          "icon": "widgets",
+          "href": "integrated-demo.html",
+          "badge": true,
+          "target": "_blank"
+        },
+        {
+          "id": "theme",
+          "text": "Theme",
+          "icon": "palette",
+          "href": "views/modules/theme.html",
+          "badge": true
+        },
+        {
           "id": "overlays",
           "text": "Overlays & Dialogs",
           "icon": "web_asset",
@@ -401,6 +416,13 @@
           "text": "Gantt Chart",
           "icon": "view_timeline",
           "href": "views/modules/gantt.html",
+          "badge": true
+        },
+        {
+          "id": "pagination-module",
+          "text": "Pagination",
+          "icon": "auto_stories",
+          "href": "views/modules/pagination.html",
           "badge": true
         }
       ]

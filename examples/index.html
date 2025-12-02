@@ -212,15 +212,15 @@
   <script>
     IMCAT.ready(async () => {
       // Load Theme Module
-      const Theme = await IMCAT.use('theme');
-      const theme = new Theme({
+      const ThemeModule = await IMCAT.use('theme');
+      const theme = new ThemeModule.Theme({
         defaultTheme: 'system',
-        transition: true,
-        onChange: (themeName, actualTheme) => {
+        transition: 'none',
+        onChange: (resolvedTheme, settingTheme) => {
           // Update theme toggle icon
           const icon = IMCAT('#themeToggle i');
           if (icon.length > 0) {
-            const isDark = actualTheme === 'dark';
+            const isDark = resolvedTheme === 'dark';
             icon.text(isDark ? 'light_mode' : 'dark_mode');
           }
         }
@@ -228,8 +228,11 @@
 
       // Theme Toggle Button
       IMCAT('#themeToggle').on('click', () => {
-        theme.toggleTheme();
+        theme.toggle();
       });
+
+      // Register instance for memory management
+      IMCAT.view.registerInstance(theme);
 
       // Load and render menu from JSON
       await loadMenu();
@@ -279,7 +282,7 @@
      */
     async function loadMenu() {
       try {
-        const response = await fetch('menu-structure.json');
+        const response = await fetch('menu-structure.json?ver');
         const data = await response.json();
         renderMenu(data.menu);
       } catch (error) {
@@ -312,9 +315,14 @@
           }
           // badge 속성이 없으면 아무것도 표시 안 함
           
+          // target="_blank"인 경우 새 창으로 열기
+          const linkAttrs = item.target === '_blank' 
+            ? `href="${item.href}" target="_blank"` 
+            : `href="#" catui-href="${item.href}"`;
+          
           const itemHtml = `
             <li class="side-nav-item">
-              <a href="#" catui-href="${item.href}" class="side-nav-link" data-item-id="${item.id}">
+              <a ${linkAttrs} class="side-nav-link" data-item-id="${item.id}">
                 <span class="menu-icon"><i class="material-icons-outlined">${item.icon}</i></span>
                 <span class="menu-text">${item.text}</span>
                 ${badgeHtml}

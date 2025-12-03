@@ -3,6 +3,8 @@
  * @module core/loader
  */
 
+import { Config } from './config.js';
+
 /**
  * 모듈 로더 클래스
  * @class
@@ -106,8 +108,10 @@ export class ModuleLoader {
     }
 
     try {
-      // CSS 로드
-      await this._loadModuleCSS(moduleName);
+      // CSS 자동 로드 (설정에 따라)
+      if (Config.get('autoLoadModuleCSS')) {
+        await this._loadModuleCSS(moduleName);
+      }
 
       // JS 모듈 로드
       const modulePath = `${this.basePath}/${moduleName}/${moduleName}.js`;
@@ -147,9 +151,8 @@ export class ModuleLoader {
     try {
       await this.loadCSS(cssPath);
       this.loadedCSS.add(cssPath);
-    } catch (error) {
-      // CSS가 없으면 무시 (선택적)
-      console.warn(`CSS not found for module "${moduleName}"`);
+    } catch {
+      // CSS가 없으면 무시 (선택적 파일)
     }
   }
 

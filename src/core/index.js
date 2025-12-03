@@ -18,6 +18,11 @@ import { URLUtil } from './url.js';
 import { StateManager, GlobalState } from './state.js';
 import { FormValidator } from './form.js';
 import { AnimationUtil } from './animation.js';
+import { Shortcuts } from './shortcuts.js';
+import { Helpers } from './helpers.js';
+import { Formatters } from './formatters.js';
+import { Config } from './config.js';
+import { AutoInit } from './auto-init.js';
 
 /**
  * IMCAT Core Class
@@ -53,6 +58,37 @@ class IMCATCore {
 
     // catui-href 자동 바인딩 (DOM ready 후)
     this._bindSPALinks();
+
+    // 단축 API에 IMCAT 인스턴스 바인딩
+    this._initShortcuts();
+
+    // 자동 초기화 시작 (DOM ready 후)
+    this._initAutoInit();
+  }
+
+  /**
+   * 단축 API 초기화
+   * @private
+   */
+  _initShortcuts() {
+    // toast, notify에 IMCAT 인스턴스 주입
+    Shortcuts.toast._imcat = this;
+    Shortcuts.notify._imcat = this;
+  }
+
+  /**
+   * 자동 초기화 시작
+   * @private
+   */
+  _initAutoInit() {
+    // DOM ready 후 AutoInit 시작
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        AutoInit.init(this);
+      });
+    } else {
+      AutoInit.init(this);
+    }
   }
 
   /**
@@ -401,6 +437,268 @@ class IMCATCore {
     return '1.0.0';
   }
 
+  // ===== Shortcuts API =====
+  /**
+   * 모달 단축 생성
+   * @param {Object} options - 모달 옵션
+   * @returns {Promise<Modal>}
+   */
+  modal(options) {
+    return Shortcuts.modal.call(this, options);
+  }
+
+  /**
+   * 드로어 단축 생성
+   * @param {Object} options - 드로어 옵션
+   * @returns {Promise<Drawer>}
+   */
+  drawer(options) {
+    return Shortcuts.drawer.call(this, options);
+  }
+
+  /**
+   * 확인 다이얼로그
+   * @param {string|Object} options - 메시지 또는 옵션
+   * @returns {Promise<boolean>}
+   */
+  confirm(options) {
+    return Shortcuts.confirm.call(this, options);
+  }
+
+  /**
+   * 알림 다이얼로그
+   * @param {string} message - 메시지
+   * @param {Object} [options] - 옵션
+   * @returns {Promise<void>}
+   */
+  alert(message, options) {
+    return Shortcuts.alert.call(this, message, options);
+  }
+
+  /**
+   * 입력 다이얼로그
+   * @param {string} message - 메시지
+   * @param {Object} [options] - 옵션
+   * @returns {Promise<string|null>}
+   */
+  prompt(message, options) {
+    return Shortcuts.prompt.call(this, message, options);
+  }
+
+  /**
+   * 드롭다운 단축 생성
+   * @param {string|HTMLElement} trigger - 트리거
+   * @param {Object} options - 옵션
+   * @returns {Promise<Dropdown>}
+   */
+  dropdown(trigger, options) {
+    return Shortcuts.dropdown.call(this, trigger, options);
+  }
+
+  /**
+   * 툴팁 단축 생성
+   * @param {string|HTMLElement} element - 대상 요소
+   * @param {string|Object} options - 내용 또는 옵션
+   * @returns {Promise<Tooltip>}
+   */
+  tooltip(element, options) {
+    return Shortcuts.tooltip.call(this, element, options);
+  }
+
+  /**
+   * 토스트 API
+   * @returns {Object}
+   */
+  get toast() {
+    return Shortcuts.toast;
+  }
+
+  /**
+   * 알림(Notification) API
+   * @returns {Object}
+   */
+  get notify() {
+    return Shortcuts.notify;
+  }
+
+  // ===== Helpers API =====
+  /**
+   * 폼 데이터 수집
+   * @param {string|HTMLFormElement} selector - 폼
+   * @returns {Object}
+   */
+  formData(selector) {
+    return Helpers.formData(selector);
+  }
+
+  /**
+   * 폼에 데이터 채우기
+   * @param {string|HTMLFormElement} selector - 폼
+   * @param {Object} data - 데이터
+   */
+  fillForm(selector, data) {
+    return Helpers.fillForm(selector, data);
+  }
+
+  /**
+   * 폼 초기화
+   * @param {string|HTMLFormElement} selector - 폼
+   */
+  resetForm(selector) {
+    return Helpers.resetForm(selector);
+  }
+
+  /**
+   * 클립보드 복사
+   * @param {string} text - 복사할 텍스트
+   * @returns {Promise<boolean>}
+   */
+  copy(text) {
+    return Helpers.copy(text);
+  }
+
+  /**
+   * 파일 다운로드
+   * @param {Blob|string} content - 내용
+   * @param {string} filename - 파일명
+   */
+  download(content, filename) {
+    return Helpers.download(content, filename);
+  }
+
+  /**
+   * JSON 다운로드
+   * @param {*} data - JSON 데이터
+   * @param {string} filename - 파일명
+   */
+  downloadJSON(data, filename) {
+    return Helpers.downloadJSON(data, filename);
+  }
+
+  /**
+   * CSV 다운로드
+   * @param {Object[]} rows - 행 데이터
+   * @param {string} filename - 파일명
+   */
+  downloadCSV(rows, filename) {
+    return Helpers.downloadCSV(rows, filename);
+  }
+
+  /**
+   * 테이블 데이터 추출
+   * @param {string|HTMLTableElement} selector - 테이블
+   * @returns {Object[]}
+   */
+  tableData(selector) {
+    return Helpers.tableData(selector);
+  }
+
+  /**
+   * 스크롤 위치로 이동
+   * @param {string|HTMLElement|number} target - 대상
+   * @param {Object} [options] - 옵션
+   */
+  scrollTo(target, options) {
+    return Helpers.scrollTo(target, options);
+  }
+
+  /**
+   * 페이지 최상단으로 스크롤
+   * @param {boolean} [smooth=true] - 부드러운 스크롤
+   */
+  scrollTop(smooth) {
+    return Helpers.scrollTop(smooth);
+  }
+
+  /**
+   * 요소가 뷰포트에 보이는지 확인
+   * @param {string|HTMLElement} selector - 선택자
+   * @returns {boolean}
+   */
+  isInViewport(selector) {
+    return Helpers.isInViewport(selector);
+  }
+
+  /**
+   * URL 쿼리 파라미터 파싱
+   * @param {string} [url] - URL (기본: 현재 URL)
+   * @returns {Object}
+   */
+  parseQuery(url) {
+    return Helpers.parseQuery(url);
+  }
+
+  /**
+   * 쿼리 스트링 생성
+   * @param {Object} params - 파라미터 객체
+   * @returns {string}
+   */
+  buildQuery(params) {
+    return Helpers.buildQuery(params);
+  }
+
+  /**
+   * 로컬 스토리지 안전 조회
+   * @param {string} key - 키
+   * @param {*} [defaultValue] - 기본값
+   * @returns {*}
+   */
+  getStorage(key, defaultValue) {
+    return Helpers.getStorage(key, defaultValue);
+  }
+
+  /**
+   * 로컬 스토리지 안전 저장
+   * @param {string} key - 키
+   * @param {*} value - 값
+   * @returns {boolean}
+   */
+  setStorage(key, value) {
+    return Helpers.setStorage(key, value);
+  }
+
+  // ===== Formatters API =====
+  /**
+   * 포맷터 유틸리티
+   * @returns {Formatters}
+   */
+  get format() {
+    return Formatters;
+  }
+
+  // ===== Config API =====
+  /**
+   * 글로벌 설정
+   * @param {Object|string} keyOrOptions - 설정 키 또는 옵션 객체
+   * @param {*} [value] - 설정 값
+   * @returns {Object}
+   *
+   * @example
+   * // 여러 설정 변경
+   * IMCAT.config({ animation: false, theme: 'dark' });
+   *
+   * // 단일 설정 변경
+   * IMCAT.config('animation', false);
+   *
+   * // 설정 조회
+   * const animation = IMCAT.config.get('animation');
+   */
+  config(keyOrOptions, value) {
+    if (arguments.length === 0) {
+      return Config.get();
+    }
+    return Config.set(keyOrOptions, value);
+  }
+
+  // ===== AutoInit API =====
+  /**
+   * 자동 초기화 유틸리티
+   * @returns {AutoInit}
+   */
+  get autoInit() {
+    return AutoInit;
+  }
+
   /**
    * 프레임워크 정리 (메모리 누수 방지)
    * SPA 재시작 또는 테스트 환경에서 사용
@@ -441,6 +739,12 @@ class IMCATCore {
     if (this.loadingIndicator && typeof this.loadingIndicator.destroy === 'function') {
       this.loadingIndicator.destroy();
     }
+
+    // Config 정리
+    Config.destroy();
+
+    // AutoInit 정리
+    AutoInit.destroy();
   }
 }
 
@@ -482,6 +786,16 @@ Object.keys(IMCAT).forEach(key => {
     });
   }
 });
+
+// config 메서드에 정적 메서드들 추가 (IMCAT.config.get(), IMCAT.config.reset() 등)
+IMCATFunction.config.get = Config.get.bind(Config);
+IMCATFunction.config.set = Config.set.bind(Config);
+IMCATFunction.config.reset = Config.reset.bind(Config);
+IMCATFunction.config.onChange = Config.onChange.bind(Config);
+IMCATFunction.config.extend = Config.extend.bind(Config);
+IMCATFunction.config.getFor = Config.getFor.bind(Config);
+IMCATFunction.config.clearListeners = Config.clearListeners.bind(Config);
+IMCATFunction.config.destroy = Config.destroy.bind(Config);
 
 // 브라우저 전역에 등록
 if (typeof window !== 'undefined') {

@@ -1,0 +1,272 @@
+// ============================================
+// Dropdown Module SCSS
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$dropdown-z-index: 1000;
+$dropdown-min-width: 10rem;
+$dropdown-max-width: 20rem;
+$dropdown-animation-duration: 200ms;
+
+// ============================================
+// Dropdown
+// ============================================
+.dropdown {
+  position: absolute;
+  z-index: $dropdown-z-index;
+  min-width: $dropdown-min-width;
+  max-width: $dropdown-max-width;
+  padding: 0.5rem 0;
+  background: var(--bg-primary, $bg-primary);
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-autocomplete-dropdown-border-radius;
+  box-shadow: $component-autocomplete-dropdown-shadow;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: 
+    opacity $dropdown-animation-duration $ease-in-out,
+    transform $dropdown-animation-duration $ease-in-out,
+    visibility $dropdown-animation-duration;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  // Position modifiers
+  &--top {
+    transform: translateY(0.5rem);
+
+    &.is-visible {
+      transform: translateY(0);
+    }
+  }
+
+  // Width modifiers
+  &--full {
+    min-width: 100%;
+    max-width: none;
+  }
+
+  &--auto {
+    min-width: auto;
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
+// ============================================
+// Dropdown Item
+// ============================================
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-primary, $text-primary);
+  cursor: pointer;
+  transition: background $duration-fast $ease-in-out;
+
+  &:hover:not(.dropdown__item--disabled) {
+    background: var(--bg-tertiary, $bg-tertiary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background: var(--bg-tertiary, $bg-tertiary);
+  }
+
+  // Icon
+  &-icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 1.25rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  // Label
+  &-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // Shortcut
+  &-shortcut {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-tertiary, $text-tertiary);
+    padding: 0.125rem 0.375rem;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: $component-badge-size-sm-border-radius;
+  }
+
+  // Chevron (submenu indicator)
+  &-chevron {
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--text-tertiary, $text-tertiary);
+    margin-left: auto;
+  }
+
+  // States
+  &--active {
+    background: var(--bg-tertiary, $bg-tertiary);
+    color: var(--primary, $primary);
+
+    .dropdown__item-icon {
+      color: var(--primary, $primary);
+    }
+  }
+
+  &--disabled {
+    color: var(--text-disabled, $text-disabled);
+    cursor: not-allowed;
+
+    .dropdown__item-icon {
+      color: var(--text-disabled, $text-disabled);
+    }
+  }
+
+  &--danger {
+    color: $danger;
+
+    .dropdown__item-icon {
+      color: $danger;
+    }
+
+    &:hover:not(.dropdown__item--disabled) {
+      background: $bg-danger;
+    }
+  }
+}
+
+// ============================================
+// Dropdown Divider
+// ============================================
+.dropdown__divider {
+  height: 0;
+  margin: 0.5rem 0;
+  border-top: 1px solid var(--border-color, $border-color);
+}
+
+// ============================================
+// Dropdown Header
+// ============================================
+.dropdown__header {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary, $text-tertiary);
+}
+
+// ============================================
+// Dropdown Submenu
+// ============================================
+.dropdown__submenu {
+  position: relative;
+
+  .dropdown {
+    position: absolute;
+    top: -0.5rem;
+    left: 100%;
+    margin-left: 0.25rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-0.5rem);
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+  }
+
+  // Left side submenu
+  &--left .dropdown {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 0.25rem;
+    transform: translateX(0.5rem);
+
+    &.is-visible {
+      transform: translateX(0);
+    }
+  }
+}
+
+// ============================================
+// Dropdown Search
+// ============================================
+.dropdown__search {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color, $border-color);
+
+  input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-autocomplete-dropdown-border-radius;
+    background: var(--bg-secondary, $bg-secondary);
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+
+    &::placeholder {
+      color: var(--text-tertiary, $text-tertiary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+}
+
+// ============================================
+// Dropdown Scrollable
+// ============================================
+.dropdown--scrollable {
+  max-height: 20rem;
+  overflow-y: auto;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color, $border-color);
+    border-radius: 3px;
+  }
+}
+
+// ============================================
+// Context Menu (Right-click dropdown)
+// ============================================
+.context-menu {
+  @extend .dropdown;
+  position: fixed;
+}

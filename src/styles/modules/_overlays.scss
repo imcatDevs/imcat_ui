@@ -1,0 +1,145 @@
+SCSS
+//OffcanvasViables$-bg:rgba(0, 0, 0, 0.5);$overlay-backdrop-blur:4x;
+$verlay-z-ndex: 1050;
+$overlay-anima-duration300ms;
+$overlay-border-radus: $componnt-car-border-radius
+//============================================
+//Backdr
+//============================================.overlay-backdrop{
+ posiionfixednsez-index$overlay-z-index$-ckdrop-bg$overlay-backdro-blur$overlay-animation-duration$-in-out5%5%ransfrtraslat(-5%, -%)cl(0.95)zndx$ovlaz-idx+wth100%mx-32rem4$bg-primary$overlay-border-radius$;
+  opacity: 0 overflow:hidden;
+itin$ovelay-imaton-duran $ease-i-out,
+   $ovrlay-animtin-durton$-in-outvisible {
+    acty:1; translate(-50%, -50%)Sizes2re4rem6remHeader-bordercolor, $   flex-shrink:0;}
+-textprimary, $remrem$mnet-buton-size-md-bordr-adius-textsecondary, $;
+    cursor: pointerbckground$duration-fat$-in-out-bgtertiary, $trti }
+
+ &:fcus-visibe {
+      utline2px solid , $primary  outline-offset: 2px;  }
+Bodyseconday, $text-second  font-size: 0.9375rem;  line-height: 1.6;}
+
+  Footer7, $border-color  flex-shrink: 0;
+  $vrayz-dex+ 1$bg-primary$display: flex;
+  flex-direcion: column;
+  oveflow: hidden;
+  tr$ovrlyanimati-urtion$ase-in-outPositionsvisiblvisibl50vhvisibl50vhvisiblHeader, $border-color  flex-shrink: 0;}
+, $text-primaryremrem$men-button-siz-md-boder-radius, $text-secondarycursor: poine;
+    trbckground$duration-fat$-in-out-bgtertiary, $trtiBodyFooter-bordercolor, $;
+    flex-shrink: 0Offcanvasoffcanvas {
+  position: fixed;
+  z-index: $overay-z-index + 1;
+  background: var(--bg-prmary, $b-primary);
+  -shadow:$shadow-xl;dislay: flex;
+  flex-direction: column;
+  overflw: hidden;
+  trantransorm $overlay-animation-duration $ease-in-out;
+
+  // Positons (sam as rawer)
+  &--left {
+    top: 0;
+    left: 0  botm: 0;
+    width: 400x;
+    max-width: 100vw;
+    transformtranslateX(-10%)
+  &.is-visib { transorm: translateX(0); }
+  }
+
+  &--right {
+    op    : 0;
+    width40px  maxwdth: 100vw;
+    trasformtranslateX(%)
+  &.is-vibe { trnsformtraslateX(0); }
+  }
+
+  &--tp {
+    top: 0  eft: 0;
+    rh: 0;
+    hight: auto;
+    ax-height: 100vh;
+    tranformtraslaY(-100%)
+  &.i-vsible { transrm: traslaY(0); }
+  }
+
+  &--botom {
+    bottom0;
+    lf: 0;
+    ight: 0  height: uto;
+    max-heiht: 100vh;
+    tasformtnslateY1%  visibl { trasform:translateY(0); }
+  }
+
+  // Header
+  &__header align-items: center;  justify-ntnt:space-between;addng: 1rem 1.5rem;
+    border-botm1px solid vr(--rder-coor, $bordr-color)flex-shrink: 0;
+  }
+
+  &__itle {
+    margin: 0;
+    fnt-size.125font-we600;
+    colo: var(--txt-priary, $text-primary)}
+
+&__close {
+    display: flex;
+    aligntems: cetr;
+    justify-contentcenter2.5rem2.5remtansprent50%olvar(--text-secdary, $tex-sconday)urspointer$duration-fat$-in-outva(--b-tertiry$bg-tertiary
+ //Bodybdyfle1pddn1.5rem overflow-y:auto;}
+
+//Footer &__footer{
+pddng 1rem.5rem border-top:1pxsolidvr(-bordr-color,$border-color)flxshrnk0
+//============================================// AlertDialog(Cofirm/Prompt)
+// ============================================
+.alert-dilog @extend.modal;
+max-wdth: 24rem;
+  tex-algcenr
+
+  &__icon {dislayflexlig-itemcerjustifycotntcenterremremmrg 1.5remauto 1rem-radius50%;
+    ft-siz: 2rem
+&--success {
+      $g-success;
+   color: $success}
+
+    &--or{  bakgund$bg-ror  $error}
+
+    &--wrg{
+      :$bg-warning;
+     color: $wrning}
+--inf$g-info;
+   color: $info}
+
+&__title {magin:00 0.5rm;
+    on-size.25
+    font-weight:600; color:var(t-pmary, $tex-piary)message {
+    mrgin: 0;
+    addg: 0 1.5rem1.5rem;clrvr(--text-ecndary, $tex-scondary)fn-size0.9375ine-hight: 1.6;
+  }
+
+  &__input {
+    widhcalc(10 - 3rem)magi: 0 1.5e1.5em;
+    pddig: 0.75rem 1rem;
+    border: 1px oid vr(--border-color, $bordrcolor border-radius:$comonent-button-size-m-borer-radus;
+    fot-size937va(--b-primary, $g-primry);
+    color: var--text-primary$text-primary);
+
+  &:focus {
+      outline: none  r-color: va(-pimry, $prmary);
+      box-hadow 0 0 03 rgba($primary, 0.1)
+    }}
+
+&__fte {
+    displaylexgap5rem;
+    padding: 1rem 1.;
+    border-top: 1px solid var(--border-color, $border-color)
+  .btn {
+      flex: 1;
+      }
+Responsivemax-width: 576x) {
+  .modal {
+    maxwith: alc(100vw - 2rm);
+    maxheigh calc(100vh -4m;
+
+    &--sm, &--lg, &--xl    ax-with: cc(100vw - 2rem);
+    }
+  }
+ {  &--eft, &--r  widh: 100%;
+      mx-wdh100vw
+    }

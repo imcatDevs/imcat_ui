@@ -46,12 +46,12 @@ const coreConfig = {
   ]
 };
 
-// 모듈 번들 함수 (각 모듈을 독립적으로 빌드)
+// 모듈 번들 함수 (플랫 구조: src/modules/모듈명.js)
 function createModuleConfig(moduleName) {
   return {
-    input: `src/modules/${moduleName}/${moduleName}.js`,
+    input: `src/modules/${moduleName}.js`,
     output: {
-      file: `dist/modules/${moduleName}/${moduleName}.js`,
+      file: `dist/modules/${moduleName}.js`,
       format: 'esm',
       sourcemap: !production
     },
@@ -67,17 +67,10 @@ function createModuleConfig(moduleName) {
 
 // 각 모듈별 개별 config 생성
 const moduleConfigs = [
-  'theme', 'overlays', 'dropdown', 'navigation', 'pickers', 'selectors', 'forms', 'feedback', 'tooltips', 'carousel', 'data-viz',
-  // Phase 3 Advanced Features
-  'stepper', 'scroll', 'live-status', 'advanced-ui', 'text-editors', 'media-viewer', 'social',
-  // Text Visualization
-  'wordcloud',
-  // Image Gallery
-  'imagelist',
-  // Security & Project Management
-  'security-input', 'gantt',
-  // Navigation
-  'pagination'
+  'theme', 'overlays', 'dropdown', 'navigation', 'pickers', 'selectors', 
+  'forms', 'feedback', 'tooltips', 'carousel', 'data-viz',
+  'stepper', 'scroll', 'live-status', 'advanced-ui', 'text-editors', 
+  'media-viewer', 'social', 'imagelist', 'security-input', 'gantt', 'pagination'
 ].map(createModuleConfig);
 
 // 코어 + 모듈 빌드

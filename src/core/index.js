@@ -71,9 +71,10 @@ class IMCATCore {
    * @private
    */
   _initShortcuts() {
-    // toast, notify에 IMCAT 인스턴스 주입
+    // toast, notify, theme에 IMCAT 인스턴스 주입
     Shortcuts.toast._imcat = this;
     Shortcuts.notify._imcat = this;
+    Shortcuts.theme._imcat = this;
   }
 
   /**
@@ -506,6 +507,188 @@ class IMCATCore {
   }
 
   /**
+   * 팝오버 단축 생성
+   */
+  popover(element, options) {
+    return Shortcuts.popover.call(this, element, options);
+  }
+
+  /**
+   * 탭 단축 생성
+   */
+  tabs(element, options) {
+    return Shortcuts.tabs.call(this, element, options);
+  }
+
+  /**
+   * 아코디언 단축 생성
+   */
+  accordion(element, options) {
+    return Shortcuts.accordion.call(this, element, options);
+  }
+
+  /**
+   * 캐러셀 단축 생성
+   */
+  carousel(element, options) {
+    return Shortcuts.carousel.call(this, element, options);
+  }
+
+  /**
+   * 라이트박스 (이미지 갤러리)
+   */
+  lightbox(images, options) {
+    return Shortcuts.lightbox.call(this, images, options);
+  }
+
+  /**
+   * 날짜 선택기 단축 생성
+   */
+  datePicker(element, options) {
+    return Shortcuts.datePicker.call(this, element, options);
+  }
+
+  /**
+   * 시간 선택기 단축 생성
+   */
+  timePicker(element, options) {
+    return Shortcuts.timePicker.call(this, element, options);
+  }
+
+  /**
+   * 색상 선택기 단축 생성
+   */
+  colorPicker(element, options) {
+    return Shortcuts.colorPicker.call(this, element, options);
+  }
+
+  /**
+   * 카운트다운 단축 생성
+   */
+  countdown(element, targetDate, options) {
+    return Shortcuts.countdown.call(this, element, targetDate, options);
+  }
+
+  /**
+   * 자동완성 단축 생성
+   */
+  autocomplete(element, options) {
+    return Shortcuts.autocomplete.call(this, element, options);
+  }
+
+  /**
+   * 다중 선택 단축 생성
+   */
+  multiSelect(element, options) {
+    return Shortcuts.multiSelect.call(this, element, options);
+  }
+
+  /**
+   * 범위 슬라이더 단축 생성
+   */
+  rangeSlider(element, options) {
+    return Shortcuts.rangeSlider.call(this, element, options);
+  }
+
+  /**
+   * 별점 단축 생성
+   */
+  rating(element, options) {
+    return Shortcuts.rating.call(this, element, options);
+  }
+
+  /**
+   * 파일 업로드 단축 생성
+   */
+  fileUpload(element, options) {
+    return Shortcuts.fileUpload.call(this, element, options);
+  }
+
+  /**
+   * 데이터 테이블 단축 생성
+   */
+  dataTable(element, options) {
+    return Shortcuts.dataTable.call(this, element, options);
+  }
+
+  /**
+   * 차트 단축 생성
+   */
+  chart(element, options) {
+    return Shortcuts.chart.call(this, element, options);
+  }
+
+  /**
+   * 칸반 보드 단축 생성
+   */
+  kanban(element, options) {
+    return Shortcuts.kanban.call(this, element, options);
+  }
+
+  /**
+   * 스테퍼 단축 생성
+   */
+  stepper(element, options) {
+    return Shortcuts.stepper.call(this, element, options);
+  }
+
+  /**
+   * QR 코드 생성
+   */
+  qrCode(element, data, options) {
+    return Shortcuts.qrCode.call(this, element, data, options);
+  }
+
+  /**
+   * 진행률 트래커 단축 생성
+   */
+  progress(options) {
+    return Shortcuts.progress.call(this, options);
+  }
+
+  /**
+   * 스켈레톤 로딩 표시
+   */
+  skeleton(element, options) {
+    return Shortcuts.skeleton.call(this, element, options);
+  }
+
+  /**
+   * 무한 스크롤 단축 생성
+   */
+  infiniteScroll(element, options) {
+    return Shortcuts.infiniteScroll.call(this, element, options);
+  }
+
+  /**
+   * 페이지네이션 단축 생성
+   */
+  pagination(element, options) {
+    return Shortcuts.pagination.call(this, element, options);
+  }
+
+  /**
+   * 간트 차트 단축 생성
+   */
+  gantt(element, options) {
+    return Shortcuts.gantt.call(this, element, options);
+  }
+
+  /**
+   * 이미지 목록 (갤러리) 단축 생성
+   */
+  imageList(element, options) {
+    return Shortcuts.imageList.call(this, element, options);
+  }
+
+  /**
+   * 이미지 비교 슬라이더
+   */
+  imageCompare(element, options) {
+    return Shortcuts.imageCompare.call(this, element, options);
+  }
+
+  /**
    * 토스트 API
    * @returns {Object}
    */
@@ -519,6 +702,24 @@ class IMCATCore {
    */
   get notify() {
     return Shortcuts.notify;
+  }
+
+  /**
+   * 테마 API (전환 효과 포함)
+   * @returns {Object}
+   * 
+   * @example
+   * // 테마 토글
+   * IMCAT.theme.toggle();
+   * 
+   * // 클릭 위치 기반 원형 전환 효과
+   * btn.addEventListener('click', (e) => IMCAT.theme.toggleWithEvent(e));
+   * 
+   * // 테마 설정
+   * IMCAT.theme.set('dark');
+   */
+  get theme() {
+    return Shortcuts.theme;
   }
 
   // ===== Helpers API =====

@@ -612,10 +612,81 @@ declare interface IMCAT {
   dropdown(trigger: string | HTMLElement, options: DropdownOptions): Promise<Dropdown>;
   tooltip(element: string | HTMLElement, content: string): Promise<Tooltip>;
   tooltip(element: string | HTMLElement, options: TooltipOptions): Promise<Tooltip>;
+  popover(element: string | HTMLElement, content: string): Promise<any>;
+  popover(element: string | HTMLElement, options: any): Promise<any>;
+
+  // Shortcuts - Navigation
+  tabs(element: string | HTMLElement, options?: any): Promise<any>;
+  accordion(element: string | HTMLElement, options?: any): Promise<any>;
+  carousel(element: string | HTMLElement, options?: any): Promise<any>;
+  stepper(element: string | HTMLElement, options?: any): Promise<any>;
+
+  // Shortcuts - Overlays
+  lightbox(images: string[] | Array<{ src: string; title?: string }>, options?: any): Promise<any>;
+
+  // Shortcuts - Pickers
+  datePicker(element: string | HTMLElement, options?: any): Promise<any>;
+  timePicker(element: string | HTMLElement, options?: any): Promise<any>;
+  colorPicker(element: string | HTMLElement, options?: any): Promise<any>;
+  countdown(element: string | HTMLElement, targetDate: Date | string | number, options?: any): Promise<any>;
+
+  // Shortcuts - Selectors
+  autocomplete(element: string | HTMLElement, options: any): Promise<any>;
+  multiSelect(element: string | HTMLElement, options?: any): Promise<any>;
+  rangeSlider(element: string | HTMLElement, options?: any): Promise<any>;
+
+  // Shortcuts - Forms
+  rating(element: string | HTMLElement, options?: any): Promise<any>;
+  fileUpload(element: string | HTMLElement, options?: any): Promise<any>;
+
+  // Shortcuts - Data Visualization
+  dataTable(element: string | HTMLElement, options: any): Promise<any>;
+  chart(element: string | HTMLElement, options: any): Promise<any>;
+  kanban(element: string | HTMLElement, options: any): Promise<any>;
+  gantt(element: string | HTMLElement, options: any): Promise<any>;
+
+  // Shortcuts - Advanced UI
+  qrCode(element: string | HTMLElement, data: string, options?: any): Promise<any>;
+  imageList(element: string | HTMLElement, options: any): Promise<any>;
+  imageCompare(element: string | HTMLElement, options: any): Promise<any>;
+
+  // Shortcuts - Scroll & Pagination
+  infiniteScroll(element: string | HTMLElement, options: any): Promise<any>;
+  pagination(element: string | HTMLElement, options: any): Promise<any>;
+
+  // Shortcuts - Feedback Components
+  progress(options: any): Promise<any>;
+  skeleton(element: string | HTMLElement, options?: any): Promise<any>;
 
   // Shortcuts - Feedback
   toast: ToastAPI;
   notify: NotifyAPI;
+
+  // Theme API (전환 효과 포함)
+  theme: {
+    /** 사용 가능한 전환 효과 타입 */
+    TRANSITIONS: {
+      NONE: 'none';
+      FADE: 'fade';
+      SLIDE: 'slide';
+      CIRCLE: 'circle';
+      CIRCLE_TOP_LEFT: 'circle-top-left';
+      CIRCLE_TOP_RIGHT: 'circle-top-right';
+      CIRCLE_BOTTOM_LEFT: 'circle-bottom-left';
+      CIRCLE_BOTTOM_RIGHT: 'circle-bottom-right';
+      CIRCLE_CENTER: 'circle-center';
+    };
+    init(options?: { 
+      transition?: 'none' | 'fade' | 'slide' | 'circle' | 'circle-top-left' | 'circle-top-right' | 'circle-bottom-left' | 'circle-bottom-right' | 'circle-center';
+      transitionDuration?: number;
+    }): Promise<any>;
+    toggle(animate?: boolean): Promise<void>;
+    toggleWithEvent(event: MouseEvent, theme?: 'light' | 'dark'): Promise<void>;
+    set(theme: 'light' | 'dark' | 'system', animate?: boolean): Promise<void>;
+    get(): Promise<'light' | 'dark'>;
+    isDark(): Promise<boolean>;
+    isLight(): Promise<boolean>;
+  };
 
   // Helpers - Form
   formData(selector: string | HTMLFormElement): Record<string, any>;

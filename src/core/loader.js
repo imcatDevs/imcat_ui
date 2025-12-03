@@ -113,8 +113,8 @@ export class ModuleLoader {
         await this._loadModuleCSS(moduleName);
       }
 
-      // JS 모듈 로드
-      const modulePath = `${this.basePath}/${moduleName}/${moduleName}.js`;
+      // JS 모듈 로드 (dist/modules/모듈명.js)
+      const modulePath = `${this.basePath}/${moduleName}.js`;
       const module = await import(modulePath);
 
       // 기본 export 또는 named export
@@ -141,7 +141,7 @@ export class ModuleLoader {
    * @param {string} moduleName - 모듈 이름
    */
   async _loadModuleCSS(moduleName) {
-    const cssPath = `${this.basePath}/${moduleName}/${moduleName}.css`;
+    const cssPath = `${this.basePath}/${moduleName}.css`;
 
     // 이미 로드된 CSS는 스킵
     if (this.loadedCSS.has(cssPath)) {

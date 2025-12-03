@@ -1,0 +1,376 @@
+// ============================================
+// Navigation Module SCSS
+// Tabs, Accordion, Breadcrumb
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Tabs
+// ============================================
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  // Horizontal (default)
+  &--horizontal {
+    .tabs__list {
+      flex-direction: row;
+      border-bottom: 1px solid var(--border-color, $border-color);
+    }
+
+    .tabs__tab {
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+
+      &.is-active {
+        border-bottom-color: var(--primary, $primary);
+      }
+    }
+  }
+
+  // Vertical
+  &--vertical {
+    flex-direction: row;
+
+    .tabs__list {
+      flex-direction: column;
+      border-right: 1px solid var(--border-color, $border-color);
+      min-width: 12rem;
+    }
+
+    .tabs__tab {
+      border-right: 2px solid transparent;
+      margin-right: -1px;
+      justify-content: flex-start;
+
+      &.is-active {
+        border-right-color: var(--primary, $primary);
+      }
+    }
+
+    .tabs__content {
+      flex: 1;
+      padding-left: 1.5rem;
+    }
+  }
+
+  // Pill style
+  &--pills {
+    .tabs__list {
+      gap: 0.5rem;
+      border: none;
+      background: var(--bg-tertiary, $bg-tertiary);
+      padding: 0.25rem;
+      border-radius: $component-segmented-control-border-radius;
+    }
+
+    .tabs__tab {
+      border: none;
+      border-radius: $component-segmented-control-item-border-radius;
+      margin: 0;
+
+      &.is-active {
+        background: var(--bg-primary, $bg-primary);
+        box-shadow: $shadow-sm;
+      }
+    }
+  }
+
+  // Card style
+  &--cards {
+    .tabs__list {
+      gap: 0.5rem;
+      border: none;
+    }
+
+    .tabs__tab {
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-card-border-radius $component-card-border-radius 0 0;
+      margin: 0;
+      background: var(--bg-secondary, $bg-secondary);
+
+      &.is-active {
+        background: var(--bg-primary, $bg-primary);
+        border-bottom-color: var(--bg-primary, $bg-primary);
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .tabs__content {
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: 0 0 $component-card-border-radius $component-card-border-radius;
+      margin-top: -1px;
+    }
+  }
+}
+
+// Tab List
+.tabs__list {
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Tab Item
+.tabs__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary, $text-secondary);
+  cursor: pointer;
+  transition: 
+    color $duration-fast $ease-in-out,
+    background $duration-fast $ease-in-out,
+    border-color $duration-fast $ease-in-out;
+
+  &:hover:not(.is-active):not(:disabled) {
+    color: var(--text-primary, $text-primary);
+    background: var(--bg-tertiary, $bg-tertiary);
+  }
+
+  &.is-active {
+    color: var(--primary, $primary);
+  }
+
+  &:disabled {
+    color: var(--text-disabled, $text-disabled);
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary, $primary);
+    outline-offset: -2px;
+  }
+
+  // Icon
+  &-icon {
+    font-size: 1.125rem;
+  }
+
+  // Badge
+  &-badge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: 9999px;
+    color: var(--text-secondary, $text-secondary);
+  }
+}
+
+// Tab Content
+.tabs__content {
+  padding: 1.5rem 0;
+}
+
+// Tab Panel
+.tabs__panel {
+  display: none;
+  animation: tabFadeIn 300ms ease-out;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// Accordion
+// ============================================
+.accordion {
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-accordion-border-radius;
+  overflow: hidden;
+
+  // Flush style (no outer border)
+  &--flush {
+    border: none;
+    border-radius: 0;
+
+    .accordion__item {
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+
+  // Separated style
+  &--separated {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .accordion__item {
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-accordion-border-radius;
+    }
+  }
+}
+
+// Accordion Item
+.accordion__item {
+  border-bottom: 1px solid var(--border-color, $border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.is-open {
+    .accordion__trigger-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+// Accordion Trigger
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $component-accordion-trigger-padding-y $component-accordion-trigger-padding-x;
+  border: none;
+  background: $component-accordion-trigger-background;
+  font-size: $component-accordion-trigger-font-size;
+  font-weight: $component-accordion-trigger-font-weight;
+  color: $component-accordion-trigger-text;
+  text-align: left;
+  cursor: pointer;
+  transition: background $duration-fast $ease-in-out;
+
+  &:hover {
+    background: $component-accordion-trigger-background-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary, $primary);
+    outline-offset: -2px;
+  }
+
+  &:disabled {
+    color: var(--text-disabled, $text-disabled);
+    cursor: not-allowed;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  // Icon
+  &-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    color: var(--text-secondary, $text-secondary);
+    transition: transform $duration-base $ease-in-out;
+  }
+
+  // Left icon
+  &-start-icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+}
+
+// Accordion Content
+.accordion__content {
+  display: none;
+  padding: $component-accordion-content-padding;
+  font-size: $component-accordion-content-font-size;
+  color: $component-accordion-content-text;
+  line-height: 1.6;
+  border-top: 1px solid var(--border-color, $border-color);
+
+  &.is-open {
+    display: block;
+    animation: accordionSlideDown 300ms ease-out;
+  }
+}
+
+@keyframes accordionSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// Breadcrumb
+// ============================================
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+
+  // Separator
+  &:not(:last-child)::after {
+    content: '/';
+    margin: 0 0.5rem;
+    color: var(--text-tertiary, $text-tertiary);
+  }
+
+  a {
+    color: var(--text-secondary, $text-secondary);
+    text-decoration: none;
+    transition: color $duration-fast $ease-in-out;
+
+    &:hover {
+      color: var(--primary, $primary);
+    }
+  }
+
+  &.active {
+    color: var(--text-primary, $text-primary);
+    font-weight: 500;
+  }
+}
+
+// Breadcrumb with icons
+.breadcrumb--icons {
+  .breadcrumb-item:not(:last-child)::after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.25rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9,18 15,12 9,6'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
+  }
+}

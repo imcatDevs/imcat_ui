@@ -1,0 +1,319 @@
+// ============================================
+// Alerts Component SCSS
+// 알림 메시지 시스템
+// ============================================
+
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$alert-padding-y: 0.875rem;
+$alert-padding-x: 1rem;
+$alert-border-radius: 6px;
+$alert-border-width: 1px;
+$alert-font-size: 0.875rem;
+
+// ============================================
+// Base Alert
+// ============================================
+.alert {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: $alert-padding-y $alert-padding-x;
+  font-size: $alert-font-size;
+  line-height: 1.5;
+  border: $alert-border-width solid transparent;
+  border-radius: $alert-border-radius;
+
+  // Icon
+  &__icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i,
+    .material-icons-outlined {
+      font-size: 1.25rem;
+    }
+  }
+
+  // Content
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // Title
+  &__title {
+    margin: 0 0 0.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  // Message
+  &__message {
+    margin: 0;
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  // Close button
+  &__close {
+    flex-shrink: 0;
+    padding: 0;
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 150ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i,
+    .material-icons-outlined {
+      font-size: 1.125rem;
+    }
+  }
+
+  // Links
+  a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+// ============================================
+// Variants
+// ============================================
+
+// Info (default)
+.alert--info,
+.alert:not([class*="alert--"]) {
+  background: rgba($info, 0.1);
+  border-color: rgba($info, 0.2);
+  color: color.adjust($info, $lightness: -15%);
+
+  .alert__icon {
+    color: $info;
+  }
+
+  [data-theme="dark"] & {
+    background: rgba($info, 0.15);
+    color: color.adjust($info, $lightness: 20%);
+  }
+}
+
+// Success
+.alert--success {
+  background: rgba($success, 0.1);
+  border-color: rgba($success, 0.2);
+  color: color.adjust($success, $lightness: -15%);
+
+  .alert__icon {
+    color: $success;
+  }
+
+  [data-theme="dark"] & {
+    background: rgba($success, 0.15);
+    color: color.adjust($success, $lightness: 20%);
+  }
+}
+
+// Warning
+.alert--warning {
+  background: rgba($warning, 0.1);
+  border-color: rgba($warning, 0.2);
+  color: color.adjust($warning, $lightness: -25%);
+
+  .alert__icon {
+    color: $warning;
+  }
+
+  [data-theme="dark"] & {
+    background: rgba($warning, 0.15);
+    color: color.adjust($warning, $lightness: 10%);
+  }
+}
+
+// Danger / Error
+.alert--danger,
+.alert--error {
+  background: rgba($danger, 0.1);
+  border-color: rgba($danger, 0.2);
+  color: color.adjust($danger, $lightness: -10%);
+
+  .alert__icon {
+    color: $danger;
+  }
+
+  [data-theme="dark"] & {
+    background: rgba($danger, 0.15);
+    color: color.adjust($danger, $lightness: 20%);
+  }
+}
+
+// ============================================
+// Filled Variants
+// ============================================
+.alert--filled {
+  border-color: transparent;
+
+  &.alert--info {
+    background: $info;
+    color: #ffffff;
+
+    .alert__icon {
+      color: #ffffff;
+    }
+  }
+
+  &.alert--success {
+    background: $success;
+    color: #ffffff;
+
+    .alert__icon {
+      color: #ffffff;
+    }
+  }
+
+  &.alert--warning {
+    background: $warning;
+    color: #1f2937;
+
+    .alert__icon {
+      color: #1f2937;
+    }
+  }
+
+  &.alert--danger,
+  &.alert--error {
+    background: $danger;
+    color: #ffffff;
+
+    .alert__icon {
+      color: #ffffff;
+    }
+  }
+}
+
+// ============================================
+// Outlined Variants
+// ============================================
+.alert--outlined {
+  background: transparent;
+
+  &.alert--info {
+    border-color: $info;
+    color: $info;
+  }
+
+  &.alert--success {
+    border-color: $success;
+    color: $success;
+  }
+
+  &.alert--warning {
+    border-color: $warning;
+    color: color.adjust($warning, $lightness: -15%);
+  }
+
+  &.alert--danger,
+  &.alert--error {
+    border-color: $danger;
+    color: $danger;
+  }
+}
+
+// ============================================
+// Sizes
+// ============================================
+.alert--sm {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.8125rem;
+  gap: 0.5rem;
+
+  .alert__icon i {
+    font-size: 1rem;
+  }
+}
+
+.alert--lg {
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  gap: 1rem;
+
+  .alert__icon i {
+    font-size: 1.5rem;
+  }
+}
+
+// ============================================
+// With Actions
+// ============================================
+.alert__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+
+  .btn {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+// ============================================
+// Dismissible (animation)
+// ============================================
+.alert--dismissible {
+  animation: alert-fade-in 200ms ease-out;
+}
+
+.alert.is-hiding {
+  animation: alert-fade-out 200ms ease-out forwards;
+}
+
+@keyframes alert-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes alert-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+// ============================================
+// Alert List (stacked alerts)
+// ============================================
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

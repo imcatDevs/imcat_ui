@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="../dist/imcat-ui.css">
   <style>
     :root {
-      --header-height: 64px;
+      --header-height: 56px;
+      --sidebar-width: 280px;
     }
     
     * {
@@ -36,22 +37,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 20px;
       z-index: 100;
+    }
+    
+    .header__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .header__toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--text-primary);
+    }
+    
+    .header__toggle:hover {
+      background: var(--bg-tertiary);
     }
     
     .header__logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 1.25rem;
+      gap: 10px;
+      font-size: 1.125rem;
       font-weight: 700;
       color: var(--text-primary);
       text-decoration: none;
     }
     
     .header__logo img {
-      height: 32px;
+      height: 28px;
     }
     
     .header__actions {
@@ -60,597 +82,689 @@
       gap: 8px;
     }
     
-    /* Main */
-    .main {
-      margin-top: var(--header-height);
-      padding: 48px 24px;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 48px 0 64px;
-    }
-    
-    .hero__title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, #8b5cf6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero__desc {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    /* TOC Grid */
-    .toc {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    
-    .toc__section {
-      background: var(--bg-secondary);
+    .header__btn {
+      width: 36px;
+      height: 36px;
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px;
-      transition: all 0.2s ease;
-    }
-    
-    .toc__section:hover {
-      border-color: var(--primary-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .toc__header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    .toc__icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--primary-color) 0%, #8b5cf6 100%);
-      border-radius: 10px;
-      color: white;
-    }
-    
-    .toc__title {
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-    
-    .toc__list {
-      list-style: none;
-    }
-    
-    .toc__item {
-      padding: 8px 0;
-      border-bottom: 1px dashed var(--border-color);
-    }
-    
-    .toc__item:last-child {
-      border-bottom: none;
-    }
-    
-    .toc__link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9375rem;
-      transition: color 0.15s ease;
-    }
-    
-    .toc__link:hover {
-      color: var(--primary-color);
-    }
-    
-    .toc__link i {
-      font-size: 18px;
-      opacity: 0.7;
-    }
-    
-    /* Quick Start */
-    .quickstart {
-      margin-top: 64px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 32px;
-    }
-    
-    .quickstart__title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .quickstart__code {
-      background: #1e1e1e;
-      border-radius: 8px;
-      padding: 20px;
-      overflow-x: auto;
-    }
-    
-    .quickstart__code pre {
-      margin: 0;
-      font-family: 'Fira Code', 'Consolas', monospace;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: #d4d4d4;
-    }
-    
-    .quickstart__code .comment { color: #6a9955; }
-    .quickstart__code .keyword { color: #569cd6; }
-    .quickstart__code .string { color: #ce9178; }
-    .quickstart__code .function { color: #dcdcaa; }
-    .quickstart__code .tag { color: #569cd6; }
-    .quickstart__code .attr { color: #9cdcfe; }
-    
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--text-secondary);
-      font-size: 0.875rem;
-    }
-    
-    /* Theme Toggle Button */
-    .theme-toggle {
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 6px;
       background: var(--bg-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+    
+    .header__btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    /* Layout */
+    .layout {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--header-height));
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      overflow-y: auto;
+      z-index: 50;
+      transition: transform 0.3s ease;
+    }
+    
+    .sidebar__header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .sidebar__search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-primary);
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+    
+    .sidebar__search:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .sidebar__nav {
+      padding: 12px 0;
+    }
+    
+    /* TOC Section */
+    .toc-section {
+      margin-bottom: 8px;
+    }
+    
+    .toc-section__header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+    }
+    
+    .toc-section__list {
+      list-style: none;
+    }
+    
+    .toc-item {
+      position: relative;
+    }
+    
+    .toc-item__link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    
+    .toc-item__link:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    .toc-item__link.is-active {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .toc-item__link.is-active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--primary);
+    }
+    
+    .toc-item__icon {
+      font-size: 18px;
+      opacity: 0.7;
+    }
+    
+    .toc-item__badge {
+      margin-left: auto;
+      padding: 2px 6px;
+      font-size: 0.625rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: white;
+      border-radius: 4px;
+    }
+    
+    /* Main Content */
+    .main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 32px;
+      max-width: calc(100% - var(--sidebar-width));
+    }
+    
+    /* Content Area */
+    .content {
+      margin: 0 auto;
+    }
+    
+    .content__header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .content__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .content__desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Demo Card */
+    .demo-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    
+    .demo-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+    }
+    
+    .demo-card__title {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .demo-card__body {
+      padding: 24px;
+    }
+    
+    .demo-card__code {
+      background: #1e1e1e;
+      padding: 16px;
+      border-radius: 0 0 8px 8px;
+      overflow-x: auto;
+    }
+    
+    .demo-card__code pre {
+      margin: 0;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: #d4d4d4;
+    }
+    
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    
+    .btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn--primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    .btn--primary:hover {
+      background: var(--primary-hover, #2563EB);
+      color: white;
+    }
+    
+    /* Quick Links */
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-primary);
       transition: all 0.2s ease;
     }
     
-    .theme-toggle:hover {
-      border-color: var(--primary-color);
+    .quick-link:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     
+    .quick-link__icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+      border-radius: 8px;
+      color: white;
+    }
+    
+    .quick-link__text {
+      font-weight: 500;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--text-tertiary);
+      font-size: 0.8125rem;
+    }
+    
+    /* Code Colors */
+    .code-comment { color: #6a9955; }
+    .code-keyword { color: #569cd6; }
+    .code-string { color: #ce9178; }
+    .code-function { color: #dcdcaa; }
+    
     /* Responsive */
-    @media (max-width: 768px) {
-      .hero__title {
-        font-size: 1.75rem;
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
       }
       
-      .toc {
-        grid-template-columns: 1fr;
+      .sidebar.is-open {
+        transform: translateX(0);
       }
+      
+      .main {
+        margin-left: 0;
+        max-width: 100%;
+      }
+      
+      .header__toggle {
+        display: flex;
+      }
+    }
+    
+    /* Backdrop */
+    .backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+    }
+    
+    .backdrop.is-visible {
+      display: block;
     }
   </style>
 </head>
-<body>
+<body catui-target="app-content">
   <!-- Header -->
   <header class="header">
-    <a href="#" class="header__logo">
-      <img src="assets/catui-log.svg" alt="IMCAT UI">
-      <span>IMCAT UI</span>
-    </a>
+    <div class="header__left">
+      <button class="header__toggle" id="menuToggle">
+        <i class="material-icons-outlined">menu</i>
+      </button>
+      <a href="#" class="header__logo">
+        <img src="assets/catui-log.svg" alt="IMCAT UI">
+        <span>IMCAT UI</span>
+      </a>
+    </div>
     <div class="header__actions">
-      <button class="theme-toggle" id="themeToggle" title="테마 전환">
+      <a href="https://github.com" target="_blank" class="header__btn" title="GitHub">
+        <i class="material-icons-outlined">code</i>
+      </a>
+      <button class="header__btn" id="themeToggle" title="테마 전환">
         <i class="material-icons-outlined">dark_mode</i>
       </button>
     </div>
   </header>
   
-  <!-- Main Content -->
-  <main class="main">
-    <!-- Hero -->
-    <section class="hero">
-      <h1 class="hero__title">IMCAT UI Framework</h1>
-      <p class="hero__desc">
-        Lightweight, zero-build, ES6+ JavaScript web framework with dynamic module loading and integrated SPA routing
-      </p>
-    </section>
+  <!-- Backdrop for mobile -->
+  <div class="backdrop" id="backdrop"></div>
+  
+  <!-- Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <input type="text" class="sidebar__search" placeholder="검색..." id="searchInput">
+      </div>
+      
+      <nav class="sidebar__nav" id="sidebarNav">
+        <!-- 메뉴는 JSON에서 동적으로 로드됩니다 -->
+      </nav>
+    </aside>
     
-    <!-- TOC -->
-    <div class="toc">
-      <!-- Core -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">hub</i>
+    <!-- Main Content -->
+    <main class="main">
+      <div class="content" id="app-content">
+        <!-- Overview -->
+        <section id="overview">
+          <div class="content__header">
+            <h1 class="content__title">IMCAT UI Framework</h1>
+            <p class="content__desc">
+              경량, 제로 빌드, ES6+ JavaScript 웹 프레임워크. 동적 모듈 로딩과 SPA 라우팅 통합.
+            </p>
           </div>
-          <h2 class="toc__title">Core</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="dom">
-              <i class="material-icons-outlined">code</i>
-              DOM 조작
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="router">
-              <i class="material-icons-outlined">route</i>
-              SPA Router
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="events">
-              <i class="material-icons-outlined">electric_bolt</i>
-              Event Bus
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="config">
-              <i class="material-icons-outlined">settings</i>
-              Config
-            </a>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- Dialogs -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">chat_bubble</i>
+          
+          <!-- Quick Demo -->
+          <div class="demo-card">
+            <div class="demo-card__header">
+              <span class="demo-card__title">빠른 데모</span>
+            </div>
+            <div class="demo-card__body">
+              <div class="btn-group">
+                <button class="btn btn--primary" onclick="demoAlert()">
+                  <i class="material-icons-outlined">info</i> Alert
+                </button>
+                <button class="btn btn--primary" onclick="demoConfirm()">
+                  <i class="material-icons-outlined">help</i> Confirm
+                </button>
+                <button class="btn btn--primary" onclick="demoToast()">
+                  <i class="material-icons-outlined">notifications</i> Toast
+                </button>
+                <button class="btn btn--primary" onclick="demoModal()">
+                  <i class="material-icons-outlined">open_in_new</i> Modal
+                </button>
+                <button class="btn btn--primary" onclick="demoDrawer()">
+                  <i class="material-icons-outlined">menu_open</i> Drawer
+                </button>
+                <button class="btn btn--primary" onclick="demoLoading()">
+                  <i class="material-icons-outlined">hourglass_empty</i> Loading
+                </button>
+              </div>
+            </div>
           </div>
-          <h2 class="toc__title">Dialogs</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="alert">
-              <i class="material-icons-outlined">info</i>
-              Alert
+          
+          <!-- Quick Links -->
+          <h3 style="margin-bottom: 16px; font-size: 1rem;">모듈 카테고리</h3>
+          <div class="quick-links">
+            <a href="#overlays-modal" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">layers</i>
+              </div>
+              <span class="quick-link__text">Overlays</span>
             </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="confirm">
-              <i class="material-icons-outlined">help</i>
-              Confirm
+            <a href="#feedback-toast" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">notifications</i>
+              </div>
+              <span class="quick-link__text">Feedback</span>
             </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="prompt">
-              <i class="material-icons-outlined">edit</i>
-              Prompt
+            <a href="#nav-tabs" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">tab</i>
+              </div>
+              <span class="quick-link__text">Navigation</span>
             </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="modal">
-              <i class="material-icons-outlined">open_in_new</i>
-              Modal
+            <a href="#picker-date" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">calendar_today</i>
+              </div>
+              <span class="quick-link__text">Pickers</span>
             </a>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- Feedback -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">notifications</i>
+            <a href="#form-upload" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">edit_note</i>
+              </div>
+              <span class="quick-link__text">Forms</span>
+            </a>
+            <a href="#data-table" class="quick-link">
+              <div class="quick-link__icon">
+                <i class="material-icons-outlined">table_chart</i>
+              </div>
+              <span class="quick-link__text">Data</span>
+            </a>
           </div>
-          <h2 class="toc__title">Feedback</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="toast">
-              <i class="material-icons-outlined">announcement</i>
-              Toast
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="notification">
-              <i class="material-icons-outlined">notifications_active</i>
-              Notification
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="loading">
-              <i class="material-icons-outlined">hourglass_empty</i>
-              Loading
-            </a>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- Overlays -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">layers</i>
-          </div>
-          <h2 class="toc__title">Overlays</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="drawer">
-              <i class="material-icons-outlined">menu_open</i>
-              Drawer
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="dropdown">
-              <i class="material-icons-outlined">expand_more</i>
-              Dropdown
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="tooltip">
-              <i class="material-icons-outlined">chat</i>
-              Tooltip
-            </a>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- Helpers -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">handyman</i>
-          </div>
-          <h2 class="toc__title">Helpers</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="copy">
-              <i class="material-icons-outlined">content_copy</i>
-              Copy
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="download">
-              <i class="material-icons-outlined">download</i>
-              Download
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="scroll">
-              <i class="material-icons-outlined">arrow_upward</i>
-              Scroll
-            </a>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- Formatters -->
-      <section class="toc__section">
-        <div class="toc__header">
-          <div class="toc__icon">
-            <i class="material-icons-outlined">format_shapes</i>
-          </div>
-          <h2 class="toc__title">Formatters</h2>
-        </div>
-        <ul class="toc__list">
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="format-number">
-              <i class="material-icons-outlined">tag</i>
-              Number / Currency
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="format-date">
-              <i class="material-icons-outlined">event</i>
-              Date / Time
-            </a>
-          </li>
-          <li class="toc__item">
-            <a href="#" class="toc__link" data-demo="format-mask">
-              <i class="material-icons-outlined">visibility_off</i>
-              Masking
-            </a>
-          </li>
-        </ul>
-      </section>
-    </div>
-    
-    <!-- Quick Start -->
-    <section class="quickstart">
-      <h3 class="quickstart__title">
-        <i class="material-icons-outlined">rocket_launch</i>
-        Quick Start
-      </h3>
-      <div class="quickstart__code">
-<pre><span class="comment">// HTML</span>
-<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"dist/imcat-ui.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"dist/imcat-ui.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+        </section>
+        
+        <!-- Quick Start -->
+        <section id="quickstart" style="margin-top: 48px;">
+          <h2 style="font-size: 1.25rem; margin-bottom: 16px;">빠른 시작</h2>
+          <div class="demo-card">
+            <div class="demo-card__code">
+<pre><span class="code-comment">// 1. 파일 로드</span>
+&lt;<span class="code-keyword">link</span> rel="stylesheet" href="dist/imcat-ui.css"&gt;
+&lt;<span class="code-keyword">script</span> type="module" src="dist/imcat-ui.min.js"&gt;&lt;/script&gt;
 
-<span class="comment">// JavaScript</span>
-<span class="keyword">await</span> <span class="function">IMCAT.alert</span>(<span class="string">'Hello World!'</span>);
+<span class="code-comment">// 2. 단축 API 사용</span>
+<span class="code-keyword">await</span> <span class="code-function">IMCAT.alert</span>(<span class="code-string">'Hello World!'</span>);
 
-<span class="keyword">if</span> (<span class="keyword">await</span> <span class="function">IMCAT.confirm</span>(<span class="string">'Continue?'</span>)) {
-  <span class="keyword">await</span> <span class="function">IMCAT.toast.success</span>(<span class="string">'Done!'</span>);
+<span class="code-keyword">if</span> (<span class="code-keyword">await</span> <span class="code-function">IMCAT.confirm</span>(<span class="code-string">'계속하시겠습니까?'</span>)) {
+  <span class="code-function">IMCAT.toast.success</span>(<span class="code-string">'완료!'</span>);
 }
 
-<span class="comment">// 모듈 로드</span>
-<span class="keyword">const</span> Overlays = <span class="keyword">await</span> <span class="function">IMCAT.use</span>(<span class="string">'overlays'</span>);
-<span class="keyword">const</span> modal = <span class="keyword">new</span> Overlays.<span class="function">Modal</span>({ title: <span class="string">'Title'</span> });</pre>
+<span class="code-comment">// 3. 모듈 동적 로드</span>
+<span class="code-keyword">const</span> Overlays = <span class="code-keyword">await</span> <span class="code-function">IMCAT.use</span>(<span class="code-string">'overlays'</span>);
+<span class="code-keyword">const</span> modal = <span class="code-keyword">new</span> Overlays.<span class="code-function">Modal</span>({ 
+  title: <span class="code-string">'제목'</span>,
+  content: <span class="code-string">'내용'</span>
+});
+modal.<span class="code-function">show</span>();
+</pre>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+          <p>© 2025 IMCAT UI. MIT License.</p>
+        </footer>
       </div>
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 IMCAT UI. MIT License.</p>
-  </footer>
+    </main>
+  </div>
   
   <script src="../dist/imcat-ui.min.js"></script>
   <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const icon = themeToggle.querySelector('i');
+    // ========================================
+    // 사이드바 메뉴 동적 로드 (IMCAT DOM 사용)
+    // ========================================
+    async function loadSidebarMenu() {
+      try {
+        const response = await fetch('data/menu.json');
+        const data = await response.json();
+        
+        const nav = document.getElementById('sidebarNav');
+        
+        data.sections.forEach(section => {
+          // 섹션 컨테이너
+          const sectionDiv = document.createElement('div');
+          sectionDiv.className = 'toc-section';
+          
+          // 섹션 헤더
+          const header = document.createElement('div');
+          header.className = 'toc-section__header';
+          header.textContent = section.title;
+          sectionDiv.appendChild(header);
+          
+          // 아이템 목록
+          const ul = document.createElement('ul');
+          ul.className = 'toc-section__list';
+          
+          section.items.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'toc-item';
+            
+            const link = document.createElement('a');
+            link.className = 'toc-item__link' + (item.active ? ' is-active' : '');
+            
+            // SPA 뷰가 있으면 catui-href 사용, 없으면 해시 링크
+            if (item.view) {
+              link.href = '#';
+              link.setAttribute('catui-href', item.view);
+            } else {
+              link.href = `#${item.id}`;
+            }
+            
+            const icon = document.createElement('i');
+            icon.className = 'material-icons-outlined toc-item__icon';
+            icon.textContent = item.icon;
+            
+            link.appendChild(icon);
+            link.appendChild(document.createTextNode(item.text));
+            
+            // 배지가 있으면 추가
+            if (item.badge) {
+              const badge = document.createElement('span');
+              badge.className = 'toc-item__badge';
+              badge.textContent = item.badge;
+              link.appendChild(badge);
+            }
+            
+            li.appendChild(link);
+            ul.appendChild(li);
+          });
+          
+          sectionDiv.appendChild(ul);
+          nav.appendChild(sectionDiv);
+        });
+        
+        // 메뉴 로드 후 이벤트 바인딩
+        initMenuEvents();
+        
+      } catch (error) {
+        console.error('메뉴 로드 실패:', error);
+      }
+    }
     
-    themeToggle.addEventListener('click', () => {
+    // 메뉴 이벤트 초기화
+    function initMenuEvents() {
+      // Search
+      IMCAT('#searchInput').on('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        IMCAT('.toc-item').each(item => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+      
+      // Active link
+      IMCAT('.toc-item__link').each(link => {
+        link.addEventListener('click', () => {
+          IMCAT('.toc-item__link').each(l => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+          
+          // Close mobile menu
+          IMCAT('#sidebar').removeClass('is-open');
+          IMCAT('#backdrop').removeClass('is-visible');
+        });
+      });
+    }
+    
+    // 페이지 로드 시 메뉴 로드
+    loadSidebarMenu();
+    
+    // SPA 라우팅 후 메뉴 활성화 업데이트
+    IMCAT.view.afterLoad((path) => {
+      // 모든 메뉴 비활성화
+      IMCAT('.toc-item__link').each(link => {
+        link.classList.remove('is-active');
+      });
+      
+      // 현재 경로와 일치하는 메뉴 활성화
+      IMCAT(`[catui-href="${path}"]`).each(link => {
+        link.classList.add('is-active');
+      });
+      
+      // 모바일 메뉴 닫기
+      IMCAT('#sidebar').removeClass('is-open');
+      IMCAT('#backdrop').removeClass('is-visible');
+    });
+    
+    // ========================================
+    // Theme Toggle
+    // ========================================
+    IMCAT('#themeToggle').on('click', () => {
       const isDark = document.documentElement.dataset.theme === 'dark';
       document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
-      icon.textContent = isDark ? 'dark_mode' : 'light_mode';
+      IMCAT('#themeToggle i').text(isDark ? 'dark_mode' : 'light_mode');
     });
     
-    // Demo handlers
-    const demos = {
-      // Dialogs
-      async alert() {
-        await IMCAT.alert('안녕하세요! IMCAT UI입니다.');
-      },
-      async confirm() {
-        const result = await IMCAT.confirm('이 작업을 계속하시겠습니까?');
-        await IMCAT.toast[result ? 'success' : 'info'](result ? '확인됨' : '취소됨');
-      },
-      async prompt() {
-        const name = await IMCAT.prompt('이름을 입력하세요', { defaultValue: 'IMCAT' });
-        if (name) {
-          await IMCAT.alert(`안녕하세요, ${name}님!`);
-        }
-      },
-      async modal() {
-        const Overlays = await IMCAT.use('overlays');
-        const modal = new Overlays.Modal({
-          title: '모달 예제',
-          content: '<p>이것은 모달 내용입니다.</p><p>HTML을 자유롭게 사용할 수 있습니다.</p>',
-          size: 'md',
-          buttons: [
-            { text: '닫기', variant: 'secondary', close: true },
-            { text: '확인', variant: 'primary', close: true }
-          ]
-        });
-        modal.show();
-      },
-      
-      // Feedback
-      async toast() {
-        await IMCAT.toast.success('성공 메시지');
-        setTimeout(() => IMCAT.toast.warning('경고 메시지'), 500);
-        setTimeout(() => IMCAT.toast.error('오류 메시지'), 1000);
-        setTimeout(() => IMCAT.toast.info('정보 메시지'), 1500);
-      },
-      async notification() {
-        await IMCAT.notify.success('알림이 성공적으로 전송되었습니다.', '성공');
-      },
-      async loading() {
-        IMCAT.loading.show('로딩 중...');
-        setTimeout(() => IMCAT.loading.hide(), 2000);
-      },
-      
-      // Overlays
-      async drawer() {
-        const Overlays = await IMCAT.use('overlays');
-        const drawer = new Overlays.Drawer({
-          title: '드로어 메뉴',
-          content: `
-            <nav style="padding: 8px 0;">
-              <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 1</a>
-              <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 2</a>
-              <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 3</a>
-            </nav>
-          `,
-          position: 'right',
-          width: '300px'
-        });
-        drawer.show();
-      },
-      async dropdown() {
-        await IMCAT.alert('드롭다운은 HTML 요소에 바인딩하여 사용합니다.\n\nIMCAT.dropdown(trigger, { items: [...] })');
-      },
-      async tooltip() {
-        await IMCAT.alert('툴팁은 HTML 요소에 바인딩하여 사용합니다.\n\nIMCAT.tooltip(element, "툴팁 내용")');
-      },
-      
-      // Helpers
-      async copy() {
-        await IMCAT.copy('복사된 텍스트입니다!');
-        await IMCAT.toast.success('클립보드에 복사되었습니다');
-      },
-      async download() {
-        const data = [
-          { name: '홍길동', age: 30 },
-          { name: '김철수', age: 25 }
-        ];
-        IMCAT.downloadJSON(data, 'sample.json');
-        await IMCAT.toast.success('JSON 파일 다운로드');
-      },
-      async scroll() {
-        IMCAT.scrollTop();
-        await IMCAT.toast.info('페이지 최상단으로 스크롤');
-      },
-      
-      // Formatters
-      async 'format-number'() {
-        const examples = [
-          `IMCAT.format.number(1234567) → ${IMCAT.format.number(1234567)}`,
-          `IMCAT.format.currency(50000) → ${IMCAT.format.currency(50000)}`,
-          `IMCAT.format.percent(75) → ${IMCAT.format.percent(75)}`,
-          `IMCAT.format.bytes(1536) → ${IMCAT.format.bytes(1536)}`
-        ].join('\n');
-        await IMCAT.alert(examples, { title: 'Number Formatters' });
-      },
-      async 'format-date'() {
-        const now = new Date();
-        const examples = [
-          `IMCAT.format.date(now) → ${IMCAT.format.date(now)}`,
-          `IMCAT.format.time(now) → ${IMCAT.format.time(now)}`,
-          `IMCAT.format.datetime(now) → ${IMCAT.format.datetime(now)}`,
-          `IMCAT.format.relative(past) → ${IMCAT.format.relative(new Date(Date.now() - 3600000))}`
-        ].join('\n');
-        await IMCAT.alert(examples, { title: 'Date Formatters' });
-      },
-      async 'format-mask'() {
-        const examples = [
-          `IMCAT.format.phone('01012345678') → ${IMCAT.format.phone('01012345678')}`,
-          `IMCAT.format.maskEmail('user@test.com') → ${IMCAT.format.maskEmail('user@test.com')}`,
-          `IMCAT.format.maskName('홍길동') → ${IMCAT.format.maskName('홍길동')}`,
-          `IMCAT.format.cardNo('1234567890123456') → ${IMCAT.format.cardNo('1234567890123456')}`
-        ].join('\n');
-        await IMCAT.alert(examples, { title: 'Masking Formatters' });
-      },
-      
-      // Core
-      async dom() {
-        await IMCAT.alert('IMCAT("selector") - jQuery 스타일 DOM 선택\n\nIMCAT("#app").addClass("active").text("Hello")');
-      },
-      async router() {
-        await IMCAT.alert('IMCAT.view - SPA 라우터\n\nIMCAT.view.navigate("views/page.html")\nIMCAT.view.params() // URL 파라미터');
-      },
-      async events() {
-        await IMCAT.alert('IMCAT.on / IMCAT.emit - 이벤트 버스\n\nIMCAT.on("event", handler)\nIMCAT.emit("event", data)');
-      },
-      async config() {
-        const settings = JSON.stringify(IMCAT.config(), null, 2);
-        await IMCAT.alert(`현재 설정:\n\n${settings.substring(0, 500)}...`, { title: 'Config' });
-      }
-    };
+    // ========================================
+    // Mobile Menu Toggle
+    // ========================================
+    IMCAT('#menuToggle').on('click', () => {
+      IMCAT('#sidebar').toggleClass('is-open');
+      IMCAT('#backdrop').toggleClass('is-visible');
+    });
     
-    // Bind demo links
-    document.querySelectorAll('[data-demo]').forEach(link => {
-      link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const demo = link.dataset.demo;
-        if (demos[demo]) {
-          await demos[demo]();
-        }
+    IMCAT('#backdrop').on('click', () => {
+      IMCAT('#sidebar').removeClass('is-open');
+      IMCAT('#backdrop').removeClass('is-visible');
+    });
+    
+    // Demo Functions
+    async function demoAlert() {
+      await IMCAT.alert('안녕하세요! IMCAT UI입니다.');
+    }
+    
+    async function demoConfirm() {
+      const result = await IMCAT.confirm('이 작업을 계속하시겠습니까?');
+      IMCAT.toast[result ? 'success' : 'info'](result ? '확인됨' : '취소됨');
+    }
+    
+    async function demoToast() {
+      IMCAT.toast.success('성공 메시지');
+      setTimeout(() => IMCAT.toast.warning('경고 메시지'), 500);
+      setTimeout(() => IMCAT.toast.error('오류 메시지'), 1000);
+      setTimeout(() => IMCAT.toast.info('정보 메시지'), 1500);
+    }
+    
+    async function demoModal() {
+      const Overlays = await IMCAT.use('overlays');
+      const modal = new Overlays.Modal({
+        title: '모달 예제',
+        content: '<p>이것은 모달 내용입니다.</p><p>HTML을 자유롭게 사용할 수 있습니다.</p>',
+        size: 'md',
+        buttons: [
+          { text: '닫기', variant: 'secondary', close: true },
+          { text: '확인', variant: 'primary', close: true }
+        ]
       });
-    });
+      modal.show();
+    }
+    
+    async function demoDrawer() {
+      const Overlays = await IMCAT.use('overlays');
+      const drawer = new Overlays.Drawer({
+        title: '드로어 메뉴',
+        content: `
+          <nav style="padding: 8px 0;">
+            <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 1</a>
+            <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 2</a>
+            <a href="#" style="display: block; padding: 12px 16px; color: var(--text-primary); text-decoration: none;">메뉴 3</a>
+          </nav>
+        `,
+        position: 'right',
+        width: '300px'
+      });
+      drawer.show();
+    }
+    
+    async function demoLoading() {
+      IMCAT.loading.show('로딩 중...');
+      setTimeout(() => IMCAT.loading.hide(), 2000);
+    }
   </script>
 </body>
 </html>

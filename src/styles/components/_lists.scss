@@ -1,0 +1,337 @@
+// ============================================
+// Lists Component SCSS
+// 목록 스타일 시스템
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$list-item-padding: 0.75rem 1rem;
+$list-item-padding-sm: 0.5rem 0.75rem;
+$list-item-padding-lg: 1rem 1.25rem;
+$list-border-color: var(--border-color, $border-color);
+$list-border-radius: 8px;
+
+// ============================================
+// Base List
+// ============================================
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// ============================================
+// List Item
+// ============================================
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: $list-item-padding;
+  color: var(--text-primary, $text-primary);
+  text-decoration: none;
+  transition: background 150ms ease-in-out;
+
+  // Clickable item
+  &[href],
+  &.list__item--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: var(--bg-secondary, $bg-secondary);
+    }
+
+    &:active {
+      background: var(--bg-tertiary, $bg-tertiary);
+    }
+  }
+
+  // Active state
+  &.is-active {
+    background: rgba($primary, 0.1);
+    color: var(--primary, $primary);
+  }
+
+  // Disabled state
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// List Item Parts
+// ============================================
+
+// Icon/Avatar
+.list__icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary, $bg-tertiary);
+  border-radius: 50%;
+  color: var(--text-secondary, $text-secondary);
+
+  i {
+    font-size: 1.25rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+// Content
+.list__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary, $text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list__subtitle {
+  margin: 0.125rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, $text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Meta (right side)
+.list__meta {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text-tertiary, $text-tertiary);
+  text-align: right;
+}
+
+// Actions
+.list__actions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+
+  .list__item:hover & {
+    opacity: 1;
+  }
+}
+
+// ============================================
+// Variants
+// ============================================
+
+// Bordered
+.list--bordered {
+  border: 1px solid $list-border-color;
+  border-radius: $list-border-radius;
+  overflow: hidden;
+
+  .list__item {
+    border-bottom: 1px solid $list-border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Divided (lines between items)
+.list--divided {
+  .list__item {
+    border-bottom: 1px solid $list-border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Flush (no padding on sides)
+.list--flush {
+  .list__item {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// Hoverable
+.list--hoverable {
+  .list__item:hover {
+    background: var(--bg-secondary, $bg-secondary);
+  }
+}
+
+// ============================================
+// Sizes
+// ============================================
+
+// Small
+.list--sm {
+  .list__item {
+    padding: $list-item-padding-sm;
+    gap: 0.5rem;
+  }
+
+  .list__icon {
+    width: 2rem;
+    height: 2rem;
+
+    i {
+      font-size: 1rem;
+    }
+  }
+
+  .list__title {
+    font-size: 0.875rem;
+  }
+
+  .list__subtitle {
+    font-size: 0.75rem;
+  }
+}
+
+// Large
+.list--lg {
+  .list__item {
+    padding: $list-item-padding-lg;
+    gap: 1rem;
+  }
+
+  .list__icon {
+    width: 3rem;
+    height: 3rem;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  .list__title {
+    font-size: 1rem;
+  }
+}
+
+// ============================================
+// Inline List
+// ============================================
+.list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .list__item {
+    padding: 0;
+  }
+}
+
+// ============================================
+// Ordered/Numbered List
+// ============================================
+.list--numbered {
+  counter-reset: list-counter;
+
+  .list__item {
+    counter-increment: list-counter;
+
+    &::before {
+      content: counter(list-counter) ".";
+      flex-shrink: 0;
+      min-width: 1.5rem;
+      font-weight: 500;
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+}
+
+// ============================================
+// Bullet List
+// ============================================
+.list--bullet {
+  .list__item {
+    &::before {
+      content: '•';
+      flex-shrink: 0;
+      min-width: 1rem;
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+}
+
+// ============================================
+// Check List
+// ============================================
+.list--check {
+  .list__item {
+    &::before {
+      content: '✓';
+      flex-shrink: 0;
+      min-width: 1.25rem;
+      color: $success;
+      font-weight: 600;
+    }
+
+    &.is-unchecked::before {
+      content: '○';
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+}
+
+// ============================================
+// Description List
+// ============================================
+.dl {
+  margin: 0;
+
+  dt {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary, $text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  dd {
+    margin: 0 0 1rem;
+    font-size: 0.9375rem;
+    color: var(--text-primary, $text-primary);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Horizontal Description List
+.dl--horizontal {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: 0.5rem 1rem;
+
+  dt {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  dd {
+    margin-bottom: 0;
+  }
+}

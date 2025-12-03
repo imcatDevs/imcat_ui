@@ -1,0 +1,215 @@
+<!-- Buttons -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Buttons</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Buttons</h1>
+  <p class="page-description">다양한 스타일과 크기의 버튼 컴포넌트</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Basic Buttons -->
+<div class="demo-card" id="section-basic">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Basic Buttons</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group" style="flex-wrap: wrap;">
+      <button class="btn btn--primary">Primary</button>
+      <button class="btn btn--secondary">Secondary</button>
+      <button class="btn btn--success">Success</button>
+      <button class="btn btn--danger">Danger</button>
+      <button class="btn btn--warning">Warning</button>
+      <button class="btn btn--info">Info</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;button class="btn btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn--secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn--success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn--danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn--warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn--info"&gt;Info&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Outline Buttons -->
+<div class="demo-card" id="section-outline">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Outline Buttons</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group" style="flex-wrap: wrap;">
+      <button class="btn btn--outline">Outline</button>
+      <button class="btn btn--outline-primary">Primary</button>
+      <button class="btn btn--outline-success">Success</button>
+      <button class="btn btn--outline-danger">Danger</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;button class="btn btn--outline"&gt;Outline&lt;/button&gt;
+&lt;button class="btn btn--outline-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn--outline-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn--outline-danger"&gt;Danger&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Button Sizes -->
+<div class="demo-card" id="section-sizes">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Button Sizes</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group" style="align-items: center; flex-wrap: wrap;">
+      <button class="btn btn--primary btn--sm">Small</button>
+      <button class="btn btn--primary">Default</button>
+      <button class="btn btn--primary btn--lg">Large</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;button class="btn btn--primary btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn--primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn--primary btn--lg"&gt;Large&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Icon Buttons -->
+<div class="demo-card" id="section-icon">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Icon Buttons</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group" style="flex-wrap: wrap;">
+      <button class="btn btn--primary">
+        <i class="material-icons-outlined">add</i> 추가
+      </button>
+      <button class="btn btn--secondary">
+        <i class="material-icons-outlined">edit</i> 수정
+      </button>
+      <button class="btn btn--danger">
+        <i class="material-icons-outlined">delete</i> 삭제
+      </button>
+      <button class="btn btn--icon btn--primary">
+        <i class="material-icons-outlined">favorite</i>
+      </button>
+      <button class="btn btn--icon btn--outline">
+        <i class="material-icons-outlined">settings</i>
+      </button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;button class="btn btn--primary"&gt;
+  &lt;i class="material-icons-outlined"&gt;add&lt;/i&gt; 추가
+&lt;/button&gt;
+
+&lt;button class="btn btn--icon btn--primary"&gt;
+  &lt;i class="material-icons-outlined"&gt;favorite&lt;/i&gt;
+&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Button States -->
+<div class="demo-card" id="section-states">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Button States</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group" style="flex-wrap: wrap;">
+      <button class="btn btn--primary">Normal</button>
+      <button class="btn btn--primary" disabled>Disabled</button>
+      <button class="btn btn--primary is-loading">Loading</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;button class="btn btn--primary"&gt;Normal&lt;/button&gt;
+&lt;button class="btn btn--primary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="btn btn--primary is-loading"&gt;Loading&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Button Group -->
+<div class="demo-card" id="section-group">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Button Group</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="btn-group">
+      <button class="btn btn--primary">Left</button>
+      <button class="btn btn--primary">Center</button>
+      <button class="btn btn--primary">Right</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="btn-group"&gt;
+  &lt;button class="btn btn--primary"&gt;Left&lt;/button&gt;
+  &lt;button class="btn btn--primary"&gt;Center&lt;/button&gt;
+  &lt;button class="btn btn--primary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-basic" class="doc-toc__link is-active">Basic</a></li>
+      <li class="doc-toc__item"><a href="#section-outline" class="doc-toc__link">Outline</a></li>
+      <li class="doc-toc__item"><a href="#section-sizes" class="doc-toc__link">Sizes</a></li>
+      <li class="doc-toc__item"><a href="#section-icon" class="doc-toc__link">Icon</a></li>
+      <li class="doc-toc__item"><a href="#section-states" class="doc-toc__link">States</a></li>
+      <li class="doc-toc__item"><a href="#section-group" class="doc-toc__link">Group</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>

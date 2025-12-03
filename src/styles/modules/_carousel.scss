@@ -1,0 +1,504 @@
+// ============================================
+// Carousel Module SCSS
+// Carousel, Lightbox
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Carousel
+// ============================================
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: $component-carousel-container-overflow;
+  border-radius: $component-carousel-container-border-radius;
+
+  // Track
+  &__track {
+    display: flex;
+    transition: transform 500ms $ease-in-out;
+  }
+
+  // Slide
+  &__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    background: $component-carousel-slide-background;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  // Multiple slides visible
+  &--multiple {
+    .carousel__slide {
+      flex: 0 0 calc(100% / var(--slides-visible, 3));
+      padding: 0 0.5rem;
+    }
+  }
+
+  // Navigation arrows
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $component-carousel-arrow-size;
+    height: $component-carousel-arrow-size;
+    padding: 0;
+    border: none;
+    background: $component-carousel-arrow-background;
+    border-radius: $component-carousel-arrow-border-radius;
+    box-shadow: $component-carousel-arrow-shadow;
+    color: $component-carousel-arrow-color;
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      background: $component-carousel-arrow-hover-background;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary, $primary);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--prev {
+      left: 1rem;
+    }
+
+    &--next {
+      right: 1rem;
+    }
+  }
+
+  // Inside arrows (over image)
+  &--arrows-inside {
+    .carousel__arrow {
+      background: rgba(255, 255, 255, 0.9);
+
+      &:hover {
+        background: white;
+      }
+    }
+  }
+
+  // Outside arrows
+  &--arrows-outside {
+    padding: 0 3.5rem;
+
+    .carousel__arrow--prev {
+      left: 0;
+    }
+
+    .carousel__arrow--next {
+      right: 0;
+    }
+  }
+
+  // Indicators / Dots
+  &__indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: $component-carousel-indicator-gap;
+    z-index: 10;
+  }
+
+  &__indicator {
+    width: $component-carousel-indicator-size;
+    height: $component-carousel-indicator-size;
+    padding: 0;
+    border: none;
+    background: $component-carousel-indicator-color-default;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      background: rgba($primary, 0.5);
+    }
+
+    &.is-active {
+      background: $component-carousel-indicator-color-active;
+      width: 1.5rem;
+      border-radius: 0.25rem;
+    }
+  }
+
+  // Indicator variants
+  &--indicators-line {
+    .carousel__indicator {
+      width: 1.5rem;
+      height: 0.25rem;
+      border-radius: 0.125rem;
+
+      &.is-active {
+        width: 2rem;
+      }
+    }
+  }
+
+  &--indicators-outside {
+    padding-bottom: 2rem;
+
+    .carousel__indicators {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+
+  // Thumbnails
+  &__thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--border-color, $border-color);
+      border-radius: 2px;
+    }
+  }
+
+  &__thumbnail {
+    flex: 0 0 auto;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: $component-badge-size-md-border-radius;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color $duration-fast $ease-in-out;
+
+    &:hover {
+      border-color: var(--border-color, $border-color);
+    }
+
+    &.is-active {
+      border-color: var(--primary, $primary);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Autoplay indicator
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+
+    &-bar {
+      height: 100%;
+      background: var(--primary, $primary);
+      width: 0;
+      transition: width linear;
+    }
+  }
+
+  // Fade effect
+  &--fade {
+    .carousel__track {
+      display: block;
+      transition: none;
+    }
+
+    .carousel__slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 500ms $ease-in-out;
+
+      &.is-active {
+        position: relative;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ============================================
+// Lightbox
+// ============================================
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $component-lightbox-overlay-background;
+  opacity: 0;
+  visibility: hidden;
+  transition: 
+    opacity 300ms $ease-in-out,
+    visibility 300ms;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // Close button
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $component-lightbox-close-size;
+    height: $component-lightbox-close-size;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $component-lightbox-close-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity $duration-fast $ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  // Image container
+  &__content {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: calc(90vh - 4rem);
+    object-fit: contain;
+    border-radius: $component-badge-size-md-border-radius;
+  }
+
+  // Caption
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $component-lightbox-caption-padding;
+    background: $component-lightbox-caption-background;
+    color: $component-lightbox-caption-color;
+    text-align: center;
+
+    &-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    &-description {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+  }
+
+  // Navigation
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    &--prev {
+      left: 1rem;
+    }
+
+    &--next {
+      right: 1rem;
+    }
+  }
+
+  // Counter
+  &__counter {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: $component-badge-size-md-border-radius;
+    color: white;
+    font-size: 0.875rem;
+  }
+
+  // Thumbnails strip
+  &__thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: $component-badge-size-md-border-radius;
+    overflow-x: auto;
+    max-width: 90vw;
+  }
+
+  &__thumbnail {
+    flex: 0 0 auto;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: $component-badge-size-sm-border-radius;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.is-active {
+      border-color: white;
+      opacity: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Zoom controls
+  &__zoom {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: none;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      transition: background $duration-fast $ease-in-out;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+// ============================================
+// Gallery Grid (for lightbox trigger)
+// ============================================
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+
+  &__item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: $component-badge-size-md-border-radius;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background $duration-fast $ease-in-out;
+    }
+
+    &:hover::after {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $duration-base $ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  // Masonry layout
+  &--masonry {
+    display: block;
+    column-count: 3;
+    column-gap: 0.5rem;
+
+    .gallery__item {
+      break-inside: avoid;
+      margin-bottom: 0.5rem;
+      aspect-ratio: auto;
+    }
+  }
+}

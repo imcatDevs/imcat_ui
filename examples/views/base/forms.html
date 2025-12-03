@@ -1,0 +1,222 @@
+<!-- Forms -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Forms</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Forms</h1>
+  <p class="page-description">폼 요소 및 입력 컴포넌트</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Input -->
+<div class="demo-card" id="section-input">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Input</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
+      <div class="form-group">
+        <label class="form-label">이름</label>
+        <input type="text" class="form-input" placeholder="이름을 입력하세요">
+      </div>
+      <div class="form-group">
+        <label class="form-label">이메일</label>
+        <input type="email" class="form-input" placeholder="email@example.com">
+        <small class="form-text">유효한 이메일 주소를 입력하세요.</small>
+      </div>
+      <div class="form-group">
+        <label class="form-label">비밀번호</label>
+        <input type="password" class="form-input" placeholder="********">
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="form-group"&gt;
+  &lt;label class="form-label"&gt;이름&lt;/label&gt;
+  &lt;input type="text" class="form-input" placeholder="이름을 입력하세요"&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Input States -->
+<div class="demo-card" id="section-states">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Input States</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
+      <input type="text" class="form-input" placeholder="Default">
+      <input type="text" class="form-input is-valid" placeholder="Valid" value="올바른 입력">
+      <input type="text" class="form-input is-invalid" placeholder="Invalid" value="잘못된 입력">
+      <input type="text" class="form-input" placeholder="Disabled" disabled>
+      <input type="text" class="form-input" placeholder="Readonly" readonly value="읽기 전용">
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;input class="form-input" placeholder="Default"&gt;
+&lt;input class="form-input is-valid" value="Valid"&gt;
+&lt;input class="form-input is-invalid" value="Invalid"&gt;
+&lt;input class="form-input" disabled&gt;
+&lt;input class="form-input" readonly&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Select -->
+<div class="demo-card" id="section-select">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Select</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="max-width: 400px;">
+      <div class="form-group">
+        <label class="form-label">옵션 선택</label>
+        <select class="form-select">
+          <option value="">선택하세요</option>
+          <option value="1">옵션 1</option>
+          <option value="2">옵션 2</option>
+          <option value="3">옵션 3</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;select class="form-select"&gt;
+  &lt;option value=""&gt;선택하세요&lt;/option&gt;
+  &lt;option value="1"&gt;옵션 1&lt;/option&gt;
+  &lt;option value="2"&gt;옵션 2&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="demo-card" id="section-textarea">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Textarea</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="max-width: 400px;">
+      <div class="form-group">
+        <label class="form-label">메시지</label>
+        <textarea class="form-textarea" rows="4" placeholder="내용을 입력하세요"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;textarea class="form-textarea" rows="4" placeholder="내용을 입력하세요"&gt;&lt;/textarea&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Checkbox & Radio -->
+<div class="demo-card" id="section-check">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Checkbox & Radio</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; gap: 48px;">
+      <div>
+        <p class="mb-3" style="font-weight: 600;">Checkbox</p>
+        <div class="form-check">
+          <input type="checkbox" id="check1" class="form-check-input" checked>
+          <label for="check1" class="form-check-label">옵션 1</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="check2" class="form-check-input">
+          <label for="check2" class="form-check-label">옵션 2</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="check3" class="form-check-input" disabled>
+          <label for="check3" class="form-check-label">비활성화</label>
+        </div>
+      </div>
+      <div>
+        <p class="mb-3" style="font-weight: 600;">Radio</p>
+        <div class="form-check">
+          <input type="radio" name="radio" id="radio1" class="form-check-input" checked>
+          <label for="radio1" class="form-check-label">옵션 A</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="radio" id="radio2" class="form-check-input">
+          <label for="radio2" class="form-check-label">옵션 B</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="radio" id="radio3" class="form-check-input" disabled>
+          <label for="radio3" class="form-check-label">비활성화</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="form-check"&gt;
+  &lt;input type="checkbox" id="check1" class="form-check-input" checked&gt;
+  &lt;label for="check1" class="form-check-label"&gt;옵션 1&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="form-check"&gt;
+  &lt;input type="radio" name="radio" id="radio1" class="form-check-input"&gt;
+  &lt;label for="radio1" class="form-check-label"&gt;옵션 A&lt;/label&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-input" class="doc-toc__link is-active">Input</a></li>
+      <li class="doc-toc__item"><a href="#section-states" class="doc-toc__link">States</a></li>
+      <li class="doc-toc__item"><a href="#section-select" class="doc-toc__link">Select</a></li>
+      <li class="doc-toc__item"><a href="#section-textarea" class="doc-toc__link">Textarea</a></li>
+      <li class="doc-toc__item"><a href="#section-check" class="doc-toc__link">Check & Radio</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>

@@ -1,0 +1,506 @@
+// ============================================
+// Selectors Module SCSS
+// Autocomplete, MultiSelect, Transfer
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Autocomplete
+// ============================================
+.autocomplete {
+  position: relative;
+
+  &__input {
+    width: 100%;
+    padding: 0.625rem $component-autocomplete-input-padding-right 0.625rem 0.875rem;
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-autocomplete-dropdown-border-radius;
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+    background: var(--bg-primary, $bg-primary);
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+
+    &::placeholder {
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary, $text-tertiary);
+    pointer-events: none;
+  }
+
+  &__clear {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    padding: 0.25rem;
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary, $text-tertiary);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-primary, $text-primary);
+    }
+  }
+
+  &:hover .autocomplete__clear {
+    display: block;
+  }
+
+  // Dropdown
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1055;
+    max-height: $component-autocomplete-dropdown-max-height;
+    overflow-y: auto;
+    margin-top: 0.25rem;
+    background: $component-autocomplete-dropdown-background;
+    border: 1px solid $component-autocomplete-dropdown-border;
+    border-radius: $component-autocomplete-dropdown-border-radius;
+    box-shadow: $component-autocomplete-dropdown-shadow;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: 
+      opacity 200ms $ease-in-out,
+      transform 200ms $ease-in-out,
+      visibility 200ms;
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  // Item
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: $component-autocomplete-item-padding;
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: $component-autocomplete-item-hover;
+    }
+
+    &.is-selected {
+      background: $component-autocomplete-item-selected;
+    }
+
+    &.is-highlighted {
+      background: $component-autocomplete-item-hover;
+    }
+
+    &--disabled {
+      color: var(--text-disabled, $text-disabled);
+      cursor: not-allowed;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+
+  // Highlight match
+  &__highlight {
+    font-weight: $component-autocomplete-highlight-font-weight;
+    color: $component-autocomplete-highlight-color;
+  }
+
+  // No results
+  &__empty {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary, $text-secondary);
+    font-size: 0.875rem;
+  }
+
+  // Loading
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  // Group
+  &__group-header {
+    padding: 0.5rem $component-autocomplete-item-padding;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary, $text-tertiary);
+    background: var(--bg-secondary, $bg-secondary);
+  }
+}
+
+// ============================================
+// MultiSelect
+// ============================================
+.multiselect {
+  position: relative;
+
+  &__control {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $component-multi-select-tag-gap;
+    min-height: 2.5rem;
+    padding: 0.375rem 2.5rem 0.375rem 0.5rem;
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-autocomplete-dropdown-border-radius;
+    background: var(--bg-primary, $bg-primary);
+    cursor: text;
+    transition: border-color $duration-fast $ease-in-out;
+
+    &:focus-within {
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__input {
+    flex: 1;
+    min-width: $component-multi-select-input-min-width;
+    padding: 0.25rem;
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+    outline: none;
+
+    &::placeholder {
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  // Tag
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: $component-multi-select-tag-padding;
+    background: $component-multi-select-tag-background;
+    border-radius: $component-multi-select-tag-border-radius;
+    font-size: $component-multi-select-tag-font-size;
+    color: var(--text-primary, $text-primary);
+
+    &-remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      padding: 0;
+      border: none;
+      background: transparent;
+      border-radius: 50%;
+      color: var(--text-secondary, $text-secondary);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all $duration-fast $ease-in-out;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--text-primary, $text-primary);
+      }
+    }
+  }
+
+  // Icons
+  &__icons {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__clear,
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary, $text-tertiary);
+    cursor: pointer;
+    transition: color $duration-fast $ease-in-out;
+
+    &:hover {
+      color: var(--text-primary, $text-primary);
+    }
+  }
+
+  // Dropdown (same as autocomplete)
+  &__dropdown {
+    @extend .autocomplete__dropdown;
+  }
+
+  &__item {
+    @extend .autocomplete__item;
+  }
+
+  // Checkbox style
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+    }
+
+    input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--primary, $primary);
+    }
+
+    span {
+      flex: 1;
+      font-size: 0.875rem;
+      color: var(--text-primary, $text-primary);
+    }
+  }
+}
+
+// ============================================
+// Transfer List
+// ============================================
+.transfer {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+
+  // List container
+  &__list {
+    width: $component-transfer-list-list-width;
+    height: $component-transfer-list-list-height;
+    background: $component-transfer-list-list-background;
+    border: 1px solid $component-transfer-list-list-border;
+    border-radius: $component-transfer-list-list-border-radius;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $component-transfer-list-header-padding;
+    border-bottom: 1px solid $component-transfer-list-header-border-bottom;
+
+    &-title {
+      font-size: $component-transfer-list-header-font-size;
+      font-weight: $component-transfer-list-header-font-weight;
+      color: var(--text-primary, $text-primary);
+    }
+
+    &-count {
+      font-size: 0.75rem;
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  // Search
+  &__search {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color, $border-color);
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-autocomplete-dropdown-border-radius;
+      font-size: 0.8125rem;
+      background: var(--bg-secondary, $bg-secondary);
+      color: var(--text-primary, $text-primary);
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary, $primary);
+      }
+
+      &::placeholder {
+        color: var(--text-tertiary, $text-tertiary);
+      }
+    }
+  }
+
+  // Items container
+  &__items {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  // Item
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: $component-transfer-list-item-padding;
+    font-size: $component-transfer-list-item-font-size;
+    color: var(--text-primary, $text-primary);
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+    }
+
+    &.is-selected {
+      background: rgba($primary, 0.1);
+    }
+
+    input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--primary, $primary);
+    }
+  }
+
+  // Controls
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $component-transfer-list-controls-gap;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--border-color, $border-color);
+    background: var(--bg-primary, $bg-primary);
+    border-radius: $component-button-size-md-border-radius;
+    color: var(--text-secondary, $text-secondary);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover:not(:disabled) {
+      background: var(--bg-tertiary, $bg-tertiary);
+      border-color: var(--primary, $primary);
+      color: var(--primary, $primary);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ============================================
+// Range Slider
+// ============================================
+.range-slider {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+
+  &__track {
+    position: relative;
+    height: 0.375rem;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: 0.1875rem;
+  }
+
+  &__fill {
+    position: absolute;
+    height: 100%;
+    background: var(--primary, $primary);
+    border-radius: 0.1875rem;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--bg-primary, $bg-primary);
+    border: 2px solid var(--primary, $primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    transition: box-shadow $duration-fast $ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 0 4px rgba($primary, 0.1);
+    }
+
+    &:active {
+      cursor: grabbing;
+      box-shadow: 0 0 0 6px rgba($primary, 0.15);
+    }
+  }
+
+  &__value {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-inverse, $bg-inverse);
+    color: var(--text-inverse, $text-inverse);
+    font-size: 0.75rem;
+    border-radius: $component-badge-size-sm-border-radius;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $duration-fast $ease-in-out;
+  }
+
+  &__thumb:hover + &__value,
+  &__thumb:active + &__value {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // Labels
+  &__labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+}

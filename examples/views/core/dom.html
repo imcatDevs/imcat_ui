@@ -1,0 +1,460 @@
+<!-- DOM API 예제 -->
+<style>
+  .doc-layout {
+    display: flex;
+    gap: 24px;
+  }
+  .doc-main {
+    flex: 1;
+    min-width: 0;
+  }
+  .doc-toc {
+    width: 200px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+    align-self: flex-start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  .doc-toc__title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .doc-toc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .doc-toc__item {
+    margin-bottom: 4px;
+  }
+  .doc-toc__link {
+    display: block;
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
+  }
+  .doc-toc__link:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+  }
+  .doc-toc__link.is-active {
+    color: var(--primary);
+    border-left-color: var(--primary);
+    background: rgba(var(--primary-rgb, 79, 70, 229), 0.08);
+  }
+  @media (max-width: 1024px) {
+    .doc-toc { display: none; }
+  }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Core API</a></li>
+      <li class="breadcrumb-item active">DOM</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">DOM API</h1>
+  <p class="page-description">IMCAT UI의 경량 DOM 조작 유틸리티</p>
+</div>
+
+<div class="doc-layout">
+  <!-- Main Content -->
+  <div class="doc-main">
+
+<!-- 요소 선택 -->
+<div class="demo-card" id="section-select">
+  <div class="demo-card__header">
+    <span class="demo-card__title">요소 선택</span>
+  </div>
+  <div class="demo-card__body">
+    <p>IMCAT 함수로 DOM 요소를 선택합니다.</p>
+    <div id="demo-select-target" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; margin-bottom: 16px;">
+      선택된 요소입니다
+    </div>
+    <button class="btn btn--primary" onclick="demoSelect()">
+      <i class="material-icons-outlined">touch_app</i> 요소 선택
+    </button>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 단일 요소 선택</span>
+<span class="code-keyword">const</span> element = IMCAT(<span class="code-string">'#demo-select-target'</span>);
+
+<span class="code-comment">// 여러 요소 선택</span>
+<span class="code-keyword">const</span> buttons = IMCAT(<span class="code-string">'.btn'</span>);
+
+<span class="code-comment">// 요소 개수 확인</span>
+console.log(buttons.length);
+</pre>
+  </div>
+</div>
+
+<!-- 클래스 조작 -->
+<div class="demo-card" id="section-class">
+  <div class="demo-card__header">
+    <span class="demo-card__title">클래스 조작</span>
+  </div>
+  <div class="demo-card__body">
+    <div id="demo-class-target" class="demo-box" style="padding: 24px; background: var(--bg-secondary); border-radius: 4px; margin-bottom: 16px; transition: all 0.3s;">
+      클래스가 토글됩니다
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="demoAddClass()">addClass</button>
+      <button class="btn btn--secondary" onclick="demoRemoveClass()">removeClass</button>
+      <button class="btn btn--outline" onclick="demoToggleClass()">toggleClass</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 클래스 추가</span>
+IMCAT(<span class="code-string">'#target'</span>).addClass(<span class="code-string">'active'</span>);
+
+<span class="code-comment">// 클래스 제거</span>
+IMCAT(<span class="code-string">'#target'</span>).removeClass(<span class="code-string">'active'</span>);
+
+<span class="code-comment">// 클래스 토글</span>
+IMCAT(<span class="code-string">'#target'</span>).toggleClass(<span class="code-string">'active'</span>);
+
+<span class="code-comment">// 클래스 존재 확인</span>
+IMCAT(<span class="code-string">'#target'</span>).hasClass(<span class="code-string">'active'</span>);
+</pre>
+  </div>
+</div>
+
+<!-- 속성 조작 -->
+<div class="demo-card" id="section-attr">
+  <div class="demo-card__header">
+    <span class="demo-card__title">속성 조작</span>
+  </div>
+  <div class="demo-card__body">
+    <input type="text" id="demo-attr-target" class="form-input" placeholder="속성을 변경해보세요" style="margin-bottom: 16px;">
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="demoSetAttr()">속성 설정</button>
+      <button class="btn btn--secondary" onclick="demoGetAttr()">속성 읽기</button>
+      <button class="btn btn--danger" onclick="demoRemoveAttr()">속성 제거</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 속성 설정</span>
+IMCAT(<span class="code-string">'#input'</span>).attr(<span class="code-string">'placeholder'</span>, <span class="code-string">'새 플레이스홀더'</span>);
+
+<span class="code-comment">// 속성 읽기</span>
+<span class="code-keyword">const</span> value = IMCAT(<span class="code-string">'#input'</span>).attr(<span class="code-string">'placeholder'</span>);
+
+<span class="code-comment">// 속성 제거</span>
+IMCAT(<span class="code-string">'#input'</span>).removeAttr(<span class="code-string">'disabled'</span>);
+
+<span class="code-comment">// data-* 속성</span>
+IMCAT(<span class="code-string">'#el'</span>).data(<span class="code-string">'id'</span>, <span class="code-string">'123'</span>);
+</pre>
+  </div>
+</div>
+
+<!-- 콘텐츠 조작 -->
+<div class="demo-card" id="section-content">
+  <div class="demo-card__header">
+    <span class="demo-card__title">콘텐츠 조작</span>
+  </div>
+  <div class="demo-card__body">
+    <div id="demo-content-target" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; margin-bottom: 16px;">
+      원본 텍스트입니다
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="demoText()">text() 변경</button>
+      <button class="btn btn--secondary" onclick="demoHtml()">html() 변경</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 텍스트 설정/조회</span>
+IMCAT(<span class="code-string">'#el'</span>).text(<span class="code-string">'새 텍스트'</span>);
+<span class="code-keyword">const</span> text = IMCAT(<span class="code-string">'#el'</span>).text();
+
+<span class="code-comment">// HTML 설정/조회</span>
+IMCAT(<span class="code-string">'#el'</span>).html(<span class="code-string">'&lt;strong&gt;굵게&lt;/strong&gt;'</span>);
+
+<span class="code-comment">// 입력 값 설정/조회</span>
+IMCAT(<span class="code-string">'#input'</span>).val(<span class="code-string">'새 값'</span>);
+</pre>
+  </div>
+</div>
+
+<!-- 이벤트 처리 -->
+<div class="demo-card" id="section-event">
+  <div class="demo-card__header">
+    <span class="demo-card__title">이벤트 처리</span>
+  </div>
+  <div class="demo-card__body">
+    <button id="demo-event-target" class="btn btn--primary btn--lg" style="margin-bottom: 16px;">
+      <i class="material-icons-outlined">ads_click</i> 클릭해보세요
+    </button>
+    <div id="demo-event-log" style="padding: 12px; background: var(--bg-tertiary); border-radius: 4px; font-family: monospace; font-size: 0.875rem;">
+      이벤트 로그가 여기에 표시됩니다
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 이벤트 리스너 추가</span>
+IMCAT(<span class="code-string">'#btn'</span>).on(<span class="code-string">'click'</span>, (e) => {
+  console.log(<span class="code-string">'클릭됨!'</span>);
+});
+
+<span class="code-comment">// 이벤트 리스너 제거</span>
+IMCAT(<span class="code-string">'#btn'</span>).off(<span class="code-string">'click'</span>, handler);
+
+<span class="code-comment">// 이벤트 트리거</span>
+IMCAT(<span class="code-string">'#btn'</span>).trigger(<span class="code-string">'click'</span>);
+</pre>
+  </div>
+</div>
+
+<!-- 요소 순회 -->
+<div class="demo-card" id="section-each">
+  <div class="demo-card__header">
+    <span class="demo-card__title">요소 순회 (each)</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="demo-items" style="display: flex; gap: 8px; margin-bottom: 16px;">
+      <div class="demo-item" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; flex: 1; text-align: center;">Item 1</div>
+      <div class="demo-item" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; flex: 1; text-align: center;">Item 2</div>
+      <div class="demo-item" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; flex: 1; text-align: center;">Item 3</div>
+    </div>
+    <button class="btn btn--primary" onclick="demoEach()">
+      <i class="material-icons-outlined">repeat</i> 순회 실행
+    </button>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 여러 요소 순회</span>
+IMCAT(<span class="code-string">'.demo-item'</span>).each((el, index) => {
+  el.style.background = <span class="code-string">`hsl(${index * 60}, 70%, 80%)`</span>;
+});
+</pre>
+  </div>
+</div>
+
+<!-- DOM 탐색 -->
+<div class="demo-card" id="section-traverse">
+  <div class="demo-card__header">
+    <span class="demo-card__title">DOM 탐색</span>
+  </div>
+  <div class="demo-card__body">
+    <div id="demo-traverse-parent" style="padding: 16px; background: var(--bg-secondary); border-radius: 4px; margin-bottom: 16px;">
+      <span>부모 요소</span>
+      <div id="demo-traverse-target" style="padding: 12px; background: var(--bg-tertiary); border-radius: 4px; margin-top: 8px;">
+        타겟 요소
+        <span class="demo-child" style="display: block; margin-top: 8px; padding: 8px; background: var(--bg-primary); border-radius: 4px;">자식 요소</span>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="demoParent()">parent()</button>
+      <button class="btn btn--secondary" onclick="demoChildren()">children</button>
+      <button class="btn btn--outline" onclick="demoFind()">find()</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 부모 요소</span>
+IMCAT(<span class="code-string">'#target'</span>).parent();
+
+<span class="code-comment">// 자식 요소 (네이티브 DOM)</span>
+IMCAT(<span class="code-string">'#target'</span>).get(0).children;
+
+<span class="code-comment">// 하위 요소 찾기</span>
+IMCAT(<span class="code-string">'#target'</span>).find(<span class="code-string">'.child'</span>);
+
+<span class="code-comment">// 상위 요소 찾기</span>
+IMCAT(<span class="code-string">'#target'</span>).closest(<span class="code-string">'.parent'</span>);
+
+<span class="code-comment">// 형제 요소</span>
+IMCAT(<span class="code-string">'#target'</span>).siblings();
+</pre>
+  </div>
+</div>
+
+<!-- 표시/숨김 -->
+<div class="demo-card" id="section-visibility">
+  <div class="demo-card__header">
+    <span class="demo-card__title">표시/숨김</span>
+  </div>
+  <div class="demo-card__body">
+    <div id="demo-visibility-target" style="padding: 24px; background: var(--primary); color: white; border-radius: 4px; margin-bottom: 16px; text-align: center;">
+      보이는 요소입니다
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="demoShow()">show()</button>
+      <button class="btn btn--secondary" onclick="demoHide()">hide()</button>
+      <button class="btn btn--outline" onclick="demoToggle()">toggle()</button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+<span class="code-comment">// 표시</span>
+IMCAT(<span class="code-string">'#el'</span>).show();
+
+<span class="code-comment">// 숨김</span>
+IMCAT(<span class="code-string">'#el'</span>).hide();
+
+<span class="code-comment">// 토글</span>
+IMCAT(<span class="code-string">'#el'</span>).toggle();
+</pre>
+  </div>
+</div>
+
+<script>
+  // 데모 함수들
+  function demoSelect() {
+    const el = IMCAT('#demo-select-target');
+    IMCAT.toast.success(`선택됨! length: ${el.length}`);
+  }
+  
+  function demoAddClass() {
+    IMCAT('#demo-class-target').addClass('active');
+    IMCAT('#demo-class-target').get(0).style.background = 'var(--primary)';
+    IMCAT('#demo-class-target').get(0).style.color = 'white';
+  }
+  
+  function demoRemoveClass() {
+    IMCAT('#demo-class-target').removeClass('active');
+    IMCAT('#demo-class-target').get(0).style.background = 'var(--bg-secondary)';
+    IMCAT('#demo-class-target').get(0).style.color = '';
+  }
+  
+  function demoToggleClass() {
+    const target = IMCAT('#demo-class-target');
+    target.toggleClass('active');
+    const isActive = target.hasClass('active');
+    target.get(0).style.background = isActive ? 'var(--primary)' : 'var(--bg-secondary)';
+    target.get(0).style.color = isActive ? 'white' : '';
+  }
+  
+  function demoSetAttr() {
+    IMCAT('#demo-attr-target').attr('placeholder', '속성이 변경되었습니다!');
+    IMCAT.toast.success('placeholder 속성 변경됨');
+  }
+  
+  function demoGetAttr() {
+    const val = IMCAT('#demo-attr-target').attr('placeholder');
+    IMCAT.toast.info(`placeholder: "${val}"`);
+  }
+  
+  function demoRemoveAttr() {
+    IMCAT('#demo-attr-target').removeAttr('placeholder');
+    IMCAT.toast.warning('placeholder 속성 제거됨');
+  }
+  
+  function demoText() {
+    IMCAT('#demo-content-target').text('text()로 변경된 텍스트입니다!');
+  }
+  
+  function demoHtml() {
+    IMCAT('#demo-content-target').html('<strong style="color: var(--primary)">html()</strong>로 변경된 <em>HTML</em>입니다!');
+  }
+  
+  // 이벤트 데모 초기화
+  IMCAT('#demo-event-target').on('click', () => {
+    const time = new Date().toLocaleTimeString();
+    IMCAT('#demo-event-log').text(`[${time}] 클릭 이벤트 발생!`);
+  });
+  
+  function demoEach() {
+    const colors = ['#f87171', '#fbbf24', '#34d399', '#60a5fa'];
+    IMCAT('.demo-item').each((el, index) => {
+      el.style.background = colors[index % colors.length];
+      el.style.color = 'white';
+    });
+  }
+  
+  function demoParent() {
+    IMCAT('#demo-traverse-parent').get(0).style.outline = '3px solid var(--primary)';
+    setTimeout(() => {
+      IMCAT('#demo-traverse-parent').get(0).style.outline = '';
+    }, 1500);
+    IMCAT.toast.info('parent() - 부모 요소 선택됨');
+  }
+  
+  function demoChildren() {
+    // children은 네이티브 DOM 속성 사용
+    const target = IMCAT('#demo-traverse-target').get(0);
+    Array.from(target.children).forEach(el => {
+      el.style.outline = '3px solid var(--success)';
+      setTimeout(() => el.style.outline = '', 1500);
+    });
+    IMCAT.toast.info('children - 자식 요소 선택됨');
+  }
+  
+  function demoFind() {
+    IMCAT('#demo-traverse-target').find('.demo-child').each(el => {
+      el.style.outline = '3px solid var(--warning)';
+      setTimeout(() => el.style.outline = '', 1500);
+    });
+    IMCAT.toast.info('find() - 하위 요소 검색됨');
+  }
+  
+  function demoShow() {
+    IMCAT('#demo-visibility-target').show();
+  }
+  
+  function demoHide() {
+    IMCAT('#demo-visibility-target').hide();
+  }
+  
+  function demoToggle() {
+    IMCAT('#demo-visibility-target').toggle();
+  }
+  
+  // TOC 스크롤 스파이
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('is-active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    
+    sections.forEach(section => observer.observe(section));
+  }
+  
+  initTocSpy();
+</script>
+
+  </div><!-- /.doc-main -->
+  
+  <!-- TOC Sidebar -->
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-select" class="doc-toc__link is-active">요소 선택</a></li>
+      <li class="doc-toc__item"><a href="#section-class" class="doc-toc__link">클래스 조작</a></li>
+      <li class="doc-toc__item"><a href="#section-attr" class="doc-toc__link">속성 조작</a></li>
+      <li class="doc-toc__item"><a href="#section-content" class="doc-toc__link">콘텐츠 조작</a></li>
+      <li class="doc-toc__item"><a href="#section-event" class="doc-toc__link">이벤트 처리</a></li>
+      <li class="doc-toc__item"><a href="#section-each" class="doc-toc__link">요소 순회</a></li>
+      <li class="doc-toc__item"><a href="#section-traverse" class="doc-toc__link">DOM 탐색</a></li>
+      <li class="doc-toc__item"><a href="#section-visibility" class="doc-toc__link">표시/숨김</a></li>
+    </ul>
+  </aside>
+</div><!-- /.doc-layout -->

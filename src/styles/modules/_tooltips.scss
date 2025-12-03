@@ -1,0 +1,275 @@
+// ============================================
+// Tooltips Module SCSS
+// Tooltip, Popover
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$tooltip-z-index: 1080;
+$tooltip-max-width: 16rem;
+$tooltip-padding: 0.5rem 0.75rem;
+$tooltip-font-size: 0.8125rem;
+$tooltip-border-radius: $component-badge-size-md-border-radius;
+$tooltip-animation-duration: 150ms;
+
+$popover-z-index: 1070;
+$popover-max-width: 20rem;
+
+// ============================================
+// Tooltip
+// ============================================
+.tooltip {
+  position: absolute;
+  z-index: $tooltip-z-index;
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding;
+  background: var(--bg-inverse, $bg-inverse);
+  color: var(--text-inverse, $text-inverse);
+  font-size: $tooltip-font-size;
+  line-height: 1.4;
+  border-radius: $tooltip-border-radius;
+  box-shadow: $shadow-md;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: 
+    opacity $tooltip-animation-duration $ease-in-out,
+    transform $tooltip-animation-duration $ease-in-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  // Arrow
+  &__arrow {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--bg-inverse, $bg-inverse);
+    transform: rotate(45deg);
+  }
+
+  // Positions
+  &--top {
+    .tooltip__arrow {
+      bottom: -0.25rem;
+      left: 50%;
+      margin-left: -0.25rem;
+    }
+  }
+
+  &--bottom {
+    .tooltip__arrow {
+      top: -0.25rem;
+      left: 50%;
+      margin-left: -0.25rem;
+    }
+  }
+
+  &--left {
+    .tooltip__arrow {
+      right: -0.25rem;
+      top: 50%;
+      margin-top: -0.25rem;
+    }
+  }
+
+  &--right {
+    .tooltip__arrow {
+      left: -0.25rem;
+      top: 50%;
+      margin-top: -0.25rem;
+    }
+  }
+
+  // Light variant
+  &--light {
+    background: var(--bg-primary, $bg-primary);
+    color: var(--text-primary, $text-primary);
+    border: 1px solid var(--border-color, $border-color);
+
+    .tooltip__arrow {
+      background: var(--bg-primary, $bg-primary);
+      border: 1px solid var(--border-color, $border-color);
+      border-top: none;
+      border-left: none;
+    }
+
+    &.tooltip--top .tooltip__arrow,
+    &.tooltip--bottom .tooltip__arrow {
+      border-top: none;
+      border-left: none;
+    }
+
+    &.tooltip--left .tooltip__arrow,
+    &.tooltip--right .tooltip__arrow {
+      border-bottom: none;
+      border-right: none;
+    }
+  }
+}
+
+// ============================================
+// Popover
+// ============================================
+.popover {
+  position: absolute;
+  z-index: $popover-z-index;
+  max-width: $popover-max-width;
+  background: var(--bg-primary, $bg-primary);
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-card-border-radius;
+  box-shadow: $shadow-lg;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: 
+    opacity $tooltip-animation-duration $ease-in-out,
+    transform $tooltip-animation-duration $ease-in-out,
+    visibility $tooltip-animation-duration;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  // Arrow
+  &__arrow {
+    position: absolute;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--bg-primary, $bg-primary);
+    border: 1px solid var(--border-color, $border-color);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+
+  // Positions
+  &--top {
+    .popover__arrow {
+      bottom: -0.375rem;
+      left: 50%;
+      margin-left: -0.375rem;
+      transform: rotate(45deg);
+    }
+  }
+
+  &--bottom {
+    .popover__arrow {
+      top: -0.375rem;
+      left: 50%;
+      margin-left: -0.375rem;
+      transform: rotate(-135deg);
+    }
+  }
+
+  &--left {
+    .popover__arrow {
+      right: -0.375rem;
+      top: 50%;
+      margin-top: -0.375rem;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &--right {
+    .popover__arrow {
+      left: -0.375rem;
+      top: 50%;
+      margin-top: -0.375rem;
+      transform: rotate(135deg);
+    }
+  }
+
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color, $border-color);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary, $text-primary);
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    color: var(--text-tertiary, $text-tertiary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+      color: var(--text-primary, $text-primary);
+    }
+  }
+
+  // Body
+  &__body {
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  // Footer
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border-color, $border-color);
+  }
+}
+
+// ============================================
+// Tooltip Trigger
+// ============================================
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+// ============================================
+// Hint (inline tooltip)
+// ============================================
+.hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-tertiary, $text-tertiary);
+  background: var(--bg-tertiary, $bg-tertiary);
+  border-radius: 50%;
+  cursor: help;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+
+  &:hover {
+    background: var(--bg-secondary, $bg-secondary);
+    color: var(--text-secondary, $text-secondary);
+  }
+}

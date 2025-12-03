@@ -372,12 +372,10 @@ class Modal extends OverlayBase {
    */
   _createModal() {
     const modalClasses = ['modal'];
+    modalClasses.push(`modal--${this.options.size}`);
     if (this.options.centered) modalClasses.push('modal--centered');
     if (this.options.fullscreen) modalClasses.push('modal--fullscreen');
-
-    const dialogClasses = ['modal__dialog'];
-    dialogClasses.push(`modal__dialog--${this.options.size}`);
-    if (this.options.scrollable) dialogClasses.push('modal__dialog--scrollable');
+    if (this.options.scrollable) modalClasses.push('modal--scrollable');
 
     const modal = DOM.create('div', {
       class: modalClasses.join(' '),
@@ -387,32 +385,21 @@ class Modal extends OverlayBase {
       'aria-labelledby': `${this.id}-title`
     }).get(0);
 
-    const dialog = DOM.create('div', {
-      class: dialogClasses.join(' ')
-    }).get(0);
-
-    const content = DOM.create('div', {
-      class: 'modal__content'
-    }).get(0);
-
     // 헤더 (title이 있거나 closeButton이 있으면 표시)
     if (this.options.title || this.options.closeButton) {
       const header = this._createHeader();
-      content.appendChild(header);
+      modal.appendChild(header);
     }
 
     // 바디
     const body = this._createBody();
-    content.appendChild(body);
+    modal.appendChild(body);
 
     // 푸터 (버튼이 있으면)
     if (this.options.buttons && this.options.buttons.length > 0) {
       const footer = this._createFooter();
-      content.appendChild(footer);
+      modal.appendChild(footer);
     }
-
-    dialog.appendChild(content);
-    modal.appendChild(dialog);
 
     return modal;
   }
@@ -480,17 +467,24 @@ class Modal extends OverlayBase {
     }).get(0);
 
     this.options.buttons.forEach(btn => {
+      // variant 또는 type 속성 지원
+      const btnVariant = btn.variant || btn.type || 'secondary';
+      
       const button = DOM.create('button', {
-        class: `btn btn--${btn.type || 'secondary'}`,
+        class: `btn btn--${btnVariant}`,
         type: 'button',
         text: btn.text || '버튼'
       }).get(0);
 
       button.addEventListener('click', () => {
-        if (btn.action === 'close') {
-          this.hide();
-        } else if (typeof btn.action === 'function') {
+        // action 함수 실행
+        if (typeof btn.action === 'function') {
           btn.action();
+        }
+        
+        // close 속성이 true이거나 action이 'close'면 닫기
+        if (btn.close === true || btn.action === 'close') {
+          this.hide();
         }
       });
 
@@ -508,6 +502,11 @@ class Modal extends OverlayBase {
     await super.show();
 
     this.element.style.display = 'flex';
+    
+    // 애니메이션을 위해 약간의 지연 후 is-visible 클래스 추가
+    requestAnimationFrame(() => {
+      this.element.classList.add('is-visible');
+    });
   }
 
   /**
@@ -515,6 +514,11 @@ class Modal extends OverlayBase {
    * @returns {Promise<void>}
    */
   async hide() {
+    this.element.classList.remove('is-visible');
+    
+    // 애니메이션 완료 대기
+    await new Promise(resolve => setTimeout(resolve, this.options.animationDuration));
+    
     this.element.style.display = 'none';
 
     await super.hide();
@@ -725,8 +729,10 @@ class Drawer extends OverlayBase {
 
     this.element.style.display = 'flex';
 
-    // transform을 0으로 설정하여 보이게 함
-    this.element.style.transform = 'translateX(0) translateY(0)';
+    // 애니메이션을 위해 약간의 지연 후 is-visible 클래스 추가
+    requestAnimationFrame(() => {
+      this.element.classList.add('is-visible');
+    });
   }
 
   /**
@@ -734,17 +740,10 @@ class Drawer extends OverlayBase {
    * @returns {Promise<void>}
    */
   async hide() {
-    // transform을 원래 위치로 복원
-    const position = this.options.position;
-    if (position === 'left') {
-      this.element.style.transform = 'translateX(-100%)';
-    } else if (position === 'right') {
-      this.element.style.transform = 'translateX(100%)';
-    } else if (position === 'top') {
-      this.element.style.transform = 'translateY(-100%)';
-    } else if (position === 'bottom') {
-      this.element.style.transform = 'translateY(100%)';
-    }
+    this.element.classList.remove('is-visible');
+    
+    // 애니메이션 완료 대기
+    await new Promise(resolve => setTimeout(resolve, this.options.animationDuration));
 
     this.element.style.display = 'none';
 

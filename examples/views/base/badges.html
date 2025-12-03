@@ -1,0 +1,189 @@
+<!-- Badges -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Badges</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Badges</h1>
+  <p class="page-description">라벨, 태그, 상태 표시를 위한 배지</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Basic Badges -->
+<div class="demo-card" id="section-basic">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Basic Badges</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <span class="badge badge--primary">Primary</span>
+      <span class="badge badge--secondary">Secondary</span>
+      <span class="badge badge--success">Success</span>
+      <span class="badge badge--danger">Danger</span>
+      <span class="badge badge--warning">Warning</span>
+      <span class="badge badge--info">Info</span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;span class="badge badge--primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge badge--secondary"&gt;Secondary&lt;/span&gt;
+&lt;span class="badge badge--success"&gt;Success&lt;/span&gt;
+&lt;span class="badge badge--danger"&gt;Danger&lt;/span&gt;
+&lt;span class="badge badge--warning"&gt;Warning&lt;/span&gt;
+&lt;span class="badge badge--info"&gt;Info&lt;/span&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Pill Badges -->
+<div class="demo-card" id="section-pill">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Pill Badges</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <span class="badge badge--primary badge--pill">Primary</span>
+      <span class="badge badge--secondary badge--pill">Secondary</span>
+      <span class="badge badge--success badge--pill">Success</span>
+      <span class="badge badge--danger badge--pill">Danger</span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;span class="badge badge--primary badge--pill"&gt;Primary&lt;/span&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Outline Badges -->
+<div class="demo-card" id="section-outline">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Outline Badges</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <span class="badge badge--outline-primary">Primary</span>
+      <span class="badge badge--outline-secondary">Secondary</span>
+      <span class="badge badge--outline-success">Success</span>
+      <span class="badge badge--outline-danger">Danger</span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;span class="badge badge--outline-primary"&gt;Primary&lt;/span&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Badge with Icon -->
+<div class="demo-card" id="section-icon">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Badge with Icon</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <span class="badge badge--success">
+        <i class="material-icons-outlined" style="font-size: 14px;">check</i> 완료
+      </span>
+      <span class="badge badge--danger">
+        <i class="material-icons-outlined" style="font-size: 14px;">close</i> 실패
+      </span>
+      <span class="badge badge--warning">
+        <i class="material-icons-outlined" style="font-size: 14px;">schedule</i> 대기중
+      </span>
+      <span class="badge badge--info">
+        <i class="material-icons-outlined" style="font-size: 14px;">new_releases</i> NEW
+      </span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;span class="badge badge--success"&gt;
+  &lt;i class="material-icons-outlined"&gt;check&lt;/i&gt; 완료
+&lt;/span&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Badge in Context -->
+<div class="demo-card" id="section-context">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Badge in Context</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <h4>알림 <span class="badge badge--danger">5</span></h4>
+      <button class="btn btn--primary">
+        메시지 <span class="badge badge--light" style="margin-left: 8px;">99+</span>
+      </button>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span>상태:</span>
+        <span class="badge badge--success badge--pill">활성</span>
+        <span class="badge badge--secondary badge--pill">비활성</span>
+        <span class="badge badge--warning badge--pill">보류</span>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;h4&gt;알림 &lt;span class="badge badge--danger"&gt;5&lt;/span&gt;&lt;/h4&gt;
+
+&lt;button class="btn btn--primary"&gt;
+  메시지 &lt;span class="badge badge--light"&gt;99+&lt;/span&gt;
+&lt;/button&gt;
+</pre>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-basic" class="doc-toc__link is-active">Basic</a></li>
+      <li class="doc-toc__item"><a href="#section-pill" class="doc-toc__link">Pill</a></li>
+      <li class="doc-toc__item"><a href="#section-outline" class="doc-toc__link">Outline</a></li>
+      <li class="doc-toc__item"><a href="#section-icon" class="doc-toc__link">Icon</a></li>
+      <li class="doc-toc__item"><a href="#section-context" class="doc-toc__link">Context</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>

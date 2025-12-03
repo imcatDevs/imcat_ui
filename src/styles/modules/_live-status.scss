@@ -1,0 +1,403 @@
+// ============================================
+// Live Status Module SCSS
+// Progress, Skeleton, Loading States
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Progress Bar
+// ============================================
+.progress {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--bg-tertiary, $bg-tertiary);
+  border-radius: 0.25rem;
+  overflow: hidden;
+
+  &__bar {
+    height: 100%;
+    background: var(--primary, $primary);
+    border-radius: 0.25rem;
+    transition: width 300ms $ease-in-out;
+  }
+
+  // Sizes
+  &--xs { height: 0.25rem; }
+  &--sm { height: 0.375rem; }
+  &--lg { height: 0.75rem; }
+  &--xl { height: 1rem; }
+
+  // Colors
+  &--success .progress__bar { background: $success; }
+  &--warning .progress__bar { background: $warning; }
+  &--error .progress__bar { background: $error; }
+  &--info .progress__bar { background: $info; }
+
+  // Striped
+  &--striped .progress__bar {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+  // Animated striped
+  &--animated .progress__bar {
+    animation: progressStripes 1s linear infinite;
+  }
+
+  // Indeterminate
+  &--indeterminate {
+    .progress__bar {
+      width: 30%;
+      animation: progressIndeterminate 1.5s ease-in-out infinite;
+    }
+  }
+
+  // With label
+  &--labeled {
+    position: relative;
+    height: 1.5rem;
+
+    .progress__bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress__label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary, $text-primary);
+    }
+  }
+}
+
+@keyframes progressStripes {
+  from { background-position: 1rem 0; }
+  to { background-position: 0 0; }
+}
+
+@keyframes progressIndeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+// ============================================
+// Progress Circle
+// ============================================
+.progress-circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    transform: rotate(-90deg);
+  }
+
+  &__track {
+    fill: none;
+    stroke: var(--bg-tertiary, $bg-tertiary);
+  }
+
+  &__bar {
+    fill: none;
+    stroke: var(--primary, $primary);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 300ms $ease-in-out;
+  }
+
+  &__label {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary, $text-primary);
+  }
+
+  // Sizes
+  &--sm {
+    .progress-circle__label { font-size: 0.75rem; }
+  }
+
+  &--lg {
+    .progress-circle__label { font-size: 1.25rem; }
+  }
+
+  // Colors
+  &--success .progress-circle__bar { stroke: $success; }
+  &--warning .progress-circle__bar { stroke: $warning; }
+  &--error .progress-circle__bar { stroke: $error; }
+}
+
+// ============================================
+// Skeleton
+// ============================================
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary, $bg-tertiary) 25%,
+    var(--bg-secondary, $bg-secondary) 50%,
+    var(--bg-tertiary, $bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: $component-badge-size-md-border-radius;
+
+  // Types
+  &--text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      width: 80%;
+    }
+  }
+
+  &--title {
+    height: 1.5rem;
+    width: 60%;
+    margin-bottom: 0.75rem;
+  }
+
+  &--avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  &--thumbnail {
+    aspect-ratio: 16 / 9;
+  }
+
+  &--button {
+    height: 2.5rem;
+    width: 6rem;
+    border-radius: $component-button-size-md-border-radius;
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--card {
+    height: 12rem;
+    border-radius: $component-card-border-radius;
+  }
+
+  // No animation variant
+  &--static {
+    animation: none;
+    background: var(--bg-tertiary, $bg-tertiary);
+  }
+
+  // Wave animation variant
+  &--wave {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-tertiary, $bg-tertiary);
+    animation: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: skeletonWave 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes skeletonWave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+// ============================================
+// Skeleton Layouts
+// ============================================
+.skeleton-card {
+  padding: 1rem;
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-card-border-radius;
+
+  &__image {
+    @extend .skeleton;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    @extend .skeleton;
+    @extend .skeleton--title;
+  }
+
+  &__text {
+    @extend .skeleton;
+    @extend .skeleton--text;
+  }
+}
+
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+
+  &__avatar {
+    @extend .skeleton;
+    @extend .skeleton--avatar;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    @extend .skeleton;
+    height: 1rem;
+    width: 40%;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    @extend .skeleton;
+    height: 0.875rem;
+    width: 70%;
+  }
+}
+
+.skeleton-table {
+  width: 100%;
+
+  &__row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color, $border-color);
+  }
+
+  &__cell {
+    @extend .skeleton;
+    height: 1rem;
+    flex: 1;
+
+    &:first-child { flex: 0 0 3rem; }
+    &:nth-child(2) { flex: 2; }
+  }
+}
+
+// ============================================
+// Loading Spinner
+// ============================================
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-color, $border-color);
+  border-top-color: var(--primary, $primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+
+  // Sizes
+  &--xs { width: 1rem; height: 1rem; border-width: 1px; }
+  &--sm { width: 1.5rem; height: 1.5rem; }
+  &--lg { width: 3rem; height: 3rem; border-width: 3px; }
+  &--xl { width: 4rem; height: 4rem; border-width: 4px; }
+
+  // Colors
+  &--white { border-color: rgba(255, 255, 255, 0.3); border-top-color: white; }
+  &--success { border-top-color: $success; }
+  &--error { border-top-color: $error; }
+}
+
+// ============================================
+// Loading Dots
+// ============================================
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--primary, $primary);
+    border-radius: 50%;
+    animation: loadingDots 1.4s ease-in-out infinite;
+
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+
+  // Sizes
+  &--sm .loading-dots__dot { width: 0.375rem; height: 0.375rem; }
+  &--lg .loading-dots__dot { width: 0.75rem; height: 0.75rem; }
+}
+
+@keyframes loadingDots {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// ============================================
+// Loading Overlay
+// ============================================
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 100;
+
+  &__text {
+    font-size: 0.875rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  // Full screen
+  &--fullscreen {
+    position: fixed;
+    z-index: 2000;
+  }
+
+  // Dark mode
+  [data-theme="dark"] & {
+    background: rgba(17, 24, 39, 0.8);
+  }
+}

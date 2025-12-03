@@ -1,0 +1,323 @@
+// ============================================
+// Stepper Module SCSS
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use 'sass:math';
+
+// ============================================
+// Variables
+// ============================================
+$stepper-step-size: 2.5rem;
+$stepper-step-size-sm: 2rem;
+$stepper-step-size-lg: 3rem;
+$stepper-line-width: 2px;
+
+// ============================================
+// Stepper
+// ============================================
+.stepper {
+  display: flex;
+  width: 100%;
+
+  // Horizontal (default)
+  &--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+
+    .stepper__step {
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stepper__connector {
+      position: absolute;
+      top: calc(#{math.div($stepper-step-size, 2)});
+      left: calc(50% + #{math.div($stepper-step-size, 2)} + 0.5rem);
+      right: calc(-50% + #{math.div($stepper-step-size, 2)} + 0.5rem);
+      height: $stepper-line-width;
+    }
+  }
+
+  // Vertical
+  &--vertical {
+    flex-direction: column;
+
+    .stepper__step {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .stepper__connector {
+      position: absolute;
+      top: $stepper-step-size;
+      left: calc(#{math.div($stepper-step-size, 2)} - 1px);
+      bottom: 0;
+      width: $stepper-line-width;
+    }
+
+    .stepper__content {
+      text-align: left;
+      padding-top: 0.25rem;
+    }
+  }
+}
+
+// ============================================
+// Step
+// ============================================
+.stepper__step {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+
+  // States
+  &.is-completed {
+    .stepper__indicator {
+      background: $success;
+      border-color: $success;
+      color: white;
+    }
+
+    .stepper__connector-line {
+      background: $success;
+    }
+
+    .stepper__title {
+      color: var(--text-primary, $text-primary);
+    }
+  }
+
+  &.is-active {
+    .stepper__indicator {
+      background: var(--primary, $primary);
+      border-color: var(--primary, $primary);
+      color: white;
+    }
+
+    .stepper__title {
+      color: var(--primary, $primary);
+      font-weight: 600;
+    }
+  }
+
+  &.is-error {
+    .stepper__indicator {
+      background: $error;
+      border-color: $error;
+      color: white;
+    }
+
+    .stepper__title {
+      color: $error;
+    }
+  }
+
+  &.is-disabled {
+    .stepper__indicator {
+      opacity: 0.5;
+    }
+
+    .stepper__title,
+    .stepper__description {
+      color: var(--text-disabled, $text-disabled);
+    }
+  }
+}
+
+// ============================================
+// Indicator (circle with number/icon)
+// ============================================
+.stepper__indicator {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $stepper-step-size;
+  height: $stepper-step-size;
+  border: $stepper-line-width solid var(--border-color, $border-color);
+  border-radius: 50%;
+  background: var(--bg-primary, $bg-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary, $text-secondary);
+  z-index: 1;
+  transition: all $duration-fast $ease-in-out;
+
+  .material-icons-outlined {
+    font-size: 1.25rem;
+  }
+}
+
+// ============================================
+// Content
+// ============================================
+.stepper__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepper__title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary, $text-secondary);
+  margin-bottom: 0.25rem;
+  transition: color $duration-fast $ease-in-out;
+}
+
+.stepper__description {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary, $text-tertiary);
+  line-height: 1.5;
+}
+
+// ============================================
+// Connector (line between steps)
+// ============================================
+.stepper__connector {
+  position: absolute;
+  overflow: hidden;
+
+  &-line {
+    width: 100%;
+    height: 100%;
+    background: var(--border-color, $border-color);
+    transition: background $duration-fast $ease-in-out;
+  }
+}
+
+// ============================================
+// Sizes
+// ============================================
+.stepper--sm {
+  .stepper__indicator {
+    width: $stepper-step-size-sm;
+    height: $stepper-step-size-sm;
+    font-size: 0.75rem;
+
+    .material-icons-outlined {
+      font-size: 1rem;
+    }
+  }
+
+  .stepper--horizontal & {
+    .stepper__connector {
+      top: calc(#{math.div($stepper-step-size-sm, 2)});
+      left: calc(50% + #{math.div($stepper-step-size-sm, 2)} + 0.5rem);
+      right: calc(-50% + #{math.div($stepper-step-size-sm, 2)} + 0.5rem);
+    }
+  }
+
+  .stepper--vertical & {
+    .stepper__connector {
+      top: $stepper-step-size-sm;
+      left: calc(#{math.div($stepper-step-size-sm, 2)} - 1px);
+    }
+  }
+}
+
+.stepper--lg {
+  .stepper__indicator {
+    width: $stepper-step-size-lg;
+    height: $stepper-step-size-lg;
+    font-size: 1rem;
+
+    .material-icons-outlined {
+      font-size: 1.5rem;
+    }
+  }
+
+  .stepper__title {
+    font-size: 1rem;
+  }
+
+  .stepper__description {
+    font-size: 0.875rem;
+  }
+}
+
+// ============================================
+// Variants
+// ============================================
+// Dot style (small circles)
+.stepper--dot {
+  .stepper__indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+    font-size: 0;
+    border: none;
+    background: var(--border-color, $border-color);
+  }
+
+  .stepper__step.is-completed .stepper__indicator,
+  .stepper__step.is-active .stepper__indicator {
+    background: var(--primary, $primary);
+  }
+}
+
+// Progress style (connected progress bar)
+.stepper--progress {
+  .stepper__connector {
+    height: 0.25rem;
+    border-radius: 0.125rem;
+    overflow: visible;
+  }
+
+  .stepper__connector-line {
+    border-radius: 0.125rem;
+  }
+}
+
+// ============================================
+// Clickable Steps
+// ============================================
+.stepper--clickable {
+  .stepper__step:not(.is-disabled) {
+    cursor: pointer;
+
+    &:hover .stepper__indicator {
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+}
+
+// ============================================
+// Step Panel Content
+// ============================================
+.stepper__panel {
+  display: none;
+  padding: 1.5rem 0;
+
+  &.is-active {
+    display: block;
+    animation: stepFadeIn 300ms ease-out;
+  }
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// Navigation Buttons
+// ============================================
+.stepper__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color, $border-color);
+}

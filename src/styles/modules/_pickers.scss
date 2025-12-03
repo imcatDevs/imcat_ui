@@ -1,0 +1,570 @@
+// ============================================
+// Pickers Module SCSS
+// DatePicker, TimePicker, ColorPicker
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$picker-z-index: 1060;
+$picker-animation-duration: 200ms;
+
+// ============================================
+// Base Picker
+// ============================================
+.picker {
+  position: absolute;
+  z-index: $picker-z-index;
+  background: var(--bg-primary, $bg-primary);
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-calendar-border-radius;
+  box-shadow: $component-date-picker-dropdown-shadow;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: 
+    opacity $picker-animation-duration $ease-in-out,
+    transform $picker-animation-duration $ease-in-out,
+    visibility $picker-animation-duration;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// DatePicker / Calendar
+// ============================================
+.datepicker,
+.calendar {
+  width: 18rem;
+  padding: $component-calendar-padding;
+  background: $component-calendar-background;
+  border: 1px solid $component-calendar-border;
+  border-radius: $component-calendar-border-radius;
+
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $component-calendar-header-padding-y 0;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: $component-calendar-header-font-size;
+    font-weight: $component-calendar-header-font-weight;
+    color: var(--text-primary, $text-primary);
+  }
+
+  &__nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  &__nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: $component-calendar-day-border-radius;
+    color: var(--text-secondary, $text-secondary);
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary, $primary);
+      outline-offset: -2px;
+    }
+  }
+
+  // Weekdays
+  &__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  &__weekday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $component-calendar-weekday-padding-y 0;
+    font-size: $component-calendar-weekday-font-size;
+    font-weight: 500;
+    color: $component-calendar-weekday-color;
+    text-transform: uppercase;
+  }
+
+  // Days grid
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.125rem;
+  }
+
+  &__day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $component-calendar-day-size;
+    height: $component-calendar-day-size;
+    padding: 0;
+    border: none;
+    background: $component-calendar-day-state-default-background;
+    border-radius: $component-calendar-day-border-radius;
+    font-size: $component-calendar-day-font-size;
+    color: $component-calendar-day-state-default-text;
+    cursor: pointer;
+    transition: 
+      background $duration-fast $ease-in-out,
+      color $duration-fast $ease-in-out;
+
+    &:hover:not(:disabled):not(.is-selected) {
+      background: $component-calendar-day-state-hover-background;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary, $primary);
+      outline-offset: -2px;
+    }
+
+    // Today
+    &.is-today {
+      border: 1px solid $component-calendar-day-state-today-border;
+    }
+
+    // Selected
+    &.is-selected {
+      background: $component-calendar-day-state-selected-background;
+      color: $component-calendar-day-state-selected-text;
+    }
+
+    // Range
+    &.is-range-start {
+      border-radius: $component-calendar-day-border-radius 0 0 $component-calendar-day-border-radius;
+    }
+
+    &.is-range-end {
+      border-radius: 0 $component-calendar-day-border-radius $component-calendar-day-border-radius 0;
+    }
+
+    &.is-in-range {
+      background: rgba($primary, 0.1);
+      border-radius: 0;
+    }
+
+    // Outside month
+    &.is-outside {
+      color: $component-calendar-day-state-outside-text;
+    }
+
+    // Disabled
+    &:disabled {
+      color: $component-calendar-day-state-disabled-text;
+      cursor: not-allowed;
+    }
+  }
+
+  // Footer
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--border-color, $border-color);
+  }
+
+  &__today-btn {
+    padding: 0.375rem 0.75rem;
+    border: none;
+    background: transparent;
+    border-radius: $component-button-size-sm-border-radius;
+    font-size: 0.8125rem;
+    color: var(--primary, $primary);
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &:hover {
+      background: rgba($primary, 0.1);
+    }
+  }
+}
+
+// ============================================
+// TimePicker
+// ============================================
+.timepicker {
+  width: 16rem;
+  padding: 1rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    width: 4rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-button-size-md-border-radius;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-primary, $text-primary);
+    background: var(--bg-primary, $bg-primary);
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__separator {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  &__period {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+  }
+
+  &__period-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-color, $border-color);
+    background: transparent;
+    border-radius: $component-button-size-sm-border-radius;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary, $text-secondary);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+    }
+
+    &.is-active {
+      background: var(--primary, $primary);
+      border-color: var(--primary, $primary);
+      color: white;
+    }
+  }
+
+  // Wheel style
+  &__wheels {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__wheel {
+    flex: 1;
+    height: 10rem;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--border-color, $border-color);
+      border-radius: 2px;
+    }
+  }
+
+  &__wheel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary, $text-secondary);
+    scroll-snap-align: center;
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      color: var(--text-primary, $text-primary);
+    }
+
+    &.is-selected {
+      font-weight: 600;
+      color: var(--primary, $primary);
+      background: rgba($primary, 0.1);
+      border-radius: $component-button-size-md-border-radius;
+    }
+  }
+}
+
+// ============================================
+// ColorPicker
+// ============================================
+.colorpicker {
+  width: 16rem;
+  padding: 1rem;
+
+  // Spectrum area
+  &__spectrum {
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    border-radius: $component-button-size-md-border-radius;
+    margin-bottom: 1rem;
+    cursor: crosshair;
+
+    &-pointer {
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), $shadow-md;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  }
+
+  // Hue slider
+  &__hue {
+    position: relative;
+    width: 100%;
+    height: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, 
+      #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    cursor: pointer;
+
+    &-thumb {
+      position: absolute;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: $shadow-md;
+      transform: translate(-50%, -50%);
+      cursor: grab;
+    }
+  }
+
+  // Alpha slider
+  &__alpha {
+    position: relative;
+    width: 100%;
+    height: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    // Checkerboard background
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0.375rem;
+      background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+    }
+
+    &-gradient {
+      position: absolute;
+      inset: 0;
+      border-radius: 0.375rem;
+    }
+
+    &-thumb {
+      position: absolute;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: $shadow-md;
+      transform: translate(-50%, -50%);
+      cursor: grab;
+    }
+  }
+
+  // Preview
+  &__preview {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    &-color {
+      width: 3rem;
+      height: 3rem;
+      border-radius: $component-button-size-md-border-radius;
+      border: 1px solid var(--border-color, $border-color);
+
+      // Checkerboard background for transparency
+      background: repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+
+      &-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+      }
+    }
+  }
+
+  // Input
+  &__input {
+    flex: 1;
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-button-size-md-border-radius;
+      font-size: 0.875rem;
+      font-family: monospace;
+      text-transform: uppercase;
+      color: var(--text-primary, $text-primary);
+      background: var(--bg-primary, $bg-primary);
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary, $primary);
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      }
+    }
+  }
+
+  // Swatches
+  &__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    &-title {
+      width: 100%;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary, $text-secondary);
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  &__swatch {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: $component-badge-size-sm-border-radius;
+    cursor: pointer;
+    transition: transform $duration-fast $ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary, $primary);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ============================================
+// DatePicker Input
+// ============================================
+.datepicker-input,
+.timepicker-input,
+.colorpicker-input {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 0.625rem 2.5rem 0.625rem 0.875rem;
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-button-size-md-border-radius;
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+    background: var(--bg-primary, $bg-primary);
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary, $primary);
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+
+    &::placeholder {
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $component-date-picker-icon-color;
+    pointer-events: none;
+  }
+
+  &__clear {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    padding: 0.25rem;
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary, $text-tertiary);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-primary, $text-primary);
+    }
+  }
+
+  &:hover .datepicker-input__clear,
+  &:hover .timepicker-input__clear,
+  &:hover .colorpicker-input__clear {
+    display: block;
+  }
+}
+
+// Color preview in input
+.colorpicker-input {
+  input {
+    padding-left: 2.5rem;
+  }
+
+  &__preview {
+    position: absolute;
+    left: 0.625rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: $component-badge-size-sm-border-radius;
+    border: 1px solid var(--border-color, $border-color);
+  }
+}

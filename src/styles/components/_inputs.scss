@@ -1,0 +1,451 @@
+// ============================================
+// Form Inputs Component SCSS
+// 폼 입력 필드 스타일 시스템
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Variables
+// ============================================
+$input-padding-y: 0.5rem;
+$input-padding-x: 0.75rem;
+$input-padding-y-sm: 0.375rem;
+$input-padding-x-sm: 0.625rem;
+$input-padding-y-lg: 0.625rem;
+$input-padding-x-lg: 1rem;
+$input-font-size: 0.9375rem;
+$input-font-size-sm: 0.8125rem;
+$input-font-size-lg: 1rem;
+$input-border-radius: 6px;
+$input-border-width: 1px;
+$input-border-color: var(--border-color, $border-color);
+$input-bg: var(--bg-primary, $bg-primary);
+$input-color: var(--text-primary, $text-primary);
+$input-placeholder-color: var(--text-tertiary, $text-tertiary);
+$input-focus-border-color: var(--primary, $primary);
+$input-focus-shadow: 0 0 0 3px rgba($primary, 0.15);
+$input-disabled-bg: var(--bg-secondary, $bg-secondary);
+$input-transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+
+// ============================================
+// Form Group
+// ============================================
+.form-group {
+  margin-bottom: 1rem;
+}
+
+// ============================================
+// Form Label
+// ============================================
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary, $text-primary);
+
+  // Required indicator
+  .required {
+    color: $danger;
+    margin-left: 0.125rem;
+  }
+}
+
+// ============================================
+// Base Input
+// ============================================
+.form-input,
+.form-control {
+  display: block;
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  font-family: inherit;
+  font-size: $input-font-size;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $input-color;
+  background: $input-bg;
+  background-clip: padding-box;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: $input-transition;
+  appearance: none;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-shadow;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    background: $input-disabled-bg;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &[readonly] {
+    background: $input-disabled-bg;
+  }
+}
+
+// ============================================
+// Textarea
+// ============================================
+textarea.form-input,
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+// ============================================
+// Select
+// ============================================
+.form-select {
+  display: block;
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  padding-right: 2.5rem;
+  font-family: inherit;
+  font-size: $input-font-size;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $input-color;
+  background: $input-bg url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
+  background-size: 1.25rem;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: $input-transition;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-shadow;
+  }
+
+  &:disabled {
+    background-color: $input-disabled-bg;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &[multiple] {
+    padding-right: $input-padding-x;
+    background-image: none;
+  }
+}
+
+// ============================================
+// Sizes
+// ============================================
+
+// Small
+.form-input--sm,
+.form-control--sm,
+.form-select--sm {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  font-size: $input-font-size-sm;
+  border-radius: 4px;
+}
+
+// Large
+.form-input--lg,
+.form-control--lg,
+.form-select--lg {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  font-size: $input-font-size-lg;
+  border-radius: 8px;
+}
+
+// ============================================
+// Validation States
+// ============================================
+
+// Success
+.form-input.is-valid,
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: $success;
+
+  &:focus {
+    border-color: $success;
+    box-shadow: 0 0 0 3px rgba($success, 0.15);
+  }
+}
+
+// Error
+.form-input.is-invalid,
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: $danger;
+
+  &:focus {
+    border-color: $danger;
+    box-shadow: 0 0 0 3px rgba($danger, 0.15);
+  }
+}
+
+// ============================================
+// Help Text & Error Message
+// ============================================
+.form-text {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, $text-secondary);
+}
+
+.form-error {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: $danger;
+}
+
+.form-success {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: $success;
+}
+
+// ============================================
+// Checkbox & Radio
+// ============================================
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-check-input {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.125rem;
+  background: $input-bg;
+  border: $input-border-width solid $input-border-color;
+  appearance: none;
+  cursor: pointer;
+  transition: $input-transition;
+
+  &[type="checkbox"] {
+    border-radius: 4px;
+  }
+
+  &[type="radio"] {
+    border-radius: 50%;
+  }
+
+  &:checked {
+    background: var(--primary, $primary);
+    border-color: var(--primary, $primary);
+  }
+
+  &[type="checkbox"]:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 0.75rem;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &[type="radio"]:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='white'/%3E%3C/svg%3E");
+    background-size: 0.625rem;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $input-focus-shadow;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.form-check-label {
+  font-size: 0.9375rem;
+  color: var(--text-primary, $text-primary);
+  cursor: pointer;
+
+  .form-check-input:disabled + & {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Inline checks
+.form-check--inline {
+  display: inline-flex;
+  margin-right: 1rem;
+}
+
+// ============================================
+// Input Group
+// ============================================
+.input-group {
+  display: flex;
+  width: 100%;
+
+  .form-input,
+  .form-control,
+  .form-select {
+    flex: 1;
+    min-width: 0;
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: $input-border-radius 0 0 $input-border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $input-border-radius $input-border-radius 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -$input-border-width;
+    }
+
+    &:focus {
+      z-index: 1;
+    }
+  }
+}
+
+.input-group__text {
+  display: flex;
+  align-items: center;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $input-font-size;
+  color: var(--text-secondary, $text-secondary);
+  background: var(--bg-secondary, $bg-secondary);
+  border: $input-border-width solid $input-border-color;
+  white-space: nowrap;
+
+  &:first-child {
+    border-radius: $input-border-radius 0 0 $input-border-radius;
+    border-right: none;
+  }
+
+  &:last-child {
+    border-radius: 0 $input-border-radius $input-border-radius 0;
+    border-left: none;
+  }
+
+  i {
+    font-size: 1.125rem;
+  }
+}
+
+.input-group__btn {
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-radius: $input-border-radius 0 0 $input-border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $input-border-radius $input-border-radius 0;
+    }
+  }
+}
+
+// ============================================
+// Floating Labels
+// ============================================
+.form-floating {
+  position: relative;
+
+  .form-input,
+  .form-control {
+    padding-top: 1.625rem;
+    padding-bottom: 0.375rem;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      ~ .form-floating__label {
+        transform: translateY(-0.5rem) scale(0.85);
+        color: var(--primary, $primary);
+      }
+    }
+  }
+
+  .form-floating__label {
+    position: absolute;
+    top: 0;
+    left: $input-padding-x;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: $input-font-size;
+    color: $input-placeholder-color;
+    pointer-events: none;
+    transform-origin: left top;
+    transition: transform 150ms ease-in-out, color 150ms ease-in-out;
+  }
+}
+
+// ============================================
+// Search Input
+// ============================================
+.form-search {
+  position: relative;
+
+  .form-input,
+  .form-control {
+    padding-left: 2.5rem;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary, $text-tertiary);
+    pointer-events: none;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary, $text-tertiary);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+
+    .form-input:not(:placeholder-shown) ~ & {
+      opacity: 1;
+    }
+
+    &:hover {
+      color: var(--text-primary, $text-primary);
+    }
+  }
+}

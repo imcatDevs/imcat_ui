@@ -15,7 +15,10 @@
 :root,
 [data-theme="light"] {
   // 색상
+  --primary: #{$primary};
   --primary-color: #{$primary};
+  --primary-hover: #{$primary-700};
+  --primary-active: #{$primary-800};
   --secondary-color: #{$secondary};
   --success-color: #{$success};
   --danger-color: #{$danger};
@@ -39,6 +42,7 @@
   
   // 테두리
   --border-color: #{$border-color};
+  --border-strong: #{$border-strong};
   --border-light: #{$border-light};
   --border-dark: #{$border-dark};
   --border-focus: #{$border-focus};
@@ -59,7 +63,10 @@
 /// @output CSS custom properties for dark theme
 [data-theme="dark"] {
   // 색상 (다크 모드에서는 약간 더 밝게)
+  --primary: #{$primary-400};
   --primary-color: #{$primary-200};
+  --primary-hover: #{$primary-300};
+  --primary-active: #{$primary-200};
   --secondary-color: #{$secondary-200};
   --success-color: #{$success-500};
   --danger-color: #{$danger-500};
@@ -83,6 +90,7 @@
   
   // 테두리
   --border-color: #{$dark-border-color};
+  --border-strong: #4B5563;
   --border-light: rgba(255, 255, 255, 0.08);
   --border-dark: rgba(255, 255, 255, 0.16);
   --border-focus: #{$primary-300};

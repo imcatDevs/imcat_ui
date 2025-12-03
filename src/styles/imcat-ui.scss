@@ -23,3 +23,33 @@
 // ============================================
 @use 'base/reset';
 @use 'base/typography';
+
+// ============================================
+// 3. Components (기본 컴포넌트)
+// ============================================
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/alerts';
+@use 'components/badges';
+@use 'components/tables';
+@use 'components/lists';
+@use 'components/inputs';
+
+// ============================================
+// 4. Modules (모듈 스타일)
+// ============================================
+@use 'modules/overlays';
+@use 'modules/feedback';
+@use 'modules/dropdown';
+@use 'modules/navigation';
+@use 'modules/tooltips';
+@use 'modules/pickers';
+@use 'modules/selectors';
+@use 'modules/carousel';
+@use 'modules/forms';
+@use 'modules/data-viz';
+@use 'modules/stepper';
+@use 'modules/scroll';
+@use 'modules/live-status';
+@use 'modules/advanced-ui';
+@use 'modules/theme';

@@ -1,0 +1,401 @@
+// ============================================
+// Data Visualization Module SCSS
+// Chart, DataTable
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Chart Container
+// ============================================
+.chart {
+  position: relative;
+  width: 100%;
+
+  &__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  // Legend
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  &__legend-color {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 2px;
+  }
+
+  // Loading state
+  &__loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+  }
+
+  // Empty state
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-secondary, $text-secondary);
+    font-size: 0.875rem;
+
+    .material-icons-outlined {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+  }
+}
+
+// ============================================
+// Data Table
+// ============================================
+.datatable {
+  width: 100%;
+  background: var(--bg-primary, $bg-primary);
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-card-border-radius;
+  overflow: hidden;
+
+  // Header area (search, filters)
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, $border-color);
+  }
+
+  &__search {
+    position: relative;
+    flex: 1;
+    max-width: 20rem;
+
+    input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-autocomplete-dropdown-border-radius;
+      font-size: 0.875rem;
+      background: var(--bg-primary, $bg-primary);
+      color: var(--text-primary, $text-primary);
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary, $primary);
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      }
+
+      &::placeholder {
+        color: var(--text-tertiary, $text-tertiary);
+      }
+    }
+
+    .material-icons-outlined {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.125rem;
+      color: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  // Table container
+  &__container {
+    overflow-x: auto;
+  }
+
+  // Table
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  // Table header
+  &__thead {
+    background: var(--bg-secondary, $bg-secondary);
+
+    th {
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary, $text-secondary);
+      text-align: left;
+      border-bottom: 1px solid var(--border-color, $border-color);
+      white-space: nowrap;
+
+      // Sortable
+      &.is-sortable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+          color: var(--text-primary, $text-primary);
+        }
+      }
+    }
+  }
+
+  // Sort indicator
+  &__sort {
+    display: inline-flex;
+    flex-direction: column;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+
+    .material-icons-outlined {
+      font-size: 0.875rem;
+      line-height: 0.5;
+      color: var(--text-tertiary, $text-tertiary);
+
+      &.is-active {
+        color: var(--primary, $primary);
+      }
+    }
+  }
+
+  // Table body
+  &__tbody {
+    tr {
+      border-bottom: 1px solid var(--border-color, $border-color);
+      transition: background $duration-fast $ease-in-out;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: var(--bg-secondary, $bg-secondary);
+      }
+
+      &.is-selected {
+        background: rgba($primary, 0.05);
+      }
+    }
+
+    td {
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+      color: var(--text-primary, $text-primary);
+      vertical-align: middle;
+    }
+  }
+
+  // Checkbox column
+  &__checkbox {
+    width: 3rem;
+    text-align: center;
+
+    input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--primary, $primary);
+      cursor: pointer;
+    }
+  }
+
+  // Footer area (pagination)
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border-color, $border-color);
+    background: var(--bg-secondary, $bg-secondary);
+  }
+
+  &__info {
+    font-size: 0.8125rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--border-color, $border-color);
+    background: var(--bg-primary, $bg-primary);
+    border-radius: $component-badge-size-sm-border-radius;
+    font-size: 0.8125rem;
+    color: var(--text-primary, $text-primary);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover:not(:disabled) {
+      border-color: var(--primary, $primary);
+      color: var(--primary, $primary);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.is-active {
+      background: var(--primary, $primary);
+      border-color: var(--primary, $primary);
+      color: white;
+    }
+  }
+
+  // Rows per page
+  &__per-page {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+      font-size: 0.8125rem;
+      color: var(--text-secondary, $text-secondary);
+    }
+
+    select {
+      padding: 0.375rem 0.5rem;
+      border: 1px solid var(--border-color, $border-color);
+      border-radius: $component-badge-size-sm-border-radius;
+      background: var(--bg-primary, $bg-primary);
+      font-size: 0.8125rem;
+      color: var(--text-primary, $text-primary);
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary, $primary);
+      }
+    }
+  }
+
+  // Loading overlay
+  &__loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+  }
+
+  // Empty state
+  &__empty {
+    padding: 3rem 1rem;
+    text-align: center;
+
+    .material-icons-outlined {
+      font-size: 3rem;
+      color: var(--text-tertiary, $text-tertiary);
+      margin-bottom: 0.75rem;
+    }
+
+    &-text {
+      font-size: 0.9375rem;
+      color: var(--text-secondary, $text-secondary);
+    }
+  }
+
+  // Responsive
+  &--responsive {
+    @media (max-width: 768px) {
+      .datatable__thead {
+        display: none;
+      }
+
+      .datatable__tbody {
+        tr {
+          display: block;
+          margin-bottom: 1rem;
+          border: 1px solid var(--border-color, $border-color);
+          border-radius: $component-badge-size-md-border-radius;
+        }
+
+        td {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.625rem 1rem;
+          border-bottom: 1px solid var(--border-color, $border-color);
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: var(--text-secondary, $text-secondary);
+          }
+        }
+      }
+    }
+  }
+
+  // Striped
+  &--striped {
+    .datatable__tbody tr:nth-child(even) {
+      background: var(--bg-secondary, $bg-secondary);
+    }
+  }
+
+  // Bordered
+  &--bordered {
+    .datatable__tbody td,
+    .datatable__thead th {
+      border: 1px solid var(--border-color, $border-color);
+    }
+  }
+
+  // Compact
+  &--compact {
+    .datatable__thead th,
+    .datatable__tbody td {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+    }
+  }
+}

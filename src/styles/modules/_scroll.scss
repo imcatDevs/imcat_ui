@@ -1,0 +1,380 @@
+// ============================================
+// Scroll Module SCSS
+// InfiniteScroll, ScrollTo, BackToTop
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// Infinite Scroll
+// ============================================
+.infinite-scroll {
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    &.is-hidden {
+      display: none;
+    }
+  }
+
+  &__spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--border-color, $border-color);
+    border-top-color: var(--primary, $primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  &__end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-secondary, $text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+
+    &-message {
+      color: var(--text-secondary, $text-secondary);
+      font-size: 0.875rem;
+    }
+
+    &-retry {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color, $border-color);
+      background: var(--bg-primary, $bg-primary);
+      border-radius: $component-button-size-md-border-radius;
+      font-size: 0.875rem;
+      color: var(--text-primary, $text-primary);
+      cursor: pointer;
+      transition: all $duration-fast $ease-in-out;
+
+      &:hover {
+        border-color: var(--primary, $primary);
+        color: var(--primary, $primary);
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ============================================
+// Back to Top Button
+// ============================================
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  background: var(--primary, $primary);
+  border-radius: 50%;
+  color: white;
+  box-shadow: $shadow-lg;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: 
+    opacity $duration-base $ease-in-out,
+    visibility $duration-base,
+    transform $duration-base $ease-in-out,
+    background $duration-fast $ease-in-out;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: var(--primary-hover, $primary-hover);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .material-icons-outlined {
+    font-size: 1.5rem;
+  }
+
+  // Variants
+  &--secondary {
+    background: var(--bg-primary, $bg-primary);
+    border: 1px solid var(--border-color, $border-color);
+    color: var(--text-primary, $text-primary);
+
+    &:hover {
+      background: var(--bg-secondary, $bg-secondary);
+      border-color: var(--primary, $primary);
+      color: var(--primary, $primary);
+    }
+  }
+
+  &--sm {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    .material-icons-outlined {
+      font-size: 1.25rem;
+    }
+  }
+
+  &--lg {
+    width: 3.5rem;
+    height: 3.5rem;
+
+    .material-icons-outlined {
+      font-size: 1.75rem;
+    }
+  }
+
+  // Position variants
+  &--left {
+    right: auto;
+    left: 1.5rem;
+  }
+}
+
+// ============================================
+// Scroll Progress
+// ============================================
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  height: 3px;
+  background: var(--bg-tertiary, $bg-tertiary);
+
+  &__bar {
+    height: 100%;
+    background: var(--primary, $primary);
+    width: 0;
+    transition: width 100ms linear;
+  }
+
+  // Variants
+  &--bottom {
+    top: auto;
+    bottom: 0;
+  }
+
+  &--gradient {
+    .scroll-progress__bar {
+      background: linear-gradient(90deg, var(--primary, $primary), $success);
+    }
+  }
+}
+
+// ============================================
+// Scroll Indicator
+// ============================================
+.scroll-indicator {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--border-color, $border-color);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--text-secondary, $text-secondary);
+    }
+
+    &.is-active {
+      background: var(--primary, $primary);
+      transform: scale(1.5);
+    }
+  }
+
+  &--left {
+    right: auto;
+    left: 1rem;
+  }
+
+  &--line {
+    .scroll-indicator__dot {
+      width: 3px;
+      height: 1.5rem;
+      border-radius: 1.5px;
+
+      &.is-active {
+        height: 2.5rem;
+        transform: none;
+      }
+    }
+  }
+}
+
+// ============================================
+// Smooth Scroll Anchor
+// ============================================
+.scroll-anchor {
+  scroll-margin-top: 5rem;
+}
+
+// ============================================
+// Scroll Snap Container
+// ============================================
+.scroll-snap {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+
+  &__section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+  }
+
+  // Horizontal
+  &--horizontal {
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    height: auto;
+
+    .scroll-snap__section {
+      scroll-snap-align: start;
+      min-width: 100vw;
+      min-height: auto;
+      flex-shrink: 0;
+    }
+  }
+
+  // Proximity (not mandatory)
+  &--proximity {
+    scroll-snap-type: y proximity;
+  }
+}
+
+// ============================================
+// Scrollbar Custom
+// ============================================
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-strong, $border-strong);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--text-tertiary, $text-tertiary);
+    }
+  }
+
+  // Thin variant
+  &--thin {
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+  }
+
+  // Hidden but functional
+  &--hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+// ============================================
+// Pull to Refresh
+// ============================================
+.pull-to-refresh {
+  position: relative;
+  overflow-y: auto;
+
+  &__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+    overflow: hidden;
+    background: var(--bg-secondary, $bg-secondary);
+    transition: height 300ms $ease-in-out;
+
+    &.is-pulling {
+      height: 4rem;
+    }
+
+    &.is-refreshing {
+      height: 4rem;
+    }
+  }
+
+  &__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--border-color, $border-color);
+    border-top-color: var(--primary, $primary);
+    border-radius: 50%;
+  }
+
+  &__indicator.is-refreshing &__spinner {
+    animation: spin 0.8s linear infinite;
+  }
+
+  &__arrow {
+    font-size: 1.5rem;
+    color: var(--text-secondary, $text-secondary);
+    transition: transform 300ms $ease-in-out;
+  }
+
+  &__indicator.is-pulling &__arrow {
+    transform: rotate(180deg);
+  }
+}

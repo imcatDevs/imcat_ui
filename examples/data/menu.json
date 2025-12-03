@@ -1,0 +1,144 @@
+{
+  "sections": [
+    {
+      "title": "시작하기",
+      "items": [
+        { "id": "overview", "icon": "home", "text": "개요", "active": true },
+        { "id": "quickstart", "icon": "rocket_launch", "text": "빠른 시작", "view": "views/getting-started/quickstart.html" }
+      ]
+    },
+    {
+      "title": "Base",
+      "items": [
+        { "id": "base-typography", "icon": "text_format", "text": "Typography", "view": "views/base/typography.html" },
+        { "id": "base-colors", "icon": "palette", "text": "Colors", "view": "views/base/colors.html" },
+        { "id": "base-icons", "icon": "emoji_emotions", "text": "Icons", "view": "views/base/icons.html" },
+        { "id": "base-buttons", "icon": "smart_button", "text": "Buttons", "view": "views/base/buttons.html" },
+        { "id": "base-forms", "icon": "edit_note", "text": "Forms", "view": "views/base/forms.html" },
+        { "id": "base-cards", "icon": "credit_card", "text": "Cards", "view": "views/base/cards.html" },
+        { "id": "base-alerts", "icon": "campaign", "text": "Alerts", "view": "views/base/alerts.html" },
+        { "id": "base-badges", "icon": "sell", "text": "Badges", "view": "views/base/badges.html" }
+      ]
+    },
+    {
+      "title": "Core API",
+      "items": [
+        { "id": "core-dom", "icon": "code", "text": "DOM", "view": "views/core/dom.html" },
+        { "id": "core-router", "icon": "route", "text": "Router", "view": "views/core/router.html" },
+        { "id": "core-event", "icon": "electric_bolt", "text": "Event Bus", "view": "views/core/event.html" },
+        { "id": "core-state", "icon": "data_object", "text": "State", "view": "views/core/state.html" },
+        { "id": "core-storage", "icon": "storage", "text": "Storage", "view": "views/core/storage.html" }
+      ]
+    },
+    {
+      "title": "Overlays",
+      "items": [
+        { "id": "overlays-modal", "icon": "open_in_new", "text": "Modal" },
+        { "id": "overlays-drawer", "icon": "menu_open", "text": "Drawer" },
+        { "id": "overlays-offcanvas", "icon": "view_sidebar", "text": "Offcanvas" }
+      ]
+    },
+    {
+      "title": "Feedback",
+      "items": [
+        { "id": "feedback-toast", "icon": "notifications", "text": "Toast" },
+        { "id": "feedback-notification", "icon": "campaign", "text": "Notification" }
+      ]
+    },
+    {
+      "title": "Dropdown",
+      "items": [
+        { "id": "dropdown", "icon": "expand_more", "text": "Dropdown" },
+        { "id": "context-menu", "icon": "menu", "text": "Context Menu" }
+      ]
+    },
+    {
+      "title": "Navigation",
+      "items": [
+        { "id": "nav-tabs", "icon": "tab", "text": "Tabs" },
+        { "id": "nav-accordion", "icon": "expand_more", "text": "Accordion" },
+        { "id": "nav-breadcrumb", "icon": "chevron_right", "text": "Breadcrumb" }
+      ]
+    },
+    {
+      "title": "Tooltips",
+      "items": [
+        { "id": "tooltip", "icon": "chat_bubble", "text": "Tooltip" },
+        { "id": "popover", "icon": "info", "text": "Popover" }
+      ]
+    },
+    {
+      "title": "Pickers",
+      "items": [
+        { "id": "picker-date", "icon": "calendar_today", "text": "DatePicker" },
+        { "id": "picker-time", "icon": "schedule", "text": "TimePicker" },
+        { "id": "picker-color", "icon": "palette", "text": "ColorPicker" }
+      ]
+    },
+    {
+      "title": "Selectors",
+      "items": [
+        { "id": "selector-autocomplete", "icon": "search", "text": "Autocomplete" },
+        { "id": "selector-multiselect", "icon": "checklist", "text": "MultiSelect" },
+        { "id": "selector-transfer", "icon": "swap_horiz", "text": "Transfer" }
+      ]
+    },
+    {
+      "title": "Forms",
+      "items": [
+        { "id": "form-upload", "icon": "cloud_upload", "text": "FileUpload" },
+        { "id": "form-rating", "icon": "star", "text": "Rating" },
+        { "id": "form-switch", "icon": "toggle_on", "text": "Switch" }
+      ]
+    },
+    {
+      "title": "Carousel",
+      "items": [
+        { "id": "carousel", "icon": "view_carousel", "text": "Carousel" },
+        { "id": "lightbox", "icon": "photo_library", "text": "Lightbox" }
+      ]
+    },
+    {
+      "title": "Data",
+      "items": [
+        { "id": "data-table", "icon": "table_chart", "text": "DataTable" },
+        { "id": "data-chart", "icon": "bar_chart", "text": "Chart" }
+      ]
+    },
+    {
+      "title": "Live Status",
+      "items": [
+        { "id": "progress", "icon": "linear_scale", "text": "Progress" },
+        { "id": "skeleton", "icon": "view_stream", "text": "Skeleton" },
+        { "id": "spinner", "icon": "autorenew", "text": "Spinner" }
+      ]
+    },
+    {
+      "title": "Stepper",
+      "items": [
+        { "id": "stepper", "icon": "format_list_numbered", "text": "Stepper" }
+      ]
+    },
+    {
+      "title": "Scroll",
+      "items": [
+        { "id": "scroll-infinite", "icon": "all_inclusive", "text": "Infinite Scroll" },
+        { "id": "scroll-top", "icon": "arrow_upward", "text": "Back to Top" }
+      ]
+    },
+    {
+      "title": "Advanced UI",
+      "items": [
+        { "id": "kanban", "icon": "view_kanban", "text": "Kanban" },
+        { "id": "qrcode", "icon": "qr_code", "text": "QRCode" },
+        { "id": "image-compare", "icon": "compare", "text": "Image Compare" }
+      ]
+    },
+    {
+      "title": "Theme",
+      "items": [
+        { "id": "theme-switcher", "icon": "contrast", "text": "Theme Switcher" }
+      ]
+    }
+  ]
+}

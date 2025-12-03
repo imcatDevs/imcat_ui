@@ -1,0 +1,217 @@
+<!-- Colors -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+  
+  .color-swatch { display: flex; flex-wrap: wrap; gap: 12px; }
+  .color-item { width: 120px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .color-item__preview { height: 80px; }
+  .color-item__info { padding: 8px; background: var(--bg-secondary); font-size: 0.75rem; }
+  .color-item__name { font-weight: 600; margin-bottom: 2px; }
+  .color-item__value { color: var(--text-secondary); font-family: monospace; }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Colors</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Colors</h1>
+  <p class="page-description">색상 팔레트와 시맨틱 컬러 시스템</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Primary Colors -->
+<div class="demo-card" id="section-primary">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Primary Colors</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="color-swatch">
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--primary);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Primary</div>
+          <div class="color-item__value">--primary</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--primary-light);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Primary Light</div>
+          <div class="color-item__value">--primary-light</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--primary-dark);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Primary Dark</div>
+          <div class="color-item__value">--primary-dark</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Semantic Colors -->
+<div class="demo-card" id="section-semantic">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Semantic Colors</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="color-swatch">
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--success);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Success</div>
+          <div class="color-item__value">--success</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--danger);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Danger</div>
+          <div class="color-item__value">--danger</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--warning);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Warning</div>
+          <div class="color-item__value">--warning</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--info);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Info</div>
+          <div class="color-item__value">--info</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gray Scale -->
+<div class="demo-card" id="section-gray">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Gray Scale</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="color-swatch">
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--gray-100);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Gray 100</div>
+          <div class="color-item__value">--gray-100</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--gray-200);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Gray 200</div>
+          <div class="color-item__value">--gray-200</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--gray-300);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Gray 300</div>
+          <div class="color-item__value">--gray-300</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--gray-400);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Gray 400</div>
+          <div class="color-item__value">--gray-400</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--gray-500);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">Gray 500</div>
+          <div class="color-item__value">--gray-500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Background Colors -->
+<div class="demo-card" id="section-background">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Background Colors</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="color-swatch">
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--bg-primary); border: 1px solid var(--border-color);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">BG Primary</div>
+          <div class="color-item__value">--bg-primary</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--bg-secondary);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">BG Secondary</div>
+          <div class="color-item__value">--bg-secondary</div>
+        </div>
+      </div>
+      <div class="color-item">
+        <div class="color-item__preview" style="background: var(--bg-tertiary);"></div>
+        <div class="color-item__info">
+          <div class="color-item__name">BG Tertiary</div>
+          <div class="color-item__value">--bg-tertiary</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-primary" class="doc-toc__link is-active">Primary</a></li>
+      <li class="doc-toc__item"><a href="#section-semantic" class="doc-toc__link">Semantic</a></li>
+      <li class="doc-toc__item"><a href="#section-gray" class="doc-toc__link">Gray Scale</a></li>
+      <li class="doc-toc__item"><a href="#section-background" class="doc-toc__link">Background</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>

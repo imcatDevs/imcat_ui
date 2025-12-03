@@ -1,0 +1,573 @@
+// ============================================
+// Forms Module SCSS
+// FileUpload, Rating, FormValidator
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+// ============================================
+// File Upload
+// ============================================
+.file-upload {
+  position: relative;
+
+  // Dropzone style
+  &__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 10rem;
+    padding: 2rem;
+    border: 2px dashed var(--border-color, $border-color);
+    border-radius: $component-card-border-radius;
+    background: var(--bg-secondary, $bg-secondary);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover,
+    &.is-dragover {
+      border-color: var(--primary, $primary);
+      background: rgba($primary, 0.05);
+    }
+
+    &.is-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__icon {
+    font-size: 3rem;
+    color: var(--text-tertiary, $text-tertiary);
+  }
+
+  &__text {
+    text-align: center;
+
+    &-main {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-primary, $text-primary);
+      margin-bottom: 0.25rem;
+
+      span {
+        color: var(--primary, $primary);
+        text-decoration: underline;
+      }
+    }
+
+    &-hint {
+      font-size: 0.8125rem;
+      color: var(--text-secondary, $text-secondary);
+    }
+  }
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // File list
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--bg-secondary, $bg-secondary);
+    border: 1px solid var(--border-color, $border-color);
+    border-radius: $component-badge-size-md-border-radius;
+
+    &.is-error {
+      border-color: $error;
+      background: $bg-error;
+    }
+
+    &.is-success {
+      border-color: $success;
+    }
+  }
+
+  &__item-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: $component-badge-size-md-border-radius;
+    font-size: 1.25rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  &__item-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__item-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary, $text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__item-size {
+    font-size: 0.75rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  &__item-progress {
+    width: 100%;
+    height: 0.25rem;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border-radius: 0.125rem;
+    margin-top: 0.375rem;
+    overflow: hidden;
+
+    &-bar {
+      height: 100%;
+      background: var(--primary, $primary);
+      border-radius: 0.125rem;
+      transition: width 300ms $ease-in-out;
+    }
+  }
+
+  &__item-actions {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  &__item-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    color: var(--text-tertiary, $text-tertiary);
+    cursor: pointer;
+    transition: all $duration-fast $ease-in-out;
+
+    &:hover {
+      background: var(--bg-tertiary, $bg-tertiary);
+      color: var(--text-primary, $text-primary);
+    }
+
+    &--remove:hover {
+      color: $error;
+      background: $bg-error;
+    }
+  }
+
+  // Compact style
+  &--compact {
+    .file-upload__dropzone {
+      flex-direction: row;
+      min-height: auto;
+      padding: 1rem;
+    }
+
+    .file-upload__icon {
+      font-size: 1.5rem;
+    }
+
+    .file-upload__text {
+      text-align: left;
+    }
+  }
+
+  // Avatar upload
+  &--avatar {
+    display: inline-block;
+
+    .file-upload__dropzone {
+      width: 8rem;
+      height: 8rem;
+      min-height: auto;
+      border-radius: 50%;
+      padding: 0;
+    }
+
+    .file-upload__preview {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+}
+
+// ============================================
+// Rating
+// ============================================
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+
+  &__item {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform $duration-fast $ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary, $primary);
+      outline-offset: 2px;
+      border-radius: 50%;
+    }
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+    color: var(--border-color, $border-color);
+    transition: color $duration-fast $ease-in-out;
+
+    &.is-filled {
+      color: #FACC15; // Yellow
+    }
+
+    &.is-half {
+      background: linear-gradient(90deg, #FACC15 50%, var(--border-color, $border-color) 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__value {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary, $text-primary);
+  }
+
+  &__count {
+    font-size: 0.8125rem;
+    color: var(--text-secondary, $text-secondary);
+  }
+
+  // Sizes
+  &--sm .rating__icon { font-size: 1rem; }
+  &--lg .rating__icon { font-size: 2rem; }
+
+  // Readonly
+  &--readonly {
+    .rating__item {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  // Heart style
+  &--hearts .rating__icon.is-filled {
+    color: $error;
+  }
+}
+
+// ============================================
+// Form Validation
+// ============================================
+.form-group {
+  margin-bottom: 1rem;
+
+  &.is-valid {
+    .form-control {
+      border-color: $success;
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($success, 0.1);
+      }
+    }
+  }
+
+  &.is-invalid {
+    .form-control {
+      border-color: $error;
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($error, 0.1);
+      }
+    }
+  }
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary, $text-primary);
+
+  .required {
+    color: $error;
+    margin-left: 0.125rem;
+  }
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--border-color, $border-color);
+  border-radius: $component-autocomplete-dropdown-border-radius;
+  font-size: 0.875rem;
+  color: var(--text-primary, $text-primary);
+  background: var(--bg-primary, $bg-primary);
+  transition: 
+    border-color $duration-fast $ease-in-out,
+    box-shadow $duration-fast $ease-in-out;
+
+  &::placeholder {
+    color: var(--text-tertiary, $text-tertiary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary, $primary);
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &:disabled {
+    background: var(--bg-tertiary, $bg-tertiary);
+    cursor: not-allowed;
+  }
+}
+
+.form-text {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, $text-secondary);
+}
+
+.form-error {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: $error;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  .material-icons-outlined {
+    font-size: 1rem;
+  }
+}
+
+.form-success {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: $success;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  .material-icons-outlined {
+    font-size: 1rem;
+  }
+}
+
+// ============================================
+// Input Group
+// ============================================
+.input-group {
+  display: flex;
+  align-items: stretch;
+
+  .form-control {
+    flex: 1;
+    min-width: 0;
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: $component-autocomplete-dropdown-border-radius 0 0 $component-autocomplete-dropdown-border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $component-autocomplete-dropdown-border-radius $component-autocomplete-dropdown-border-radius 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+  }
+
+  &__addon {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    background: var(--bg-tertiary, $bg-tertiary);
+    border: 1px solid var(--border-color, $border-color);
+    font-size: 0.875rem;
+    color: var(--text-secondary, $text-secondary);
+
+    &:first-child {
+      border-radius: $component-autocomplete-dropdown-border-radius 0 0 $component-autocomplete-dropdown-border-radius;
+      border-right: none;
+    }
+
+    &:last-child {
+      border-radius: 0 $component-autocomplete-dropdown-border-radius $component-autocomplete-dropdown-border-radius 0;
+      border-left: none;
+    }
+  }
+
+  &__btn {
+    border-radius: 0;
+
+    &:last-child {
+      border-radius: 0 $component-autocomplete-dropdown-border-radius $component-autocomplete-dropdown-border-radius 0;
+    }
+  }
+}
+
+// ============================================
+// Checkbox & Radio Custom
+// ============================================
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: $component-checkbox-gap;
+  margin-bottom: 0.5rem;
+
+  &-input {
+    flex-shrink: 0;
+    width: $component-checkbox-size-md;
+    height: $component-checkbox-size-md;
+    margin-top: 0.125rem;
+    accent-color: var(--primary, $primary);
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-label {
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+    cursor: pointer;
+    user-select: none;
+
+    &:has(+ .form-check-input:disabled) {
+      color: var(--text-disabled, $text-disabled);
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ============================================
+// Switch
+// ============================================
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .switch__slider {
+      background: $component-switch-state-on-background;
+
+      &::before {
+        transform: translateX(calc($component-switch-width-md - $component-switch-height-md));
+      }
+    }
+
+    &:disabled + .switch__slider {
+      background: $component-switch-state-disabled-background;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible + .switch__slider {
+      box-shadow: 0 0 0 3px rgba($primary, 0.2);
+    }
+  }
+
+  &__slider {
+    position: relative;
+    width: $component-switch-width-md;
+    height: $component-switch-height-md;
+    background: $component-switch-state-off-background;
+    border-radius: $component-switch-border-radius;
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: calc($component-switch-height-md - 4px);
+      height: calc($component-switch-height-md - 4px);
+      background: $component-switch-state-off-thumb;
+      border-radius: 50%;
+      transition: transform $duration-fast $ease-in-out;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: var(--text-primary, $text-primary);
+  }
+
+  // Sizes
+  &--sm {
+    .switch__slider {
+      width: $component-switch-width-sm;
+      height: $component-switch-height-sm;
+
+      &::before {
+        width: calc($component-switch-height-sm - 4px);
+        height: calc($component-switch-height-sm - 4px);
+      }
+    }
+
+    .switch__input:checked + .switch__slider::before {
+      transform: translateX(calc($component-switch-width-sm - $component-switch-height-sm));
+    }
+  }
+
+  &--lg {
+    .switch__slider {
+      width: $component-switch-width-lg;
+      height: $component-switch-height-lg;
+
+      &::before {
+        width: calc($component-switch-height-lg - 4px);
+        height: calc($component-switch-height-lg - 4px);
+      }
+    }
+
+    .switch__input:checked + .switch__slider::before {
+      transform: translateX(calc($component-switch-width-lg - $component-switch-height-lg));
+    }
+  }
+}

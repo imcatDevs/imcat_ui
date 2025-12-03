@@ -1,0 +1,190 @@
+<!-- Alerts -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Alerts</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Alerts</h1>
+  <p class="page-description">사용자에게 정보를 전달하는 알림 컴포넌트</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Basic Alerts -->
+<div class="demo-card" id="section-basic">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Basic Alerts</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="alert alert--success">
+      <i class="material-icons-outlined">check_circle</i>
+      <span>성공! 작업이 완료되었습니다.</span>
+    </div>
+    <div class="alert alert--danger">
+      <i class="material-icons-outlined">error</i>
+      <span>오류가 발생했습니다. 다시 시도해주세요.</span>
+    </div>
+    <div class="alert alert--warning">
+      <i class="material-icons-outlined">warning</i>
+      <span>주의! 이 작업은 되돌릴 수 없습니다.</span>
+    </div>
+    <div class="alert alert--info">
+      <i class="material-icons-outlined">info</i>
+      <span>새로운 업데이트가 있습니다.</span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="alert alert--success"&gt;
+  &lt;i class="material-icons-outlined"&gt;check_circle&lt;/i&gt;
+  &lt;span&gt;성공 메시지&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="alert alert--danger"&gt;...&lt;/div&gt;
+&lt;div class="alert alert--warning"&gt;...&lt;/div&gt;
+&lt;div class="alert alert--info"&gt;...&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Alert with Title -->
+<div class="demo-card" id="section-title">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Alert with Title</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="alert alert--success">
+      <div>
+        <strong class="alert__title">저장 완료!</strong>
+        <p class="alert__text mb-0">모든 변경사항이 저장되었습니다.</p>
+      </div>
+    </div>
+    <div class="alert alert--danger">
+      <div>
+        <strong class="alert__title">접근 거부</strong>
+        <p class="alert__text mb-0">이 페이지에 접근할 권한이 없습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="alert alert--success"&gt;
+  &lt;div&gt;
+    &lt;strong class="alert__title"&gt;저장 완료!&lt;/strong&gt;
+    &lt;p class="alert__text"&gt;설명 텍스트&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Dismissible Alerts -->
+<div class="demo-card" id="section-dismiss">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Dismissible Alerts</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="alert alert--info" id="dismissAlert" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i class="material-icons-outlined">info</i>
+        <span>이 알림은 닫을 수 있습니다.</span>
+      </div>
+      <button class="btn btn--icon" style="margin: -8px;" onclick="this.parentElement.remove()">
+        <i class="material-icons-outlined">close</i>
+      </button>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="alert alert--info"&gt;
+  &lt;span&gt;닫을 수 있는 알림&lt;/span&gt;
+  &lt;button class="btn btn--icon" onclick="this.parentElement.remove()"&gt;
+    &lt;i class="material-icons-outlined"&gt;close&lt;/i&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Outline Alerts -->
+<div class="demo-card" id="section-outline">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Outline Alerts</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="alert alert--outline-success">
+      <i class="material-icons-outlined">check_circle</i>
+      <span>Outline Success Alert</span>
+    </div>
+    <div class="alert alert--outline-danger">
+      <i class="material-icons-outlined">error</i>
+      <span>Outline Danger Alert</span>
+    </div>
+    <div class="alert alert--outline-warning">
+      <i class="material-icons-outlined">warning</i>
+      <span>Outline Warning Alert</span>
+    </div>
+    <div class="alert alert--outline-info">
+      <i class="material-icons-outlined">info</i>
+      <span>Outline Info Alert</span>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="alert alert--outline-success"&gt;...&lt;/div&gt;
+&lt;div class="alert alert--outline-danger"&gt;...&lt;/div&gt;
+&lt;div class="alert alert--outline-warning"&gt;...&lt;/div&gt;
+&lt;div class="alert alert--outline-info"&gt;...&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-basic" class="doc-toc__link is-active">Basic</a></li>
+      <li class="doc-toc__item"><a href="#section-title" class="doc-toc__link">With Title</a></li>
+      <li class="doc-toc__item"><a href="#section-dismiss" class="doc-toc__link">Dismissible</a></li>
+      <li class="doc-toc__item"><a href="#section-outline" class="doc-toc__link">Outline</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>

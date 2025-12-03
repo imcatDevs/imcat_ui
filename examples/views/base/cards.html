@@ -1,0 +1,189 @@
+<!-- Cards -->
+<style>
+  .doc-layout { display: flex; gap: 24px; }
+  .doc-main { flex: 1; min-width: 0; }
+  .doc-toc { width: 200px; flex-shrink: 0; position: sticky; top: 80px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+  .doc-toc__title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .doc-toc__list { list-style: none; padding: 0; margin: 0; }
+  .doc-toc__item { margin-bottom: 4px; }
+  .doc-toc__link { display: block; padding: 6px 12px; font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s ease; }
+  .doc-toc__link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+  .doc-toc__link.is-active { color: var(--primary); border-left-color: var(--primary); background: rgba(var(--primary-rgb, 79, 70, 229), 0.08); }
+  @media (max-width: 1024px) { .doc-toc { display: none; } }
+</style>
+
+<div class="page-title-box">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" catui-href="views/home.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Base</a></li>
+      <li class="breadcrumb-item active">Cards</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Cards</h1>
+  <p class="page-description">콘텐츠를 담는 카드 컴포넌트</p>
+</div>
+
+<div class="doc-layout">
+  <div class="doc-main">
+
+<!-- Basic Card -->
+<div class="demo-card" id="section-basic">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Basic Card</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="max-width: 350px;">
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">카드 제목</h3>
+          <p class="card__text">카드에 들어갈 내용입니다. 다양한 콘텐츠를 담을 수 있습니다.</p>
+          <button class="btn btn--primary btn--sm">자세히 보기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="card"&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h3 class="card__title"&gt;카드 제목&lt;/h3&gt;
+    &lt;p class="card__text"&gt;카드 내용...&lt;/p&gt;
+    &lt;button class="btn btn--primary"&gt;버튼&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Card with Header -->
+<div class="demo-card" id="section-header">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Card with Header & Footer</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="max-width: 350px;">
+      <div class="card">
+        <div class="card__header">
+          <h4 class="card__title mb-0">헤더 영역</h4>
+        </div>
+        <div class="card__body">
+          <p class="card__text">본문 내용이 들어갑니다.</p>
+        </div>
+        <div class="card__footer">
+          <small class="text-muted">마지막 수정: 오늘</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="card"&gt;
+  &lt;div class="card__header"&gt;헤더&lt;/div&gt;
+  &lt;div class="card__body"&gt;본문&lt;/div&gt;
+  &lt;div class="card__footer"&gt;푸터&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Card with Image -->
+<div class="demo-card" id="section-image">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Card with Image</span>
+  </div>
+  <div class="demo-card__body">
+    <div style="max-width: 350px;">
+      <div class="card">
+        <div class="card__img" style="height: 180px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); display: flex; align-items: center; justify-content: center;">
+          <i class="material-icons-outlined" style="font-size: 48px; color: white;">image</i>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">이미지 카드</h3>
+          <p class="card__text">상단에 이미지가 포함된 카드입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo-card__code">
+<pre>
+&lt;div class="card"&gt;
+  &lt;div class="card__img"&gt;
+    &lt;img src="..." alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="card__body"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+  </div>
+</div>
+
+<!-- Card Grid -->
+<div class="demo-card" id="section-grid">
+  <div class="demo-card__header">
+    <span class="demo-card__title">Card Grid</span>
+  </div>
+  <div class="demo-card__body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card__body">
+            <i class="material-icons-outlined" style="font-size: 32px; color: var(--primary); margin-bottom: 12px;">speed</i>
+            <h4 class="card__title">빠른 속도</h4>
+            <p class="card__text">최적화된 성능으로 빠른 로딩</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card__body">
+            <i class="material-icons-outlined" style="font-size: 32px; color: var(--success); margin-bottom: 12px;">security</i>
+            <h4 class="card__title">보안</h4>
+            <p class="card__text">XSS 방어 및 입력 검증</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card__body">
+            <i class="material-icons-outlined" style="font-size: 32px; color: var(--info); margin-bottom: 12px;">code</i>
+            <h4 class="card__title">깔끔한 코드</h4>
+            <p class="card__text">모던 JavaScript ES6+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /.doc-main -->
+  
+  <aside class="doc-toc">
+    <div class="doc-toc__title">목차</div>
+    <ul class="doc-toc__list">
+      <li class="doc-toc__item"><a href="#section-basic" class="doc-toc__link is-active">Basic</a></li>
+      <li class="doc-toc__item"><a href="#section-header" class="doc-toc__link">Header & Footer</a></li>
+      <li class="doc-toc__item"><a href="#section-image" class="doc-toc__link">Image</a></li>
+      <li class="doc-toc__item"><a href="#section-grid" class="doc-toc__link">Grid</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+  function initTocSpy() {
+    const sections = document.querySelectorAll('.demo-card[id]');
+    const tocLinks = document.querySelectorAll('.doc-toc__link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            link.classList.remove('is-active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('is-active');
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    sections.forEach(section => observer.observe(section));
+  }
+  initTocSpy();
+</script>
